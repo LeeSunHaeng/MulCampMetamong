@@ -20,7 +20,7 @@ public class MemberController {
 	@RequestMapping(value = "/getId", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String getId(MemberDto dto) {
 		System.out.println("MemberController getId");
-		System.out.println("HelloHello");
+		System.out.println("HelloHelloHello");
 		boolean b = service.getId(dto);
 		if(b) {
 			return "NO";
