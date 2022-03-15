@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         val editId = findViewById<EditText>(R.id.editId)
         val editPw = findViewById<EditText>(R.id.editPw)
-
+        val nums = 10
         val loginBtn = findViewById<Button>(R.id.loginBtn)
         loginBtn.setOnClickListener {
 
