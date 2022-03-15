@@ -39,7 +39,7 @@ class RetrofitClient {
                 instanceStr = Retrofit.Builder()
                     .baseUrl("http://70.12.113.169:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
-                    .build()
+                    .build()//주석
             }
             return instanceStr!!
         }
