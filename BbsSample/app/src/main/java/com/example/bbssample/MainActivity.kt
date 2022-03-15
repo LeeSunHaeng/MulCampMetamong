@@ -36,3 +36,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+// 안녕하세요.
