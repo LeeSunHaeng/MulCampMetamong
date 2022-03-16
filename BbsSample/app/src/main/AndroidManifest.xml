@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.bbssample">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
@@ -13,21 +13,25 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
-        <activity
-                android:name=".BbsWriteActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".BbsListActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".MainActivity"
-                android:exported="true">
+        <activity android:name="com.example.bbssample.SplashActivity"
+                  android:exported="true"
+                  android:theme="@style/Theme.BbsSample.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:name="com.example.bbssample.BbsWriteActivity"
+                android:exported="true"/>
+        <activity
+                android:name="com.example.bbssample.BbsListActivity"
+                android:exported="true"/>
+        <activity
+                android:name="com.example.bbssample.MainActivity"
+                android:exported="true"/>
+
     </application>
 
 </manifest>
