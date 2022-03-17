@@ -25,12 +25,13 @@
                     android:gravity="center_vertical"
             />
             <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" app:srcCompat="@drawable/setting_icon"
+                    android:layout_width="10dp"
+                    android:layout_height="40dp" app:srcCompat="@drawable/setting_icon"
                     android:id="@+id/imageButton2" android:layout_weight="1"
                     android:padding="0sp"
                     android:scaleType="fitCenter"
                     android:backgroundTint="@color/white"
+                    android:layout_marginTop="15dp"
             />
         </LinearLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
