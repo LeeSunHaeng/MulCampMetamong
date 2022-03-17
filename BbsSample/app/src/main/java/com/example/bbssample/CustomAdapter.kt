@@ -1,5 +1,6 @@
-package com.example.bbssample
 
+package com.example.bbssample
+/*
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -38,4 +39,4 @@ class CustomAdapter(val context: Context, val bbsList:ArrayList<BbsDto>) : Recyc
     }
 
 
-}
+}*/
