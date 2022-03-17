@@ -17,6 +17,9 @@ class InsertActivity : AppCompatActivity() {
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.title = "회원가입"
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button);
+            supportActionBar?.setDisplayHomeAsUpEnabled(true);
         }
         binding.toolbarInsertMember.setNavigationOnClickListener {
             onBackPressed()
