@@ -28,7 +28,6 @@ class BbsDao {
 
     fun getBbsList():ArrayList<BbsDto>{
         val retrofit = RetrofitClient.getInstance()
-
         val service = retrofit?.create(BbsService::class.java)
         val call = service?.getBbsList()
         val response = call?.execute()
