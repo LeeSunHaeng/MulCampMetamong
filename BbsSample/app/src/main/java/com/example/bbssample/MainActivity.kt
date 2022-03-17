@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
         val editPw = findViewById<EditText>(R.id.editPw)
         val nums = 10
         val loginBtn = findViewById<Button>(R.id.loginBtn)
+        val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
+
         val snsBtn = findViewById<Button>(R.id.SnsBtn)
         val haebinBtn = findViewById<Button>(R.id.haebinBtn)
         loginBtn.setOnClickListener {
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity() {
             }else { Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
            }
         }
+
+        insertMemberBtn.setOnClickListener {
+            val i = Intent(this, InsertActivity::class.java)
+            startActivity(i)
+        }
+
         //sns 이동 버튼
         snsBtn.setOnClickListener {
             val intent = Intent(this, SnsActivity::class.java)
@@ -47,4 +56,5 @@ class MainActivity : AppCompatActivity() {
          }
     }
 }
+// yes
 

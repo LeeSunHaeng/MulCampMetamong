@@ -18,6 +18,9 @@
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".InsertActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".SnsActivity"
                 android:exported="true"/>
         <!-- 저장소에 접근할 수 있게 하는 설정 -->
