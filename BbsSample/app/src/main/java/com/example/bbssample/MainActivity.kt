@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         val editPw = findViewById<EditText>(R.id.editPw)
         val nums = 10
         val loginBtn = findViewById<Button>(R.id.loginBtn)
+        val snsBtn = findViewById<Button>(R.id.SnsBtn)
         loginBtn.setOnClickListener {
 
            /* val id = editId.text.toString()
@@ -35,7 +36,11 @@ class MainActivity : AppCompatActivity() {
            //     Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
            // }
         }
+        //sns 이동 버튼
+        snsBtn.setOnClickListener {
+            val intent = Intent(this, SnsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
-// 안녕하세요.
