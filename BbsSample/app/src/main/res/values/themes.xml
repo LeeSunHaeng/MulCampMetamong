@@ -12,9 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!--비활 -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item> >
     </style>
     
     <style name="Theme.BbsSample.Splash">
         <item name="android:windowBackground">@drawable/background_splash_screen</item>
     </style>
 </resources>
+
