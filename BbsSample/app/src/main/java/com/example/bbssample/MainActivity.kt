@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = "zeze"
+            MemberSingleton.id = "zeze3"
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
+        }
 
-
-            val i = Intent(this,  MainButtonActivity::class.java)
-            startActivity(i)
+        //val i = Intent(this,  MainButtonActivity::class.java)
+        //startActivity(i)
 
 
         val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
@@ -53,22 +53,24 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         insertMemberBtn.setOnClickListener {
+            Log.d("Main", "#21# 회원가입 동작 Button 확인")
             val i = Intent(this, InsertActivity::class.java)
             startActivity(i)
         }
 
         //sns 이동 버튼
         snsBtn.setOnClickListener {
+            Log.d("Main", "#21# SNS 동작 Button 확인")
             val intent = Intent(this, SnsActivity::class.java)
             startActivity(intent)
         }
 
         haebinBtn.setOnClickListener {
+            Log.d("Main", "#21# 해빈님 동작 Button 확인")
             val i = Intent(this, Food_List_Meals::class.java)
             startActivity(i)
-         }
+        }
     }
-}
 }
 // yes
 

@@ -15,6 +15,13 @@ class SubInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_info)
 
+        /* #21# 뒤로가기(이전화면) */
+        val previousBtn = findViewById<ImageButton>(R.id.subInfo_PreBtn)
+        previousBtn.setOnClickListener {
+            val i = Intent(this, MainButtonActivity::class.java)
+            startActivity(i)
+        }
+
         val idTxt = findViewById<TextView>(R.id.subInfo_IdTxt)
         val typeTxt = findViewById<TextView>(R.id.subInfo_TypeTxt)
         val periodTxt = findViewById<TextView>(R.id.subInfo_PeriodTxt)
