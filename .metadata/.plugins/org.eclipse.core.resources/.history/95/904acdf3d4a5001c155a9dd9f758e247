@@ -1,0 +1,113 @@
+package mul.camp.a.dto;
+
+public class SubscribeDto {
+	
+	private String subid;
+	private int subtype;
+	private int subperiod;
+	private int submorning;
+	private int sublunch;
+	private int subdinner;
+	private int subsnack;
+	private String sub_startday;
+	
+	
+	/*
+	private String sub_id;
+	private int sub_type;
+	private int sub_period;
+	private int sub_morning;
+	private int sub_lunch;
+	private int sub_dinner;
+	private int sub_snack;
+	private String sub_startday;
+	
+	public SubscribeDto() {
+	}
+
+	public SubscribeDto(String sub_id, int sub_type, int sub_period, int sub_morning, int sub_lunch, int sub_dinner,
+			int sub_snack, String sub_startday) {
+		super();
+		this.sub_id = sub_id;
+		this.sub_type = sub_type;
+		this.sub_period = sub_period;
+		this.sub_morning = sub_morning;
+		this.sub_lunch = sub_lunch;
+		this.sub_dinner = sub_dinner;
+		this.sub_snack = sub_snack;
+		this.sub_startday = sub_startday;
+	}
+
+	public String getSub_id() {
+		return sub_id;
+	}
+
+	public void setSub_id(String sub_id) {
+		this.sub_id = sub_id;
+	}
+
+	public int getSub_type() {
+		return sub_type;
+	}
+
+	public void setSub_type(int sub_type) {
+		this.sub_type = sub_type;
+	}
+
+	public int getSub_period() {
+		return sub_period;
+	}
+
+	public void setSub_period(int sub_period) {
+		this.sub_period = sub_period;
+	}
+
+	public int getSub_morning() {
+		return sub_morning;
+	}
+
+	public void setSub_morning(int sub_morning) {
+		this.sub_morning = sub_morning;
+	}
+
+	public int getSub_lunch() {
+		return sub_lunch;
+	}
+
+	public void setSub_lunch(int sub_lunch) {
+		this.sub_lunch = sub_lunch;
+	}
+
+	public int getSub_dinner() {
+		return sub_dinner;
+	}
+
+	public void setSub_dinner(int sub_dinner) {
+		this.sub_dinner = sub_dinner;
+	}
+
+	public int getSub_snack() {
+		return sub_snack;
+	}
+
+	public void setSub_snack(int sub_snack) {
+		this.sub_snack = sub_snack;
+	}
+
+	public String getSub_startday() {
+		return sub_startday;
+	}
+
+	public void setSub_startday(String sub_startday) {
+		this.sub_startday = sub_startday;
+	}
+
+	@Override
+	public String toString() {
+		return "SubscribeDto [sub_id=" + sub_id + ", sub_type=" + sub_type + ", sub_period=" + sub_period
+				+ ", sub_morning=" + sub_morning + ", sub_lunch=" + sub_lunch + ", sub_dinner=" + sub_dinner
+				+ ", sub_snack=" + sub_snack + ", sub_startday=" + sub_startday + "]";
+	} */
+
+
+}

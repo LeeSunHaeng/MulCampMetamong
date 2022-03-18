@@ -1,0 +1,9 @@
+package mul.camp.a.dto;
+
+public class SubscribeDto {
+	
+	private String subId;
+	private String type;
+	p
+
+}

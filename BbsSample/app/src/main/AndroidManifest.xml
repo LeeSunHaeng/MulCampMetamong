@@ -22,7 +22,12 @@
                 android:exported="true"/>
         <activity
                 android:name=".subscribe.SubAddActivity"
+                android:name=".InsertActivity"
                 android:exported="true"/>
+        <activity
+                android:name=".SnsActivity"
+                android:exported="true"/>
+        <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
                 android:name=".MainButtonActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
@@ -32,6 +37,7 @@
         <activity
                 android:name=".Food_List_Meals"
                 android:exported="true"/>
+
         <activity
                 android:name=".MainActivity"
                 android:exported="true"/>
@@ -45,6 +51,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
