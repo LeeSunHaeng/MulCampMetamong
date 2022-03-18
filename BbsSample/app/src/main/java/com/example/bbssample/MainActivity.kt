@@ -28,11 +28,13 @@ class MainActivity : AppCompatActivity() {
 
             val i = Intent(this,  MainButtonActivity::class.java)
             startActivity(i)
+
+
         val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
 
         val snsBtn = findViewById<Button>(R.id.SnsBtn)
         val haebinBtn = findViewById<Button>(R.id.haebinBtn)
-        loginBtn.setOnClickListener {
+        /*loginBtn.setOnClickListener {
 
             val id = editId.text.toString()
             val password = editPw.text.toString()
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
             }else { Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
            }
-        }
+        }*/
 
         insertMemberBtn.setOnClickListener {
             val i = Intent(this, InsertActivity::class.java)
