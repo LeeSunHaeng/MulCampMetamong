@@ -1,0 +1,19 @@
+package mul.camp.a.dto;
+
+public class SubscribeDto {
+	
+	private String sub_id;
+	private int sub_type;
+	private int sub_period;
+	private int sub_morning;
+	private int sub_lunch;
+	private int sub_dinner;
+	private int sub_snack;
+	private String sub_startday;
+	
+	public SubscribeDto() {
+	}
+
+	
+
+}

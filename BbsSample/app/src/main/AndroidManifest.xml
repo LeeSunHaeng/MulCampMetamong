@@ -18,6 +18,12 @@
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".subscribe.SubInfoActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubAddActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".InsertActivity"
                 android:exported="true"/>
         <activity
@@ -25,10 +31,13 @@
                 android:exported="true"/>
         <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".addFoodList"
+                android:name=".MainButtonActivity"
+                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+        <activity
+                android:name=".FoodListMeals.addFoodList"
                 android:exported="true"/>
         <activity
-                android:name=".Food_List_Meals"
+                android:name=".FoodListMeals.Food_List_Meals"
                 android:exported="true"/>
 
         <activity
