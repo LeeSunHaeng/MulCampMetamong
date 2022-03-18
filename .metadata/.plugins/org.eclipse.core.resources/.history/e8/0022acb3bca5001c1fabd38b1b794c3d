@@ -1,0 +1,15 @@
+package mul.camp.a.dto;
+
+import java.sql.Date;
+
+public class SubscribeDto {
+	
+	private String subId;
+	private int subType;
+	private int subPeriod;
+	private int subMorning;
+	private int subLunch;
+	private int subDinner;
+	private int subSnack;
+	private Date subStartDay;
+}
