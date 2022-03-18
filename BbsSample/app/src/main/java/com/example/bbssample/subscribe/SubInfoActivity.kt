@@ -43,9 +43,8 @@ class SubInfoActivity : AppCompatActivity() {
             }
 
             periodTxt.text = "${subInfo.subPeriod.toString()}개월"
-            startdayTxt.text = subInfo.subStartDay.toString()
+            startdayTxt.text = subInfo.subStartday.toString()
 
-            // !! 체크박스 비활성화 필요
             if (subInfo.subMorning == 1){
                 morningCheck.isChecked = true
             }
