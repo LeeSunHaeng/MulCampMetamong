@@ -4,21 +4,28 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/><!--저장소에 접근할 수 있게 하는 설정-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/><!--저장소에 접근할 수 있게 하는 설정-->
-    <uses-permission android:name="android.permission.CAMERA"/><!-- 카메라에 접근 할 수 있게 하는 설정-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
-
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher_metamom"
             android:label="@string/app_name"
+            android:requestLegacyExternalStorage="true"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
-            android:usesCleartextTraffic="true"
-            android:requestLegacyExternalStorage="true"><!--저장소에 접근할 수 있게 하는 설정-->
+            android:usesCleartextTraffic="true">
+        <activity
+                android:name=".subscribe.SubInfoActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubAddActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".MainButtonActivity"
+                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
                 android:name=".addFoodList"
                 android:exported="true"/>
@@ -26,34 +33,18 @@
                 android:name=".Food_List_Meals"
                 android:exported="true"/>
         <activity
-                android:name=".BbsWriteActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".BbsListActivity"
-                android:exported="true"/>
-        <activity
                 android:name=".MainActivity"
                 android:exported="true"/>
-            android:usesCleartextTraffic="true">
-        <activity android:name="com.example.bbssample.SplashActivity"
-                  android:exported="true"
-                  android:theme="@style/Theme.BbsSample.Splash">
+        <activity
+                android:name=".SplashActivity"
+                android:exported="true"
+                android:theme="@style/Theme.BbsSample.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name="com.example.bbssample.BbsWriteActivity"
-                android:exported="true"/>
-        <activity
-                android:name="com.example.bbssample.BbsListActivity"
-                android:exported="true"/>
-        <activity
-                android:name="com.example.bbssample.MainActivity"
-                android:exported="true"/>
-
     </application>
 
 </manifest>
