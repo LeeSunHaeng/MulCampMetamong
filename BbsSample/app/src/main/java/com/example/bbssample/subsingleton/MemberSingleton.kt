@@ -1,4 +1,4 @@
-package com.example.bbssample
+package com.example.bbssample.subsingleton
 
 class MemberSingleton {
 

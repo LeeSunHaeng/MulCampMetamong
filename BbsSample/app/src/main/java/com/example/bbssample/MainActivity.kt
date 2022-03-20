@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import java.lang.reflect.Member
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import com.example.bbssample.subsingleton.MemberSingleton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,13 +19,13 @@ class MainActivity : AppCompatActivity() {
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
             MemberSingleton.id = "zeze3"
-            MemberSingleton.subscribe = "1"             // 1 = 구독
-            //MemberSingleton.subscribe = "0"          // 0 = 비구독
+            //MemberSingleton.subscribe = "1"             // 1 = 구독
+            MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
-        }
 
-        //val i = Intent(this,  MainButtonActivity::class.java)
-        //startActivity(i)
+            val i = Intent(this,  MainButtonActivity::class.java)
+            startActivity(i)
+        }
 
 
         val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)

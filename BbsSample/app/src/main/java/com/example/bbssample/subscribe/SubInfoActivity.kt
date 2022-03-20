@@ -3,11 +3,9 @@ package com.example.bbssample.subscribe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
 import com.example.bbssample.MainButtonActivity
-import com.example.bbssample.MemberSingleton
+import com.example.bbssample.subsingleton.MemberSingleton
 import com.example.bbssample.R
 
 class SubInfoActivity : AppCompatActivity() {

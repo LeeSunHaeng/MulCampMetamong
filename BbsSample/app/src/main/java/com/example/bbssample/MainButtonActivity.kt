@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.bbssample.subscribe.SubAddActivity
 import com.example.bbssample.subscribe.SubInfoActivity
+import com.example.bbssample.subsingleton.MemberSingleton
 
 /* #21# [구독] */
 class MainButtonActivity : AppCompatActivity() {

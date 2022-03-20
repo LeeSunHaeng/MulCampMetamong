@@ -9,7 +9,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /* #21# [구독] Dao */
@@ -21,6 +23,10 @@ interface SubscribeService {
     fun getSubInfo(@Query("id") id:String): Call<SubscribeDto>
     /*@GET("/getSubInfo")
     fun getSubInfo(id: String) :Call<SubscribeDto>*/
+
+    /* 구독 회원추가 _Back subAdd(SubscribeDto) → return String */
+    @POST("/subAdd")
+    fun subAdd(@Body dto: SubscribeDto) :Call<String>
 }
 
 
@@ -40,7 +46,7 @@ class SubscribeDao {
     }
 
 
-    /* 구독 회원정보 가져오기 */
+    /* #21# 구독 회원정보 가져오기 */
     fun getSubInfo(id :String) :SubscribeDto? {
         Log.d("SubscribeDao", "#21# SubscribeDao getSubInfo() 동작")
         Log.d("SubscribeDao", "#21# 현재 로그인한 사용자 id: ${id}")
@@ -71,6 +77,27 @@ class SubscribeDao {
         if (response == null) return null
 
         return response.body() as SubscribeDto
+    }
+
+    /* #21# 구독 회원추가 (+ 멤버 DB 구독값 수정 _#Back에서 처리) */
+    fun subAdd(dto :SubscribeDto) :String? {
+        Log.d("SubscribeDao", "#21# 구독 신청을 위하여 Front에서 입력받은 Dto 값: ${dto.toString()}")
+
+        var response: Response<String>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subAdd(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subAdd() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as String
     }
 
 }

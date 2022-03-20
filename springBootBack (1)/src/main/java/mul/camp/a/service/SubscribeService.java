@@ -20,4 +20,14 @@ public class SubscribeService {
 		return dao.getSubInfo(id);
 	}
 
+	
+	/* #21# 구독 회원추가 + 멤버 구독값 수정 */
+	public boolean subAdd(SubscribeDto dto) {
+		int result = dao.subAdd(dto);
+		
+		return result>0?true:false;
+	}
+	public void subUpdateMember(SubscribeDto dto) {
+		dao.subUpdateMember(dto);
+	}
 }

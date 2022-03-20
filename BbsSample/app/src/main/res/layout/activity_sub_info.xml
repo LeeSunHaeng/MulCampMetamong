@@ -124,29 +124,3 @@
             app:layout_constraintVertical_bias="0.0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--
-<RadioGroup
-android:id="@+id/mealsTimeRadioGroup"
-android:layout_width="520dp" android:layout_height="265dp"
-app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/sub_textView17"
-app:layout_constraintHorizontal_bias="0.309" app:layout_constraintVertical_bias="0.0"
-android:layout_marginStart="24dp" android:layout_marginEnd="24dp">
-<RadioButton
-        android:id="@+id/subInfo_MorningRadio"
-        android:text="아침 Morning"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_LunchRadio"
-        android:text="점심 Lunch"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_DinnerRadio"
-        android:text="저녁 Dinner"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_SnackRadio"
-        android:text="간식 Snack"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-</RadioGroup>-->
