@@ -9,6 +9,7 @@ import java.lang.reflect.Member
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.bbssample.sns.SnsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,8 +27,9 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
 
-            val i = Intent(this,  MainButtonActivity::class.java)
+            val i = Intent(this, MainButtonActivity::class.java)
             startActivity(i)
+        }
 
 
         val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         //sns 이동 버튼
         snsBtn.setOnClickListener {
+            println("snsBtn 클릭!")
             val intent = Intent(this, SnsActivity::class.java)
             startActivity(intent)
         }
@@ -69,6 +72,6 @@ class MainActivity : AppCompatActivity() {
          }
     }
 }
-}
+
 // yes
 
