@@ -1,8 +1,7 @@
-package com.example.bbssample.subscribe
+package com.metamom.bbssample.subscribe
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
 
 /* #21# [구독] Dto */
 class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val subMorning: Int, val subLunch: Int, val subDinner: Int, val subSnack: Int, val subStartDay: String?) :Parcelable {

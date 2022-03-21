@@ -1,4 +1,4 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import android.os.StrictMode
 import com.google.gson.GsonBuilder

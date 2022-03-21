@@ -1,4 +1,4 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

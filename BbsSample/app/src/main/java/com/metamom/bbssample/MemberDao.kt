@@ -1,4 +1,4 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import retrofit2.Call
 import retrofit2.Response
