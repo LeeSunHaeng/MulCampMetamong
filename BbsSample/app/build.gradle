@@ -8,7 +8,7 @@ plugins {
 android {
     compileSdk 32
 
-    /* #21# 패키지명 변경 [기존]sample -> [변경]metamom */
+    /* #21# 패키지명 변경 [기존]example -> [변경]metamom */
     // applicationId "com.example.bbssample"
     defaultConfig {
         applicationId "com.metamom.bbssample"
