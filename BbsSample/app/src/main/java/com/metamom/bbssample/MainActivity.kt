@@ -1,15 +1,12 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import java.lang.reflect.Member
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.example.bbssample.sns.SnsActivity
+import com.metamom.bbssample.sns.SnsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

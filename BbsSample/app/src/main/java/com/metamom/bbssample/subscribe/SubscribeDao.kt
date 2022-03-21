@@ -1,8 +1,7 @@
-package com.example.bbssample.subscribe
+package com.metamom.bbssample.subscribe
 
 import android.os.StrictMode
 import android.util.Log
-import com.example.bbssample.RetrofitClient
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Response

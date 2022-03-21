@@ -1,8 +1,8 @@
-package com.example.bbssample.subscribe
+package com.metamom.bbssample.subscribe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bbssample.R
+import com.metamom.bbssample.R
 
 class SubAddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

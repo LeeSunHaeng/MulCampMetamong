@@ -1,14 +1,12 @@
-package com.example.bbssample.subscribe
+package com.metamom.bbssample.subscribe
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import com.example.bbssample.MainButtonActivity
-import com.example.bbssample.MemberSingleton
-import com.example.bbssample.R
+import com.metamom.bbssample.MainButtonActivity
+import com.metamom.bbssample.MemberSingleton
+import com.metamom.bbssample.R
 
 class SubInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
