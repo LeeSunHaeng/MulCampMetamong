@@ -28,6 +28,7 @@
                 android:exported="true"/>
         <activity
                 android:name="com.metamom.bbssample.SnsActivity"
+                android:name="com.metamom.bbssample.sns.SnsActivity"
                 android:exported="true"/>
         <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
@@ -38,6 +39,10 @@
                 android:exported="true"/>
         <activity
                 android:name="com.metamom.bbssample.FoodListMeals.FoodListMeals"
+                android:name="com.metamom.bbssample.addFoodList"
+                android:exported="true"/>
+        <activity
+                android:name="com.metamom.bbssample.Food_List_Meals"
                 android:exported="true"/>
 
         <activity
