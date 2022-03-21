@@ -20,7 +20,7 @@
             <TextView
                     android:text="doselage"
                     android:layout_width="456dp"
-                    android:layout_height="match_parent" android:id="@+id/textView5"
+                    android:layout_height="match_parent" android:id="@+id/timeTxt"
                     android:textSize="25dp"
                     android:gravity="center_vertical"
             />
@@ -77,7 +77,7 @@
             <TextView
                     android:text="좋아요 @개"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent" android:id="@+id/textView6"
+                    android:layout_height="match_parent" android:id="@+id/foodScoreTxt"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
                     android:gravity="center_vertical"
             />

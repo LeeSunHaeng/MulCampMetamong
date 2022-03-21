@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FoodListMeals.Food_List_Meals">
+        tools:context=".FoodListMeals.FoodListMeals">
     <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="504dp"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView8"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp" android:id="@+id/FoodMealsList"/>
     <TextView
             android:id="@+id/textView8"
             android:textSize="20sp"
@@ -44,10 +44,13 @@
     <TextView
             android:id="@+id/textView10"
             android:textSize="20sp"
-            android:text="내 식단"
-            android:layout_width="69dp"
-            android:layout_height="38dp"
-            tools:ignore="MissingConstraints" app:layout_constraintTop_toBottomOf="@+id/calendarView"
-            android:layout_marginTop="28dp" app:layout_constraintStart_toEndOf="@+id/textView8"
-            android:layout_marginStart="140dp"/>
+            android:text="오늘 이거 먹었지몸"
+            android:layout_width="181dp"
+            android:layout_height="42dp"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="right"
+            android:layout_marginStart="320dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

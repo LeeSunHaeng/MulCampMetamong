@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.bbssample">
+          package="com.metamom.bbssample">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -18,33 +18,33 @@
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
         <activity
-                android:name=".subscribe.SubInfoActivity"
+                android:name="com.metamom.bbssample.subscribe.SubInfoActivity"
                 android:exported="true"/>
         <activity
-                android:name=".subscribe.SubAddActivity"
+                android:name="com.metamom.bbssample.subscribe.SubAddActivity"
                 android:exported="true"/>
         <activity
-                android:name=".InsertActivity"
+                android:name="com.metamom.bbssample.InsertActivity"
                 android:exported="true"/>
         <activity
-                android:name=".SnsActivity"
+                android:name="com.metamom.bbssample.SnsActivity"
                 android:exported="true"/>
         <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".MainButtonActivity"
+                android:name="com.metamom.bbssample.MainButtonActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".FoodListMeals.addFoodList"
+                android:name="com.metamom.bbssample.FoodListMeals.addFoodList"
                 android:exported="true"/>
         <activity
-                android:name=".FoodListMeals.Food_List_Meals"
+                android:name="com.metamom.bbssample.FoodListMeals.FoodListMeals"
                 android:exported="true"/>
 
         <activity
-                android:name=".MainActivity"
+                android:name="com.metamom.bbssample.MainActivity"
                 android:exported="true"/>
         <activity
-                android:name=".SplashActivity"
+                android:name="com.metamom.bbssample.SplashActivity"
                 android:exported="true"
                 android:theme="@style/Theme.BbsSample.Splash">
             <intent-filter>

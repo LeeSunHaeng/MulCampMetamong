@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mul.camp.a.dao.FoodListMealsDao">
+
+<insert id="writeFoodList" parameterType="mul.camp.a.dto.FoodListMealsDto">
+	INSERT INTO META_FOOD_LIST_MEALS
+	(ID,WDATE,MEALS,MEMO,FOODNAME,IMGURL,FOODSCORE)
+	VALUES
+	(#{id},SYSDATE,#{meals},#{memo},#{foodName},#{imgUrl},#{foodscore})
+</insert>
+
+<select id="writeFoodSelect" resultType="mul.camp.a.dto.FoodListMealsDto"> 
+	SELECT ID, WDATE, MEALS, MEMO, FOODNAME, IMGURL, FOODSCORE
+	FROM META_FOOD_LIST_MEALS
+</select>
+
+</mapper>
