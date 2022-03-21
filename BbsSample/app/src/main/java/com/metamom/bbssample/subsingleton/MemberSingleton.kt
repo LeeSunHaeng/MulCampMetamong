@@ -1,8 +1,8 @@
-<<<<<<< HEAD:BbsSample/app/src/main/java/com/metamom/bbssample/subsingleton/MemberSingleton.kt
+//<<<<<<< HEAD:BbsSample/app/src/main/java/com/metamom/bbssample/subsingleton/MemberSingleton.kt
 package com.metamom.bbssample.subsingleton
-=======
+/*=======
 package com.metamom.bbssample
->>>>>>> main:BbsSample/app/src/main/java/com/metamom/bbssample/MemberSingleton.kt
+>>>>>>> main:BbsSample/app/src/main/java/com/metamom/bbssample/MemberSingleton.kt*/
 
 class MemberSingleton {
 
