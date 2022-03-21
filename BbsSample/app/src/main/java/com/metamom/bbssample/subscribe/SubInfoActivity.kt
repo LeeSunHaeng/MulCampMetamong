@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.metamom.bbssample.MainButtonActivity
-import com.metamom.bbssample.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.R
 
 class SubInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_info)
+
+        /* #21# 뒤로가기(이전화면) */
+        val previousBtn = findViewById<ImageButton>(R.id.subInfo_PreBtn)
+        previousBtn.setOnClickListener {
+            val i = Intent(this, MainButtonActivity::class.java)
+            startActivity(i)
+        }
 
         val idTxt = findViewById<TextView>(R.id.subInfo_IdTxt)
         val typeTxt = findViewById<TextView>(R.id.subInfo_TypeTxt)
@@ -41,9 +48,8 @@ class SubInfoActivity : AppCompatActivity() {
             }
 
             periodTxt.text = "${subInfo.subPeriod.toString()}개월"
-            startdayTxt.text = subInfo.subStartDay.toString()
+            startdayTxt.text = subInfo.subStartday.toString()
 
-            // !! 체크박스 비활성화 필요
             if (subInfo.subMorning == 1){
                 morningCheck.isChecked = true
             }

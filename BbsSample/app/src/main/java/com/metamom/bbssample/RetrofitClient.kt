@@ -15,12 +15,10 @@ class RetrofitClient {
                 val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
                 StrictMode.setThreadPolicy(policy)
 
-                val gson = GsonBuilder()
-                    .setLenient()
-                    .create()
+                val gson = GsonBuilder().setLenient().create()
 
                 instance = Retrofit.Builder()
-                    .baseUrl("http://172.30.1.254:3000/")
+                    .baseUrl("http://172.30.1.25:3000/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build()
@@ -28,8 +26,8 @@ class RetrofitClient {
             return instance!!
         }
 
-        // 문자열을 전송받을 시에 사용한다
-        private var instanceStr: Retrofit? = null
+        // 문자열을 전송받을 시에 사용한다 → #21# 사용 x 권장
+        /*private var instanceStr: Retrofit? = null
         fun getInstanceStr(): Retrofit? {
             if(instanceStr == null) {
                 val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -37,12 +35,12 @@ class RetrofitClient {
 
                 // ScalarsConverterFactory 만을 사용해야 한다
                 instanceStr = Retrofit.Builder()
-                    .baseUrl("http://70.12.113.169:3000/")
+                    .baseUrl("http://172.30.1.25:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build()//주석
             }
             return instanceStr!!
-        }
+        }*/
 
     }
 }
