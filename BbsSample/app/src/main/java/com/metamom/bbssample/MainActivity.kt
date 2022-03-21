@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import com.metamom.bbssample.sns.SnsActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         //sns 이동 버튼
         snsBtn.setOnClickListener {
-            Log.d("Main", "#21# SNS 동작 Button 확인")
+            println("snsBtn 클릭!")
             val intent = Intent(this, SnsActivity::class.java)
             startActivity(intent)
         }
