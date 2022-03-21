@@ -1,8 +1,7 @@
-package com.example.bbssample.sns
+package com.metamom.bbssample.sns
 
 
 import android.content.Context
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.bbssample.R
+import com.metamom.bbssample.R
 
 class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 

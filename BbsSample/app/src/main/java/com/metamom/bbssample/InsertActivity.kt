@@ -1,8 +1,8 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.bbssample.databinding.ActivityInsertBinding
+import com.metamom.bbssample.databinding.ActivityInsertBinding
 
 class InsertActivity : AppCompatActivity() {
 

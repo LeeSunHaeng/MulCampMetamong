@@ -1,10 +1,10 @@
-package com.example.bbssample.sns
+package com.metamom.bbssample.sns
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bbssample.R
+import com.metamom.bbssample.R
 
 class SnsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

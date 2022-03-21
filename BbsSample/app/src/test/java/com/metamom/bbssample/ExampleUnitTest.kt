@@ -1,4 +1,4 @@
-package com.example.bbssample
+package com.metamom.bbssample
 
 import org.junit.Test
 
