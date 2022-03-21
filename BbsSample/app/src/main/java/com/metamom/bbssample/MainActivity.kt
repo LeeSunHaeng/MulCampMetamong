@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.sns.SnsActivity
+import com.metamom.bbssample.subsingleto.MemberSingleton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
