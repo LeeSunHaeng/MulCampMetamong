@@ -7,14 +7,26 @@
 
 <!-- #21# 구독 회원정보 가져오기 -->
 <select id="getSubInfo" parameterType="String" resultType="mul.camp.a.dto.SubscribeDto">
+	<!-- SELECT SUB_ID, SUB_TYPE, SUB_PERIOD, TO_CHAR(SUB_STARTDAY, 'YYYYMMDD')
+	FROM MATA_SUBSCRIBE
+	WHERE SUB_ID=#{id} -->
 	SELECT *
 	FROM MATA_SUBSCRIBE
 	WHERE SUB_ID=#{id}
-	<!-- SELECT *
-	FROM MATASUBSCRIBE
-	WHERE SUBID=#{id} -->
 </select>
 
+<!-- #21# 구독 신청 -->
+<!-- 1) 구독회원 DB 내 추가 -->
+<insert id="subAdd" parameterType="mul.camp.a.dto.SubscribeDto">
+	INSERT INTO MATA_SUBSCRIBE(SUB_ID, SUB_TYPE, SUB_PERIOD, SUB_STARTDAY, SUB_MORNING, SUB_LUNCH, SUB_DINNER, SUB_SNACK)
+	VALUES(#{subId}, #{subType}, #{subPeriod}, SYSDATE, #{subMorning}, #{subLunch}, #{subDinner}, #{subSnack})
+</insert>
 
+<!-- 2) 멤버 DB 내 구독값 1로 수정 -->
+<update id="subUpdateMember" parameterType="mul.camp.a.dto.SubscribeDto">
+	UPDATE META_MEMBER
+	SET SUBSCRIBE=1
+	WHERE ID=#{subId}
+</update>
 
 </mapper>

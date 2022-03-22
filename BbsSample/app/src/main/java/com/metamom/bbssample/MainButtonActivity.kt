@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
+import com.metamom.bbssample.subsingleto.MemberSingleton
 
 /* #21# [구독] */
 class MainButtonActivity : AppCompatActivity() {
