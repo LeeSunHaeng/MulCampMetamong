@@ -14,7 +14,7 @@
             android:layout_height="?android:attr/actionBarSize"
             app:titleTextColor="@color/meta_grey01"
             app:titleTextAppearance="@style/TitleBarTextAppearance"
-            android:background="@color/white"/>
+            android:background="@color/meta_white"/>
 
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -98,6 +98,52 @@
                         android:hint="비밀번호 확인"
                         android:fontFamily="@font/font_content_regular"
                         android:inputType="textPassword"
+                        android:textSize="14sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nameInputBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeWidth="0dp"
+                    app:boxBackgroundColor="@color/meta_grey05"
+                    app:hintTextColor="@color/meta_grey03"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/nameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="이름"
+                        android:fontFamily="@font/font_content_regular"
+                        android:inputType="text"
+                        android:textSize="14sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nicknameInputBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    app:boxBackgroundMode="filled"
+                    app:boxStrokeWidth="0dp"
+                    app:boxBackgroundColor="@color/meta_grey05"
+                    app:hintTextColor="@color/meta_grey03"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/nicknameInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="닉네임"
+                        android:fontFamily="@font/font_content_regular"
+                        android:inputType="text"
                         android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,6 +266,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
+                    android:id="@+id/genderRadio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -227,6 +274,7 @@
                     android:gravity="center">
 
                 <RadioButton
+                        android:id="@+id/male"
                         android:text="남"
                         android:textSize="14sp"
                         android:buttonTint="@color/meta_purple01"
@@ -235,6 +283,7 @@
                         android:layout_height="wrap_content"/>
 
                 <RadioButton
+                        android:id="@+id/female"
                         android:text="여"
                         android:textSize="14sp"
                         android:buttonTint="@color/meta_purple01"
@@ -245,14 +294,16 @@
             </RadioGroup>
 
             <Button
+                    android:id="@+id/registerBtn"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="38dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="24dp"
                     android:text="회원가입"
                     android:fontFamily="@font/font_content_bold"
-                    android:textSize="16sp"/>
+                    android:textSize="14sp"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

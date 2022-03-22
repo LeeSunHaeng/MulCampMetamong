@@ -5,21 +5,25 @@
   
 <mapper namespace="mul.camp.a.dao.MemberDao">
 
+<select id="allMember" resultType="mul.camp.a.dto.MemberDto">
+	SELECT * FROM META_MEMBER
+</select>
+
 <select id="getId" parameterType="mul.camp.a.dto.MemberDto" resultType="java.lang.Integer">
 	SELECT NVL(COUNT(*), 0)
-	FROM MEMBER
+	FROM META_MEMBER
 	WHERE id=#{id}
 </select>
 
 <insert id="addmember" parameterType="mul.camp.a.dto.MemberDto">
-	INSERT INTO MEMBER(ID, PWD, NAME, EMAIL, AUTH)
-	VALUES(#{id}, #{pwd}, #{name}, #{email}, 3)
+	INSERT INTO META_MEMBER(ID, PWD, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, BIRTH, AUTH, SUBSCRIBE, DEL)
+	VALUES(#{id}, #{pwd}, #{name}, #{email}, #{gender}, #{phone}, #{nickname}, #{height}, #{weight}, #{birth}, 0, 0, 'N')
 </insert>
 
 <select id="login" parameterType="mul.camp.a.dto.MemberDto" 
 	resultType="mul.camp.a.dto.MemberDto">
 	SELECT ID, NAME, EMAIL, AUTH
-	FROM MEMBER
+	FROM META_MEMBER
 	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
