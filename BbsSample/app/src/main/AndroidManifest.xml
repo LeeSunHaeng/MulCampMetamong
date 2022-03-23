@@ -18,33 +18,34 @@
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
         <activity
-                android:name="com.metamom.bbssample.subscribe.SubInfoActivity"
+                android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.subscribe.SubAddActivity"
+                android:name=".subscribe.SubInfoActivity"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.InsertActivity"
+                android:name=".subscribe.SubAddActivity"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.sns.SnsActivity"
+                android:name=".InsertActivity"
                 android:exported="true"/>
-        <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name="com.metamom.bbssample.MainButtonActivity"
+                android:name=".sns.SnsActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name="com.metamom.bbssample.addFoodList"
+                android:name=".MainButtonActivity"
+                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+        <activity
+                android:name=".addFoodList"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.Food_List_Meals"
-                android:exported="true"/>
-
-        <activity
-                android:name="com.metamom.bbssample.MainActivity"
+                android:name=".Food_List_Meals"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.SplashActivity"
+                android:name=".MainActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".SplashActivity"
                 android:exported="true"
                 android:theme="@style/Theme.BbsSample.Splash">
             <intent-filter>
@@ -53,7 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

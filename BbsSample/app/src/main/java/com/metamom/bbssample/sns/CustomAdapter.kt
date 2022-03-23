@@ -1,7 +1,11 @@
 package com.metamom.bbssample.sns
 
 
+
 import android.content.Context
+
+import android.net.Uri
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 
+
 class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
 
         val snsProfile = itemView.findViewById<ImageView>(R.id.profileImageView)
         val snsId = itemView.findViewById<TextView>(R.id.idTextView)
@@ -38,7 +44,7 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
                 snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
-            if(dataVo.imageContent != ""){
+            /*if(dataVo.imageContent != ""){
                 val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
 
                 if(resourceId > 0){
@@ -46,6 +52,16 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
                 }else{
                     Glide.with(itemView).load(dataVo.imageContent).into(snsImageContent)
                 }
+            } else{
+                snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
+            }*/
+            if(dataVo.imageContent != ""){
+                //val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
+
+                val snsUri:Uri = Uri.parse(dataVo.imageContent)
+
+                snsImageContent.setImageURI(snsUri)
+
             } else{
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }

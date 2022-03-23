@@ -67,7 +67,8 @@
                     android:padding="0sp"
                     android:scaleType="fitCenter"
                     android:backgroundTint="@color/white"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
             <ImageButton
                     android:layout_width="40dp"
                     android:layout_height="match_parent" app:srcCompat="@drawable/comment_icon2"
