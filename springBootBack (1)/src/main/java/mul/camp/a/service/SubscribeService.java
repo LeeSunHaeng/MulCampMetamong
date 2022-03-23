@@ -36,4 +36,21 @@ public class SubscribeService {
 	public void subUpdateMember(SubscribeDto dto) {
 		dao.subUpdateMember(dto);
 	}
+	
+	
+	/* #21# 구독 만료확인 */
+	// 1) 구독 만료확인
+	public SubscribeDto subEnddayCheck(SubscribeDto dto) {
+		return dao.subEnddayCheck(dto);
+	}
+	// 2) 멤버DB 내 구독값 수정 
+	public void subUpdateMemberEnd(SubscribeDto dto) {
+		dao.subUpdateMemberEnd(dto);
+	}
+	// 2-1) 구독DB 내 사용자 삭제
+	public boolean subDeleteUser(SubscribeDto dto) {
+		int result = dao.subDeleteUser(dto);
+		
+		return result>0?true:false;
+	}
 }

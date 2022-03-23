@@ -16,5 +16,10 @@ public interface SubscribeDao {
 	public int subAdd(SubscribeDto dto);
 	public void subAddEndday(SubscribeDto dto);
 	public void subUpdateMember(SubscribeDto dto);
+	
+	/* #21# 구독 만료확인 */
+	public SubscribeDto subEnddayCheck(SubscribeDto dto);
+	public void subUpdateMemberEnd(SubscribeDto dto);
+	public int subDeleteUser(SubscribeDto dto);
 
 }

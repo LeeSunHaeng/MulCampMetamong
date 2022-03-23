@@ -5,18 +5,6 @@
   
 <mapper namespace="mul.camp.a.dao.SubscribeDao">
 
-<!-- #21# 구독 만료확인
-     ! ADD_MONTHS 사용 시 매월 마지막 일수가 다른 달(2월 28일, 짝수/홀수달 ..)은 그달의 마지막일을 리턴받는다.
-     - YYYYMMDD == 시간을 제외한 날짜만 비교 -->
-<select id="subOrNot" parameterType="mul.camp.a.dto.SubscribeDto">
- 	SELECT *
- 	FROM MATA_SUBSCRIBE
- 	<if test="subPeriod == 1">
- 		WHERE SUB_ID=#{subId} AND TO_CHAR(#{subStartday}, to_char(add_months(SUB_STARTDAY, +1), 'YYYYMMDD')) > TO_CHAR(SYSDATE, 'YYYYMMDD')
- 	
- 	</if>
-</select>
-
 <!-- #21# 구독 회원정보 가져오기 -->
 <select id="getSubInfo" parameterType="String" resultType="mul.camp.a.dto.SubscribeDto">
 	<!-- SELECT SUB_ID, SUB_TYPE, SUB_PERIOD, TO_CHAR(SUB_STARTDAY, 'YYYYMMDD')
@@ -36,6 +24,7 @@
 </insert>
 
 <!-- 1-1) 구독회원 DB 내 구독만료 일자 추가 -->
+<!--      ! ADD_MONTHS 사용 시 매월 마지막 일수가 다른 달(2월 28일, 짝수/홀수달 ..)은 그달의 마지막일을 리턴받는다. -->
 <update id="subAddEndday" parameterType="mul.camp.a.dto.SubscribeDto">
 	UPDATE MATA_SUBSCRIBE
 	SET SUB_ENDDAY=TO_CHAR(ADD_MONTHS(SYSDATE, +SUB_PERIOD), 'YYYYMMDD')
@@ -48,5 +37,28 @@
 	SET SUBSCRIBE=1
 	WHERE ID=#{subId}
 </update>
+
+
+<!-- #21# 구독 만료확인 및 만료 시 멤버DB 내 구독값 변경 -->
+<!-- 1) 구독 만료확인 -->
+<select id="subEnddayCheck" parameterType="mul.camp.a.dto.SubscribeDto" resultType="mul.camp.a.dto.SubscribeDto">
+ 	SELECT *
+	FROM MATA_SUBSCRIBE
+	WHERE SUB_ID=#{subId} AND SUB_ENDDAY > TO_CHAR(SYSDATE, 'YYYYMMDD')
+</select>
+
+<!-- 2) 멤버 DB 내 구독값 0으로 수정 -->
+<update id="subUpdateMemberEnd" parameterType="mul.camp.a.dto.SubscribeDto">
+	UPDATE META_MEMBER
+	SET SUBSCRIBE=0
+	WHERE ID=#{subId}
+</update>
+
+<!-- 2-1) 구독 DB 내 해당 사용자 삭제 -->
+<delete id="subDeleteUser" parameterType="mul.camp.a.dto.SubscribeDto">
+	DELETE FROM MATA_SUBSCRIBE
+	WHERE SUB_ID=#{subId}
+</delete>
+
 
 </mapper>

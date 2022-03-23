@@ -27,6 +27,10 @@ interface SubscribeService {
     /* 구독 회원추가 _Back subAdd(SubscribeDto) → return String */
     @POST("/subAdd")
     fun subAdd(@Body dto: SubscribeDto) :Call<String>
+
+    /* 구독 만료확인 _Back  */
+    @POST("/subEnddayCheck")
+    fun subEnddayCheck(@Body dto: SubscribeDto) :Call<String>
 }
 
 
@@ -79,7 +83,8 @@ class SubscribeDao {
         return response.body() as SubscribeDto
     }
 
-    /* #21# 구독 회원추가 (+ 멤버 DB 구독값 수정 _#Back에서 처리) */
+
+    /* #21# 구독 회원추가 (+ 멤버 DB 구독값 1로 수정 _#Back에서 처리) */
     fun subAdd(dto :SubscribeDto) :String? {
         Log.d("SubscribeDao", "#21# 구독 신청을 위하여 Front에서 입력받은 Dto 값: ${dto.toString()}")
 
@@ -95,6 +100,28 @@ class SubscribeDao {
             Log.d("SubscribeDao", "#21# SubscribeDao subAdd() try..catch 오류 > ${e.printStackTrace()}")
             response = null
         }
+
+        if (response == null) return null
+        return response.body() as String
+    }
+
+    /* #21# 구독 만료여부 확인 (+ 만료 시 멤버 DB 구독값 0으로 수정 __#Back에서 처리) */
+    fun subEnddayCheck(dto: SubscribeDto) :String? {
+        Log.d("SubscribeDao", "#21# 구독 만료여부 확인을 위하여 Front에서 전달받은 Dto 값: ${dto.toString()}")
+
+        var response :Response<String>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subEnddayCheck(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subEnddayCheck() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+        Log.d("SubscribeDao", "#21# SubscribeDao subEnddayCheck() 성공 여부 > ${response?.body()}")
 
         if (response == null) return null
         return response.body() as String

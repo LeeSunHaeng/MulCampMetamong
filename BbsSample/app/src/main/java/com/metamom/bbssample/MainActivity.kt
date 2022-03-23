@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.metamom.bbssample.sns.SnsActivity
+import com.metamom.bbssample.subscribe.SubscribeDao
+import com.metamom.bbssample.subscribe.SubscribeDto
 import com.metamom.bbssample.subsingleto.MemberSingleton
 
 class MainActivity : AppCompatActivity() {
@@ -18,11 +20,28 @@ class MainActivity : AppCompatActivity() {
         // #21# Login 버튼 클릭 시 main button 페이지로 이동
         loginBtn.setOnClickListener {
 
-            /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
+            /* #21# [for 구독여부 판단, test용] Login 시 현재 로그인한 사용자를 구독 회원여부 판단 진행 후 로그인한 사용자의 정보를 MemberSingleton에 저장
+            *        > 만약 구독 만료회원일 경우 == 구독값(subscribe 컬럼) 0으로 변경 + 구독 DB에서 삭제 */
             MemberSingleton.id = "zeze2"
-            MemberSingleton.subscribe = "1"             // 1 = 구독
-            //MemberSingleton.subscribe = "0"          // 0 = 비구독
+            MemberSingleton.subscribe = "1"                                  // 1 = 구독
+            //MemberSingleton.subscribe = "0"                                  // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
+
+            /* #21# 구독만료 확인 */
+            if (MemberSingleton.subscribe == "1"){      // 구독 회원일 경우 구독 만료확인
+                // 1) 현재 로그인한 사용자의 구독 정보 가져오기 (subInfo)
+                var subInfo = SubscribeDao.getInstance().getSubInfo(MemberSingleton.id.toString())
+                // 2) 1번에서 가져온 구독정보를 사용하여 구독만료 확인 (subEndCheck)
+                if (subInfo != null){
+                    var subEndCheck = SubscribeDao.getInstance().subEnddayCheck(SubscribeDto(subInfo.subId, subInfo.subType, subInfo.subPeriod, 0, 0, 0, 0, subInfo.subStartday, subInfo.subEndday))
+                    if (subEndCheck == "SuccessEnd"){
+                        Log.d("MainActivity", "#21# 구독 만료임에 따라 멤버DB 구독값 수정 & 구독DB 내 삭제")
+                    }
+                }
+                else {
+                    Log.d("MainActivity", "#21# 로그인 > 구독회원일 경우 > 구독정보 null Error")
+                }
+            }
 
             val i = Intent(this,  MainButtonActivity::class.java)
             startActivity(i)
