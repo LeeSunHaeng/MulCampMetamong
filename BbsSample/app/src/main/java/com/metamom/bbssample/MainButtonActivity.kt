@@ -1,11 +1,13 @@
 package com.metamom.bbssample
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
 import android.widget.Toast
+import com.kakao.sdk.user.UserApiClient
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
@@ -48,6 +50,20 @@ class MainButtonActivity : AppCompatActivity() {
         haebinBtn.setOnClickListener {
             val i = Intent(this, Food_List_Meals::class.java)
             startActivity(i)
+        }
+
+        val kakaoLogoutBtn = findViewById<Button>(R.id.kakaoLogoutBtn)
+
+        kakaoLogoutBtn.setOnClickListener {
+            UserApiClient.instance.logout { error ->
+                if (error != null) {
+                    Toast.makeText(this, "로그아웃 실패 $error", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(this, "로그아웃 성공", Toast.LENGTH_SHORT).show()
+                }
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
+            }
         }
     }
 }

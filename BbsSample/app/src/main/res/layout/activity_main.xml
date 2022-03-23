@@ -88,6 +88,7 @@
                     android:layout_marginTop="40dp">
 
                 <RadioButton
+                        android:id="@+id/idCheck"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -133,6 +134,7 @@
                         android:textColor="@color/meta_grey01"/>
 
                 <TextView
+                        android:id="@+id/kakaoBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:layout_marginStart="4dp"
