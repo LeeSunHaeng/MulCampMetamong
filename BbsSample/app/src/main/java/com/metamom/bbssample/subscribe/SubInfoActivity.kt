@@ -57,10 +57,10 @@ class SubInfoActivity : AppCompatActivity() {
                 lunchCheck.isChecked = true
             }
             if (subInfo.subDinner == 1){
-                lunchCheck.isChecked = true
+                dinnerCheck.isChecked = true
             }
             if (subInfo.subSnack == 1){
-                lunchCheck.isChecked = true
+                snackCheck.isChecked = true
             }
         }
         else {                                                          // case_1)
