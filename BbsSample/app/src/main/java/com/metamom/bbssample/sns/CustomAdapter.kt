@@ -55,10 +55,10 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
             } else{
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }*/
-            if(dataVo.imageContent != ""){
+            if(dataVo.imagecontent != ""){
                 //val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
 
-                val snsUri:Uri = Uri.parse(dataVo.imageContent)
+                val snsUri:Uri = Uri.parse(dataVo.imagecontent)
 
                 snsImageContent.setImageURI(snsUri)
 
@@ -67,9 +67,9 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
             }
 
             snsId.text = dataVo.id
-            snsDate.text = dataVo.date
-            snsLikeCount.text = dataVo.likeCount.toString()
-            snsCommentCount.text = dataVo.commentCount.toString()
+            snsDate.text = dataVo.snsdate
+            snsLikeCount.text = dataVo.likecount.toString()
+            snsCommentCount.text = dataVo.commentcount.toString()
             snsContent.text = dataVo.content
 
         }

@@ -14,6 +14,8 @@ class SnsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sns)
         val snsInsertBtn = findViewById<Button>(R.id.snsInsertBtn)
         val snsRecyclerView = findViewById<RecyclerView>(R.id.snsRecyclerView)
+
+        //임시 데이터
         var data:MutableList<SnsDto> = mutableListOf()
         data.add(SnsDto(0,"doselage","profile1","2022-03-21","content://media/external/images/media/87",
             10,5,"삼겹살 너무 맛있다.."))

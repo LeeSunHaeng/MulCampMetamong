@@ -13,10 +13,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.R
@@ -39,6 +36,7 @@ class SnsInsertActivity : AppCompatActivity() {
 
 
 
+
         CallCamera()
 
         // 카메라
@@ -48,9 +46,19 @@ class SnsInsertActivity : AppCompatActivity() {
         }
 
         // 저장된 사진 보기
-        val picture = findViewById<Button>(R.id.picture)
+        val picture = findViewById<Button>(R.id.pi-cture)
         picture.setOnClickListener {
             GetAlbum()
+        }
+
+        val insertSnsBtn = findViewById<ImageButton>(R.id.snsInsertCheckBtn)
+
+        insertSnsBtn.setOnClickListener {
+            val content = findViewById<EditText>(R.id.snsContentEditText)
+            val dto:SnsDto = SnsDto(1,"doselage","profile1","2022-03-23",snsUri.toString(),0,0,content.text.toString())
+            val test = SnsDao.getInstance().snsInsert(dto)
+            println(test)
+
         }
     }
 
