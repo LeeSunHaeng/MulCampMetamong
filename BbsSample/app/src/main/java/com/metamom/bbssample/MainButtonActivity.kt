@@ -4,11 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+
 import android.widget.Toast
+import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
-import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
+
 
 /* #21# [구독] */
 class MainButtonActivity : AppCompatActivity() {

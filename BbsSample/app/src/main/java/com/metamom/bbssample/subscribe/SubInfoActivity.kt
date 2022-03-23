@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
-import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
 
 class SubInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
