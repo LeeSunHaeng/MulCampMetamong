@@ -23,7 +23,6 @@
             <TextView
                     android:text="doselage"
                     android:layout_width="456dp"
-                    android:layout_height="match_parent" android:id="@+id/timeTxt"
                     android:layout_height="match_parent"
                     android:id="@+id/idTextView"
                     android:textSize="25dp"

@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             }else { Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
            }
         }*/
-    }
+
         insertMemberBtn.setOnClickListener {
             val i = Intent(this, InsertActivity::class.java)
             startActivity(i)
@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, FoodListMeals::class.java)
             startActivity(i)
         }
+    }
 }
 
 // yes

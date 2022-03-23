@@ -1,15 +1,11 @@
-<<<<<<< HEAD:BbsSample/app/src/main/java/com/metamom/bbssample/FoodListMeals/FoodListMealsDto.kt
 package com.metamom.bbssample.FoodListMeals
-=======
-package com.metamom.bbssample
->>>>>>> main:BbsSample/app/src/main/java/com/metamom/bbssample/FoodListMealsDto.kt
+
 
 import android.os.Parcel
 import android.os.Parcelable
 
-class FoodListMealsDto(val id:String?,val wdate:String?,val meals:String?,val memo:String?,val foodName:String?,val imgUrl:String?,val foodscore:String?):Parcelable {
+class FoodListMealsDto(val id:String?,val wdate:String?,val meals:String?,val memo:String?,val imgUrl:String?,val foodscore:String?):Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -23,7 +19,6 @@ class FoodListMealsDto(val id:String?,val wdate:String?,val meals:String?,val me
         parcel.writeString(wdate)
         parcel.writeString(meals)
         parcel.writeString(memo)
-        parcel.writeString(foodName)
         parcel.writeString(imgUrl)
         parcel.writeString(foodscore)
     }

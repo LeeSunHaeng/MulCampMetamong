@@ -19,11 +19,11 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
         val memoTxt = itemView.findViewById<TextView>(R.id.memoTxt)
 
        fun bind(Vo:FoodListMealsDto,context: Context){
-
-           foodKindTxt.text = Vo.meals
-           timeTxt.text = Vo.wdate
-           memoTxt.text = Vo.memo
-           if (Vo.foodscore =="1점"){
+           //foodImg  사진/카메라로 찍은 사진
+           foodKindTxt.text = Vo.meals //식사종류
+           timeTxt.text = Vo.wdate //시간
+           memoTxt.text = Vo.memo // 메모
+           if (Vo.foodscore =="1점"){ //점수
                foodScoreTxt.text="점수 : ★"
            }else if(Vo.foodscore =="2점"){
                foodScoreTxt.text="점수 : ★★"

@@ -1,8 +1,5 @@
-<<<<<<< HEAD:BbsSample/app/src/main/java/com/metamom/bbssample/FoodListMeals/AddFoodList.kt
 package com.metamom.bbssample.FoodListMeals
-=======
-package com.metamom.bbssample
->>>>>>> main:BbsSample/app/src/main/java/com/metamom/bbssample/addFoodList.kt
+
 
 import android.Manifest
 import android.app.Activity
@@ -21,6 +18,7 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.R
+import kotlinx.android.synthetic.main.activity_add_food_list.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 
@@ -41,6 +39,8 @@ class addFoodList : AppCompatActivity() {
         val albumBtn = findViewById<ImageButton>(R.id.albumBtn)
         val scoreText = findViewById<TextView>(R.id.scoreText) // 맛점수
         val editMemoText = findViewById<EditText>(R.id.editMemoText)// 메모
+
+
         //카메라
         cameraBtn.setOnClickListener {
             camera()
@@ -69,9 +69,11 @@ class addFoodList : AppCompatActivity() {
         val saveListBtn = findViewById<Button>(R.id.saveListBtn)
         saveListBtn.setOnClickListener {
             FoodListMealsDao.getInstance().FoodListTest(FoodListMealsDto
-                ("idid","","qwddqw","qwddqwdqw","foodname","dqwqwd","2"))
+                ("idid","","${selectKind.text}","${editMemoText.text}","","${scoreText.text}"))
             Toast.makeText(this,"보내짐",Toast.LENGTH_SHORT).show()
 
+
+            //확인용
             /*val List = FoodListMealsDao.getInstance().FoodListSelect()
             println(List[0].toString())
             Toast.makeText(this,"${List[0].toString()}",Toast.LENGTH_LONG).show()
