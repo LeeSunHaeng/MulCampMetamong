@@ -14,6 +14,7 @@ public interface SubscribeDao {
 	
 	/* #21# 구독 회원추가 + 멤버 구독값 수정 */
 	public int subAdd(SubscribeDto dto);
+	public void subAddEndday(SubscribeDto dto);
 	public void subUpdateMember(SubscribeDto dto);
 
 }

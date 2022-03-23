@@ -69,9 +69,12 @@ public class SubscribeController {
 		// 1) 구독 신청 (구독회원 DB 내 추가)
 		boolean result = service.subAdd(dto);
 		if(result) {
-			// 2) 멤버 DB 내 구독값 수정 (1번 성공 시 실행)
-			System.out.println("#21# SubscribeController subUpdateMember() 동작 _멤버 DB 내 구독값 수정");
+			// 2) 구독만료일 추가 + 멤버 DB 내 구독값 수정 (1번 성공 시 실행)
+			service.subAddEndday(dto);
+			System.out.println("#21# SubscribeController subAddEndday() 동작 _구독 DB 내 만료일자 추가");
+			
 			service.subUpdateMember(dto);
+			System.out.println("#21# SubscribeController subUpdateMember() 동작 _멤버 DB 내 구독값 수정");
 			return "Success";
 		}
 		return "Fail";

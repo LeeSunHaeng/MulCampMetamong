@@ -22,11 +22,17 @@ public class SubscribeService {
 
 	
 	/* #21# 구독 회원추가 + 멤버 구독값 수정 */
+	// 1) 구독 추가 (구독 만료일자 제외)
 	public boolean subAdd(SubscribeDto dto) {
 		int result = dao.subAdd(dto);
 		
 		return result>0?true:false;
 	}
+	// 1-1) 구독 만료일자 추가
+	public void subAddEndday(SubscribeDto dto) {
+		dao.subAddEndday(dto);
+	}
+	// 2) 멤버 DB 내 구독값 수정
 	public void subUpdateMember(SubscribeDto dto) {
 		dao.subUpdateMember(dto);
 	}

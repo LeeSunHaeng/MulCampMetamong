@@ -36,13 +36,13 @@ class SubAddActivity : AppCompatActivity() {
 
             if (SubAddSingleton.subType != null && SubAddSingleton.subType != null){
                 val addResult = SubscribeDao.getInstance().subAdd(SubscribeDto(MemberSingleton.id.toString(),
-                    SubAddSingleton.subType!!,
-                    SubAddSingleton.subPeriod!!,
-                    SubAddSingleton.subMorning,
-                    SubAddSingleton.subLunch,
-                    SubAddSingleton.subDinner,
-                    SubAddSingleton.subSnack,
-                    ""))
+                                                                                SubAddSingleton.subType!!,
+                                                                                SubAddSingleton.subPeriod!!,
+                                                                                SubAddSingleton.subMorning,
+                                                                                SubAddSingleton.subLunch,
+                                                                                SubAddSingleton.subDinner,
+                                                                                SubAddSingleton.subSnack,
+                                                                                "", ""))
                 Log.d("SubAddActivity", "#21# 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
 
                 if (addResult == "Success"){

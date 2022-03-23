@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         loginBtn.setOnClickListener {
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = "zeze3"
+            MemberSingleton.id = "zeze2"
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
