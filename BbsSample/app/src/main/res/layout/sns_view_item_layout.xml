@@ -19,12 +19,16 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     tools:srcCompat="@tools:sample/avatars"
-                    android:id="@+id/profileImageView"/>
+                    android:id="@+id/profileImageView"
+                    android:padding="0sp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/white"
+            />
             <TextView
-                    android:text="doselage"
+                    android:text="NickName"
                     android:layout_width="456dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/idTextView"
+                    android:id="@+id/nickNameTextView"
                     android:textSize="25dp"
                     android:gravity="center_vertical"
             />

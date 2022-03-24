@@ -16,8 +16,11 @@ import android.provider.MediaStore
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.metamom.bbssample.MemberDto
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import java.io.IOException
+import java.lang.reflect.Member
 import java.text.SimpleDateFormat
 
 class SnsInsertActivity : AppCompatActivity() {
@@ -30,10 +33,12 @@ class SnsInsertActivity : AppCompatActivity() {
     val CAMERA_CODE = 98
     val STORAGE_CODE = 99
     var snsUri:Uri? =null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sns_insert)
-
+        println("${MemberSingleton.id}")
+        val mem:MemberDto=SnsDao.getInstance().snsGetMember(MemberSingleton.id!!)
 
 
 
@@ -46,7 +51,7 @@ class SnsInsertActivity : AppCompatActivity() {
         }
 
         // 저장된 사진 보기
-        val picture = findViewById<Button>(R.id.pi-cture)
+        val picture = findViewById<Button>(R.id.picture)
         picture.setOnClickListener {
             GetAlbum()
         }
@@ -54,10 +59,16 @@ class SnsInsertActivity : AppCompatActivity() {
         val insertSnsBtn = findViewById<ImageButton>(R.id.snsInsertCheckBtn)
 
         insertSnsBtn.setOnClickListener {
+            println("${mem.id}")
+            println("${mem.profile}")
+            println("${mem.nickname}")
             val content = findViewById<EditText>(R.id.snsContentEditText)
-            val dto:SnsDto = SnsDto(1,"doselage","profile1","2022-03-23",snsUri.toString(),0,0,content.text.toString())
+            val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
             val test = SnsDao.getInstance().snsInsert(dto)
             println(test)
+
+            val i = Intent(this,SnsActivity::class.java)
+            startActivity(i)
 
         }
     }

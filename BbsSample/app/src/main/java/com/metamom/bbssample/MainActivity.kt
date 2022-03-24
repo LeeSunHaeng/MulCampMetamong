@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
                 )
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = "zeze"
+
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
             if (dto != null) {
                 MemberDao.user = dto
-
+                MemberSingleton.id = dto.id
                 Toast.makeText(this, "${dto.id}님 환영합니다", Toast.LENGTH_LONG).show()
                 // login 되면 이동
                 val i = Intent(this, MainButtonActivity::class.java)

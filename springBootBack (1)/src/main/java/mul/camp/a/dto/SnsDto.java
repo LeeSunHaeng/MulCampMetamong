@@ -4,6 +4,7 @@ public class SnsDto {
 	
 	private int seq;
 	private String id;
+	private String nickname;
 	private String profile;
 	private String date;
 	private String imagecontent;
@@ -11,11 +12,12 @@ public class SnsDto {
 	private int commentcount;
 	private String content;
 	
-	public SnsDto(int seq, String id, String profile, String date, String imagecontent, int likecount, int commentcount,
-			String content) {
+	public SnsDto(int seq, String id, String nickname, String profile, String date, String imagecontent, int likecount,
+			int commentcount, String content) {
 		super();
 		this.seq = seq;
 		this.id = id;
+		this.nickname = nickname;
 		this.profile = profile;
 		this.date = date;
 		this.imagecontent = imagecontent;
@@ -38,6 +40,14 @@ public class SnsDto {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getProfile() {
@@ -90,9 +100,13 @@ public class SnsDto {
 
 	@Override
 	public String toString() {
-		return "SnsDto [seq=" + seq + ", id=" + id + ", profile=" + profile + ", date=" + date + ", imagecontent="
-				+ imagecontent + ", likecount=" + likecount + ", commentcount=" + commentcount + ", content=" + content
-				+ "]";
+		return "SnsDto [seq=" + seq + ", id=" + id + ", nickname=" + nickname + ", profile=" + profile + ", date="
+				+ date + ", imagecontent=" + imagecontent + ", likecount=" + likecount + ", commentcount="
+				+ commentcount + ", content=" + content + "]";
 	}
+	
+	
+	
+	
 	
 }

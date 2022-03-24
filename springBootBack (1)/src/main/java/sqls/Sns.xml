@@ -6,10 +6,22 @@
   <mapper namespace ="mul.camp.a.dao.SnsDao">
   
   <insert id="snsInsert" parameterType="mul.camp.a.dto.SnsDto">
-  INSERT INTO META_SNS(SNSSEQ,ID,PROFILE,
+  INSERT INTO META_SNS(SNSSEQ,ID,NICKNAME,PROFILE,
   SNSDATE,IMAGECONTENT,LIKECOUNT,COMMENTCOUNT,CONTENT)
-  VALUES(SEQSNS.NEXTVAL,#{id},#{profile},SYSDATE,#{imagecontent}
+  VALUES(SEQSNS.NEXTVAL,#{id},#{nickname},#{profile},SYSDATE,#{imagecontent}
   ,0,0,#{content})
   </insert>
   
+  <select id="snsGetMmeber" 
+  parameterType="String" resultType="mul.camp.a.dto.MemberDto">  
+  SELECT *
+  FROM META_MEMBER
+  WHERE id=#{id}
+  </select>
+  
+  <select id="allSns" resultType="mul.camp.a.dto.SnsDto">
+  SELECT *
+  FROM META_SNS 
+  ORDER BY SNSDATE DESC
+  </select>
   </mapper>

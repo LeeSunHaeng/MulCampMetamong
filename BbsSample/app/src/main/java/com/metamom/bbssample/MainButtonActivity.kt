@@ -20,6 +20,7 @@ class MainButtonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_button)
 
+
         /* '구독 신청' Button 클릭 시 구독 여부 확인
         *   case_1) 구독일 경우 구독 정보 출력 페이지로 이동
         *   case_2) 구독이 아닐경우 구독 신청 페이지로 이동 */

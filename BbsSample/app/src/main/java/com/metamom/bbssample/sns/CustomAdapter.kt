@@ -16,13 +16,13 @@ import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 
 
-class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
+class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
         val snsProfile = itemView.findViewById<ImageView>(R.id.profileImageView)
-        val snsId = itemView.findViewById<TextView>(R.id.idTextView)
+        val snsNickName = itemView.findViewById<TextView>(R.id.nickNameTextView)
         val snsDate = itemView.findViewById<TextView>(R.id.dateTextView)
         val snsImageContent = itemView.findViewById<ImageView>(R.id.contentImageView)
         val snsLikeCount = itemView.findViewById<TextView>(R.id.likeCountTextView)
@@ -33,6 +33,7 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
         fun bind(dataVo:SnsDto, context: Context){
 
             if(dataVo.profile != ""){
+                if(dataVo.profile.equals("profile3")){
                 val resourceId = context.resources.getIdentifier(dataVo.profile, "drawable", context.packageName)
 
                 if(resourceId > 0){
@@ -40,8 +41,12 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
                 }else{
                     Glide.with(itemView).load(dataVo.profile).into(snsProfile)
                 }
+                }
             } else{
-                snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
+                val profileUri:Uri = Uri.parse(dataVo.profile)
+                snsProfile.setImageURI(profileUri)
+
+                //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
             /*if(dataVo.imageContent != ""){
@@ -66,7 +71,7 @@ class CustomAdapter(val context: Context, val snsList:MutableList<SnsDto>) : Rec
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
-            snsId.text = dataVo.id
+            snsNickName.text = dataVo.nickname
             snsDate.text = dataVo.snsdate
             snsLikeCount.text = dataVo.likecount.toString()
             snsCommentCount.text = dataVo.commentcount.toString()

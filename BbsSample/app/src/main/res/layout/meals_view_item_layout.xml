@@ -19,13 +19,13 @@
             android:layout_width="124dp"
             android:layout_height="29dp" android:id="@+id/likeCountTextView"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            android:layout_marginStart="40dp" app:layout_constraintTop_toBottomOf="@+id/idTextView"
+            android:layout_marginStart="40dp" app:layout_constraintTop_toBottomOf="@+id/nickNameTextView"
             android:layout_marginTop="20dp"/>
     <TextView
             android:text="시간 : "
             android:textSize="20sp"
             android:layout_width="122dp"
-            android:layout_height="25dp" android:id="@+id/idTextView"
+            android:layout_height="25dp" android:id="@+id/nickNameTextView"
             app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toBottomOf="@+id/textView"
             android:layout_marginTop="24dp" android:layout_marginStart="40dp"/>
     <TextView
@@ -40,7 +40,7 @@
             android:textSize="20sp"
             android:layout_width="164dp"
             android:layout_height="143dp"
-            app:layout_constraintStart_toEndOf="@+id/idTextView"
+            app:layout_constraintStart_toEndOf="@+id/nickNameTextView"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp" android:layout_marginStart="16dp" android:id="@+id/memoText"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

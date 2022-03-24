@@ -17,7 +17,7 @@ class MemberDto(
     val auth: Int,
     val subscribe: Int,
     val birth: String?,
-    val bmi: Double,
+    val bmi: Double?,
     val profile: String?) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -53,7 +53,7 @@ class MemberDto(
         parcel.writeInt(auth)
         parcel.writeInt(subscribe)
         parcel.writeString(birth)
-        parcel.writeDouble(bmi)
+        parcel.writeDouble(bmi!!)
         parcel.writeString(profile)
     }
 
