@@ -9,6 +9,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
         val snsLikeCount = itemView.findViewById<TextView>(R.id.likeCountTextView)
         val snsCommentCount = itemView.findViewById<TextView>(R.id.commentCountTextView)
         val snsContent = itemView.findViewById<TextView>(R.id.contentTextView)
+        val likeBtn = itemView.findViewById<ImageButton>(R.id.likeImageButton)
 
 
         fun bind(dataVo:SnsDto, context: Context){
@@ -35,7 +37,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
             if(dataVo.profile != ""){
                 if(dataVo.profile.equals("profile3")){
                 val resourceId = context.resources.getIdentifier(dataVo.profile, "drawable", context.packageName)
-
+                print("~~~~~~~~~resourceId : ${resourceId.toString()}")
                 if(resourceId > 0){
                     snsProfile.setImageResource(resourceId)
                 }else{
@@ -76,8 +78,14 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
             snsLikeCount.text = dataVo.likecount.toString()
             snsCommentCount.text = dataVo.commentcount.toString()
             snsContent.text = dataVo.content
-
         }
+
+        /*init {
+            likeBtn.setOnClickListener {
+                if()
+
+            }
+        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {

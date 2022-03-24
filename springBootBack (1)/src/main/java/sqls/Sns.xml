@@ -24,4 +24,22 @@
   FROM META_SNS 
   ORDER BY SNSDATE DESC
   </select>
+  
+  <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
+  INSERT INTO SNS_LIKE(LIKESEQ,ID,LIKEDATE)
+  VALUES(#{likeseq},#{id},SYSDATE)
+  </insert>
+  
+  <select id="snsLikeCount" parameterType="String" resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_LIKE
+  WHERE id=#{id}
+  </select>
+  
+  
+  
+  
+  
+  
+  
   </mapper>

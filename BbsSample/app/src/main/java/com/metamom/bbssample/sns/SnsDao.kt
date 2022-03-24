@@ -18,6 +18,12 @@ interface SnsService{
 
     @GET("allSns")
     fun allSns() : Call<List<SnsDto>>
+
+    @POST("/snsLikeInsert")
+    fun snsLikeInsert(@Body dto:SnsLikeDto) :Call<Int>
+
+    @POST("/snsLikeCount")
+    fun snsLikeCount(@Query("id") id:String) : Call<Int>
 }
 
 class SnsDao {
@@ -57,5 +63,23 @@ class SnsDao {
         val response = call?.execute()
 
         return response?.body() as ArrayList<SnsDto>
+    }
+
+    fun snsLikeInsert(dto:SnsLikeDto):Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsLikeInsert(dto)
+        val response = call?.execute()
+
+        return response?.body()!!
+    }
+
+    fun snsLikeCount(id:String) :Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsLikeCount(id)
+        val response = call?.execute()
+
+        return response?.body()!!
     }
 }

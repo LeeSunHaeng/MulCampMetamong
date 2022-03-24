@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mul.camp.a.dto.MemberDto;
 import mul.camp.a.dto.SnsDto;
+import mul.camp.a.dto.SnsLikeDto;
 import mul.camp.a.service.SnsService;
 
 @RestController
@@ -40,6 +41,22 @@ public class SnsController {
 		System.out.println("SnsDto 실행 성공");
 		ArrayList<SnsDto> list = service.allSns();
 		return list;
+	}
+	
+	@RequestMapping(value = "/snsLikeInsert", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsLikeInsert(@RequestBody SnsLikeDto dto) {
+		System.out.println("snsLikeInsert 실행 성공");
+		int num = service.snsLikeInsert(dto);
+		System.out.println("snsLikeInsert num : "+num);
+		return num;
+	}
+	
+	@RequestMapping(value = "/snsLikeCount", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsLikeCount(String id) {
+		System.out.println("snsLikeCount 실행 성공");
+		int num = service.snsLikeCount(id);
+		System.out.println("snsLikeCount num : "+num);
+		return num;
 	}
 	
 }
