@@ -1,6 +1,8 @@
 package com.metamom.bbssample.FoodListMeals
 
 import android.content.Context
+import android.net.Uri
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
+
 
 class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodListMealsDto>) : RecyclerView.Adapter<FoodListAdapter.ItemViewHolder>() {
     inner class ItemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
@@ -19,6 +22,7 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
         val memoTxt = itemView.findViewById<TextView>(R.id.memoTxt)
 
        fun bind(Vo:FoodListMealsDto,context: Context){
+
            //foodImg  사진/카메라로 찍은 사진
            foodKindTxt.text = Vo.meals //식사종류
            timeTxt.text = Vo.wdate //시간
@@ -34,6 +38,17 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
            }else if(Vo.foodscore =="5점"){
                foodScoreTxt.text="점수 : ★★★★★"
            }else foodScoreTxt.text="점수 : ${Vo.foodscore}"
+          // foodImg.setImageURI((Vo.imgUrl))
+           try {
+               if(Vo.imgUrl != null) {
+                   val uri = Uri.parse("${Vo.imgUrl}")
+                   foodImg.setImageURI(uri)
+               }else{
+                   foodImg.setImageResource(R.drawable.xbox)
+               }
+           } catch (e: Exception) {
+               e.printStackTrace()
+           }
        }
 
 
@@ -51,3 +66,5 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
         return writeFoodSelect.size
     }
 }
+
+

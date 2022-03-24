@@ -34,7 +34,7 @@
                 android:name="com.metamom.bbssample.MainButtonActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name="com.metamom.bbssample.FoodListMeals.addFoodList"
+                android:name="com.metamom.bbssample.FoodListMeals.AddFoodList"
                 android:exported="true"/>
         <activity
                 android:name="com.metamom.bbssample.FoodListMeals.FoodListMeals"

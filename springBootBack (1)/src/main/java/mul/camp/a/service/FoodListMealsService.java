@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mul.camp.a.dao.FoodListMealsDao;
 import mul.camp.a.dto.FoodListMealsDto;
+import mul.camp.a.dto.MemberDto;
 
 @Service
 @Transactional
@@ -22,6 +23,11 @@ public class FoodListMealsService {
 
 	public List<FoodListMealsDto> writeFoodSelect() {
 		return dao.writeFoodSelect();
+	}
+	
+	public boolean checkId(MemberDto dto) {
+		int n = dao.checkId(dto);
+		return n>0?true:false;
 	}
 	
 	

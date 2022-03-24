@@ -17,13 +17,14 @@ import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.metamom.bbssample.MemberSingleton
 import com.metamom.bbssample.R
 import kotlinx.android.synthetic.main.activity_add_food_list.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 
-class addFoodList : AppCompatActivity() {
-
+class AddFoodList : AppCompatActivity() {
+    var imgUri:String = ""
     //카메라 , 스토리지 권한 변수
     val CAMERA = arrayOf(Manifest.permission.CAMERA)
     val STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -31,6 +32,8 @@ class addFoodList : AppCompatActivity() {
     // 카메라 스토리지 정해진 상수값.
     val CAMERA_CODE = 98
     val STORAGE_CODE = 99
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_food_list)
@@ -39,6 +42,12 @@ class addFoodList : AppCompatActivity() {
         val albumBtn = findViewById<ImageButton>(R.id.albumBtn)
         val scoreText = findViewById<TextView>(R.id.scoreText) // 맛점수
         val editMemoText = findViewById<EditText>(R.id.editMemoText)// 메모
+        val checkBtn = findViewById<Button>(R.id.chckBtn)
+
+        checkBtn.setOnClickListener {
+            Toast.makeText(this,"${imgUri}",Toast.LENGTH_LONG).show()
+        }
+
 
 
         //카메라
@@ -69,8 +78,16 @@ class addFoodList : AppCompatActivity() {
         val saveListBtn = findViewById<Button>(R.id.saveListBtn)
         saveListBtn.setOnClickListener {
             FoodListMealsDao.getInstance().FoodListTest(FoodListMealsDto
-                ("idid","","${selectKind.text}","${editMemoText.text}","","${scoreText.text}"))
+                                                        ("${MemberSingleton.id}",
+                                                        "",
+                                                        "${selectKind.text}",
+                                                        "${editMemoText.text}",
+                                                        "${imgUri}",
+                                                        "${scoreText.text}"))
             Toast.makeText(this,"보내짐",Toast.LENGTH_SHORT).show()
+
+            val i = Intent(this, FoodListMeals::class.java)
+            startActivity(i)
 
 
             //확인용
@@ -181,13 +198,16 @@ class addFoodList : AppCompatActivity() {
                         Toast.makeText(this,"$uri",Toast.LENGTH_SHORT).show()
                         println("경로: $uri")
                         println("실제 이미지 경로 : " +getPath(uri))
+                        imgUri =  getPath(uri)
                     }
                 }
                 STORAGE_CODE ->{
                     val uri = data?.data
                     albumImg.setImageURI(uri)
+                    imgUri =  getPath(uri)
                 }
             }
+
         }
         //다른 화면에서 사용하게.
         fun albumIngMove(){

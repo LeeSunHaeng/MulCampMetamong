@@ -2,10 +2,11 @@ package com.metamom.bbssample.FoodListMeals
 
 
 import com.metamom.bbssample.RetrofitClient
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
+
 
 interface FoodListMealsService{
     //write 보내기
@@ -15,6 +16,14 @@ interface FoodListMealsService{
     //받기
     @GET("/FoodListSelect")
     fun FoodListSelect():Call<List<FoodListMealsDto>>
+
+    /*@Multipart
+    @POST("/src/main/webapp/upload")
+    Call<FileUploadResponse>*/
+
+    //파일 업로드
+
+
 
 }
 class FoodListMealsDao {
@@ -28,7 +37,6 @@ class FoodListMealsDao {
             return foodListMealsDao!!
         }
     }
-
     fun FoodListTest(dto: FoodListMealsDto): String {
         val retrofit = RetrofitClient.getInstance()
 

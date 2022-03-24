@@ -5,7 +5,6 @@ public class FoodListMealsDto {
 	private String wdate;
 	private String meals;
 	private String memo;
-	private String foodName;
 	private String imgUrl;
 	private String foodscore;
 	
@@ -13,14 +12,13 @@ public class FoodListMealsDto {
 		
 	}
 
-	public FoodListMealsDto(String id, String wdate, String meals, String memo, String foodName, String imgUrl,
+	public FoodListMealsDto(String id, String wdate, String meals, String memo, String imgUrl,
 			String foodscore) {
 		super();
 		this.id = id;
 		this.wdate = wdate;
 		this.meals = meals;
 		this.memo = memo;
-		this.foodName = foodName;
 		this.imgUrl = imgUrl;
 		this.foodscore = foodscore;
 	}
@@ -57,13 +55,7 @@ public class FoodListMealsDto {
 		this.memo = memo;
 	}
 
-	public String getFoodName() {
-		return foodName;
-	}
 
-	public void setFoodName(String foodName) {
-		this.foodName = foodName;
-	}
 
 	public String getImgUrl() {
 		return imgUrl;
@@ -83,8 +75,7 @@ public class FoodListMealsDto {
 
 	@Override
 	public String toString() {
-		return "FoodListMealsDto [id=" + id + ", wdate=" + wdate + ", meals=" + meals + ", memo=" + memo + ", foodName="
-				+ foodName + ", imgUrl=" + imgUrl + ", foodscore=" + foodscore + "]";
+		return "FoodListMealsDto [id=" + id + ", wdate=" + wdate + ", meals=" + meals + ", memo=" + memo  + ", imgUrl=" + imgUrl + ", foodscore=" + foodscore + "]";
 	}
  	
 	

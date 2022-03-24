@@ -10,11 +10,19 @@
 	(ID,WDATE,MEALS,MEMO,IMGURL,FOODSCORE)
 	VALUES
 	(#{id},SYSDATE,#{meals},#{memo},#{imgUrl},#{foodscore})
+
 </insert>
 
 <select id="writeFoodSelect" resultType="mul.camp.a.dto.FoodListMealsDto"> 
-	SELECT ID, WDATE, MEALS, MEMO, FOODNAME, IMGURL, FOODSCORE
+	SELECT ID, WDATE, MEALS, MEMO, IMGURL, FOODSCORE
 	FROM META_FOOD_LIST_MEALS
+	ORDER BY ASC WDATE
+	<!-- WHERE ID=#{id} -->
 </select>
 
+<!-- <select id="checkId" resultType=String>
+	SELECT ID
+	FROM META_MEMBER
+	WHERE ID=#{id}
+</select> -->
 </mapper>
