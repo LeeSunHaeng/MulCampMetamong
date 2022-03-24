@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import mul.camp.a.dto.SubTodayMealDto;
 import mul.camp.a.dto.SubscribeDto;
 import mul.camp.a.service.SubscribeService;
 
@@ -111,6 +112,18 @@ public class SubscribeController {
 		   
 		   return "Fail";
 	   }
+   }
+   
+   
+   /* #21# 오늘의 다이어트 식단 RANDOM SELECT (1개) */
+   @RequestMapping(value = "/subRandomDietMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public SubTodayMealDto subRandomDietMeal(@RequestBody SubTodayMealDto dto) {
+	   System.out.println("#21# SubscribeController subRandomDietMeal() 동작");
+	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) 값: " + dto.toString());
+  
+	   SubTodayMealDto dietMeal = service.subRandomDietMeal(dto);
+	   
+	   return dietMeal;
    }
    
    

@@ -107,7 +107,7 @@ class SubMyMealsActivity : AppCompatActivity() {
 
     fun moveMealsView(time :String) {
         when (time) {
-            "아침" -> startActivity(Intent(this, SubTodayMealsLunch::class.java))
+            "아침" -> startActivity(Intent(this, SubTodayMealsMorning::class.java))
             "점심" -> startActivity(Intent(this, SubTodayMealsLunch::class.java))
             "저녁" -> startActivity(Intent(this, SubTodayMealsDinner::class.java))
             "간식" -> startActivity(Intent(this, SubTodayMealsSnack::class.java))

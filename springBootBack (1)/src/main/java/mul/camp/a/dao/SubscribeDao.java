@@ -3,6 +3,7 @@ package mul.camp.a.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import mul.camp.a.dto.SubTodayMealDto;
 import mul.camp.a.dto.SubscribeDto;
 
 @Mapper
@@ -21,5 +22,8 @@ public interface SubscribeDao {
 	public SubscribeDto subEnddayCheck(SubscribeDto dto);
 	public void subUpdateMemberEnd(SubscribeDto dto);
 	public int subDeleteUser(SubscribeDto dto);
+	
+	/* #21# 오늘의 다이어트 식단 RANDOM SELECT (1개) */
+	public SubTodayMealDto subRandomDietMeal(SubTodayMealDto dto);
 
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import mul.camp.a.dao.SubscribeDao;
+import mul.camp.a.dto.SubTodayMealDto;
 import mul.camp.a.dto.SubscribeDto;
 
 @Service
@@ -52,5 +53,11 @@ public class SubscribeService {
 		int result = dao.subDeleteUser(dto);
 		
 		return result>0?true:false;
+	}
+	
+	
+	/* #21# 오늘의 다이어트 식단 RANDOM SELECT (1개) */
+	public SubTodayMealDto subRandomDietMeal(SubTodayMealDto dto) {
+		return dao.subRandomDietMeal(dto);
 	}
 }

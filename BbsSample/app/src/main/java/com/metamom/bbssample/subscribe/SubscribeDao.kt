@@ -28,9 +28,13 @@ interface SubscribeService {
     @POST("/subAdd")
     fun subAdd(@Body dto: SubscribeDto) :Call<String>
 
-    /* 구독 만료확인 _Back  */
+    /* 구독 만료확인 _Back subEnddayCheck(SubscribeDto dto) → return String */
     @POST("/subEnddayCheck")
     fun subEnddayCheck(@Body dto: SubscribeDto) :Call<String>
+
+    /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(subdfTime dto) → return SubTodayMealDto */
+    @POST("/subRandomDietMeal")
+    fun subRandomDietMeal(@Body dto: SubTodayMealDto) :Call<SubTodayMealDto>
 }
 
 
@@ -125,6 +129,28 @@ class SubscribeDao {
 
         if (response == null) return null
         return response.body() as String
+    }
+
+
+    /* 구독 오늘의 다이어트 식단 */
+    fun subRandomDietMeal(dto: SubTodayMealDto) :SubTodayMealDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subRandomDietMeal() 오늘의 식단 _다이어트 동작")
+
+        var response: Response<SubTodayMealDto>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subRandomDietMeal(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subRandomDietMeal() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as SubTodayMealDto
     }
 
 }

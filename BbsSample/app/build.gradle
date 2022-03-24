@@ -51,7 +51,13 @@ dependencies {
     // recyclerview
     implementation 'androidx.recyclerview:recyclerview:1.1.0'           // 추가
     implementation 'com.github.bumptech.glide:glide:4.11.0'             // 추가
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'     // 추가
+
+    // #21# 구독 _오늘의 식단 ImageView url로 붙이기 위하여 추가 (glide 사용)
+    /*implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'*/
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
