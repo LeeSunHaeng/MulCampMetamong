@@ -1,4 +1,5 @@
-package com.metamom.bbssample.subsingleto
+package com.metamom.bbssample.subsingleton
+
 
 class MemberSingleton {
 

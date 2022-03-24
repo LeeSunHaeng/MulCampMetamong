@@ -17,6 +17,12 @@ class RetrofitClient {
 
                 val gson = GsonBuilder().setLenient().create()
 
+                // local 주소 - 46번째줄 부분도 바꿔주세요!
+                // 박해빈 :
+                // 양성훈 : http://192.168.0.29:3000/
+                // 엄희정 :
+                // 이선행 :
+                // 최재석 :
                 instance = Retrofit.Builder()
                     .baseUrl("http://192.168.219.111:3000/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
@@ -35,7 +41,7 @@ class RetrofitClient {
 
                 // ScalarsConverterFactory 만을 사용해야 한다
                 instanceStr = Retrofit.Builder()
-                    .baseUrl("http://172.30.1.25:3000/")
+                    .baseUrl("http://192.168.0.29:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build()//주석
             }
