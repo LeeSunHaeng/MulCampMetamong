@@ -7,4 +7,10 @@
         android:layout_height="match_parent"
         tools:context=".subscribe.SubTodayMealsSnack">
 
+    <TextView
+            android:text="오늘의 식단 [간식]"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/subSnac_textView5"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
