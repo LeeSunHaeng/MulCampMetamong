@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /* #21# [구독] Dto */
-class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val subMorning: Int, val subLunch: Int, val subDinner: Int, val subSnack: Int, val subStartDay: String?) :Parcelable {
+class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val subMorning: Int, val subLunch: Int, val subDinner: Int, val subSnack: Int, val subStartday: String?) :Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readString()
@@ -22,7 +22,7 @@ class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val
         parcel.writeInt(subLunch)
         parcel.writeInt(subDinner)
         parcel.writeInt(subSnack)
-        parcel.writeString(subStartDay)
+        parcel.writeString(subStartday)
     }
 
     companion object CREATOR : Parcelable.Creator<SubscribeDto> {
@@ -36,6 +36,6 @@ class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val
     }
 
     override fun toString(): String {
-        return "SubscribeDto(id=${subId}, type=${subType}, period=${subPeriod}, morning=${subMorning}, lunch=${subLunch}, dinner=${subDinner}, snack=${subSnack}, startDay=${subStartDay}"
+        return "SubscribeDto(id=${subId}, type=${subType}, period=${subPeriod}, morning=${subMorning}, lunch=${subLunch}, dinner=${subDinner}, snack=${subSnack}, startday=${subStartday}"
     }
 }

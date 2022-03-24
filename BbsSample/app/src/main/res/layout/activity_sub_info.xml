@@ -7,11 +7,10 @@
         android:layout_height="match_parent"
         tools:context=".subscribe.SubInfoActivity">
 
-    <!-- #21# 뒤로가기 버튼 일단 아무거나 넣었습니다! -->
     <ImageButton
             android:id="@+id/subInfo_PreBtn"
-            android:scaleType="fitCenter"
-            android:layout_width="50dp" android:layout_height="50dp" app:srcCompat="@drawable/previous"
+            android:layout_width="50dp" android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_back_button" android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.019"
@@ -64,7 +63,7 @@
             android:layout_marginEnd="24dp" app:layout_constraintHorizontal_bias="0.312"/>
     <TextView
             android:id="@+id/sub_textView13"
-            android:text="구독 유형" android:textSize="20dp"
+            android:text="신청 유형" android:textSize="20dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subInfo_IdTxt" android:layout_marginTop="45dp"
@@ -72,7 +71,7 @@
 
     <TextView
             android:id="@+id/sub_textView15"
-            android:text="구독 기간" android:textSize="20dp"
+            android:text="신청 기간" android:textSize="20dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subInfo_TypeTxt" android:layout_marginTop="45dp"
@@ -86,69 +85,42 @@
             app:layout_constraintHorizontal_bias="0.021" android:layout_marginStart="24dp"/>
     <TextView
             android:id="@+id/sub_textView17"
-            android:text="구독 식단시간" android:textSize="20dp"
+            android:text="신청 식단시간" android:textSize="20dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subInfo_StartDayTxt" android:layout_marginTop="45dp"
             app:layout_constraintHorizontal_bias="0.021" android:layout_marginStart="24dp"/>
     <CheckBox
-            android:text="아침 Morning"
-            android:layout_width="520dp"
-            android:layout_height="65dp" android:id="@+id/subInfo_MorningChkBox"
+            android:id="@+id/subInfo_MorningChkBox"
+            android:text="아침 Morning" android:enabled="false"
+            android:layout_width="520dp" android:layout_height="65dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.312" app:layout_constraintTop_toBottomOf="@+id/sub_textView17"
             android:layout_marginStart="24dp" android:layout_marginEnd="24dp"/>
     <CheckBox
-            android:text="저녁 Dinner"
-            android:layout_width="520dp"
-            android:layout_height="65dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.312"
-            android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toBottomOf="@+id/subInfo_LunchChkBox" android:id="@+id/subInfo_DinnerChkBox"/>
-    <CheckBox
-            android:text="간식 Snack"
-            android:layout_width="520dp"
-            android:layout_height="65dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
-            android:id="@+id/subInfo_SnackChkBox"
-            app:layout_constraintTop_toBottomOf="@+id/subInfo_DinnerChkBox"
-            app:layout_constraintHorizontal_bias="0.312" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
-    <CheckBox
-            android:text="점심 Lunch"
-            android:layout_width="520dp"
-            android:layout_height="65dp" android:id="@+id/subInfo_LunchChkBox"
+            android:id="@+id/subInfo_LunchChkBox"
+            android:text="점심 Lunch" android:enabled="false"
+            android:layout_width="520dp" android:layout_height="65dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.312"
             android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
             app:layout_constraintTop_toBottomOf="@+id/subInfo_MorningChkBox"/>
+    <CheckBox
+            android:id="@+id/subInfo_DinnerChkBox"
+            android:text="저녁 Dinner" android:enabled="false"
+            android:layout_width="520dp" android:layout_height="65dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.312"
+            android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/subInfo_LunchChkBox"/>
+    <CheckBox
+            android:id="@+id/subInfo_SnackChkBox"
+            android:text="간식 Snack" android:enabled="false"
+            android:layout_width="520dp" android:layout_height="65dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/subInfo_DinnerChkBox"
+            app:layout_constraintHorizontal_bias="0.312" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-<!--
-<RadioGroup
-android:id="@+id/mealsTimeRadioGroup"
-android:layout_width="520dp" android:layout_height="265dp"
-app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/sub_textView17"
-app:layout_constraintHorizontal_bias="0.309" app:layout_constraintVertical_bias="0.0"
-android:layout_marginStart="24dp" android:layout_marginEnd="24dp">
-<RadioButton
-        android:id="@+id/subInfo_MorningRadio"
-        android:text="아침 Morning"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_LunchRadio"
-        android:text="점심 Lunch"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_DinnerRadio"
-        android:text="저녁 Dinner"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-<RadioButton
-        android:id="@+id/subInfo_SnackRadio"
-        android:text="간식 Snack"
-        android:layout_width="match_parent" android:layout_height="65dp"/>
-</RadioGroup>-->
