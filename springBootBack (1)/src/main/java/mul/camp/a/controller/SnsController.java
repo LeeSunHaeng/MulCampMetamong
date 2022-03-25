@@ -40,6 +40,7 @@ public class SnsController {
 	public ArrayList<SnsDto> allSns() {
 		System.out.println("SnsDto 실행 성공");
 		ArrayList<SnsDto> list = service.allSns();
+		System.out.println(list.get(0));
 		return list;
 	}
 	
@@ -51,10 +52,26 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsLikeDelete", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsLikeDelete(@RequestBody SnsLikeDto dto) {
+		System.out.println("snsLikeDelete 실행 성공");
+		int num = service.snsLikeDelete(dto);
+		System.out.println("snsLikeDelete num : "+num);
+		return num;
+	}
+	
+	@RequestMapping(value = "/snsLikeCheck", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsLikeCheck(@RequestBody SnsLikeDto dto) {
+		System.out.println("snsLikeCheck 실행 성공");
+		int num = service.snsLikeCheck(dto);
+		System.out.println("snsLikeCheck num : "+num);
+		return num;
+	}
+	
 	@RequestMapping(value = "/snsLikeCount", method = {RequestMethod.GET, RequestMethod.POST} )
-	public int snsLikeCount(String id) {
+	public int snsLikeCount(int seq) {
 		System.out.println("snsLikeCount 실행 성공");
-		int num = service.snsLikeCount(id);
+		int num = service.snsLikeCount(seq);
 		System.out.println("snsLikeCount num : "+num);
 		return num;
 	}

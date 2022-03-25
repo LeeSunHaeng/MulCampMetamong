@@ -15,8 +15,12 @@ class SnsActivity : AppCompatActivity() {
         val snsInsertBtn = findViewById<Button>(R.id.snsInsertBtn)
         val snsRecyclerView = findViewById<RecyclerView>(R.id.snsRecyclerView)
 
+
+
+
         //임시 데이터
         var data = SnsDao.getInstance().allSns()
+
        /* data.add(SnsDto(0,"doselage","김태리","profile3","2022-03-21","content://media/external/images/media/87",
             10,5,"삼겹살 너무 맛있다.."))
         data.add(SnsDto(1,"adrfs164","남주혁","profile3","2022-03-21","content://media/external/images/media/86",

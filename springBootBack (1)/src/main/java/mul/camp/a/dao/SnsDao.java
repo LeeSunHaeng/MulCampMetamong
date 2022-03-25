@@ -16,5 +16,7 @@ public interface SnsDao {
 	public MemberDto snsGetMmeber(String id);
 	public ArrayList<SnsDto> allSns();
 	public int snsLikeInsert(SnsLikeDto dto);
-	public int snsLikeCount(String id);
+	public int snsLikeDelete(SnsLikeDto dto);
+	public int snsLikeCheck(SnsLikeDto dto);
+	public int snsLikeCount(int seq);
 }

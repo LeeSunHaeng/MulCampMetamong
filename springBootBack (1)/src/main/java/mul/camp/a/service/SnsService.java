@@ -38,8 +38,18 @@ public class SnsService {
 		return dao.snsLikeInsert(dto);
 	}
 	
-	public int snsLikeCount(String id) {
+	public int snsLikeDelete(SnsLikeDto dto) {
+		System.out.println("snsLikeDelete service 실행");
+		return dao.snsLikeDelete(dto);
+	}
+	
+	public int snsLikeCheck(SnsLikeDto dto) {
+		System.out.println("snsLikeCheck service 실행");
+		return dao.snsLikeCheck(dto);
+	}
+	
+	public int snsLikeCount(int seq) {
 		System.out.println("snsLikeCount service 실행");
-		return dao.snsLikeCount(id);
+		return dao.snsLikeCount(seq);
 	}
 }

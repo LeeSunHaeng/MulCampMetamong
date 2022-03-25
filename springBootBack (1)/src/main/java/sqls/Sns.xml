@@ -8,7 +8,8 @@
   <insert id="snsInsert" parameterType="mul.camp.a.dto.SnsDto">
   INSERT INTO META_SNS(SNSSEQ,ID,NICKNAME,PROFILE,
   SNSDATE,IMAGECONTENT,LIKECOUNT,COMMENTCOUNT,CONTENT)
-  VALUES(SEQSNS.NEXTVAL,#{id},#{nickname},#{profile},SYSDATE,#{imagecontent}
+  VALUES(SEQSNS.NEXTVAL,#{id},#{nickname},#{profile},
+  TO_DATE(SYSDATE,'YYYY/MM/DD HH24:MI:SS'),#{imagecontent}
   ,0,0,#{content})
   </insert>
   
@@ -20,9 +21,14 @@
   </select>
   
   <select id="allSns" resultType="mul.camp.a.dto.SnsDto">
-  SELECT *
+  
+  SELECT SNSSEQ,ID,NICKNAME,PROFILE,
+   	TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(SNSDATE) || '-' || 
+       TRUNC(((SYSDATE - SNSDATE) - TRUNC(SYSDATE - SNSDATE)) * 24) || '-'  ||
+       TRUNC(MOD((SYSDATE - SNSDATE)*24,1)*60) AS SNSDATE,
+   IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
   FROM META_SNS 
-  ORDER BY SNSDATE DESC
+  ORDER BY SNSDATE
   </select>
   
   <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
@@ -30,10 +36,22 @@
   VALUES(#{likeseq},#{id},SYSDATE)
   </insert>
   
-  <select id="snsLikeCount" parameterType="String" resultType="Integer">
+  <select id="snsLikeCount" parameterType="Integer" resultType="Integer">
   SELECT COUNT(*)
   FROM SNS_LIKE
-  WHERE id=#{id}
+  WHERE LIKESEQ = #{likeseq}
+  </select>
+  
+  <delete id="snsLikeDelete" parameterType="mul.camp.a.dto.SnsLikeDto">
+  DELETE FROM SNS_LIKE
+  WHERE LIKESEQ=#{likeseq} AND ID=#{id}
+  </delete>
+  
+  <select id="snsLikeCheck" parameterType="mul.camp.a.dto.SnsLikeDto"
+   resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_LIKE
+  WHERE LIKESEQ=#{likeseq} AND ID=#{id}
   </select>
   
   

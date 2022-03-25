@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleton.MemberSingleton
 
 
 class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
@@ -37,7 +38,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
             if(dataVo.profile != ""){
                 if(dataVo.profile.equals("profile3")){
                 val resourceId = context.resources.getIdentifier(dataVo.profile, "drawable", context.packageName)
-                print("~~~~~~~~~resourceId : ${resourceId.toString()}")
+                println("~~~~~~~~~resourceId : ${resourceId}")
                 if(resourceId > 0){
                     snsProfile.setImageResource(resourceId)
                 }else{
@@ -73,12 +74,59 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
+            val wdate = dataVo.snsdate!!.split("-")
+            if(wdate.get(0).equals("0")){
+                if(wdate.get(1).equals("0")) {
+                    snsDate.text = "${wdate.get(2)}분"
+                }else{
+                    snsDate.text = "${wdate.get(1)}시간"
+                }
+            }else if(wdate.get(0).equals("1")){
+                snsDate.text = "어제"
+            }else{
+                snsDate.text = "${wdate.get(0)}일"
+            }
             snsNickName.text = dataVo.nickname
-            snsDate.text = dataVo.snsdate
-            snsLikeCount.text = dataVo.likecount.toString()
+
+            snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
             snsCommentCount.text = dataVo.commentcount.toString()
             snsContent.text = dataVo.content
+
+            //좋아요 버튼 이미지 뿌려줄때
+            var snsLikeCheck = SnsDao.getInstance().snsLikeCheck(SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD"))
+            if(snsLikeCheck > 0){
+                val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                likeBtn.setImageResource(resourceId)
+            }else{
+                val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                likeBtn.setImageResource(resourceId)
+            }
+            //뿌리고 난 후 좋아요 버튼을 눌렀을때
+            likeBtn.setOnClickListener {
+                val dto = SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD")
+                snsLikeCheck = SnsDao.getInstance().snsLikeCheck(dto)
+                //좋아요가 눌려 있을때
+                if(snsLikeCheck > 0){
+                    //이미지 변경
+                    val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                    likeBtn.setImageResource(resourceId)
+                    SnsDao.getInstance().snsLikeDelete(dto)
+
+                }
+                //좋아요가 안눌려 있을때
+                else{
+                    val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                    likeBtn.setImageResource(resourceId)
+
+                    SnsDao.getInstance().snsLikeInsert(dto)
+
+                }
+
+                snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
+
+            }
         }
+
 
         /*init {
             likeBtn.setOnClickListener {

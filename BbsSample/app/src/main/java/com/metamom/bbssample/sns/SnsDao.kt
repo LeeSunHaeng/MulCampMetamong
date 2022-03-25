@@ -20,10 +20,18 @@ interface SnsService{
     fun allSns() : Call<List<SnsDto>>
 
     @POST("/snsLikeInsert")
-    fun snsLikeInsert(@Body dto:SnsLikeDto) :Call<Int>
+    fun snsLikeInsert(@Body dto:SnsLikeDto) : Call<Int>
+
+    @POST("/snsLikeDelete")
+    fun snsLikeDelete(@Body dto:SnsLikeDto) : Call<Int>
 
     @POST("/snsLikeCount")
-    fun snsLikeCount(@Query("id") id:String) : Call<Int>
+    fun snsLikeCount(@Query("seq") seq:Int) : Call<Int>
+
+    @POST("/snsLikeCheck")
+    fun snsLikeCheck(@Body dto:SnsLikeDto) : Call<Int>
+
+
 }
 
 class SnsDao {
@@ -74,10 +82,28 @@ class SnsDao {
         return response?.body()!!
     }
 
-    fun snsLikeCount(id:String) :Int{
+    fun snsLikeDelete(dto:SnsLikeDto) : Int{
         val retrofit = RetrofitClient.getInstance()
         val service = retrofit?.create(SnsService::class.java)
-        val call = service?.snsLikeCount(id)
+        val call = service?.snsLikeDelete(dto)
+        val response = call?.execute()
+
+        return response?.body()!!
+    }
+
+    fun snsLikeCount(seq:Int) :Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsLikeCount(seq)
+        val response = call?.execute()
+
+        return response?.body()!!
+    }
+
+    fun snsLikeCheck(dto:SnsLikeDto): Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsLikeCheck(dto)
         val response = call?.execute()
 
         return response?.body()!!
