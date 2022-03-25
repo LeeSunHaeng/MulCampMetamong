@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 class SubMyMealsActivity : AppCompatActivity() {
 
@@ -106,11 +107,39 @@ class SubMyMealsActivity : AppCompatActivity() {
 
 
     fun moveMealsView(time :String) {
-        when (time) {
+        /*when (time) {
             "아침" -> startActivity(Intent(this, SubTodayMealsMorning::class.java))
             "점심" -> startActivity(Intent(this, SubTodayMealsLunch::class.java))
             "저녁" -> startActivity(Intent(this, SubTodayMealsDinner::class.java))
             "간식" -> startActivity(Intent(this, SubTodayMealsSnack::class.java))
+            else -> {
+                val builder = AlertDialog.Builder(this);
+                builder.setTitle("❗")
+                builder.setMessage("관리자에게 문의해주시길 바랍니다. 죄송합니다")
+                builder.show()
+            }
+        }*/
+        when (time) {
+            "아침" -> {
+                val i = Intent(this, SubTodayMealsMorning::class.java)
+                SubTodayMealSingleton.time = 0
+                startActivity(i)
+            }
+            "점심" -> {
+                val i = Intent(this, SubTodayMealsLunch::class.java)
+                SubTodayMealSingleton.time = 1
+                startActivity(i)
+            }
+            "저녁" -> {
+                val i = Intent(this, SubTodayMealsDinner::class.java)
+                SubTodayMealSingleton.time = 2
+                startActivity(i)
+            }
+            "간식" -> {
+                val i = Intent(this, SubTodayMealsSnack::class.java)
+                SubTodayMealSingleton.time = 3
+                startActivity(i)
+            }
             else -> {
                 val builder = AlertDialog.Builder(this);
                 builder.setTitle("❗")

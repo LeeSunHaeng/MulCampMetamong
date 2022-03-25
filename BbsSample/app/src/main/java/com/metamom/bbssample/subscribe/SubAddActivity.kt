@@ -93,8 +93,8 @@ class SubAddActivity : AppCompatActivity() {
                     SubAddSingleton.subType = 0
                 } else if (TypeSpinner.getItemAtPosition(position).toString() == "운동") {
                     SubAddSingleton.subType = 1
-                } else if (TypeSpinner.getItemAtPosition(position).toString() == "건강") {
-                    SubAddSingleton.subType = 2
+                /*} else if (TypeSpinner.getItemAtPosition(position).toString() == "건강") {
+                    SubAddSingleton.subType = 2*/
                 } else {
                     Log.d("SubAddActivity", "#21# 구독 유형 Spinner 선택 Error")
                 }

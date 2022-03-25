@@ -62,10 +62,21 @@
 
 
 <!-- #21# 오늘의 다이어트 식단 랜덤 1개 select -->
-<!-- 필요한 파라미터: 시간(time) -->
-<select id="subRandomDietMeal" parameterType="mul.camp.a.dto.SubTodayMealDto" resultType="mul.camp.a.dto.SubTodayMealDto">
+<!-- 1) 다이어트 식단 -->
+<!-- <select id="subRandomDietMeal" parameterType="mul.camp.a.dto.SubTodayMealDto" resultType="mul.camp.a.dto.SubTodayMealDto">
 	SELECT *
 	FROM (SELECT * FROM META_SUBSCRIBE_DIETMEALS WHERE SUBDF_TIME=#{subdfTime} ORDER BY DBMS_RANDOM.VALUE)
+	<![CDATA[WHERE ROWNUM <= 1]]>
+</select> -->
+<select id="subRandomDietMeal" parameterType="mul.camp.a.dto.SubDietMealDto" resultType="mul.camp.a.dto.SubDietMealDto">
+	SELECT *
+	FROM (SELECT * FROM META_SUBSCRIBE_DIETMEALS WHERE SUBDF_TIME=#{subdfTime} ORDER BY DBMS_RANDOM.VALUE)
+	<![CDATA[WHERE ROWNUM <= 1]]>
+</select>
+<!-- 2) 운동 식단 -->
+<select id="subRandomExerMeal" parameterType="mul.camp.a.dto.SubExerMealDto" resultType="mul.camp.a.dto.SubExerMealDto">
+	SELECT *
+	FROM (SELECT * FROM META_SUBSCRIBE_EXERMEALS WHERE SUBEF_TIME=#{subefTime} ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 1]]>
 </select>
 

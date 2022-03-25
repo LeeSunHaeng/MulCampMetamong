@@ -9,9 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 /* #21# 구독 _오늘의 식단 RecyclerView에 드로잉하기 위하여 파일 사용 */
-class SubCustomAdapter(val context: Context, val dataDto: SubTodayMealDto) :RecyclerView.Adapter<SubItemViewHolder>() {
+class SubCustomAdapter (val context: Context, val dataDto: Any) :RecyclerView.Adapter<SubItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubItemViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.sub_view_item_meal, parent, false)
@@ -19,7 +21,8 @@ class SubCustomAdapter(val context: Context, val dataDto: SubTodayMealDto) :Recy
     }
 
     override fun onBindViewHolder(holder: SubItemViewHolder, position: Int) {
-       holder.bind(dataDto, context)
+
+        holder.bind(dataDto, context)
     }
 
     override fun getItemCount(): Int {
@@ -34,15 +37,26 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
     private val foodName = itemView.findViewById<TextView>(R.id.subItem_foodNameTxt)
     private val foodKcal = itemView.findViewById<TextView>(R.id.subItem_kcalTxt)
 
-    // #21# sub_view_item_meal 레이아웃에 값 넣기(bind)
-    fun bind(subDataVo:SubTodayMealDto, context: Context){
+    /* #21# sub_view_item_meal 레이아웃에 값 넣기(bind) */
+    fun bind(subDataVo: Any, context: Context){
 
-        /* #21# imageView에 url로 넣기 > build.gradle 내 code 추가 (Glide 사용)
-        *  > Activity 사용 시와 ViewHolder에서 사용 시 code가 다르다. (ex. Acitivity 사용 시 Glide.with(this).load(url값).into(붙일 imageview) */
-        var imageUrl:String = subDataVo.subdfImage.toString()
-        Glide.with(itemView).load(imageUrl).into(foodImage)
+        // 1) [다이어트 식단] dataDto의 자료형이 SubDietMealDto(다이어트 식단)형이라면 다이어트 식단 Dto의 내용을 recycler에 binding
+        if (subDataVo is SubDietMealDto){
+            var imageUrl:String = subDataVo.subdfImage.toString()
+            Glide.with(itemView).load(imageUrl).into(foodImage)
 
-        foodName.text = subDataVo.subdfName
-        foodKcal.text = subDataVo.subdfKcal.toString()
+            foodName.text = subDataVo.subdfName
+            foodKcal.text = subDataVo.subdfKcal.toString()
+        }
+
+        // 2) [운동 식단] dataDto의 자료형이 SubExerMealDto(운동 식단)형이라면 운동 식단 Dto의 내용을 recycler에 binding
+        if (subDataVo is SubExerMealDto){
+            var imageUrl:String = subDataVo.subefImage.toString()
+            Glide.with(itemView).load(imageUrl).into(foodImage)
+
+            foodName.text = subDataVo.subefName
+            foodKcal.text = subDataVo.subefKcal.toString()
+        }
+
     }
 }

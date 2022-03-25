@@ -10,6 +10,7 @@ import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubscribeDao
 import com.metamom.bbssample.subscribe.SubscribeDto
 import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
             /* #21# [for 구독여부 판단, test용] Login 시 현재 로그인한 사용자를 구독 회원여부 판단 진행 후 로그인한 사용자의 정보를 MemberSingleton에 저장
             *        > 만약 구독 만료회원일 경우 == 구독값(subscribe 컬럼) 0으로 변경 + 구독 DB에서 삭제 */
-            MemberSingleton.id = "zeze2"
+            MemberSingleton.id = "zeze3"
             MemberSingleton.subscribe = "1"                                  // 1 = 구독
             //MemberSingleton.subscribe = "0"                                  // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
@@ -34,6 +35,13 @@ class MainActivity : AppCompatActivity() {
                 // 2) 1번에서 가져온 구독정보를 사용하여 구독만료 확인 (subEndCheck)
                 if (subInfo != null){
                     var subEndCheck = SubscribeDao.getInstance().subEnddayCheck(SubscribeDto(subInfo.subId, subInfo.subType, subInfo.subPeriod, 0, 0, 0, 0, subInfo.subStartday, subInfo.subEndday))
+
+                    // 2-i) Success인 경우 == 구독만료 X, 회원의 구독정보를 Singleton에 저장
+                    if (subEndCheck == "Success"){
+                        Log.d("MainActivity", "#21# 회원의 구독정보(유형)을 SubTodayMealSingleton에 저장")
+                        SubTodayMealSingleton.type = subInfo.subType
+                    }
+                    // 2-ii) SuccessEnd인 경우 == 구독만료
                     if (subEndCheck == "SuccessEnd"){
                         Log.d("MainActivity", "#21# 구독 만료임에 따라 멤버DB 구독값 수정 & 구독DB 내 삭제")
 

@@ -5,7 +5,7 @@
         <item>유형 선택</item>
         <item>다이어트</item>
         <item>운동</item>
-        <item>건강</item>
+        <!--<item>건강</item>-->
     </string-array>
 
     <string-array name="subperiod">

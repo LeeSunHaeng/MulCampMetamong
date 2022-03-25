@@ -32,9 +32,13 @@ interface SubscribeService {
     @POST("/subEnddayCheck")
     fun subEnddayCheck(@Body dto: SubscribeDto) :Call<String>
 
-    /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(subdfTime dto) → return SubTodayMealDto */
+    /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(SubDietMealDto dto) → return SubDietMealDto */
     @POST("/subRandomDietMeal")
-    fun subRandomDietMeal(@Body dto: SubTodayMealDto) :Call<SubTodayMealDto>
+    fun subRandomDietMeal(@Body dto: SubDietMealDto) :Call<SubDietMealDto>
+
+    /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(SubExerMealDto dto) → return SubExerMealDto */
+    @POST("/subRandomExerMeal")
+    fun subRandomExerMeal(@Body dto: SubExerMealDto) :Call<SubExerMealDto>
 }
 
 
@@ -132,11 +136,11 @@ class SubscribeDao {
     }
 
 
-    /* 구독 오늘의 다이어트 식단 */
-    fun subRandomDietMeal(dto: SubTodayMealDto) :SubTodayMealDto? {
-        Log.d("SubscribeDao", "#21# SubscribeDao subRandomDietMeal() 오늘의 식단 _다이어트 동작")
+    /* 구독 오늘의 식단 [다이어트] */
+    fun subRandomDietMeal(dto: SubDietMealDto) :SubDietMealDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subRandomDietMeal() 오늘의 식단 #Front에서 전달받은 값 SubTodayMealDto > ${dto.toString()}")
 
-        var response: Response<SubTodayMealDto>? = null
+        var response: Response<SubDietMealDto>? = null
 
         try {
             val retrofit = RetrofitClient.getInstance()
@@ -150,7 +154,28 @@ class SubscribeDao {
         }
 
         if (response == null) return null
-        return response.body() as SubTodayMealDto
+        return response.body() as SubDietMealDto
+    }
+
+    /* 구독 오늘의 식단 [운동] */
+    fun subRandomExerMeal(dto: SubExerMealDto) :SubExerMealDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subRandomExerMeal() 오늘의 식단 #Front에서 전달받은 값 SubTodayMealDto > ${dto.toString()}")
+
+        var response: Response<SubExerMealDto>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subRandomExerMeal(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subRandomExerMeal() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as SubExerMealDto
     }
 
 }
