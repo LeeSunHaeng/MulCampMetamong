@@ -5,6 +5,7 @@ import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 
 import android.widget.Toast
 import com.kakao.sdk.user.UserApiClient
@@ -23,7 +24,7 @@ class MainButtonActivity : AppCompatActivity() {
         /* '구독 신청' Button 클릭 시 구독 여부 확인
         *   case_1) 구독일 경우 구독 정보 출력 페이지로 이동
         *   case_2) 구독이 아닐경우 구독 신청 페이지로 이동 */
-        val SubBtn = findViewById<Button>(R.id.main_subBtn)
+        val SubBtn = findViewById<ImageButton>(R.id.main_subBtn)
         SubBtn.setOnClickListener {
 
             if(MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
@@ -38,8 +39,8 @@ class MainButtonActivity : AppCompatActivity() {
             }
         }
 
-        val snsBtn = findViewById<Button>(R.id.SnsBtn)
-        val haebinBtn = findViewById<Button>(R.id.haebinBtn)
+        val snsBtn = findViewById<ImageButton>(R.id.SnsBtn)
+        val haebinBtn = findViewById<ImageButton>(R.id.haebinBtn)
 
         //sns 이동 버튼
         snsBtn.setOnClickListener {
@@ -65,5 +66,6 @@ class MainButtonActivity : AppCompatActivity() {
                 startActivity(intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP))
             }
         }
+
     }
 }

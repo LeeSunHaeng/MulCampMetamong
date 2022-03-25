@@ -2,13 +2,21 @@ package com.metamom.bbssample
 
 import android.os.StrictMode
 import com.google.gson.GsonBuilder
+import okhttp3.JavaNetCookieJar
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import java.net.CookieManager
 
 class RetrofitClient {
     companion object {
         private var instance: Retrofit? = null
+
+        // 쿠키 유지
+        private var client = OkHttpClient.Builder()
+            .cookieJar(JavaNetCookieJar(CookieManager()))
+            .build()
 
         fun getInstance(): Retrofit? {
             if(instance == null) {
@@ -27,6 +35,7 @@ class RetrofitClient {
                     .baseUrl("http://192.168.0.29:3000/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
+                    .client(client)
                     .build()
             }
             return instance!!
