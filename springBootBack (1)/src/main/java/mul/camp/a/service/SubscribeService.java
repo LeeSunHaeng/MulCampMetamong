@@ -76,4 +76,20 @@ public class SubscribeService {
 		return result>0?true:false;
 	}
 	
+	
+	/* #21# 오늘의 식단을 추천 이력 판별 */
+	public SubMealRememberDto subLogCheckMeal(SubMealRememberDto dto) {
+		return dao.subLogCheckMeal(dto);
+	}
+	
+	/* #21# 추천하였던 *[다이어트]* 식단 가져오기 */
+	public SubDietMealDto subDietMeal(int subDietSeq) {
+		return dao.subDietMeal(subDietSeq);
+	}
+	
+	/* #21# 추천하였던 *[다이어트]* 식단 가져오기 */
+	public SubExerMealDto subExerMeal(int subExerSeq) {
+		return dao.subExerMeal(subExerSeq);
+	}
+	
 }

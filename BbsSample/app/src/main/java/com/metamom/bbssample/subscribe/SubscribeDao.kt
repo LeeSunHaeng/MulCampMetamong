@@ -43,6 +43,19 @@ interface SubscribeService {
     /* 구독 추천한 식단 REMEMBER TABLE에 저장 */
     @POST("/subMealRemember")
     fun subMealRemember(@Body dto: SubMealRememberDto) :Call<String>
+
+    /* 구독 추천한 오늘의 식단 여부 확인 */
+    @POST("/subLogCheckMeal")
+    //fun subLogCheckMeal(@Body dto: SubMealRememberDto) :Call<Int>
+    fun subLogCheckMeal(@Body dto: SubMealRememberDto) :Call<SubMealRememberDto>
+
+    /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
+    @POST("/subDietMeal")
+    fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>
+
+    /* 구독 추천하였던 *[운동]* 식단 가져오기 */
+    @POST("/subExerMeal")
+    fun subExerMeal(@Body subExerSeq: Int) :Call<SubExerMealDto>
 }
 
 
@@ -201,6 +214,71 @@ class SubscribeDao {
 
         if (response == null) return null
         return response.body() as String
+    }
+
+    /* 구독 추천한 오늘의 식단 이력 여부 확인 */
+    fun subLogCheckMeal(dto: SubMealRememberDto) /*:Int?*/:SubMealRememberDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subLogCheckMeal() 추천한 오늘의 식단 존재여부 확인 [검색조건 SubMealRememberDto] > ${dto.toString()}")
+
+        //var response: Response<Int>? = null
+        var response: Response<SubMealRememberDto>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subLogCheckMeal(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subLogCheckMeal() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        //return response.body() as Int
+        return response.body() as SubMealRememberDto
+    }
+
+    /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
+    fun subDietMeal(subDietSeq: Int) :SubDietMealDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subDietMeal() 추천했던 다이어트 식단 가져오기 SEQ번호 > $subDietSeq")
+
+        var response: Response<SubDietMealDto>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subDietMeal(subDietSeq)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subDietMeal() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as SubDietMealDto
+    }
+
+    /* 구독 추천하였던 *[운동]* 식단 가져오기 */
+    fun subExerMeal(subExerSeq: Int) :SubExerMealDto? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subExerMeal() 추천했던 운동 식단 가져오기 SEQ번호 > $subExerSeq")
+
+        var response: Response<SubExerMealDto>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subExerMeal(subExerSeq)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subExerMeal() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as SubExerMealDto
     }
 
 }

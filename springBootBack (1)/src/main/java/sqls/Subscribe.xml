@@ -83,5 +83,26 @@
 	VALUES(#{subremSeq}, #{subremName}, #{subremId}, SYSDATE, #{subremMealstime}, #{subremType})
 </insert>
 
+<!-- #21# 추천한 오늘의 식단 여부 판단 -->
+<select id="subLogCheckMeal" parameterType="mul.camp.a.dto.SubMealRememberDto" resultType="mul.camp.a.dto.SubMealRememberDto">
+	SELECT *
+	FROM META_SUBSCRIBE_REMEMBERMEALS
+	WHERE TO_CHAR(SUBREM_DATE, 'YYYYMMDD')=TO_CHAR(SYSDATE, 'YYYYMMDD') AND SUBREM_ID=#{subremId} AND SUBREM_MEALSTIME=#{subremMealstime} AND SUBREM_TYPE=#{subremType}
+</select>
+
+<!-- #21# [다이어트] 추천했던 *다이어트* 식단 가져오기 -->
+<select id="subDietMeal" parameterType="Integer" resultType="mul.camp.a.dto.SubDietMealDto">
+	SELECT *
+	FROM META_SUBSCRIBE_DIETMEALS
+	WHERE SUBDF_SEQ=#{subDietSeq}
+</select>
+
+<!-- #21# [운동] 추천했던 *운동* 식단 가져오기 -->
+<select id="subExerMeal" parameterType="Integer" resultType="mul.camp.a.dto.SubExerMealDto">
+	SELECT *
+	FROM META_SUBSCRIBE_EXERMEALS
+	WHERE SUBEF_SEQ=#{subExerSeq}
+</select>
+
 
 </mapper>

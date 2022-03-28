@@ -3,6 +3,8 @@ package mul.camp.a.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -163,6 +165,52 @@ public class SubscribeController {
 		   	return "Success"; 
 	   } 
 	   return "Fail";
+   }
+   
+   
+   /* #21# 오늘의 식단을 추천 이력 판별 */
+   @RequestMapping(value = "/subLogCheckMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public /*int*/SubMealRememberDto subLogCheckMeal(@RequestBody SubMealRememberDto dto) {
+	   System.out.println("#21# SubscribeController subLogCheckMeal() 동작");
+	    
+	   try {
+		   return service.subLogCheckMeal(dto);
+	   }
+	   catch (Exception e) {
+		   System.out.println("#21# 오늘의 식단 추천 이력 판별 try..catch 에러 ");
+		   //return -1;
+		   return null;
+	   }
+   }
+   
+   /* #21# 추천하였던 *[다이어트]* 식단 가져오기 */
+   @RequestMapping(value = "/subDietMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public SubDietMealDto subDietMeal(@RequestBody int subDietSeq) {
+	   System.out.println("#21# SubscribeController subDietMeal() 동작");
+	   System.out.println("#21# #Front에서 가져온 다이어트 식단 SEQ번호: " + subDietSeq);
+	    
+	   try {
+		   return service.subDietMeal(subDietSeq);
+	   }
+	   catch (Exception e) {
+		   System.out.println("#21# 추천하였던 다이어트 식단 가져오기 try..catch 에러 ");
+		   return null;
+	   }
+   }
+   
+   /* #21# 추천하였던 *[운동]* 식단 가져오기 */
+   @RequestMapping(value = "/subExerMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public SubExerMealDto subExerMeal(@RequestBody int subExerSeq) {
+	   System.out.println("#21# SubscribeController subExerMeal() 동작");
+	   System.out.println("#21# #Front에서 가져온 운동 식단 SEQ번호: " + subExerSeq);
+	    
+	   try {
+		   return service.subExerMeal(subExerSeq);
+	   }
+	   catch (Exception e) {
+		   System.out.println("#21# 추천하였던 운동 식단 가져오기 try..catch 에러 ");
+		   return null;
+	   }
    }
    
    
