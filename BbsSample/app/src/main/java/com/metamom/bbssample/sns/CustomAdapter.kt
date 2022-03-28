@@ -3,6 +3,7 @@ package com.metamom.bbssample.sns
 
 
 import android.content.Context
+import android.content.Intent
 
 import android.net.Uri
 
@@ -31,10 +32,11 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
         val snsCommentCount = itemView.findViewById<TextView>(R.id.commentCountTextView)
         val snsContent = itemView.findViewById<TextView>(R.id.contentTextView)
         val likeBtn = itemView.findViewById<ImageButton>(R.id.likeImageButton)
-
+        val snsCommentBtn = itemView.findViewById<ImageButton>(R.id.commentImageButton)
 
         fun bind(dataVo:SnsDto, context: Context){
 
+            //프로필 이미지 뿌려주기
             if(dataVo.profile != ""){
                 if(dataVo.profile.equals("profile3")){
                 val resourceId = context.resources.getIdentifier(dataVo.profile, "drawable", context.packageName)
@@ -74,6 +76,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
+            //게시물 올린 시간에 따라 다르게 뿌려줌
             val wdate = dataVo.snsdate!!.split("-")
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
@@ -86,8 +89,8 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
             }else{
                 snsDate.text = "${wdate.get(0)}일"
             }
-            snsNickName.text = dataVo.nickname
 
+            snsNickName.text = dataVo.nickname
             snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
             snsCommentCount.text = dataVo.commentcount.toString()
             snsContent.text = dataVo.content
@@ -125,6 +128,14 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
                 snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
 
             }
+            snsCommentBtn.setOnClickListener {
+                Intent(context,CommentActivity::class.java).apply {
+                    putExtra("seq",dataVo.seq)
+                }.run { context.startActivity(this) }
+
+            }
+
+
         }
 
 

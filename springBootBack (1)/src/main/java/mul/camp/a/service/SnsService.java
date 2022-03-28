@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mul.camp.a.dao.SnsDao;
 import mul.camp.a.dto.MemberDto;
+import mul.camp.a.dto.SnsCommentDto;
 import mul.camp.a.dto.SnsDto;
 import mul.camp.a.dto.SnsLikeDto;
 
@@ -31,6 +32,11 @@ public class SnsService {
 	public ArrayList<SnsDto> allSns(){
 		System.out.println("allSns service 실행");
 		return dao.allSns();
+	}
+	
+	public ArrayList<SnsCommentDto> allComment(int seq){
+		System.out.println("allComment service 실행");
+		return dao.allComment(seq);
 	}
 	
 	public int snsLikeInsert(SnsLikeDto dto) {

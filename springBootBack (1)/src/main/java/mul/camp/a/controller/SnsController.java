@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import mul.camp.a.dto.MemberDto;
+import mul.camp.a.dto.SnsCommentDto;
 import mul.camp.a.dto.SnsDto;
 import mul.camp.a.dto.SnsLikeDto;
 import mul.camp.a.service.SnsService;
@@ -38,9 +39,16 @@ public class SnsController {
 	
 	@RequestMapping(value = "/allSns", method = {RequestMethod.GET, RequestMethod.POST} )
 	public ArrayList<SnsDto> allSns() {
-		System.out.println("SnsDto 실행 성공");
+		System.out.println("allSns 실행 성공");
 		ArrayList<SnsDto> list = service.allSns();
 		System.out.println(list.get(0));
+		return list;
+	}
+	
+	@RequestMapping(value = "/allComment", method = {RequestMethod.GET, RequestMethod.POST} )
+	public ArrayList<SnsCommentDto> allComment(int seq) {
+		System.out.println("allComment 실행 성공");
+		ArrayList<SnsCommentDto> list = service.allComment(seq);
 		return list;
 	}
 	

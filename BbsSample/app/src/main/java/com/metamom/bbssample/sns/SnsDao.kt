@@ -31,6 +31,9 @@ interface SnsService{
     @POST("/snsLikeCheck")
     fun snsLikeCheck(@Body dto:SnsLikeDto) : Call<Int>
 
+    @GET("allComment")
+    fun allComment(@Query("seq") seq:Int) : Call<List<SnsCommentDto>>
+
 
 }
 
@@ -107,5 +110,14 @@ class SnsDao {
         val response = call?.execute()
 
         return response?.body()!!
+    }
+
+    fun allComment(seq:Int) : ArrayList<SnsCommentDto>{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.allComment(seq)
+        val response = call?.execute()
+
+        return response?.body() as ArrayList
     }
 }

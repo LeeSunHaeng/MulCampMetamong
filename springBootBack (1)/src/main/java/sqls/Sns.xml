@@ -31,6 +31,18 @@
   ORDER BY SNSDATE
   </select>
   
+  <select id="allComment" parameterType = "Integer"
+   resultType="mul.camp.a.dto.SnsCommentDto">
+  SELECT SEQ,ID,NICKNAME,PROFILE,
+  	   TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(WDATE) || '-' || 
+       TRUNC(((SYSDATE - WDATE) - TRUNC(SYSDATE - WDATE)) * 24) || '-'  ||
+       TRUNC(MOD((SYSDATE - WDATE)*24,1)*60) AS WDATE,
+       CONTENT
+  FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
+  ORDER BY WDATE
+  </select>
+  
   <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
   INSERT INTO SNS_LIKE(LIKESEQ,ID,LIKEDATE)
   VALUES(#{likeseq},#{id},SYSDATE)
