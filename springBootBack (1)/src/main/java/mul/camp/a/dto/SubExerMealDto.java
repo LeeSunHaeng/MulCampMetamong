@@ -7,7 +7,8 @@ public class SubExerMealDto {
 	private int subefTime;
 	private String subefImage;
 	private String subefName;
-	private int subefKcal;
+	// private int subefKcal;
+	private double subefKcal;
 	private int subefAmount;
 	private String subefType;
 	
@@ -15,8 +16,7 @@ public class SubExerMealDto {
 		
 	}
 
-	public SubExerMealDto(int subefSeq, int subefTime, String subefImage, String subefName, int subefKcal,
-			int subefAmount, String subefType) {
+	public SubExerMealDto(int subefSeq, int subefTime, String subefImage, String subefName, double subefKcal, int subefAmount, String subefType) {
 		super();
 		this.subefSeq = subefSeq;
 		this.subefTime = subefTime;
@@ -59,11 +59,11 @@ public class SubExerMealDto {
 		this.subefName = subefName;
 	}
 
-	public int getSubefKcal() {
+	public double getSubefKcal() {
 		return subefKcal;
 	}
 
-	public void setSubefKcal(int subefKcal) {
+	public void setSubefKcal(double subefKcal) {
 		this.subefKcal = subefKcal;
 	}
 

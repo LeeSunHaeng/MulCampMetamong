@@ -7,9 +7,11 @@ class MemberSingleton {
     companion object {
         var id :String? = null
         var subscribe :String? = null
+        var height :Double? = null
+        var weight :Double? = null
 
         override fun toString(): String {
-            return "MemberDto(id=$id, subscribe=$subscribe)"
+            return "MemberDto(id=$id, subscribe=$subscribe, height=$height, weight=$weight)"
         }
     }
 

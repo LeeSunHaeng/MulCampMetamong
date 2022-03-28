@@ -122,31 +122,6 @@ public class SubscribeController {
 	   System.out.println("#21# SubscribeController subRandomDietMeal() 동작");
 	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) 값: " + dto.toString());
 	   
-	   /*
-	   String type = dto.getSubdfType();
-	   // 1) 다이어트 유형일 경우
-	   if(type.equals("0")) {	
-		   try {
-			   System.out.println("#21# 다이어트 DB 내 식단 가져오기 동작");
-			   return service.subRandomDietMeal(dto);
-		   } catch (Exception e) {
-			   System.out.println("#21# 다이어트 DB 식단 가져오기 try..catch 에러 ");
-			   e.printStackTrace();
-		   }
-	   } 
-	   // 2) 운동 유형일 경우
-	   else if(type.equals("1")) {
-		   try {
-			   System.out.println("#21# 운동 DB 내 식단 가져오기 동작");
-			   return service.subRandomExerMeal(dto);
-		   } catch (Exception e) {
-			   System.out.println("#21# 운동 DB 식단 가져오기 try..catch 에러 ");
-			   e.printStackTrace();
-		   }
-	   }
-	   
-	   return null; */
-	   
 	   try {
 		   return service.subRandomDietMeal(dto);
 	   } 
@@ -158,7 +133,6 @@ public class SubscribeController {
 	   }
 	  
    }
-   
    /* #21# 오늘의 운동 식단 RANDOM SELECT (1개) */
    @RequestMapping(value = "/subRandomExerMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public SubExerMealDto subRandomExerMeal(@RequestBody SubExerMealDto dto) {

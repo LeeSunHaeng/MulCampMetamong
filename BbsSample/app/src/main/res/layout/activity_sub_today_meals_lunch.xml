@@ -6,11 +6,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".subscribe.SubTodayMealsLunch">
-
+    <ImageButton
+            android:id="@+id/subLunch_imageBtn"
+            android:layout_width="50dp" android:layout_height="50dp" android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_back_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp" android:layout_marginStart="24dp"
+            app:layout_constraintHorizontal_bias="0.011"/>
     <TextView
-            android:text="오늘의 식단 [점심]"
+            android:id="@+id/subLunch_textView5"
+            android:text="점심 Lunch" android:gravity="center_vertical" android:textSize="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/subLun_textView5"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/subLunch_imageBtn"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="520dp"
+            android:layout_height="800dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subLunch_textView5"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/subLunch_recyclerView"
+            android:layout_marginStart="24dp" android:layout_marginEnd="24dp" android:layout_marginTop="20dp"
+            app:layout_constraintVertical_bias="0.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

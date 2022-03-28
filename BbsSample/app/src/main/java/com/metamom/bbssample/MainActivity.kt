@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
             MemberSingleton.id = "zeze3"
             MemberSingleton.subscribe = "1"                                  // 1 = 구독
             //MemberSingleton.subscribe = "0"                                  // 0 = 비구독
+            MemberSingleton.height = 150.4
+            MemberSingleton.weight = 42.7
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
             /* #21# 구독만료 확인 */
@@ -38,8 +40,17 @@ class MainActivity : AppCompatActivity() {
 
                     // 2-i) Success인 경우 == 구독만료 X, 회원의 구독정보를 Singleton에 저장
                     if (subEndCheck == "Success"){
-                        Log.d("MainActivity", "#21# 회원의 구독정보(유형)을 SubTodayMealSingleton에 저장")
-                        SubTodayMealSingleton.type = subInfo.subType
+                        SubTodayMealSingleton.type = subInfo.subType                        // 구독 유형(다이어트 or 운동)
+                        // 사용자 키/몸무게에 따른 하루 권장 칼로리 계산  == ((자신의 키 - 100) * 0.9) * 활동지수(30으로 고정)  /  !!소수점 2째자리까지만 포함(반올림X, 자르기o)
+                        var totalKcal = String.format("%.2f", (((MemberSingleton.height!! - 100) * 0.9) * 30)).toDouble()
+                        Log.d("MainActivity", "#21# 하루 권장 칼로리 > $totalKcal")
+                        // 하루 권장 칼로리를 아침, 점심, 저녁, 간식 칼로리 비율로 저장 (아 15%, 점 50%, 저 20%, 간 15%)
+                        SubTodayMealSingleton.morningKcal = totalKcal * 15 / 100
+                        SubTodayMealSingleton.lunchKcal = totalKcal * 50 / 100
+                        SubTodayMealSingleton.dinnerKcal = totalKcal * 20 / 100
+                        SubTodayMealSingleton.snackKcal = totalKcal * 15 / 100
+
+                        Log.d("MainActivity", "#21# 구독회원 정보 SubTodayMealSingleton 확인 > ${SubTodayMealSingleton.toString()}")
                     }
                     // 2-ii) SuccessEnd인 경우 == 구독만료
                     if (subEndCheck == "SuccessEnd"){

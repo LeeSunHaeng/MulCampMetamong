@@ -6,9 +6,13 @@ class SubTodayMealSingleton {
     companion object {
         var type :Int? = null
         var time :Int? = null
+        var morningKcal :Double? = null
+        var lunchKcal :Double? = null
+        var dinnerKcal :Double? = null
+        var snackKcal :Double? = null
 
         override fun toString(): String {
-            return "SubTodayMeal(type=$type, time=$time)"
+            return "SubTodayMeal(type=$type, time=$time, morningKcal=$morningKcal, lunchKcal=$lunchKcal, dinnerKcal=$dinnerKcal, snackKcal=$snackKcal)"
         }
     }
 }

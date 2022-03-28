@@ -7,22 +7,24 @@ public class SubDietMealDto {
 	private int subdfTime;
 	private String subdfImage;
 	private String subdfName;
-	private int subdfKcal;
+	//private int subdfKcal;
+	private double subdfKcal;		// 아침/점심/저녁/간식에 해당하는 권장 칼로리
 	private int subdfAmount;
 	private String subdfType;
+	
+	// 하루 권장 칼로리 (아/점/저/간식)
 	
 	public SubDietMealDto() {
 		
 	}
 
-	public SubDietMealDto(int subdfSeq, int subdfTime, String subdfImage, String subdfName, int subdfKcal,
-			int subdfAmount, String subdfType) {
+	public SubDietMealDto(int subdfSeq, int subdfTime, String subdfImage, String subdfName, double subdfKcal, int subdfAmount, String subdfType) {
 		super();
 		this.subdfSeq = subdfSeq;
 		this.subdfTime = subdfTime;
 		this.subdfImage = subdfImage;
 		this.subdfName = subdfName;
-		this.subdfKcal = subdfKcal;
+		this.subdfKcal = subdfKcal;				
 		this.subdfAmount = subdfAmount;
 		this.subdfType = subdfType;
 	}
@@ -59,11 +61,11 @@ public class SubDietMealDto {
 		this.subdfName = subdfName;
 	}
 
-	public int getSubdfKcal() {
+	public double getSubdfKcal() {
 		return subdfKcal;
 	}
 
-	public void setSubdfKcal(int subdfKcal) {
+	public void setSubdfKcal(double subdfKcal) {
 		this.subdfKcal = subdfKcal;
 	}
 
