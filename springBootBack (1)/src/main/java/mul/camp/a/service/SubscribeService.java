@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import mul.camp.a.dao.SubscribeDao;
 import mul.camp.a.dto.SubDietMealDto;
 import mul.camp.a.dto.SubExerMealDto;
+import mul.camp.a.dto.SubMealRememberDto;
 import mul.camp.a.dto.SubscribeDto;
 
 @Service
@@ -34,7 +35,7 @@ public class SubscribeService {
 	public void subAddEndday(SubscribeDto dto) {
 		dao.subAddEndday(dto);
 	}
-	// 2) 멤버 DB 내 구독값 수정
+	// 2) 멤버 TABLE 내 구독값 수정
 	public void subUpdateMember(SubscribeDto dto) {
 		dao.subUpdateMember(dto);
 	}
@@ -45,11 +46,11 @@ public class SubscribeService {
 	public SubscribeDto subEnddayCheck(SubscribeDto dto) {
 		return dao.subEnddayCheck(dto);
 	}
-	// 2) 멤버DB 내 구독값 수정 
+	// 2) 멤버TABLE 내 구독값 수정 
 	public void subUpdateMemberEnd(SubscribeDto dto) {
 		dao.subUpdateMemberEnd(dto);
 	}
-	// 2-1) 구독DB 내 사용자 삭제
+	// 2-1) 구독TABLE 내 사용자 삭제
 	public boolean subDeleteUser(SubscribeDto dto) {
 		int result = dao.subDeleteUser(dto);
 		
@@ -65,6 +66,14 @@ public class SubscribeService {
 	// 2) 운동
 	public SubExerMealDto subRandomExerMeal(SubExerMealDto dto) {
 		return dao.subRandomExerMeal(dto);
+	}
+	
+	
+	/* #21# 추천한 오늘의 식단 저장(추가) */
+	public boolean subMealRemember(SubMealRememberDto dto) {
+		int result = dao.subMealRemember(dto);
+		
+		return result>0?true:false;
 	}
 	
 }

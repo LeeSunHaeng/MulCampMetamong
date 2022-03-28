@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import mul.camp.a.dto.SubDietMealDto;
 import mul.camp.a.dto.SubExerMealDto;
+import mul.camp.a.dto.SubMealRememberDto;
 import mul.camp.a.dto.SubscribeDto;
 import mul.camp.a.service.SubscribeService;
 
@@ -68,15 +69,15 @@ public class SubscribeController {
 	   System.out.println("#21# SubscribeController subAdd() 동작");
 	   System.out.println("#21# Front에서 받아온 dto 값(구독 신청정보): " + dto.toString());
   
-	   // 1) 구독 신청 (구독회원 DB 내 추가) 
+	   // 1) 구독 신청 (구독회원 TABLE 내 추가) 
 	   boolean result = service.subAdd(dto);
 	   if(result) {
-		   	// 2) 구독만료일 추가 + 멤버 DB 내 구독값 수정 (1번 성공 시 실행) 
+		   	// 2) 구독만료일 추가 + 멤버 TABLE 내 구독값 수정 (1번 성공 시 실행) 
 		   	service.subAddEndday(dto);
-		   	System.out.println("#21# SubscribeController subAddEndday() 동작 _구독 DB 내 만료일자 추가");
+		   	System.out.println("#21# SubscribeController subAddEndday() 동작 _구독 TABLE 내 만료일자 추가");
   
 		   	service.subUpdateMember(dto); 
-		   	System.out.println("#21# SubscribeController subUpdateMember() 동작 _멤버 DB 내 구독값 1으로 수정");
+		   	System.out.println("#21# SubscribeController subUpdateMember() 동작 _멤버 TABLE 내 구독값 1으로 수정");
 		   	
 		   	return "Success"; 
 	   } 
@@ -96,11 +97,11 @@ public class SubscribeController {
 		   
 		   if(result == null) {						// 구독이 만료되었을 경우
 			   service.subUpdateMemberEnd(dto);
-			   System.out.println("#21# SubscribeController subUpdateMemberEnd() 동작 _멤버 DB 내 구독값 0으로 수정");
+			   System.out.println("#21# SubscribeController subUpdateMemberEnd() 동작 _멤버 TABLE 내 구독값 0으로 수정");
 			   
 			   boolean delUser = service.subDeleteUser(dto);
 			   if(delUser) {
-				   System.out.println("#21# SubscribeController subDeleteUser() 동작 _구독 DB 해당 사용자 행 삭제");
+				   System.out.println("#21# SubscribeController subDeleteUser() 동작 _구독 TABLE 해당 사용자 행 삭제");
 			   }
 			   
 			   return "SuccessEnd";
@@ -126,7 +127,7 @@ public class SubscribeController {
 		   return service.subRandomDietMeal(dto);
 	   } 
 	   catch (Exception e) {
-		   System.out.println("#21# 운동 DB 식단 가져오기 try..catch 에러 ");
+		   System.out.println("#21# 다이어트 TABLE 식단 가져오기 try..catch 에러 ");
 		   e.printStackTrace();
 		   
 		   return null;
@@ -143,12 +144,25 @@ public class SubscribeController {
 		   return service.subRandomExerMeal(dto);
 	   } 
 	   catch (Exception e) {
-		   System.out.println("#21# 운동 DB 식단 가져오기 try..catch 에러 ");
+		   System.out.println("#21# 운동 TABLE 식단 가져오기 try..catch 에러 ");
 		   e.printStackTrace();
 		   
 		   return null;
 	   }
-	  
+   }
+   
+   
+   /* #21# 추천한 오늘의 식단 저장(추가) */
+   @RequestMapping(value = "/subMealRemember", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public String subMealRemember(@RequestBody SubMealRememberDto dto) {
+	   System.out.println("#21# SubscribeController subMealRemember() 동작");
+	   System.out.println("#21# Front에서 받아온 이미 추천한 식단 정보: " + dto.toString());
+	    
+	   boolean result = service.subMealRemember(dto);
+	   if(result) {
+		   	return "Success"; 
+	   } 
+	   return "Fail";
    }
    
    

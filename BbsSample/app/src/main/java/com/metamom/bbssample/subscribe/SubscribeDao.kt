@@ -35,10 +35,14 @@ interface SubscribeService {
     /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(SubDietMealDto dto) → return SubDietMealDto */
     @POST("/subRandomDietMeal")
     fun subRandomDietMeal(@Body dto: SubDietMealDto) :Call<SubDietMealDto>
-
-    /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(SubExerMealDto dto) → return SubExerMealDto */
+    
+    /* 구독 오늘의 운동 식단 _Back subRandomDietMeal(SubExerMealDto dto) → return SubExerMealDto */
     @POST("/subRandomExerMeal")
     fun subRandomExerMeal(@Body dto: SubExerMealDto) :Call<SubExerMealDto>
+
+    /* 구독 추천한 식단 REMEMBER TABLE에 저장 */
+    @POST("/subMealRemember")
+    fun subMealRemember(@Body dto: SubMealRememberDto) :Call<String>
 }
 
 
@@ -176,6 +180,27 @@ class SubscribeDao {
 
         if (response == null) return null
         return response.body() as SubExerMealDto
+    }
+
+    /* 구독 추천한 오늘의 식단 정보 저장(추가) */
+    fun subMealRemember(dto: SubMealRememberDto) :String? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subMealRemember() 추천한 오늘의 식단 #Front에서 전달받은 값 SubMealRememberDto > ${dto.toString()}")
+
+        var response: Response<String>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subMealRemember(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subMealRemember() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as String
     }
 
 }

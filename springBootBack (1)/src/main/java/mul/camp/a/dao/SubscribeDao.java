@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import mul.camp.a.dto.SubDietMealDto;
 import mul.camp.a.dto.SubExerMealDto;
+import mul.camp.a.dto.SubMealRememberDto;
 import mul.camp.a.dto.SubscribeDto;
 
 @Mapper
@@ -29,5 +30,8 @@ public interface SubscribeDao {
 	public SubDietMealDto subRandomDietMeal(SubDietMealDto dto);
 	// 2) 운동
 	public SubExerMealDto subRandomExerMeal(SubExerMealDto dto);
+	
+	/* #21# 추천한 오늘의 식단 저장(추가) */
+	public int subMealRemember(SubMealRememberDto dto);
 
 }

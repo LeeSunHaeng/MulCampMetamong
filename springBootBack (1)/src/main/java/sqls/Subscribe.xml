@@ -17,13 +17,13 @@
 
 
 <!-- #21# 구독 신청 -->
-<!-- 1) 구독회원 DB 내 추가 _! 만료일자를 제외한 컬럼 추가 -->
+<!-- 1) 구독회원 TABLE 내 추가 _! 만료일자를 제외한 컬럼 추가 -->
 <insert id="subAdd" parameterType="mul.camp.a.dto.SubscribeDto">
 	INSERT INTO MATA_SUBSCRIBE(SUB_ID, SUB_TYPE, SUB_PERIOD, SUB_STARTDAY, SUB_MORNING, SUB_LUNCH, SUB_DINNER, SUB_SNACK)
 	VALUES(#{subId}, #{subType}, #{subPeriod}, SYSDATE, #{subMorning}, #{subLunch}, #{subDinner}, #{subSnack})
 </insert>
 
-<!-- 1-1) 구독회원 DB 내 구독만료 일자 추가 -->
+<!-- 1-1) 구독회원 TABLE 내 구독만료 일자 추가 -->
 <!--      ! ADD_MONTHS 사용 시 매월 마지막 일수가 다른 달(2월 28일, 짝수/홀수달 ..)은 그달의 마지막일을 리턴받는다. -->
 <update id="subAddEndday" parameterType="mul.camp.a.dto.SubscribeDto">
 	UPDATE MATA_SUBSCRIBE
@@ -31,7 +31,7 @@
 	WHERE SUB_ID=#{subId}
 </update>
 
-<!-- 2) 멤버 DB 내 구독값 1로 수정 -->
+<!-- 2) 멤버 TABLE 내 구독값 1로 수정 -->
 <update id="subUpdateMember" parameterType="mul.camp.a.dto.SubscribeDto">
 	UPDATE META_MEMBER
 	SET SUBSCRIBE=1
@@ -39,7 +39,7 @@
 </update>
 
 
-<!-- #21# 구독 만료확인 및 만료 시 멤버DB 내 구독값 변경 -->
+<!-- #21# 구독 만료확인 및 만료 시 멤버TABLE 내 구독값 변경 -->
 <!-- 1) 구독 만료확인 -->
 <select id="subEnddayCheck" parameterType="mul.camp.a.dto.SubscribeDto" resultType="mul.camp.a.dto.SubscribeDto">
  	SELECT *
@@ -47,14 +47,14 @@
 	WHERE SUB_ID=#{subId} AND SUB_ENDDAY > TO_CHAR(SYSDATE, 'YYYYMMDD')
 </select>
 
-<!-- 2) 멤버 DB 내 구독값 0으로 수정 -->
+<!-- 2) 멤버 TABLE 내 구독값 0으로 수정 -->
 <update id="subUpdateMemberEnd" parameterType="mul.camp.a.dto.SubscribeDto">
 	UPDATE META_MEMBER
 	SET SUBSCRIBE=0
 	WHERE ID=#{subId}
 </update>
 
-<!-- 2-1) 구독 DB 내 해당 사용자 삭제 -->
+<!-- 2-1) 구독 TABLE 내 해당 사용자 삭제 -->
 <delete id="subDeleteUser" parameterType="mul.camp.a.dto.SubscribeDto">
 	DELETE FROM MATA_SUBSCRIBE
 	WHERE SUB_ID=#{subId}
@@ -75,6 +75,13 @@
 	FROM (SELECT * FROM META_SUBSCRIBE_EXERMEALS WHERE SUBEF_TIME=#{subefTime} ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 1 AND SUBEF_KCAL <= #{subefKcal}]]>
 </select>
+
+
+<!-- #21# 추천한 오늘의 식단 저장  -->
+<insert id="subMealRemember" parameterType="mul.camp.a.dto.SubMealRememberDto">
+	INSERT INTO META_SUBSCRIBE_REMEMBERMEALS(subrem_seq, subrem_name, subrem_id, subrem_date, subrem_mealstime, subrem_type)
+	VALUES(#{subremSeq}, #{subremName}, #{subremId}, SYSDATE, #{subremMealstime}, #{subremType})
+</insert>
 
 
 </mapper>
