@@ -27,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginBtn = findViewById<Button>(R.id.loginBtn)
-        val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
-
-        val snsBtn = findViewById<Button>(R.id.SnsBtn)
-        val haebinBtn = findViewById<Button>(R.id.haebinBtn)
         id = findViewById(R.id.editId)
         pwd = findViewById(R.id.editPwd)
         loginBtn = findViewById(R.id.loginBtn)
@@ -45,14 +40,16 @@ class MainActivity : AppCompatActivity() {
 
             var dto = MemberDao.getInstance()
                 .login(
-                    MemberDto(userId, userPwd, "", "",
+                    MemberDto(
+                        userId, userPwd, "", "",
                         "", "", "", 0.0,
                         0.0, "n", 0, 0, "",
-                        0.0, "")
+                        0.0, ""
+                    )
                 )
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = "123"
+            MemberSingleton.id = dto?.id
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
@@ -68,7 +65,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
             }
         }
-
 
 
         /*loginBtn.setOnClickListener {
@@ -106,8 +102,7 @@ class MainActivity : AppCompatActivity() {
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Log.e("MainActivity", "토큰 정보 보기 실패")
-            }
-            else if (tokenInfo != null) {
+            } else if (tokenInfo != null) {
                 Log.e("MainActivity", "토큰 정보 보기 성공")
                 val intent = Intent(this, MainButtonActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -145,8 +140,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            else if (token != null) {
+            } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainButtonActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -154,23 +148,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        haebinBtn.setOnClickListener {
-            val i = Intent(this, FoodListMeals::class.java)
-            startActivity(i)
-        kakaoBtn.setOnClickListener {
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
-                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
-                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            kakaoBtn.setOnClickListener {
+                if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                    UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+                } else {
+                    UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+                }
             }
-        }
+
+
+        // 아이디 저장
+        /*private fun saveData() {
+
+
+
+    }*/
     }
 
-    // 아이디 저장
-    private fun saveData() {
-
-
-
-    }
 }
 

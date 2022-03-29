@@ -2,21 +2,35 @@ package mul.camp.a.dto;
 
 public class FoodListMealsDto {
 	private String id;
+	private int seqfoodlist;
 	private String wdate;
 	private String meals;
 	private String memo;
 	private String imgUrl;
 	private String foodscore;
+	private int del;
 	
  	public FoodListMealsDto(){
-		
 	}
 
-	public FoodListMealsDto(String id, String wdate, String meals, String memo, String imgUrl,
-			String foodscore) {
+	public FoodListMealsDto(String id, int seqfoodlist, String wdate, String meals, String memo, String imgUrl,
+			String foodscore, int del) {
 		super();
 		this.id = id;
+		this.seqfoodlist = seqfoodlist;
 		this.wdate = wdate;
+		this.meals = meals;
+		this.memo = memo;
+		this.imgUrl = imgUrl;
+		this.foodscore = foodscore;
+		this.del = del;
+	}
+	
+	
+
+	public FoodListMealsDto(int seqfoodlist, String meals, String memo, String imgUrl, String foodscore) {
+		super();
+		this.seqfoodlist = seqfoodlist;
 		this.meals = meals;
 		this.memo = memo;
 		this.imgUrl = imgUrl;
@@ -29,6 +43,14 @@ public class FoodListMealsDto {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getSeqfoodlist() {
+		return seqfoodlist;
+	}
+
+	public void setSeqfoodlist(int seqfoodlist) {
+		this.seqfoodlist = seqfoodlist;
 	}
 
 	public String getWdate() {
@@ -55,8 +77,6 @@ public class FoodListMealsDto {
 		this.memo = memo;
 	}
 
-
-
 	public String getImgUrl() {
 		return imgUrl;
 	}
@@ -73,10 +93,20 @@ public class FoodListMealsDto {
 		this.foodscore = foodscore;
 	}
 
+	public int getDel() {
+		return del;
+	}
+
+	public void setDel(int del) {
+		this.del = del;
+	}
+
 	@Override
 	public String toString() {
-		return "FoodListMealsDto [id=" + id + ", wdate=" + wdate + ", meals=" + meals + ", memo=" + memo  + ", imgUrl=" + imgUrl + ", foodscore=" + foodscore + "]";
+		return "FoodListMealsDto [id=" + id + ", seqfoodlist=" + seqfoodlist + ", wdate=" + wdate + ", meals=" + meals
+				+ ", memo=" + memo + ", imgUrl=" + imgUrl + ", foodscore=" + foodscore + ", del=" + del + "]";
 	}
  	
-	
 }
+
+	

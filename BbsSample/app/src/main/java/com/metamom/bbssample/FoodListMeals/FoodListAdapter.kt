@@ -1,8 +1,8 @@
 package com.metamom.bbssample.FoodListMeals
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,41 +13,53 @@ import com.metamom.bbssample.R
 
 
 class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodListMealsDto>) : RecyclerView.Adapter<FoodListAdapter.ItemViewHolder>() {
-    inner class ItemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
+    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val foodImg = itemView.findViewById<ImageView>(R.id.foodImg)
         val foodKindTxt = itemView.findViewById<TextView>(R.id.foodKindTxt)
         val timeTxt = itemView.findViewById<TextView>(R.id.timeTxt)
         val foodScoreTxt = itemView.findViewById<TextView>(R.id.foodScoreTxt)
         val memoTxt = itemView.findViewById<TextView>(R.id.memoTxt)
-
-       fun bind(Vo:FoodListMealsDto,context: Context){
-
+        var seqfoodlist:Int = 0
+        var del:Int = 0
+       fun bind(dataVo:FoodListMealsDto,context: Context){
+           //시퀀스값
+           seqfoodlist=dataVo.seqfoodlist
+           //del값
+           del=dataVo.del
            //foodImg  사진/카메라로 찍은 사진
-           foodKindTxt.text = Vo.meals //식사종류
-           timeTxt.text = Vo.wdate //시간
-           memoTxt.text = Vo.memo // 메모
-           if (Vo.foodscore =="1점"){ //점수
+           foodKindTxt.text = dataVo.meals //식사종류
+           timeTxt.text = dataVo.wdate //시간
+           memoTxt.text = dataVo.memo // 메모
+           if (dataVo.foodscore =="1점"){ //점수
                foodScoreTxt.text="점수 : ★"
-           }else if(Vo.foodscore =="2점"){
+           }else if(dataVo.foodscore =="2점"){
                foodScoreTxt.text="점수 : ★★"
-           }else if(Vo.foodscore =="3점"){
+           }else if(dataVo.foodscore =="3점"){
                foodScoreTxt.text="점수 : ★★★"
-           }else if(Vo.foodscore =="4점"){
+           }else if(dataVo.foodscore =="4점"){
                foodScoreTxt.text="점수 : ★★★★"
-           }else if(Vo.foodscore =="5점"){
+           }else if(dataVo.foodscore =="5점"){
                foodScoreTxt.text="점수 : ★★★★★"
-           }else foodScoreTxt.text="점수 : ${Vo.foodscore}"
+           }else foodScoreTxt.text="점수 : ${dataVo.foodscore}"
           // foodImg.setImageURI((Vo.imgUrl))
            try {
-               if(Vo.imgUrl != null) {
-                   val uri = Uri.parse("${Vo.imgUrl}")
+               if(dataVo.imgUrl != null) {
+                   val uri = Uri.parse("${dataVo.imgUrl}")
                    foodImg.setImageURI(uri)
                }else{
                    foodImg.setImageResource(R.drawable.xbox)
                }
            } catch (e: Exception) {
                e.printStackTrace()
+           }
+
+           //itemView 클릭시 디테일화면
+           itemView.setOnClickListener {
+               Intent(context, FoodListDetail::class.java).apply {
+                   putExtra("allData",dataVo)
+                   addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+               }.run { context.startActivity(this) }
            }
        }
 

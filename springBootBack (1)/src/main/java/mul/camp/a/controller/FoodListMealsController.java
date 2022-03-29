@@ -17,15 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import mul.camp.a.dto.FoodListMealsDto;
+import mul.camp.a.dto.idWdateDto;
 import mul.camp.a.service.FoodListMealsService;
 
 @RestController
 public class FoodListMealsController {
 	@Autowired
 	FoodListMealsService service;
+	
+	@Autowired
 	ServletContext servletContext;
 	
-	//넘어오는지 확인
+	//리스트 입력
 	@RequestMapping(value = "/FoodListTest" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String FoodListTest(@RequestBody FoodListMealsDto dto) {
 		System.out.println("FoodMealsListController test");
@@ -36,44 +39,70 @@ public class FoodListMealsController {
 			return "잘넘어옴";
 		}else return "안넘어옴";
 	}
-	
+	// 아이디 일치 리스트
 	@RequestMapping(value="/FoodListSelect", method = {RequestMethod.GET})
-	public List<FoodListMealsDto> writeFoodSelect(){
-		System.out.println("FoodListMealsService writeFoodList " );
-		List<FoodListMealsDto> list = service.writeFoodSelect();
+	public List<FoodListMealsDto> writeFoodSelect(String id){
+		System.out.println("FoodMealsListController FoodListSelect " );
+		List<FoodListMealsDto> list = service.writeFoodSelect(id);
 		System.out.println(list.toString());
 		return list;
 	}
+	// 날짜 아이디 일치 리스트
+	@RequestMapping(value="/FoodListSelectDay", method = {RequestMethod.GET})
+	public List<FoodListMealsDto> writeFoodSelectDay(idWdateDto dto){
+		System.out.println("FoodMealsListController FoodListSelectDay " );
+		System.out.println("id:" + dto.getId());
+		System.out.println("wdate:" + dto.getWdate());
+		List<FoodListMealsDto> list = service.writeFoodSelectDay(dto);
+		System.out.println(list.toString());
+		return list;
+	}	
+	
+	//삭제
+	@RequestMapping(value="/deleteFoodList",method = {RequestMethod.POST})
+	public String deleteFoodList(@RequestBody int seqfoodlist) {
+		System.out.println("FoodMealsListController deleteFoodList ");
+		System.out.println("seqfoodlist:" + seqfoodlist);
+		boolean b = service.deleteFoodList(seqfoodlist);
+		if(b) {
+			return "완료";
+		}
+		return "에러";
+	}
+	
+	//업데이트,
+		@RequestMapping(value="/updateFoodList",method = {RequestMethod.GET, RequestMethod.POST})
+		public String updateFoodList(@RequestBody FoodListMealsDto dto) {
+			System.out.println("!!!!!!!!!!!!!!!!! FoodMealsListController updateFoodList ");
+			System.out.println("seqfoodlist:" + dto);
+			boolean b = service.updateFoodlist(dto);
+			if(b) {
+				return "완료";
+			}
+			return "에러";
+		}
+		
+		/*
+		 * //디테일 seq 일치 리스트 불러오기
+		 * 
+		 * @RequestMapping(value="/detailSelect", method = {RequestMethod.GET}) public
+		 * List<FoodListMealsDto> detailSelect(int seqfoodlist){
+		 * System.out.println("FoodMealsListController detailSelect " );
+		 * List<FoodListMealsDto> list = service.writeFoodSelect(seqfoodlist);
+		 * 
+		 * return list; }
+		 */
 	
 	
-	/*
-	 * @RequestMapping(value = "/fileUpload",method = {RequestMethod.GET}) public
-	 * String fileUpload( @RequestParam("uploadFile") MultipartFile uploadFile,
-	 * HttpServletRequest req) { System.out.println("FileController fileUpload()");
-	 * 
-	 * //upload 폴더 생성 scr/main/webapp/upload에 String uploadPath =
-	 * req.getServletContext().getRealPath("/upload");
-	 * 
-	 * 
-	 * String filename = uploadFile.getOriginalFilename(); String filepath =
-	 * uploadPath + File.separator + filename;
-	 * 
-	 * System.out.println("filepath:" + filepath);
-	 * 
-	 * try { BufferedOutputStream os = new BufferedOutputStream(new
-	 * FileOutputStream(new File(filepath))); os.write(uploadFile.getBytes());
-	 * os.close(); } catch (Exception e) { // TODO Auto-generated catch block
-	 * e.printStackTrace();
-	 * 
-	 * return "file upload fail"; }
-	 * 
-	 * return "file upload success"; }
-	 */
+	@RequestMapping(value="/checkId",method = {RequestMethod.GET})
+	public String checkId(String id) {
+		System.out.println("FoodMealsListController checkId");
+		System.out.println("id:" + id);
+		String a = service.checkId(id);
+		if(a != null)return "넘어옴";
+		else return "안넘어옴";
+	}
 }
-
-
-
-
 
 
 
