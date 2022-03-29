@@ -108,13 +108,5 @@ public class BbsController {
 			return "OK";
 		}
 		return "NO";		
-	}
-	
+	}	
 }
-
-
-
-
-
-
-
