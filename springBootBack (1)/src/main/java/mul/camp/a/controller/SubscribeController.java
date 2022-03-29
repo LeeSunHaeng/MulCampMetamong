@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.naming.spi.DirStateFactory.Result;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -210,6 +211,35 @@ public class SubscribeController {
 	   catch (Exception e) {
 		   System.out.println("#21# 추천하였던 운동 식단 가져오기 try..catch 에러 ");
 		   return null;
+	   }
+   }
+   
+   /* #21# 추천하였던 식단 중 3일 이상인 식단 삭제 */
+   /*
+   @RequestMapping(value = "/subRememberDel", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public int subRememberDel(@RequestBody String subDelRemId) {
+	   System.out.println("#21# SubscribeController subRememberDel() 동작");
+	   System.out.println("#21# #Front에서 가져온 삭제할 식단의 ID값: " + subDelRemId);
+	    
+	   try {
+		   return service.subRememberDel(subDelRemId);
+	   }
+	   catch (Exception e) {
+		   System.out.println("#21# 추천하였던 식단 중 3일 이상인 식단 삭제 try..catch 에러 ");
+		   return -1;
+	   }
+   } */
+   @RequestMapping(value = "/subRememberDel", method = {RequestMethod.GET, RequestMethod.POST} ) 
+   public int subRememberDel(String subDelRemId) {
+	   System.out.println("#21# SubscribeController subRememberDel() 동작");
+	   System.out.println("#21# #Front에서 가져온 삭제할 식단의 ID값: " + subDelRemId);
+	    
+	   try {
+		   return service.subRememberDel(subDelRemId);
+	   }
+	   catch (Exception e) {
+		   System.out.println("#21# 추천하였던 식단 중 3일 이상인 식단 삭제 try..catch 에러 ");
+		   return -1;
 	   }
    }
    

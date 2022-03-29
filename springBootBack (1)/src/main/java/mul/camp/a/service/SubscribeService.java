@@ -92,4 +92,10 @@ public class SubscribeService {
 		return dao.subExerMeal(subExerSeq);
 	}
 	
+	
+	/* #21# 추천하였던 식단 중 3일 이상인 식단 삭제 */
+	public int subRememberDel(String subDelRemId) {
+		System.out.println("#21# Service _#Front에서 가져온 삭제할 식단의 ID값: " + subDelRemId);
+		return dao.subRememberDel(subDelRemId);
+	}
 }

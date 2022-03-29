@@ -56,6 +56,12 @@ interface SubscribeService {
     /* 구독 추천하였던 *[운동]* 식단 가져오기 */
     @POST("/subExerMeal")
     fun subExerMeal(@Body subExerSeq: Int) :Call<SubExerMealDto>
+
+    /* 구독 추천하였던 식단 중 3일이상인 식단 제거 */
+    /*@POST("/subRememberDel")
+    fun subRememberDel(@Body subDelRemId: String) :Call<Int>*/
+    @GET("/subRememberDel")
+    fun subRememberDel(@Query("subDelRemId") subDelRemId: String) :Call<Int>
 }
 
 
@@ -279,6 +285,27 @@ class SubscribeDao {
 
         if (response == null) return null
         return response.body() as SubExerMealDto
+    }
+    
+    /* 구독 추천하였던 식단 중 3일이상 식단 제거 */
+    fun subRememberDel(subDelRemId: String) :Int? {
+        Log.d("SubscribeDao", "#21# SubscribeDao subRememberDel() 삭제할 식단의 ID값 > $subDelRemId")
+
+        var response: Response<Int>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(SubscribeService::class.java)
+            val call = service?.subRememberDel(subDelRemId)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("SubscribeDao", "#21# SubscribeDao subRememberDel() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as Int
     }
 
 }

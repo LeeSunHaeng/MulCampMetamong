@@ -28,6 +28,14 @@ class SubMyMealsActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+
+        /* #21# 추천한 식단을 기록하고 있는 REMEMBER TABLE에서 2일 초과인 식단 확인 및 제거
+        *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) */
+        var delRememberMeal = SubscribeDao.getInstance().subRememberDel(MemberSingleton.id.toString())
+        Log.d("SubMyMealsActivity", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
+
+
+
         /* #21# 구독 신청 시간에 따라 동적 Button 생성 */
         var linearLayout = findViewById<LinearLayout>(R.id.subMeal_linearLayout)
         var childLayout :LinearLayout? = null
@@ -107,18 +115,6 @@ class SubMyMealsActivity : AppCompatActivity() {
 
 
     fun moveMealsView(time :String) {
-        /*when (time) {
-            "아침" -> startActivity(Intent(this, SubTodayMealsMorning::class.java))
-            "점심" -> startActivity(Intent(this, SubTodayMealsLunch::class.java))
-            "저녁" -> startActivity(Intent(this, SubTodayMealsDinner::class.java))
-            "간식" -> startActivity(Intent(this, SubTodayMealsSnack::class.java))
-            else -> {
-                val builder = AlertDialog.Builder(this);
-                builder.setTitle("❗")
-                builder.setMessage("관리자에게 문의해주시길 바랍니다. 죄송합니다")
-                builder.show()
-            }
-        }*/
         when (time) {
             "아침" -> {
                 val i = Intent(this, SubTodayMealsMorning::class.java)

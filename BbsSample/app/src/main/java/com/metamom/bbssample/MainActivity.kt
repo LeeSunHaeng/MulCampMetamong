@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     // 2-ii) SuccessEnd인 경우 == 구독만료
                     if (subEndCheck == "SuccessEnd"){
-                        Log.d("MainActivity", "#21# 구독 만료임에 따라 멤버DB 구독값 수정 & 구독DB 내 삭제")
+                        Log.d("MainActivity", "#21# 구독 만료임에 따라 멤버 TABLE 구독값 수정 & 구독 TABLE 내 삭제")
 
                         /* !!!! 회원정보 다시 가져와서 MemberSingleton에 넣기 _구독만료로 구독값 변경했으니까 */
                     }

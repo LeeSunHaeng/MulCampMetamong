@@ -104,5 +104,11 @@
 	WHERE SUBEF_SEQ=#{subExerSeq}
 </select>
 
+<!-- #21# 추천하였던 식단을 기록하고 있는 REMEMBER TABLE 내 3일 이상인 식단 제거 ex) 29일인 경우 → 26일 이후 식단 삭제 -->
+<delete id="subRememberDel" parameterType="String">
+	DELETE FROM META_SUBSCRIBE_REMEMBERMEALS
+	WHERE SUBREM_ID=#{subDelRemId} AND <![CDATA[TO_CHAR(SYSDATE, 'YYYYMMDD') > TO_CHAR(SUBREM_DATE+2, 'YYYYMMDD')]]>
+</delete>
+
 
 </mapper>

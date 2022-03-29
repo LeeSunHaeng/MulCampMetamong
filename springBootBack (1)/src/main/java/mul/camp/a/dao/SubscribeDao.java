@@ -42,5 +42,7 @@ public interface SubscribeDao {
 	
 	/* #21# 추천하였던 *[운동]* 식단 가져오기 */
 	public SubExerMealDto subExerMeal(int subExerSeq);
-
+	
+	/* #21# 추천하였던 식단 중 3일 이상인 식단 삭제 */
+	public int subRememberDel(String subDelRemId);
 }
