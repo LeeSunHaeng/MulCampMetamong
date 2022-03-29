@@ -21,26 +21,6 @@
             android:usesCleartextTraffic="true">
 
         <activity
-                android:name=".subscribe.SubInfoActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".subscribe.SubAddActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".InsertActivity"
-                android:exported="true"/>
-        <activity
-                android:name=".sns.SnsActivity"
-                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
-        <activity
-                android:name=".MainButtonActivity"
-                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
-        <activity
-                android:name=".addFoodList"
-                android:exported="true"/>
-        <activity
-                android:name=".Food_List_Meals"
-        <activity
                 android:name=".sns.CommentActivity"
                 android:windowSoftInputMode="adjustPan"
                 android:exported="true"/>

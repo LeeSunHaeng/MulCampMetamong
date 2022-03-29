@@ -186,26 +186,6 @@ public class MemberDto {
 	}
 
 
-	public Double getBmi() {
-		return bmi;
-	}
-
-
-	public void setBmi(Double bmi) {
-		this.bmi = bmi;
-	}
-
-
-	public String getProfile() {
-		return profile;
-	}
-
-
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-
 	@Override
 	public String toString() {
 		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", gender=" + gender

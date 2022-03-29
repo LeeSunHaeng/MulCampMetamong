@@ -203,21 +203,20 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            else if (token != null) {
+            } else if (token != null) {
                 val intent = Intent(this, MainButtonActivity::class.java)
                 finish()
             }
         }
 
-            kakaoBtn.setOnClickListener {
-                if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
-                    UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-                } else {
-                    UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-                }
+        kakaoBtn.setOnClickListener {
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            } else {
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
     }
 }
+
 

@@ -13,7 +13,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.kakao.sdk.user.UserApiClient
-import com.metamom.bbssample.Food_List_Meals
+import com.metamom.bbssample.FoodListMeals.FoodListMeals
+
 import com.metamom.bbssample.MainActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentHomeBinding
@@ -71,7 +72,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.haebinBtn.setOnClickListener {
-            val i = Intent(context, Food_List_Meals::class.java)
+            val i = Intent(context, FoodListMeals::class.java)
             startActivity(i)
         }
         // TODO 'kakaoLogout'버튼 다른곳에 숨겨서 배치하기
