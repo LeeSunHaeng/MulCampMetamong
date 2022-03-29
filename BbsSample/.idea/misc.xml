@@ -7,17 +7,24 @@
         <entry key="..\:/AndroidSamples/BbsSample/app/src/main/res/layout/activity_bbs_write.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidSamples/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.3641304347826087" />
         <entry key="..\:/AndroidSamples/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/background_splash_screen.xml" value="0.30843881856540084" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/btn_shadow.xml" value="0.30648148148148147" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/button_login.xml" value="0.46625" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/button_shadow.xml" value="0.30648148148148147" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge.xml" value="0.57109375" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_back_button.xml" value="0.3775" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_bookmark.xml" value="0.26296296296296295" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_btn_shadow.xml" value="0.30648148148148147" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_btn_small_move.xml" value="0.57109375" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_launcher_background.xml" value="0.57109375" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_menu.xml" value="0.26296296296296295" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_subscribe.xml" value="0.30843881856540084" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/layer_list.xml" value="0.421875" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/login_border_btn.xml" value="0.46625" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/login_input_box.xml" value="0.308974358974359" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/nav_top.xml" value="0.29259259259259257" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/toolbar_background.xml" value="0.26296296296296295" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/drawable/toolbar_search_background.xml" value="0.26296296296296295" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/font/font.xml" value="0.56375" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_home.xml" value="0.19658119658119658" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_insert.xml" value="0.22" />
@@ -27,9 +34,15 @@
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_add.xml" value="0.291213768115942" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_info.xml" value="0.291213768115942" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/food_list_spinner.xml" value="0.291213768115942" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_account.xml" value="0.21784420289855072" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_meal.xml" value="0.21784420289855072" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_recipe.xml" value="0.21784420289855072" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_talk.xml" value="0.21784420289855072" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.2623688155922039" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.21603260869565216" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.291213768115942" />
+        <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31025641025641026" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge.xml" value="0.15416666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_back_button.xml" value="0.15416666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15416666666666667" />

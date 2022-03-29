@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.model.OAuthToken
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var idSave: CheckBox
 
     // 구글 로그인 변수
-    val RC_SIGN_IN = 1
+    final val RC_SIGN_IN = 1
     lateinit var googleBtn: TextView
     lateinit var mGoogleSignInClient: GoogleSignInClient
 
@@ -84,6 +84,54 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, InsertActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
             startActivity(i)
+        }
+
+        // 구글 로그인
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        googleBtn.setOnClickListener {
+            signIn()
+            val i = Intent(this, MainButtonActivity::class.java)
+            startActivity(i)
+        }
+    }
+
+    private fun signIn() {
+        var signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val email = account?.email.toString()
+            val familyName = account?.familyName.toString()
+            val givenName = account?.givenName.toString()
+            val displayName = account?.displayName.toString()
+
+            Log.d("account", email)
+            Log.d("account", familyName)
+            Log.d("account", givenName)
+            Log.d("account", displayName)
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
 
         // 카카오 키해시 확인
@@ -147,54 +195,6 @@ class MainActivity : AppCompatActivity() {
             }else{
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
-        }
-
-        // 구글 로그인
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        googleBtn.setOnClickListener {
-            signIn()
-            val intent = Intent(this, MainButtonActivity::class.java)
-            finish()
-        }
-    }
-
-    private fun signIn() {
-        var signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-        }
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            val email = account?.email.toString()
-            val familyName = account?.familyName.toString()
-            val givenName = account?.givenName.toString()
-            val displayName = account?.displayName.toString()
-
-            Log.d("account", email)
-            Log.d("account", familyName)
-            Log.d("account", givenName)
-            Log.d("account", displayName)
-        } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
     }
 }
