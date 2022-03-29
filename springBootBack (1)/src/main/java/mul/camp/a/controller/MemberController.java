@@ -35,6 +35,7 @@ public class MemberController {
 	@RequestMapping(value = "/addmember", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String addmember(@RequestBody MemberDto dto) {
 		System.out.println("MemberController addmember");
+		System.out.println(dto.toString());
 		
 		boolean b = service.addmember(dto);
 		if(b) {

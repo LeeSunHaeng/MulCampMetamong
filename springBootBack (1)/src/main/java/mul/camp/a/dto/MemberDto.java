@@ -10,20 +10,20 @@ public class MemberDto {
 	private String nickname;
 	private Double height;
 	private Double weight;
-	private String birth;
+	private String del;
 	private int auth;
 	private int subscribe;
-	private String del;
-	private Double bmi;
-	private String profile;
-
+	private String birth;
+	private Double bmi;			//추가
+	private String profile;		//추가
 	
 	public MemberDto() {
+		
 	}
 
 
 	public MemberDto(String id, String pwd, String name, String email, String gender, String phone, String nickname,
-			Double height, Double weight, String birth, int auth, int subscribe, String del, Double bmi,
+			Double height, Double weight, String del, int auth, int subscribe, String birth, Double bmi,
 			String profile) {
 		super();
 		this.id = id;
@@ -35,10 +35,10 @@ public class MemberDto {
 		this.nickname = nickname;
 		this.height = height;
 		this.weight = weight;
-		this.birth = birth;
+		this.del = del;
 		this.auth = auth;
 		this.subscribe = subscribe;
-		this.del = del;
+		this.birth = birth;
 		this.bmi = bmi;
 		this.profile = profile;
 	}
@@ -133,14 +133,12 @@ public class MemberDto {
 		this.weight = weight;
 	}
 
-
-	public String getBirth() {
-		return birth;
+	public String getDel() {
+		return del;
 	}
 
-
-	public void setBirth(String birth) {
-		this.birth = birth;
+	public void setDel(String del) {
+		this.del = del;
 	}
 
 
@@ -163,14 +161,28 @@ public class MemberDto {
 		this.subscribe = subscribe;
 	}
 
-
-	public String getDel() {
-		return del;
+	public String getBirth() {
+		return birth;
 	}
 
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 
-	public void setDel(String del) {
-		this.del = del;
+	public Double getBmi() {
+		return bmi;
+	}
+
+	public void setBmi(Double bmi) {
+		this.bmi = bmi;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 
@@ -197,8 +209,11 @@ public class MemberDto {
 	@Override
 	public String toString() {
 		return "MemberDto [id=" + id + ", pwd=" + pwd + ", name=" + name + ", email=" + email + ", gender=" + gender
-				+ ", phone=" + phone + ", nickname=" + nickname + ", height=" + height + ", weight=" + weight
-				+ ", birth=" + birth + ", auth=" + auth + ", subscribe=" + subscribe + ", del=" + del + ", bmi=" + bmi
+				+ ", phone=" + phone + ", nickname=" + nickname + ", height=" + height + ", weight=" + weight + ", del="
+				+ del + ", auth=" + auth + ", subscribe=" + subscribe + ", birth=" + birth + ", bmi=" + bmi
 				+ ", profile=" + profile + "]";
 	}
+	
+	
+
 }

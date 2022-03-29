@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".recipe2.DetailRecipe">
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="841dp"
+            tools:layout_editor_absoluteX="0dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/reciDetailImage"
+                    android:layout_width="359dp"
+                    android:layout_height="200dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_bias="0.502"
+                    android:layout_marginTop="28dp"/>
+
+            <TextView
+                    android:id="@+id/reciDetailTitle"
+                    android:text="요리 이름"
+                    android:textSize="50dp"
+                    android:gravity="center"
+                    android:layout_width="339dp"
+                    android:layout_height="122dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reciDetailImage"/>
+
+            <GridView
+                    android:id="@+id/reciGridView"
+                    android:numColumns="auto_fit"
+                    android:layout_width="500dp"
+                    android:layout_height="185dp"
+                    app:layout_constraintTop_toBottomOf="@+id/reciDetailTitle"
+                    tools:ignore="MissingConstraints"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reciRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reciGridView"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

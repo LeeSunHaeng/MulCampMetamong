@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".sns.SnsBottomSheet">
+
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:backgroundTint="@color/meta_grey03"
+            android:text="수정"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:backgroundTint="@color/meta_grey02"
+            android:text="삭제"/>
+
+
+</LinearLayout>

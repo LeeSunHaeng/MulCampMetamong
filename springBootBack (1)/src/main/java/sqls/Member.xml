@@ -16,8 +16,8 @@
 </select>
 
 <insert id="addmember" parameterType="mul.camp.a.dto.MemberDto">
-	INSERT INTO META_MEMBER(ID, PWD, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, BIRTH, AUTH, SUBSCRIBE, DEL)
-	VALUES(#{id}, #{pwd}, #{name}, #{email}, #{gender}, #{phone}, #{nickname}, #{height}, #{weight}, #{birth}, 0, 0, 'N')
+	INSERT INTO META_MEMBER(ID, PWD, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, BIRTH, AUTH, SUBSCRIBE, DEL,BMI,PROFILE)
+	VALUES(#{id}, #{pwd}, #{name}, #{email}, #{gender}, #{phone}, #{nickname}, #{height}, #{weight}, #{birth}, 0, 0, 'N',7,'profile3')
 </insert>
 
 <select id="login" parameterType="mul.camp.a.dto.MemberDto" 

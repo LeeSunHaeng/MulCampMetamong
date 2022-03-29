@@ -30,9 +30,9 @@ class RetrofitClient {
                 // 양성훈 : http://192.168.0.29:3000/
                 // 엄희정 :
                 // 이선행 :
-                // 최재석 :
+                // 최재석 :http://14.39.38.168:3000/
                 instance = Retrofit.Builder()
-                    .baseUrl("http://192.168.0.29:3000/")
+                    .baseUrl("http://14.39.38.168:3000/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .client(client)
@@ -50,7 +50,7 @@ class RetrofitClient {
 
                 // ScalarsConverterFactory 만을 사용해야 한다
                 instanceStr = Retrofit.Builder()
-                    .baseUrl("http://192.168.0.29:3000/")
+                    .baseUrl("http://192.168.35.64:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build()//주석
             }

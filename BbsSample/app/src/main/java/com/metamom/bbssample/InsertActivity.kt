@@ -121,6 +121,7 @@ class InsertActivity : AppCompatActivity() {
                     )
                 )
 
+
                 Toast.makeText(this, "가입되었습니다", Toast.LENGTH_LONG).show()
 
                 val i = Intent(this, MainActivity::class.java)
