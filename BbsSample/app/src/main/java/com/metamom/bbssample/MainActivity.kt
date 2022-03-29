@@ -28,6 +28,14 @@ class MainActivity : AppCompatActivity() {
             //MemberSingleton.subscribe = "0"                                  // 0 = 비구독
             MemberSingleton.height = 150.4
             MemberSingleton.weight = 42.7
+            /*MemberSingleton.id = "zeze4"
+            MemberSingleton.subscribe = "1"                                  // 1 = 구독
+            MemberSingleton.height = 189.1
+            MemberSingleton.weight = 87.3*/
+            /*MemberSingleton.id = "zeze6"
+            MemberSingleton.subscribe = "1"                                  // 1 = 구독
+            MemberSingleton.height = 165.2
+            MemberSingleton.weight = 42.1*/
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
             /* #21# 구독만료 확인 */

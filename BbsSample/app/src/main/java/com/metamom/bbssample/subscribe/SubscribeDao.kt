@@ -46,10 +46,11 @@ interface SubscribeService {
 
     /* 구독 추천한 오늘의 식단 여부 확인 */
     @POST("/subLogCheckMeal")
-    //fun subLogCheckMeal(@Body dto: SubMealRememberDto) :Call<Int>
     fun subLogCheckMeal(@Body dto: SubMealRememberDto) :Call<SubMealRememberDto>
 
     /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
+    /*@POST("/subDietMeal")
+    fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>*/
     @POST("/subDietMeal")
     fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>
 
@@ -223,10 +224,10 @@ class SubscribeDao {
     }
 
     /* 구독 추천한 오늘의 식단 이력 여부 확인 */
-    fun subLogCheckMeal(dto: SubMealRememberDto) /*:Int?*/:SubMealRememberDto? {
+    // java.io.EOFException: End of input at line 1 column 1 path $ > Error가 나는 경우 결과값이 null이라서 나는 Error이다. (동작에 문제없음)
+    fun subLogCheckMeal(dto: SubMealRememberDto) :SubMealRememberDto? {
         Log.d("SubscribeDao", "#21# SubscribeDao subLogCheckMeal() 추천한 오늘의 식단 존재여부 확인 [검색조건 SubMealRememberDto] > ${dto.toString()}")
 
-        //var response: Response<Int>? = null
         var response: Response<SubMealRememberDto>? = null
 
         try {
@@ -241,11 +242,11 @@ class SubscribeDao {
         }
 
         if (response == null) return null
-        //return response.body() as Int
         return response.body() as SubMealRememberDto
     }
 
     /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
+    // (03.29) REMEMBER TABLE에 SEQ가 기본키가 아니라서 ID값도 같이 넘겨줘야 함
     fun subDietMeal(subDietSeq: Int) :SubDietMealDto? {
         Log.d("SubscribeDao", "#21# SubscribeDao subDietMeal() 추천했던 다이어트 식단 가져오기 SEQ번호 > $subDietSeq")
 

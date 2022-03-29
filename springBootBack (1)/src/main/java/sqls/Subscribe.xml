@@ -61,18 +61,25 @@
 </delete>
 
 
-<!-- #21# 오늘의 다이어트 식단 랜덤 1개 select -->
+<!-- #21# 오늘의 다이어트 식단 랜덤 1개 select (+ 2일 이내에 추천했던 식단은 제외하고 Random으로 고름) -->
 <!-- 1) 다이어트 식단 -->
 <!--    부등호 기호 사용을 위하여 <![CDATA[로 감싸줬음 -->
+<!-- NOT EXISTS 사용 _조회 결과가 없을때만 조회, REMEMBER TABLE 내 SEQ번호와 일치하는 않는 DIET SEQ만 반환 -->
 <select id="subRandomDietMeal" parameterType="mul.camp.a.dto.SubDietMealDto" resultType="mul.camp.a.dto.SubDietMealDto">
 	SELECT *
-	FROM (SELECT * FROM META_SUBSCRIBE_DIETMEALS WHERE SUBDF_TIME=#{subdfTime} ORDER BY DBMS_RANDOM.VALUE)
+	FROM (SELECT * 
+			FROM META_SUBSCRIBE_DIETMEALS 
+			WHERE SUBDF_TIME=#{subdfTime} AND NOT EXISTS(SELECT * FROM META_SUBSCRIBE_REMEMBERMEALS WHERE SUBREM_ID=#{subdfID} AND SUBREM_SEQ = SUBDF_SEQ)
+			ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 1 AND SUBDF_KCAL <= #{subdfKcal}]]>	
 </select>
 <!-- 2) 운동 식단 -->
 <select id="subRandomExerMeal" parameterType="mul.camp.a.dto.SubExerMealDto" resultType="mul.camp.a.dto.SubExerMealDto">
 	SELECT *
-	FROM (SELECT * FROM META_SUBSCRIBE_EXERMEALS WHERE SUBEF_TIME=#{subefTime} ORDER BY DBMS_RANDOM.VALUE)
+	FROM (SELECT * 
+			FROM META_SUBSCRIBE_EXERMEALS 
+			WHERE SUBEF_TIME=#{subefTime} AND NOT EXISTS(SELECT * FROM META_SUBSCRIBE_REMEMBERMEALS WHERE SUBREM_ID=#{subefID} AND SUBREM_SEQ = SUBEF_SEQ)
+			ORDER BY DBMS_RANDOM.VALUE)
 	<![CDATA[WHERE ROWNUM <= 1 AND SUBEF_KCAL <= #{subefKcal}]]>
 </select>
 

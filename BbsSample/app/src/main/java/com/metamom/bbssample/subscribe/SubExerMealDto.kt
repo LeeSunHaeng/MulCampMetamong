@@ -4,11 +4,11 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /* #21# 구독 _오늘의 식단 [운동] RecyclerView에 드로잉하기 위하여 파일 사용 */
-class SubExerMealDto(val subefSeq:Int, val subefTime:Int, val subefImage:String?, val subefName:String?, val subefKcal:Double, val subefAmount:Int, val subefType:String?) : Parcelable {
+class SubExerMealDto(val subefSeq:Int, val subefTime:Int, val subefImage:String?, val subefName:String?, val subefKcal:Double, val subefAmount:Int, val subefType:String?, val subefID:String?) : Parcelable {
 
     // parcel에 대한 기본생성자
     constructor(parcel: Parcel) :this(
-        parcel.readInt(), parcel.readInt(), parcel.readString(), parcel.readString(), parcel.readDouble(), parcel.readInt(), parcel.readString()
+        parcel.readInt(), parcel.readInt(), parcel.readString(), parcel.readString(), parcel.readDouble(), parcel.readInt(), parcel.readString(), parcel.readString()
     ){ }
 
     override fun describeContents(): Int {
@@ -24,6 +24,7 @@ class SubExerMealDto(val subefSeq:Int, val subefTime:Int, val subefImage:String?
         parcel.writeDouble(subefKcal)
         parcel.writeInt(subefAmount)
         parcel.writeString(subefType)
+        parcel.writeString(subefID)
     }
 
     companion object CREATOR : Parcelable.Creator<SubExerMealDto> {
@@ -37,7 +38,7 @@ class SubExerMealDto(val subefSeq:Int, val subefTime:Int, val subefImage:String?
     }
 
     override fun toString(): String {
-        return "SubExerMealDto(subefSeq=${subefSeq}, subefTime=${subefTime}, subefImage=${subefImage}, subefName=${subefName}, subefKcal=${subefKcal}, subefAmount=${subefAmount}, subefType=${subefType}"
+        return "SubExerMealDto(subefSeq=${subefSeq}, subefTime=${subefTime}, subefImage=${subefImage}, subefName=${subefName}, subefKcal=${subefKcal}, subefAmount=${subefAmount}, subefType=${subefType}, subefID=${subefID}"
     }
 
 }

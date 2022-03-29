@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleto.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 class SubTodayMealsLunch : AppCompatActivity() {
@@ -34,12 +35,14 @@ class SubTodayMealsLunch : AppCompatActivity() {
         // 1-1) 회원이 다이어트 식단을 신청하였을 경우 (type == 0)
         if (SubTodayMealSingleton.type == 0) {
             Log.d("SubTodayMealsMorning", "#21# 오늘의 식단[아침] *다이어트 식단* 가져오기 실행")
-            todayMeal = SubscribeDao.getInstance().subRandomDietMeal(SubDietMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString()))
+            //todayMeal = SubscribeDao.getInstance().subRandomDietMeal(SubDietMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString()))
+            todayMeal = SubscribeDao.getInstance().subRandomDietMeal(SubDietMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString(), MemberSingleton.id))
         }
         // 1-2) 회원이 운동 식단을 신청하였을 경우 (type == 1)
         else if (SubTodayMealSingleton.type == 1) {
             Log.d("SubTodayMealsMorning", "#21# 오늘의 식단[아침] *운동 식단* 가져오기 실행")
-            todayMeal = SubscribeDao.getInstance().subRandomExerMeal(SubExerMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString()))
+            //todayMeal = SubscribeDao.getInstance().subRandomExerMeal(SubExerMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString()))
+            todayMeal = SubscribeDao.getInstance().subRandomExerMeal(SubExerMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.lunchKcal!!.toDouble(), 0, SubTodayMealSingleton.type.toString(), MemberSingleton.id))
         }
 
         // 1-3) 전달받은 식단을 RecyclerView에 드로잉하기

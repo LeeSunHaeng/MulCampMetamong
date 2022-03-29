@@ -124,7 +124,7 @@ public class SubscribeController {
    @RequestMapping(value = "/subRandomDietMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public SubDietMealDto subRandomDietMeal(@RequestBody SubDietMealDto dto) {
 	   System.out.println("#21# SubscribeController subRandomDietMeal() 동작");
-	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) 값: " + dto.toString());
+	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) & 회원 ID 값: " + dto.toString());
 	   
 	   try {
 		   return service.subRandomDietMeal(dto);
@@ -141,7 +141,7 @@ public class SubscribeController {
    @RequestMapping(value = "/subRandomExerMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public SubExerMealDto subRandomExerMeal(@RequestBody SubExerMealDto dto) {
 	   System.out.println("#21# SubscribeController subRandomExerMeal() 동작");
-	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) 값: " + dto.toString());
+	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) & 회원 ID 값: " + dto.toString());
 	   
 	   try {
 		   return service.subRandomExerMeal(dto);
@@ -171,7 +171,7 @@ public class SubscribeController {
    
    /* #21# 오늘의 식단을 추천 이력 판별 */
    @RequestMapping(value = "/subLogCheckMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
-   public /*int*/SubMealRememberDto subLogCheckMeal(@RequestBody SubMealRememberDto dto) {
+   public SubMealRememberDto subLogCheckMeal(@RequestBody SubMealRememberDto dto) {
 	   System.out.println("#21# SubscribeController subLogCheckMeal() 동작");
 	    
 	   try {
@@ -179,7 +179,6 @@ public class SubscribeController {
 	   }
 	   catch (Exception e) {
 		   System.out.println("#21# 오늘의 식단 추천 이력 판별 try..catch 에러 ");
-		   //return -1;
 		   return null;
 	   }
    }
@@ -215,20 +214,6 @@ public class SubscribeController {
    }
    
    /* #21# 추천하였던 식단 중 3일 이상인 식단 삭제 */
-   /*
-   @RequestMapping(value = "/subRememberDel", method = {RequestMethod.GET, RequestMethod.POST} ) 
-   public int subRememberDel(@RequestBody String subDelRemId) {
-	   System.out.println("#21# SubscribeController subRememberDel() 동작");
-	   System.out.println("#21# #Front에서 가져온 삭제할 식단의 ID값: " + subDelRemId);
-	    
-	   try {
-		   return service.subRememberDel(subDelRemId);
-	   }
-	   catch (Exception e) {
-		   System.out.println("#21# 추천하였던 식단 중 3일 이상인 식단 삭제 try..catch 에러 ");
-		   return -1;
-	   }
-   } */
    @RequestMapping(value = "/subRememberDel", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public int subRememberDel(String subDelRemId) {
 	   System.out.println("#21# SubscribeController subRememberDel() 동작");
