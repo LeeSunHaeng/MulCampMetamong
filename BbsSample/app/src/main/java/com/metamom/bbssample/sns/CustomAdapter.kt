@@ -86,7 +86,11 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             val wdate = dataVo.snsdate!!.split("-")
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
-                    snsDate.text = "${wdate.get(2)}분"
+                    if(wdate.get(2).equals("0")){
+                        snsDate.text="방금"
+                    }else {
+                        snsDate.text = "${wdate.get(2)}분"
+                    }
                 }else{
                     snsDate.text = "${wdate.get(1)}시간"
                 }
@@ -97,8 +101,8 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             }
 
             snsNickName.text = dataVo.nickname
-            snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
-            snsCommentCount.text = dataVo.commentcount.toString()
+            snsLikeCount.text = "좋아요 ${SnsDao.getInstance().snsLikeCount(dataVo.seq)}개"
+            snsCommentCount.text = "댓글 ${SnsDao.getInstance().snsCommentCount(dataVo.seq)}개"
             snsContent.text = dataVo.content
 
             //좋아요 버튼 이미지 뿌려줄때
@@ -131,7 +135,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
                 }
 
-                snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
+                snsLikeCount.text = "좋아요 ${SnsDao.getInstance().snsLikeCount(dataVo.seq)}개"
 
             }
             //댓글 아이콘 클릭시
@@ -139,6 +143,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 Intent(context,CommentActivity::class.java).apply {
                     putExtra("seq",dataVo.seq)
                 }.run { context.startActivity(this) }
+
 
             }
             //셋팅 버튼 클릭시
@@ -164,7 +169,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)  {
 
         holder.bind(snsList[position], context,mFragmentManager)
     }

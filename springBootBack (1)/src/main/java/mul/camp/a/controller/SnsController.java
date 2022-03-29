@@ -92,4 +92,12 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsCommentCount", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsCommentCount(int seq) {
+		System.out.println("snsCommentCount 실행 성공");
+		int num = service.snsCommentCount(seq);
+		System.out.println("snsCommentCount num : "+num);
+		return num;
+	}
+	
 }

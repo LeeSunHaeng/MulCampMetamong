@@ -21,5 +21,6 @@ public interface SnsDao {
 	public int snsLikeDelete(SnsLikeDto dto);
 	public int snsLikeCheck(SnsLikeDto dto);
 	public int snsLikeCount(int seq);
+	public int snsCommentCount(int seq);
 	public int snsCommentInsert(SnsCommentDto dto);
 }

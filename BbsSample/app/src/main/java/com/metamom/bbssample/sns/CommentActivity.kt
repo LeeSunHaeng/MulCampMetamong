@@ -1,15 +1,13 @@
 package com.metamom.bbssample.sns
 
+import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -26,6 +24,7 @@ class CommentActivity : AppCompatActivity() {
         val uri = member.profile
         val cmtInsertContentEditText = findViewById<EditText>(R.id.cmtInsertContenteditText)
         val cmtInsertBtn = findViewById<ImageButton>(R.id.cmtInsertimageButton)
+        val cmtBackBtn = findViewById<ImageButton>(R.id.cmtBackBtn)
 
         if(uri != ""){
             if(uri.equals("profile3")){
@@ -65,6 +64,18 @@ class CommentActivity : AppCompatActivity() {
             data = SnsDao.getInstance().allComment(seqData)
             adapter.addComment(dto)
             cmtInsertContentEditText.text = null
+
+        }
+        cmtBackBtn.setOnClickListener {
+            val data = SnsDao.getInstance().allSns()
+            val adapter = CustomAdapter(SnsActivity().context(),data,supportFragmentManager)
+            val snsCommentCountText = findViewById<TextView>(R.id.commentCountTextView)
+            val seq =intent.getStringExtra("seq")
+            snsCommentCountText.text = "댓글 ${SnsDao.getInstance().snsCommentCount(seq!!.toInt())}개"
+            val i = Intent(this,SnsActivity::class.java)
+            startActivity(i)
+
+
 
         }
 

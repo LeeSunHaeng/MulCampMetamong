@@ -9,7 +9,7 @@
   INSERT INTO META_SNS(SNSSEQ,ID,NICKNAME,PROFILE,
   SNSDATE,IMAGECONTENT,LIKECOUNT,COMMENTCOUNT,CONTENT)
   VALUES(SEQSNS.NEXTVAL,#{id},#{nickname},#{profile},
-  TO_DATE(SYSDATE,'YYYY/MM/DD HH24:MI:SS'),#{imagecontent}
+  SYSDATE,#{imagecontent}
   ,0,0,#{content})
   </insert>
   
@@ -57,6 +57,12 @@
   SELECT COUNT(*)
   FROM SNS_LIKE
   WHERE LIKESEQ = #{likeseq}
+  </select>
+  
+  <select id="snsCommentCount" parameterType="Integer" resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
   </select>
   
   <delete id="snsLikeDelete" parameterType="mul.camp.a.dto.SnsLikeDto">

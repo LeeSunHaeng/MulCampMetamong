@@ -31,11 +31,16 @@ interface SnsService{
     @POST("/snsLikeCount")
     fun snsLikeCount(@Query("seq") seq:Int) : Call<Int>
 
+    @POST("snsCommentCount")
+    fun snsCommentCount(@Query("seq") seq:Int) : Call<Int>
+
     @POST("/snsLikeCheck")
     fun snsLikeCheck(@Body dto:SnsLikeDto) : Call<Int>
 
     @GET("allComment")
     fun allComment(@Query("seq") seq:Int) : Call<List<SnsCommentDto>>
+
+
 
 
 
@@ -110,6 +115,15 @@ class SnsDao {
         val retrofit = RetrofitClient.getInstance()
         val service = retrofit?.create(SnsService::class.java)
         val call = service?.snsLikeCount(seq)
+        val response = call?.execute()
+
+        return response?.body()!!
+    }
+
+    fun snsCommentCount(seq:Int) :Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsCommentCount(seq)
         val response = call?.execute()
 
         return response?.body()!!

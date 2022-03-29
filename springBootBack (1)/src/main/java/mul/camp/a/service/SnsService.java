@@ -63,4 +63,8 @@ public class SnsService {
 		System.out.println("snsLikeCount service 실행");
 		return dao.snsLikeCount(seq);
 	}
+	public int snsCommentCount(int seq) {
+		System.out.println("snsCommentCount service 실행");
+		return dao.snsCommentCount(seq);
+	}
 }
