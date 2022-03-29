@@ -24,6 +24,11 @@ public class SnsService {
 		return dao.snsInsert(dto);
 	}
 	
+	public int snsCommentInsert(SnsCommentDto dto) {
+		System.out.println("snsCommentInsert service 실행");
+		return dao.snsCommentInsert(dto);
+	}
+	
 	public MemberDto snsGetMmeber(String id) {
 		System.out.println("snsGetMmeber service 실행");
 		return dao.snsGetMmeber(id);

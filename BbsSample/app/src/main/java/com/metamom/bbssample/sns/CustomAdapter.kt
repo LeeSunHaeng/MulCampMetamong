@@ -13,14 +13,19 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
 
-class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
+class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmentmanager : FragmentManager) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 
+    private var mFragmentManager : FragmentManager
+    init{
+        mFragmentManager = fragmentmanager
+    }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
@@ -33,8 +38,9 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
         val snsContent = itemView.findViewById<TextView>(R.id.contentTextView)
         val likeBtn = itemView.findViewById<ImageButton>(R.id.likeImageButton)
         val snsCommentBtn = itemView.findViewById<ImageButton>(R.id.commentImageButton)
+        val snsSettingBtn = itemView.findViewById<ImageButton>(R.id.settingImageButton)
 
-        fun bind(dataVo:SnsDto, context: Context){
+        fun bind(dataVo: SnsDto, context: Context, mFragmentManager: FragmentManager){
 
             //프로필 이미지 뿌려주기
             if(dataVo.profile != ""){
@@ -128,11 +134,17 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
                 snsLikeCount.text = SnsDao.getInstance().snsLikeCount(dataVo.seq).toString()
 
             }
+            //댓글 아이콘 클릭시
             snsCommentBtn.setOnClickListener {
                 Intent(context,CommentActivity::class.java).apply {
                     putExtra("seq",dataVo.seq)
                 }.run { context.startActivity(this) }
 
+            }
+            //셋팅 버튼 클릭시
+            snsSettingBtn.setOnClickListener {
+                val snsBottomSheet = SnsBottomSheet()
+                snsBottomSheet.show(mFragmentManager,snsBottomSheet.tag)
             }
 
 
@@ -153,12 +165,11 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>) : Recyc
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(snsList[position], context)
+
+        holder.bind(snsList[position], context,mFragmentManager)
     }
 
     override fun getItemCount(): Int {
         return snsList.size
-    }
-
-
+}
 }

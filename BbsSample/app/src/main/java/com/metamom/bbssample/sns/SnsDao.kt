@@ -22,6 +22,9 @@ interface SnsService{
     @POST("/snsLikeInsert")
     fun snsLikeInsert(@Body dto:SnsLikeDto) : Call<Int>
 
+    @POST("/snsCommentInsert")
+    fun snsCommentInsert(@Body dto:SnsCommentDto) : Call<Int>
+
     @POST("/snsLikeDelete")
     fun snsLikeDelete(@Body dto:SnsLikeDto) : Call<Int>
 
@@ -33,6 +36,7 @@ interface SnsService{
 
     @GET("allComment")
     fun allComment(@Query("seq") seq:Int) : Call<List<SnsCommentDto>>
+
 
 
 }
@@ -55,6 +59,14 @@ class SnsDao {
         val call = service?.snsInsert(dto)
         val response = call?.execute()
 
+        return response?.body()
+    }
+
+    fun snsCommentInsert(dto:SnsCommentDto) : Int? {
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsCommentInsert(dto)
+        val response = call?.execute()
         return response?.body()
     }
 

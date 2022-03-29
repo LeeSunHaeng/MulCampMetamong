@@ -30,6 +30,14 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsCommentInsert", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsCommentInsert(@RequestBody SnsCommentDto dto) {
+		System.out.println("snsCommentInsert 실행 성공");
+		int num = service.snsCommentInsert(dto);
+		return num;
+	}
+	
+	
 	@RequestMapping(value = "/snsGetMember", method = {RequestMethod.GET, RequestMethod.POST} )
 	public MemberDto snsGetMember(String id) {
 		System.out.println("snsGetMember 실행 성공");

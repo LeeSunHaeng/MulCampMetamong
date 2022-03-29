@@ -28,13 +28,20 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             val wdate = dataVo.wdate!!.split("-")
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
-                    cmtWriteTime.text = "${wdate.get(2)}분"
+                    if(wdate.get(2).equals("0")) {
+                        cmtWriteTime.text = "방금"
+                    }else{
+                        cmtWriteTime.text = "${wdate.get(2)}분"
+                    }
                 }else{
                     cmtWriteTime.text = "${wdate.get(1)}시간"
                 }
             }else if(wdate.get(0).equals("1")){
                 cmtWriteTime.text = "어제"
-            }else{
+            }else if(wdate.get(0).equals("방금")){
+                cmtWriteTime.text = "방금"
+            }
+            else{
                 cmtWriteTime.text = "${wdate.get(0)}일"
             }
 
@@ -70,5 +77,11 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
 
     override fun getItemCount(): Int {
         return commentList.size
+    }
+
+    fun addComment(dto:SnsCommentDto){
+        commentList.add(dto)
+        notifyItemInserted(commentList.size-1) //갱신
+
     }
 }

@@ -40,12 +40,17 @@
        CONTENT
   FROM SNS_COMMENT
   WHERE SEQ=#{seq}
-  ORDER BY WDATE
+  ORDER BY WDATE DESC
   </select>
   
   <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
   INSERT INTO SNS_LIKE(LIKESEQ,ID,LIKEDATE)
   VALUES(#{likeseq},#{id},SYSDATE)
+  </insert>
+  
+  <insert id="snsCommentInsert" parameterType = "mul.camp.a.dto.SnsCommentDto">
+  INSERT INTO SNS_COMMENT(SEQ,ID,NICKNAME,PROFILE,WDATE,CONTENT)
+  VALUES(#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
   </insert>
   
   <select id="snsLikeCount" parameterType="Integer" resultType="Integer">
