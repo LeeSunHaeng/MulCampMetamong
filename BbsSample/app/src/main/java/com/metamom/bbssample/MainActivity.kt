@@ -8,6 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.fragment.app.Fragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
@@ -21,7 +28,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var pwd: EditText
     lateinit var loginBtn: Button
     lateinit var kakaoBtn: TextView
-    lateinit var idCheck: RadioButton
+    lateinit var idSave: CheckBox
+
+    // 구글 로그인 변수
+    final val RC_SIGN_IN = 1
+    lateinit var googleBtn: TextView
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         id = findViewById(R.id.editId)
         pwd = findViewById(R.id.editPwd)
         loginBtn = findViewById(R.id.loginBtn)
+        googleBtn = findViewById(R.id.googleBtn)
         kakaoBtn = findViewById(R.id.kakaoBtn)
+        idSave = findViewById(R.id.idSave)
 
         // #21# Login 버튼 클릭 시 main button 페이지로 이동
         loginBtn.setOnClickListener {
@@ -55,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
             if (dto != null) {
+
                 MemberDao.user = dto
                 MemberSingleton.id = dto.id
                 Toast.makeText(this, "${dto.id}님 환영합니다", Toast.LENGTH_LONG).show()
@@ -91,6 +106,54 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, InsertActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
             startActivity(i)
+        }
+
+        // 구글 로그인
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        googleBtn.setOnClickListener {
+            signIn()
+            val i = Intent(this, MainButtonActivity::class.java)
+            startActivity(i)
+        }
+    }
+
+    private fun signIn() {
+        var signInIntent: Intent = mGoogleSignInClient.getSignInIntent()
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val email = account?.email.toString()
+            val familyName = account?.familyName.toString()
+            val givenName = account?.givenName.toString()
+            val displayName = account?.displayName.toString()
+
+            Log.d("account", email)
+            Log.d("account", familyName)
+            Log.d("account", givenName)
+            Log.d("account", displayName)
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
 
         // 카카오 키해시 확인
@@ -141,29 +204,19 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } else if (token != null) {
-                Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainButtonActivity::class.java)
-                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
                 finish()
             }
         }
 
-            kakaoBtn.setOnClickListener {
-                if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
-                    UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-                } else {
-                    UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
-                }
+        kakaoBtn.setOnClickListener {
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            } else {
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
-
-
-        // 아이디 저장
-        /*private fun saveData() {
-
-
-
-    }*/
+        }
     }
-
 }
+
 

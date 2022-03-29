@@ -19,6 +19,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
+
         <activity
                 android:name=".sns.CommentActivity"
                 android:windowSoftInputMode="adjustPan"
