@@ -76,6 +76,10 @@
                 android:layout_height="67dp"
                 android:id="@+id/kakaoLogoutBtn"
                 android:layout_gravity="center"/>
+        <Button
+                android:text="레시피로 이동"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/recipeBtn"/>
 
     </LinearLayout>
 

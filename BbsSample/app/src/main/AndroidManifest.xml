@@ -57,6 +57,12 @@
                 android:name=".MainActivity"
                 android:exported="true"/>
         <activity
+                android:name="com.metamom.bbssample.recipe2.DetailRecipe"
+                android:exported="true"/>
+        <activity
+                android:name="com.metamom.bbssample.recipe2.RecipeMainActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".SplashActivity"
                 android:exported="true"
                 android:theme="@style/Theme.BbsSample.Splash">

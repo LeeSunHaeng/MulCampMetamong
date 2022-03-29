@@ -49,7 +49,7 @@ public class SnsController {
 	public ArrayList<SnsDto> allSns() {
 		System.out.println("allSns 실행 성공");
 		ArrayList<SnsDto> list = service.allSns();
-		System.out.println(list.get(0));
+		
 		return list;
 	}
 	

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.kakao.sdk.user.UserApiClient
 import com.metamom.bbssample.FoodListMeals.FoodListMeals
+import com.metamom.bbssample.recipe2.RecipeMainActivity
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
@@ -42,6 +43,7 @@ class MainButtonActivity : AppCompatActivity() {
 
         val snsBtn = findViewById<Button>(R.id.SnsBtn)
         val haebinBtn = findViewById<Button>(R.id.haebinBtn)
+        val recipeBtn = findViewById<Button>(R.id.recipeBtn)
 
         //sns 이동 버튼
         snsBtn.setOnClickListener {
@@ -51,6 +53,11 @@ class MainButtonActivity : AppCompatActivity() {
 
         haebinBtn.setOnClickListener {
             val i = Intent(this, FoodListMeals::class.java)
+            startActivity(i)
+        }
+
+        recipeBtn.setOnClickListener {
+            val i = Intent(this, RecipeMainActivity::class.java)
             startActivity(i)
         }
 
