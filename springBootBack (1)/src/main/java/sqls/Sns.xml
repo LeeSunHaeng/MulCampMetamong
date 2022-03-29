@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace ="mul.camp.a.dao.SnsDao">
+  
+  <insert id="snsInsert" parameterType="mul.camp.a.dto.SnsDto">
+  INSERT INTO META_SNS(SNSSEQ,ID,NICKNAME,PROFILE,
+  SNSDATE,IMAGECONTENT,LIKECOUNT,COMMENTCOUNT,CONTENT)
+  VALUES(SEQSNS.NEXTVAL,#{id},#{nickname},#{profile},
+  SYSDATE,#{imagecontent}
+  ,0,0,#{content})
+  </insert>
+  
+  <select id="snsGetMmeber" 
+  parameterType="String" resultType="mul.camp.a.dto.MemberDto">  
+  SELECT *
+  FROM META_MEMBER
+  WHERE id=#{id}
+  </select>
+  
+  <select id="allSns" resultType="mul.camp.a.dto.SnsDto">
+  
+  SELECT SNSSEQ,ID,NICKNAME,PROFILE,
+   	TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(SNSDATE) || '-' || 
+       TRUNC(((SYSDATE - SNSDATE) - TRUNC(SYSDATE - SNSDATE)) * 24) || '-'  ||
+       TRUNC(MOD((SYSDATE - SNSDATE)*24,1)*60) AS SNSDATE,
+   IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
+  FROM META_SNS 
+  ORDER BY SNSDATE
+  </select>
+  
+  <select id="allComment" parameterType = "Integer"
+   resultType="mul.camp.a.dto.SnsCommentDto">
+  SELECT SEQ,ID,NICKNAME,PROFILE,
+  	   TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(WDATE) || '-' || 
+       TRUNC(((SYSDATE - WDATE) - TRUNC(SYSDATE - WDATE)) * 24) || '-'  ||
+       TRUNC(MOD((SYSDATE - WDATE)*24,1)*60) AS WDATE,
+       CONTENT
+  FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
+  ORDER BY WDATE DESC
+  </select>
+  
+  <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
+  INSERT INTO SNS_LIKE(LIKESEQ,ID,LIKEDATE)
+  VALUES(#{likeseq},#{id},SYSDATE)
+  </insert>
+  
+  <insert id="snsCommentInsert" parameterType = "mul.camp.a.dto.SnsCommentDto">
+  INSERT INTO SNS_COMMENT(SEQ,ID,NICKNAME,PROFILE,WDATE,CONTENT)
+  VALUES(#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
+  </insert>
+  
+  <select id="snsLikeCount" parameterType="Integer" resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_LIKE
+  WHERE LIKESEQ = #{likeseq}
+  </select>
+  
+  <select id="snsCommentCount" parameterType="Integer" resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
+  </select>
+  
+  <delete id="snsLikeDelete" parameterType="mul.camp.a.dto.SnsLikeDto">
+  DELETE FROM SNS_LIKE
+  WHERE LIKESEQ=#{likeseq} AND ID=#{id}
+  </delete>
+  
+  <select id="snsLikeCheck" parameterType="mul.camp.a.dto.SnsLikeDto"
+   resultType="Integer">
+  SELECT COUNT(*)
+  FROM SNS_LIKE
+  WHERE LIKESEQ=#{likeseq} AND ID=#{id}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  </mapper>

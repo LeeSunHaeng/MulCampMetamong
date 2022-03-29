@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
             if (dto != null) {
                 MemberDao.user = dto
-
+                MemberSingleton.id = dto.id
                 Toast.makeText(this, "${dto.id}님 환영합니다", Toast.LENGTH_LONG).show()
                 // login 되면 이동
                 val i = Intent(this, MainButtonActivity::class.java)

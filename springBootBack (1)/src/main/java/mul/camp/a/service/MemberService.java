@@ -22,7 +22,7 @@ public class MemberService {
 	
 	public boolean addmember(MemberDto dto) {
 		int n = dao.addmember(dto);
-		
+		System.out.println(dto.toString());
 		return n>0?true:false;
 	}
 	

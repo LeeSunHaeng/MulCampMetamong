@@ -7,10 +7,12 @@ class MemberSingleton {
     *  - Back _login(MemberDto dto) -> return MemberDto */
     companion object {
         var id :String? = null
+        var nickname:String? = null
+        var profile:String? = null
         var subscribe :String? = null
 
         override fun toString(): String {
-            return "MemberDto(id=$id, subscribe=$subscribe)"
+            return "MemberDto(id=$id, subscribe=$subscribe subscribe=$nickname subscribe=$profile)"
         }
     }
 
