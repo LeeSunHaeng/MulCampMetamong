@@ -1,5 +1,6 @@
 package com.metamom.bbssample
 
+import com.metamom.bbssample.FoodListMeals.FoodListMeals
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -39,14 +40,16 @@ class MainActivity : AppCompatActivity() {
 
             var dto = MemberDao.getInstance()
                 .login(
-                    MemberDto(userId, userPwd, "", "",
+                    MemberDto(
+                        userId, userPwd, "", "",
                         "", "", "", 0.0,
                         0.0, "n", 0, 0, "",
-                        0.0, "")
+                        0.0, ""
+                    )
                 )
 
             /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-
+            MemberSingleton.id = dto?.id
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
             Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
@@ -62,6 +65,25 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
             }
         }
+
+
+        /*loginBtn.setOnClickListener {
+
+            val id = editId.text.toString()
+            val password = editPw.text.toString()
+            println("~~~~~~~~~~$id, $password")
+            var dto = MemberDao.getInstance().login(MemberDto(id, password, "", "", 0))
+            if(dto != null){
+                MemberDao.user = dto
+
+                Toast.makeText(this, "${dto.name}님 환영합니다", Toast.LENGTH_LONG).show()
+
+                 //login 되면 이동
+                //val i = Intent(this, BbsListActivity::class.java)
+
+            }else { Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
+           }
+        }*/
 
         val insertMemberBtn = findViewById<TextView>(R.id.insertMemberBtn)
         insertMemberBtn.setOnClickListener {
@@ -80,8 +102,7 @@ class MainActivity : AppCompatActivity() {
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Log.e("MainActivity", "토큰 정보 보기 실패")
-            }
-            else if (tokenInfo != null) {
+            } else if (tokenInfo != null) {
                 Log.e("MainActivity", "토큰 정보 보기 성공")
                 val intent = Intent(this, MainButtonActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -119,8 +140,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-            else if (token != null) {
+            } else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainButtonActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -128,20 +148,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        kakaoBtn.setOnClickListener {
-            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
-                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            }else{
-                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            kakaoBtn.setOnClickListener {
+                if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                    UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+                } else {
+                    UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+                }
             }
-        }
+
+
+        // 아이디 저장
+        /*private fun saveData() {
+
+
+
+    }*/
     }
 
-    // 아이디 저장
-    private fun saveData() {
-
-
-
-    }
 }
 

@@ -1,4 +1,5 @@
-package com.metamom.bbssample
+package com.metamom.bbssample.FoodListMeals
+
 
 import android.Manifest
 import android.app.Activity
@@ -14,12 +15,22 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.metamom.bbssample.MemberDao
+import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleton.MemberSingleton
+import kotlinx.android.synthetic.main.activity_add_food_list.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-class addFoodList : AppCompatActivity() {
+class AddFoodList : AppCompatActivity() {
+    var imgUri:String = ""
+
     //카메라 , 스토리지 권한 변수
     val CAMERA = arrayOf(Manifest.permission.CAMERA)
     val STORAGE = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -28,22 +39,31 @@ class addFoodList : AppCompatActivity() {
     val CAMERA_CODE = 98
     val STORAGE_CODE = 99
 
+    
+    @RequiresApi(Build.VERSION_CODES.O) // 날짜 어노테이션
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_food_list)
 
         val cameraBtn = findViewById<ImageButton>(R.id.cameraBtn)
         val albumBtn = findViewById<ImageButton>(R.id.albumBtn)
-        val scoreText = findViewById<TextView>(R.id.scoreText)
-        val spinnerKind = findViewById<TextView>(R.id.selectKind)
+        val scoreText = findViewById<TextView>(R.id.scoreText) // 맛점수
+        val editMemoText = findViewById<EditText>(R.id.editMemoText)// 메모
+        var date = LocalDateTime.now()
+
+        if(imgUri == null){
+            imgUri = null.toString()
+        }
         //카메라
         cameraBtn.setOnClickListener {
             camera()
+            println("!!!!!!!!!! : " + imgUri)
 
         }
         //앨범
         albumBtn.setOnClickListener {
             Album()
+            println("!!!!!!!!!! : " + imgUri)
         }
         //음식 점수 radio group
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
@@ -59,6 +79,29 @@ class addFoodList : AppCompatActivity() {
         //분류 스피너
         spinnerTimeKind() // 스피너
         spinnerSelect() // 선택
+
+        //작성
+        val saveListBtn = findViewById<Button>(R.id.saveListBtn)
+        saveListBtn.setOnClickListener {
+            FoodListMealsDao.getInstance().FoodListTest(FoodListMealsDto
+                                                        ("${MemberSingleton.id}",
+                                                        0,
+                                                        "${date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))}",//YYYY-MM-DD 형식으로 저장
+                                                        "${selectKind.text}",
+                                                        "${editMemoText.text}",
+                                                        "${imgUri}",
+                                                        "${scoreText.text}",
+                                                        0))
+            Toast.makeText(this,"저장완료",Toast.LENGTH_SHORT).show()
+
+            val i = Intent(this, FoodListMeals::class.java)
+            startActivity(i)
+            //확인용
+            /*val List = FoodListMealsDao.getInstance().FoodListSelect()
+            println(List[0].toString())
+            Toast.makeText(this,"${List[0].toString()}",Toast.LENGTH_LONG).show()
+*/
+        }
 
     }
 
@@ -85,6 +128,7 @@ class addFoodList : AppCompatActivity() {
         }
 
     }
+
     fun getPath(uri:Uri?):String{
         val projection = arrayOf<String>(MediaStore.Images.Media.DATA)
         val cursor:Cursor =managedQuery(uri,projection,null,null,null)
@@ -160,17 +204,16 @@ class addFoodList : AppCompatActivity() {
                         Toast.makeText(this,"$uri",Toast.LENGTH_SHORT).show()
                         println("경로: $uri")
                         println("실제 이미지 경로 : " +getPath(uri))
+                        imgUri =  getPath(uri)
                     }
                 }
                 STORAGE_CODE ->{
                     val uri = data?.data
                     albumImg.setImageURI(uri)
+                    imgUri =  getPath(uri)
                 }
             }
-        }
-        //다른 화면에서 사용하게.
-        fun albumIngMove(){
-            albumImg
+
         }
     }
     //파일명 날짜로 저장
@@ -190,7 +233,7 @@ class addFoodList : AppCompatActivity() {
     fun spinnerTimeKind(){
         val timeKind = resources.getStringArray(R.array.kind)
 
-        val adapter = ArrayAdapter(this,R.layout.food_list_spinner,timeKind)
+        val adapter = ArrayAdapter(this, R.layout.food_list_spinner,timeKind)
 
         val spinner = findViewById<Spinner>(R.id.spinner)
         spinner.adapter=adapter

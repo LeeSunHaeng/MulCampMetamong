@@ -41,7 +41,7 @@ class RetrofitClient {
 
                 // ScalarsConverterFactory 만을 사용해야 한다
                 instanceStr = Retrofit.Builder()
-                    .baseUrl("http://192.168.0.29:3000/")
+                    .baseUrl("http://192.168.35.64:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build()//주석
             }

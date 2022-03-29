@@ -25,6 +25,10 @@
                 android:exported="true"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
+                android:name=".FoodListMeals.FoodListMealsUpdate"
+                android:exported="true"/>
+        <activity
+                android:name=".FoodListMeals.FoodListDetail"
                 android:exported="true"/>
         <activity
                 android:name=".subscribe.SubInfoActivity"
@@ -42,10 +46,10 @@
                 android:name=".MainButtonActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".addFoodList"
+                android:name=".FoodListMeals.AddFoodList"
                 android:exported="true"/>
         <activity
-                android:name=".Food_List_Meals"
+                android:name=".FoodListMeals.FoodListMeals"
                 android:exported="true"/>
         <activity
                 android:name=".MainActivity"

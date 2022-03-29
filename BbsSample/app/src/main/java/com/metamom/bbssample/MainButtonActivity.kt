@@ -8,6 +8,7 @@ import android.widget.Button
 
 import android.widget.Toast
 import com.kakao.sdk.user.UserApiClient
+import com.metamom.bbssample.FoodListMeals.FoodListMeals
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
@@ -49,7 +50,7 @@ class MainButtonActivity : AppCompatActivity() {
         }
 
         haebinBtn.setOnClickListener {
-            val i = Intent(this, Food_List_Meals::class.java)
+            val i = Intent(this, FoodListMeals::class.java)
             startActivity(i)
         }
 

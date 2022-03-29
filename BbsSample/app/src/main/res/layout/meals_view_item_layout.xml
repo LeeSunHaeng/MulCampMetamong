@@ -9,38 +9,38 @@
 
     <ImageView
             android:layout_width="214dp"
-            android:layout_height="163dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
+            android:layout_height="163dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/foodImg"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.533"/>
     <TextView
             android:text="평점 : "
             android:textSize="20sp"
-            android:layout_width="124dp"
-            android:layout_height="29dp" android:id="@+id/likeCountTextView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            android:layout_marginStart="40dp" app:layout_constraintTop_toBottomOf="@+id/nickNameTextView"
-            android:layout_marginTop="20dp"/>
+            android:layout_width="277dp"
+            android:layout_height="30dp" android:id="@+id/foodScoreTxt"
+            app:layout_constraintStart_toEndOf="@+id/foodImg"
+            android:layout_marginStart="40dp" app:layout_constraintTop_toBottomOf="@+id/foodKindTxt"
+            android:layout_marginTop="8dp"/>
     <TextView
             android:text="시간 : "
             android:textSize="20sp"
             android:layout_width="122dp"
-            android:layout_height="25dp" android:id="@+id/nickNameTextView"
-            app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_marginTop="24dp" android:layout_marginStart="40dp"/>
+            android:layout_height="25dp" android:id="@+id/timeTxt"
+            app:layout_constraintStart_toEndOf="@+id/foodKindTxt"
+            app:layout_constraintTop_toTopOf="@+id/foodKindTxt" android:layout_marginStart="16dp"/>
     <TextView
             android:text="분류 : "
             android:textSize="20sp"
             android:layout_width="125dp"
-            android:layout_height="26dp" android:id="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="26dp" android:id="@+id/foodKindTxt"
+            app:layout_constraintStart_toEndOf="@+id/foodImg" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp" android:layout_marginStart="40dp"/>
     <TextView
             android:text="메모 : "
             android:textSize="20sp"
-            android:layout_width="164dp"
-            android:layout_height="143dp"
-            app:layout_constraintStart_toEndOf="@+id/nickNameTextView"
+            android:layout_width="310dp"
+            android:layout_height="81dp"
+            app:layout_constraintStart_toEndOf="@+id/foodImg"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginStart="16dp" android:id="@+id/memoText"/>
+            android:layout_marginTop="88dp" android:id="@+id/memoTxt" android:layout_marginStart="40dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
