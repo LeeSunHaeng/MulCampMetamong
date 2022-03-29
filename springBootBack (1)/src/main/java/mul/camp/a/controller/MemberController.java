@@ -1,5 +1,7 @@
 package mul.camp.a.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sun.tools.javac.util.List;
 
 import mul.camp.a.dto.MemberDto;
 import mul.camp.a.service.MemberService;
@@ -31,6 +35,7 @@ public class MemberController {
 	@RequestMapping(value = "/addmember", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String addmember(@RequestBody MemberDto dto) {
 		System.out.println("MemberController addmember");
+		System.out.println(dto.toString());
 		
 		boolean b = service.addmember(dto);
 		if(b) {

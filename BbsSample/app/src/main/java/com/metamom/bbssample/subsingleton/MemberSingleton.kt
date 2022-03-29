@@ -1,4 +1,5 @@
-package com.metamom.bbssample.subsingleto
+package com.metamom.bbssample.subsingleton
+
 
 class MemberSingleton {
 
@@ -6,6 +7,8 @@ class MemberSingleton {
     *  - Back _login(MemberDto dto) -> return MemberDto */
     companion object {
         var id :String? = null
+        var nickname:String? = null
+        var profile:String? = null
         var subscribe :String? = null
         var height :Double? = null
         var weight :Double? = null

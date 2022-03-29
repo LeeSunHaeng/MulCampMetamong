@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.metamom.bbssample">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -9,6 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
+            android:name=".GlobalApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher_metamom"
             android:label="@string/app_name"
@@ -33,6 +35,19 @@
                 android:name=".subscribe.SubMyMealsActivity"
                 android:exported="true"/>
         <activity
+                android:name=".sns.CommentActivity"
+                android:windowSoftInputMode="adjustPan"
+                android:exported="true"/>
+        <activity
+                android:name=".sns.SnsInsertActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".FoodListMeals.FoodListMealsUpdate"
+                android:exported="true"/>
+        <activity
+                android:name=".FoodListMeals.FoodListDetail"
+                android:exported="true"/>
+        <activity
                 android:name=".subscribe.SubInfoActivity"
                 android:exported="true"/>
         <activity
@@ -48,10 +63,10 @@
                 android:name=".MainButtonActivity"
                 android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".addFoodList"
+                android:name=".FoodListMeals.AddFoodList"
                 android:exported="true"/>
         <activity
-                android:name=".Food_List_Meals"
+                android:name=".FoodListMeals.FoodListMeals"
                 android:exported="true"/>
         <activity
                 android:name=".MainActivity"
@@ -64,6 +79,21 @@
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
+                <data
+                        android:host="oauth"
+                        android:scheme="@string/kakao_native_key"/>
             </intent-filter>
         </activity>
     </application>

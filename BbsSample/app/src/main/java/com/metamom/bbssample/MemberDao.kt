@@ -3,21 +3,27 @@ package com.metamom.bbssample
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-import java.lang.Exception
 
 interface MemberService {
 
     // 7. 문자 보내기/ list 받기
+    //@FormUrlEncoded
     @POST("/login")
-    fun login(@Body dto:MemberDto): Call<MemberDto>
+    fun login(@Body dto: MemberDto): Call<MemberDto>
+
+    @POST("/addmember")
+    fun addmember(@Body dto: MemberDto): Call<MemberDto>
+
+
 }
+
 
 class MemberDao {
 
     // MemberDao의 싱글톤
     companion object {
         var memberdao: MemberDao? = null
-        var user:MemberDto? = null
+        var user: MemberDto? = null
 
         fun getInstance(): MemberDao {
             if (memberdao == null) {
@@ -43,5 +49,22 @@ class MemberDao {
 
         return response?.body() as MemberDto
     }
+
+    fun addmember(dto : MemberDto) : MemberDto? {
+
+        var response: Response<MemberDto>?
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(MemberService::class.java)
+            val call = service?.addmember(dto)
+            response = call?.execute()
+        }catch (e:Exception){
+            response = null
+        }
+        if(response == null) return null
+
+        return response?.body() as MemberDto
+    }
+
 }
 

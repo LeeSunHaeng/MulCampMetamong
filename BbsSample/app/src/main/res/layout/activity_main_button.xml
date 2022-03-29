@@ -37,6 +37,7 @@
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.002"
                 android:layout_marginBottom="16dp" app:layout_constraintTop_toBottomOf="@+id/main_subBtn"
                 app:layout_constraintVertical_bias="0.0"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,5 +74,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/main_textView5" app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.0"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+
+        <Button
+                android:id="@+id/SnsBtn"
+                android:text="Sns이동"
+                android:layout_width="160dp"
+                android:layout_height="66dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        <Button
+                android:text="해빈버튼"
+                android:layout_width="116dp"
+                android:layout_height="67dp"
+                android:id="@+id/haebinBtn"
+                android:layout_gravity="center"/>
+
+        <Button
+                android:text="카카오로그아웃"
+                android:layout_width="116dp"
+                android:layout_height="67dp"
+                android:id="@+id/kakaoLogoutBtn"
+                android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
