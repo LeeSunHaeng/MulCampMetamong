@@ -66,7 +66,8 @@ class CommentActivity : AppCompatActivity() {
             cmtInsertContentEditText.text = null
 
         }
-        cmtBackBtn.setOnClickListener {
+        //수정 해야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /*cmtBackBtn.setOnClickListener {
             val data = SnsDao.getInstance().allSns()
             val adapter = CustomAdapter(SnsActivity().context(),data,supportFragmentManager)
             val snsCommentCountText = findViewById<TextView>(R.id.commentCountTextView)
@@ -77,7 +78,7 @@ class CommentActivity : AppCompatActivity() {
 
 
 
-        }
+        }*/
 
     }
     //EditText 이외의 영역을 터치하면 키보드가 내려가게 하는 함수
