@@ -12,7 +12,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
-import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 class SubMyMealsActivity : AppCompatActivity() {

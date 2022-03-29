@@ -12,7 +12,7 @@ interface MemberService {
     fun login(@Body dto: MemberDto): Call<MemberDto>
 
     @POST("/addmember")
-    fun addmember(@Body dto: MemberDto): Call<MemberDto>
+    fun addmember(@Body dto: MemberDto): Call<String>
 
 
 }
@@ -50,20 +50,21 @@ class MemberDao {
         return response?.body() as MemberDto
     }
 
-    fun addmember(dto : MemberDto) : MemberDto? {
+    fun addmember(dto : MemberDto) : String? {
 
-        var response: Response<MemberDto>?
+        var response: Response<String>?
         try {
             val retrofit = RetrofitClient.getInstance()
             val service = retrofit?.create(MemberService::class.java)
             val call = service?.addmember(dto)
             response = call?.execute()
+
         }catch (e:Exception){
             response = null
         }
         if(response == null) return null
 
-        return response?.body() as MemberDto
+        return response?.body() as String
     }
 
 }

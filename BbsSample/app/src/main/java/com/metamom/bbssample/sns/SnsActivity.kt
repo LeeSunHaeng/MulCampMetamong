@@ -31,7 +31,7 @@ class SnsActivity : AppCompatActivity() {
         data.add(SnsDto(1,"adrfs164","남주혁","profile3","2022-03-21","content://media/external/images/media/86",
             20,7,"치킨이 최고지.."))*/
 
-        var adapter = CustomAdapter(this,data,supportFragmentManager)
+        var adapter = CustomAdapter(this,data!!,supportFragmentManager)
         snsRecyclerView.adapter = adapter
 
         val layout = LinearLayoutManager(this)

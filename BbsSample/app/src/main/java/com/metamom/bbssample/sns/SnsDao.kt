@@ -84,7 +84,7 @@ class SnsDao {
         return response?.body() as MemberDto
     }
 
-    fun allSns() : ArrayList<SnsDto>{
+    fun allSns() : ArrayList<SnsDto>?{
         val retrofit = RetrofitClient.getInstance()
         val service = retrofit?.create(SnsService::class.java)
         val call = service?.allSns()

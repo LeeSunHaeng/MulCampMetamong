@@ -9,8 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
-import com.metamom.bbssample.subsingleto.MemberSingleton
-import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 /* #21# 구독 _오늘의 식단 RecyclerView에 드로잉하기 위하여 파일 사용 */
 class SubCustomAdapter (val context: Context, val dataDto: Any) :RecyclerView.Adapter<SubItemViewHolder>() {

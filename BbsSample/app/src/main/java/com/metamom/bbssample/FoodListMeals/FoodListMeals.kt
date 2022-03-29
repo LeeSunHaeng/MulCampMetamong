@@ -28,7 +28,7 @@ class FoodListMeals : AppCompatActivity() {
         var clickDay = findViewById<TextView>(R.id.clickDay)
         val myFoodListBtn = findViewById<TextView>(R.id.myFoodListBtn)
 
-        println(FoodList.get(0).seqfoodlist)
+
 
 
         cal.setOnDateChangeListener {cal,year,month,day ->

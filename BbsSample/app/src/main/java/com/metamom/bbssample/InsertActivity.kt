@@ -112,15 +112,16 @@ class InsertActivity : AppCompatActivity() {
             }
 
             if (isGoToJoin) {
-                MemberDao.getInstance().addmember(
+                val dto=MemberDao.getInstance().addmember(
                     MemberDto(
                         userId, userPwd, userName,
                         userEmail, userGender, userPhone, userNickName,
                         userHeight, userWeight, "n", 0, 0,
                         userBirth, 0.0, ""
                     )
-                )
 
+                )
+                println(dto)
 
                 Toast.makeText(this, "가입되었습니다", Toast.LENGTH_LONG).show()
 

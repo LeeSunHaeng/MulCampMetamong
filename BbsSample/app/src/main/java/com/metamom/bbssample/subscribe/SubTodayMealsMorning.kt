@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
-import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 class SubTodayMealsMorning : AppCompatActivity() {

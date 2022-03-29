@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.*
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
-import com.metamom.bbssample.subsingleto.MemberSingleton
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubAddSingleton
 
 class SubAddActivity : AppCompatActivity() {

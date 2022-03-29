@@ -12,7 +12,6 @@ import android.widget.TextView
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubscribeDao
 import com.metamom.bbssample.subscribe.SubscribeDto
-import com.metamom.bbssample.subsingleto.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 import android.widget.*
 import com.kakao.sdk.auth.model.OAuthToken
@@ -39,27 +38,52 @@ class MainActivity : AppCompatActivity() {
         loginBtn = findViewById(R.id.loginBtn)
         kakaoBtn = findViewById(R.id.kakaoBtn)
 
-        // #21# Login 버튼 클릭 시 main button 페이지로 이동
         loginBtn.setOnClickListener {
 
-            /* #21# [for 구독여부 판단, test용] Login 시 현재 로그인한 사용자를 구독 회원여부 판단 진행 후 로그인한 사용자의 정보를 MemberSingleton에 저장
-            *        > 만약 구독 만료회원일 경우 == 구독값(subscribe 컬럼) 0으로 변경 + 구독 DB에서 삭제 */
-            MemberSingleton.id = "zeze3"
+            val userId = id.text.toString()
+            val userPwd = pwd.text.toString()
+
+            var dto = MemberDao.getInstance()
+                .login(
+                    MemberDto(
+                        userId, userPwd, "", "",
+                        "", "", "", 0.0,
+                        0.0, "n", 0, 0, "",
+                        0.0, ""
+                    )
+                )
+
+            /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
+            //MemberSingleton.id = dto?.id
+            //MemberSingleton.subscribe = "1"             // 1 = 구독
+            //MemberSingleton.subscribe = "0"          // 0 = 비구독
+            //Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
+
+            if (dto != null) {
+                MemberDao.user = dto
+                MemberSingleton.id = dto.id
+                Toast.makeText(this, "${dto.id}님 환영합니다", Toast.LENGTH_LONG).show()
+                // login 되면 이동
+                val i = Intent(this, MainButtonActivity::class.java)
+                startActivity(i)
+            } else {
+                Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
+            }
+        }
+
+        // #21# Login 버튼 클릭 시 main button 페이지로 이동
+       /* loginBtn.setOnClickListener {
+
+            *//* #21# [for 구독여부 판단, test용] Login 시 현재 로그인한 사용자를 구독 회원여부 판단 진행 후 로그인한 사용자의 정보를 MemberSingleton에 저장
+            *        > 만약 구독 만료회원일 경우 == 구독값(subscribe 컬럼) 0으로 변경 + 구독 DB에서 삭제 *//*
+           *//* MemberSingleton.id = "zeze3"
             MemberSingleton.subscribe = "1"                                  // 1 = 구독
             //MemberSingleton.subscribe = "0"                                  // 0 = 비구독
             MemberSingleton.height = 150.4
             MemberSingleton.weight = 42.7
-            /*MemberSingleton.id = "zeze4"
-            MemberSingleton.subscribe = "1"                                  // 1 = 구독
-            MemberSingleton.height = 189.1
-            MemberSingleton.weight = 87.3*/
-            /*MemberSingleton.id = "zeze6"
-            MemberSingleton.subscribe = "1"                                  // 1 = 구독
-            MemberSingleton.height = 165.2
-            MemberSingleton.weight = 42.1*/
-            Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
+            Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")*//*
 
-            /* #21# 구독만료 확인 */
+            *//* #21# 구독만료 확인 *//*
             if (MemberSingleton.subscribe == "1"){      // 구독 회원일 경우 구독 만료확인
                 // 1) 현재 로그인한 사용자의 구독 정보 가져오기 (subInfo)
                 var subInfo = SubscribeDao.getInstance().getSubInfo(MemberSingleton.id.toString())
@@ -85,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                     if (subEndCheck == "SuccessEnd"){
                         Log.d("MainActivity", "#21# 구독 만료임에 따라 멤버 TABLE 구독값 수정 & 구독 TABLE 내 삭제")
 
-                        /* !!!! 회원정보 다시 가져와서 MemberSingleton에 넣기 _구독만료로 구독값 변경했으니까 */
+                        *//* !!!! 회원정보 다시 가져와서 MemberSingleton에 넣기 _구독만료로 구독값 변경했으니까 *//*
                     }
                 }
                 else {
@@ -108,7 +132,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
 
-            /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
+            *//* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 *//*
             MemberSingleton.id = dto?.id
             MemberSingleton.subscribe = "1"             // 1 = 구독
             //MemberSingleton.subscribe = "0"          // 0 = 비구독
@@ -124,7 +148,7 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
             }
-        }
+        }*/
 
 
         /*loginBtn.setOnClickListener {
