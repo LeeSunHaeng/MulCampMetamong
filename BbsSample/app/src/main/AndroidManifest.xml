@@ -25,6 +25,8 @@
                 android:exported="true"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".FoodListMeals.FoodListMealsUpdate"
                 android:exported="true"/>
         <activity
