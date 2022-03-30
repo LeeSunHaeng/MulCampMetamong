@@ -21,6 +21,7 @@ import com.metamom.bbssample.databinding.FragmentHomeBinding
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
+import com.metamom.bbssample.subscribe.SubMyMealsActivity
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
 // TODO: Rename parameter arguments, choose names that match
@@ -48,9 +49,9 @@ class HomeFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        /* '구독 신청' Button 클릭 시 구독 여부 확인
-       *   case_1) 구독일 경우 구독 정보 출력 페이지로 이동
-       *   case_2) 구독이 아닐경우 구독 신청 페이지로 이동 */
+        /* #21# '구독 신청' Button 클릭 시 구독 여부 확인
+         *   case_1) 구독일 경우 구독 정보 출력 페이지로 이동
+         *   case_2) 구독이 아닐경우 구독 신청 페이지로 이동 */
         binding.mainSubBtn.setOnClickListener {
 
             if(MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
@@ -99,8 +100,18 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
         }
 
+        /* #21# [구독] 오늘의 식단
+        *  case_1) 구독일 경우 > MealFragment로 이동
+        *  case_2) 구독이 아닐 경우 > HomeFragment로 이동 */
         binding.mealTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
+
+            if (MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
+                Toast.makeText(activity, "구독 서비스 입니다!", Toast.LENGTH_LONG).show()
+                it.findNavController().navigate(R.id.action_homeFragment_self)
+            }
+            else {                                          // case_1) 구독일 경우
+                it.findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
+            }
         }
 
         binding.recipeTap.setOnClickListener {
