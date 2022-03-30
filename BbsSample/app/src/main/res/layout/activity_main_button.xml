@@ -10,9 +10,8 @@
         tools:context=".MainButtonActivity">
 
     <!-- #21# [구독기능] 구독버튼 +  SubActivity와 연결 -->
-
     <!-- #21# [참고]연두색 테두리 적용을 위하여 edge.xml 파일 생성 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
             android:background="@drawable/edge"
             android:layout_width="520dp"
             android:layout_height="120dp"
@@ -21,7 +20,7 @@
             android:layout_marginEnd="24dp" android:layout_marginStart="24dp"
             app:layout_constraintVertical_bias="0.28" android:id="@+id/constraintLayout">
 
-        <!-- [추가 필요] background 화이트로 설정 + font 적용 -->
+        &lt;!&ndash; [추가 필요] background 화이트로 설정 + font 적용 &ndash;&gt;
         <Button
                 android:id="@+id/main_subBtn"
                 android:background="#00ff0000"
@@ -75,9 +74,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/main_textView5" app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintVertical_bias="0.0"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
     
-    <LinearLayout
+    <!--<LinearLayout-->
     <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
             android:name="androidx.navigation.fragment.NavHostFragment"
