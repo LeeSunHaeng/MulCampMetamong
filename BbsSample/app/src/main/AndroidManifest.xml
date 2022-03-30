@@ -19,6 +19,7 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
+
         <activity
                 android:name=".subscribe.SubTodayMealsSnack"
                 android:exported="true"/>
@@ -70,6 +71,12 @@
                 android:exported="true"/>
         <activity
                 android:name=".MainActivity"
+                android:exported="true"/>
+        <activity
+                android:name="com.metamom.bbssample.recipe2.DetailRecipe"
+                android:exported="true"/>
+        <activity
+                android:name="com.metamom.bbssample.recipe2.RecipeMainActivity"
                 android:exported="true"/>
         <activity
                 android:name=".SplashActivity"

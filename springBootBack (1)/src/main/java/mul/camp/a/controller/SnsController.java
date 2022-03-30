@@ -50,6 +50,7 @@ public class SnsController {
 		System.out.println("allSns 실행 성공");
 		ArrayList<SnsDto> list = service.allSns();
 	
+		
 		return list;
 	}
 	

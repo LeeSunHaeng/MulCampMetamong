@@ -1,7 +1,5 @@
 package com.metamom.bbssample
 
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +16,7 @@ import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
 
 /* #21# [구독] */
+
 class MainButtonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

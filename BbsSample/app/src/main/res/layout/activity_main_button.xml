@@ -5,6 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/meta_grey05"
         tools:context=".MainButtonActivity">
 
     <!-- #21# [구독기능] 구독버튼 +  SubActivity와 연결 -->
@@ -76,34 +78,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     
     <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical">
-
-        <Button
-                android:id="@+id/SnsBtn"
-                android:text="Sns이동"
-                android:layout_width="160dp"
-                android:layout_height="66dp"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        <Button
-                android:text="해빈버튼"
-                android:layout_width="116dp"
-                android:layout_height="67dp"
-                android:id="@+id/haebinBtn"
-                android:layout_gravity="center"/>
-
-        <Button
-                android:text="카카오로그아웃"
-                android:layout_width="116dp"
-                android:layout_height="67dp"
-                android:id="@+id/kakaoLogoutBtn"
-                android:layout_gravity="center"/>
-
-    </LinearLayout>
+            android:layout_height="match_parent"
+            app:navGraph="@navigation/main_nav"
+            app:defaultNavHost="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
