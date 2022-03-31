@@ -28,7 +28,7 @@ class SubAddActivity : AppCompatActivity() {
         setupSpinner()                                  // Spinner 세팅
         setupSpinnerHandler()                           // Spinner 선택 시 이벤트
 
-        /* #21# 구독신청 (+ 멤버 DB 내 구독값 수정) */
+        /* #21# 구독신청 (+ 멤버 TABLE 내 구독값 수정) */
         val subAddBtn = findViewById<Button>(R.id.subAdd_addBtn)
         subAddBtn.setOnClickListener {
 

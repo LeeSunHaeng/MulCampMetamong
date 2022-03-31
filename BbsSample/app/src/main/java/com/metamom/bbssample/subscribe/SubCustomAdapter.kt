@@ -34,6 +34,7 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
     private val foodImage = itemView.findViewById<ImageView>(R.id.subItem_imageView)
     private val foodName = itemView.findViewById<TextView>(R.id.subItem_foodNameTxt)
     private val foodKcal = itemView.findViewById<TextView>(R.id.subItem_kcalTxt)
+    private val foodAmount = itemView.findViewById<TextView>(R.id.subItem_amountTxt)
 
     /* #21# sub_view_item_meal 레이아웃에 값 넣기(bind) */
     fun bind(subDataVo: Any, context: Context){
@@ -44,7 +45,8 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
             Glide.with(itemView).load(imageUrl).into(foodImage)
 
             foodName.text = subDataVo.subdfName
-            foodKcal.text = subDataVo.subdfKcal.toString()
+            foodAmount.text = "${subDataVo.subdfAmount}g"
+            foodKcal.text = "${subDataVo.subdfKcal} Kcal"
         }
 
         // 2) [운동 식단] dataDto의 자료형이 SubExerMealDto(운동 식단)형이라면 운동 식단 Dto의 내용을 recycler에 binding
@@ -53,7 +55,8 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
             Glide.with(itemView).load(imageUrl).into(foodImage)
 
             foodName.text = subDataVo.subefName
-            foodKcal.text = subDataVo.subefKcal.toString()
+            foodAmount.text = "${subDataVo.subefAmount} g"
+            foodKcal.text = "${subDataVo.subefKcal} Kcal"
         }
 
     }

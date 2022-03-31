@@ -43,9 +43,9 @@ class SubInfoActivity : AppCompatActivity() {
                 typeTxt.text = "다이어트"
             } else if (subInfo.subType.toString() == "1"){
                 typeTxt.text = "운동"
-            } else {
+            } /*else {
                 typeTxt.text = "건강"
-            }
+            }*/
 
             periodTxt.text = "${subInfo.subPeriod.toString()}개월"
             startdayTxt.text = subInfo.subStartday.toString()

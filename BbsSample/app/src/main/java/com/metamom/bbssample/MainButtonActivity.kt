@@ -75,20 +75,5 @@ class MainButtonActivity : AppCompatActivity() {
         else if (MemberSingleton.subscribe == "0") {
             Log.d("MainButtonActivity", "#21# 현재 로그인한 사용자는 구독회원이 아님")
         }
-
-        /* #21# 식단정보 Button 클릭 > MealFragment로 옮김 */
-        /*val MealBtn = findViewById<Button>(R.id.main_myMealsBtn)
-        MealBtn.setOnClickListener {
-
-            if (MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
-                Toast.makeText(this, "구독 서비스 입니다!", Toast.LENGTH_LONG).show()
-
-                val i = Intent(this, SubAddActivity::class.java)
-                startActivity(i)
-            } else {                                          // case_1) 구독일 경우
-                val i = Intent(this, SubMyMealsActivity::class.java)
-                startActivity(i)
-            }
-        }*/
     }
 }

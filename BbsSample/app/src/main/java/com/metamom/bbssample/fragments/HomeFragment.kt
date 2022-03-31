@@ -118,6 +118,7 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_recipeFragment)
         }
 
+        /* #21# 마이페이지 */
         binding.accountTap.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
         }

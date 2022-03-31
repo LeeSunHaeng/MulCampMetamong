@@ -61,7 +61,6 @@ class MealFragment : Fragment() {
         Log.d("SubMyMealsActivity", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
 
         /* #21# 구독 신청 시간에 따라 동적 Button 생성 */
-
         var linearLayout = binding.root.findViewById<LinearLayout>(R.id.subFragMeal_linearLayout)
         var childLayout : LinearLayout? = null
         var btnCount = 0                            // 동적 Button 생성 개수를 저장할 변수
