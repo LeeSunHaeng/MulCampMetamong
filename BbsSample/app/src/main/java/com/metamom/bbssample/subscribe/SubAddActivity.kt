@@ -7,15 +7,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.navigation.findNavController
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
+import com.metamom.bbssample.databinding.ActivitySubAddBinding
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubAddSingleton
 
 class SubAddActivity : AppCompatActivity() {
+
+    /* #21# 구글 인앱 결제 사용을 위하여 binding 사용 */
+    private lateinit var binding: ActivitySubAddBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sub_add)
+        /* #21# 구글 인앱 결제 사용을 위하여 binding 사용 */
+        binding = ActivitySubAddBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //setContentView(R.layout.activity_sub_add)
 
         /* #21# 뒤로가기(이전화면) */
         val previousBtn = findViewById<ImageButton>(R.id.subAdd_PreBtn)
@@ -30,29 +39,40 @@ class SubAddActivity : AppCompatActivity() {
 
         /* #21# 구독신청 (+ 멤버 TABLE 내 구독값 수정) */
         val subAddBtn = findViewById<Button>(R.id.subAdd_addBtn)
-        subAddBtn.setOnClickListener {
 
-            timeCheck()     // 구독 시간 선택함수 호출
+        with (binding) {
+            subAddBtn.setOnClickListener {
 
-            if (SubAddSingleton.subType != null && SubAddSingleton.subType != null){
-                val addResult = SubscribeDao.getInstance().subAdd(SubscribeDto(MemberSingleton.id.toString(),
-                                                                                SubAddSingleton.subType!!,
-                                                                                SubAddSingleton.subPeriod!!,
-                                                                                SubAddSingleton.subMorning,
-                                                                                SubAddSingleton.subLunch,
-                                                                                SubAddSingleton.subDinner,
-                                                                                SubAddSingleton.subSnack,
-                                                                                "", ""))
-                Log.d("SubAddActivity", "#21# 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
+                /* !! 구글 인앱 결제를 위한 Activity로 이동 */
+                val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
+                startActivity(i)
 
-                if (addResult == "Success"){
-                    val builder = AlertDialog.Builder(this);
-                    builder.setTitle("구독 신청")
-                    builder.setMessage("구독이 신청되었습니다! 감사합니다 😌")
-                    builder.show()
-                } else {
-                    Toast.makeText(this, "죄송합니다. 다시 시도해주세요", Toast.LENGTH_LONG).show()
-                }
+                // #21# (04.01) 결제 후 해야하는 동작이라 잠시 주석처리 해둠
+                /*timeCheck()     // 구독 시간 선택함수 호출
+
+                if (SubAddSingleton.subType != null && SubAddSingleton.subType != null){
+                    val addResult = SubscribeDao.getInstance().subAdd(SubscribeDto(MemberSingleton.id.toString(),
+                                                                                    SubAddSingleton.subType!!,
+                                                                                    SubAddSingleton.subPeriod!!,
+                                                                                    SubAddSingleton.subMorning,
+                                                                                    SubAddSingleton.subLunch,
+                                                                                    SubAddSingleton.subDinner,
+                                                                                    SubAddSingleton.subSnack,
+                                                                                    "", ""))
+                    Log.d("SubAddActivity", "#21# 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
+
+                    if (addResult == "Success"){
+                        val builder = AlertDialog.Builder(this);
+                        builder.setTitle("구독 신청")
+                        builder.setMessage("구독이 신청되었습니다! 감사합니다 😌")
+                        builder.show()
+
+                        *//* !!! 구독 신청 후 MemberSingleton값 수정 *//*
+                        MemberSingleton.subscribe = "1"
+                    } else {
+                        Toast.makeText(this@SubAddActivity, "죄송합니다. 다시 시도해주세요", Toast.LENGTH_LONG).show()
+                    }
+                }*/
             }
         }
     }

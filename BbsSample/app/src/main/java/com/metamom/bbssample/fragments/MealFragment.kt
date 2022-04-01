@@ -139,6 +139,7 @@ class MealFragment : Fragment() {
         return binding.root
     }
 
+
     fun moveMealsView(time :String) {
         when (time) {
             "아침" -> {

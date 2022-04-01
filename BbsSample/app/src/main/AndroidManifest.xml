@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- #21# for 구글 인앱 결제 -->
+    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
+    <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
             android:name=".GlobalApplication"
@@ -19,7 +21,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
-
+        <activity
+                android:name=".subscribe.SubPurchaseActivity"
+                android:exported="true"/>
         <activity
                 android:name=".subscribe.SubTodayMealsSnack"
                 android:exported="true"/>
@@ -37,8 +41,8 @@
                 android:exported="true"/>
         <activity
                 android:name=".sns.CommentActivity"
-                android:windowSoftInputMode="adjustPan"
-                android:exported="true"/>
+                android:exported="true"
+                android:windowSoftInputMode="adjustPan"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>
@@ -73,10 +77,10 @@
                 android:name=".MainActivity"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.recipe2.DetailRecipe"
+                android:name=".recipe2.DetailRecipe"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.recipe2.RecipeMainActivity"
+                android:name=".recipe2.RecipeMainActivity"
                 android:exported="true"/>
         <activity
                 android:name=".SplashActivity"

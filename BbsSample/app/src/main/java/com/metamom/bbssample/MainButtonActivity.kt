@@ -1,5 +1,6 @@
 package com.metamom.bbssample
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -66,6 +67,12 @@ class MainButtonActivity : AppCompatActivity() {
                     } else {
                         Log.d("MainButtonActivity", "#21# (구독만료 후) 현재 로그인한 사용자 정보 가져오기 실패 Error")
                     }
+
+                    // 구독만료 안내 알림창 
+                    val builder = AlertDialog.Builder(this);
+                    builder.setTitle("구독 만료")
+                    builder.setMessage("신청하였던 구독 기간이 만료되었습니다. 감사합니다 😌")
+                    builder.show()
                 }
             }
             else {

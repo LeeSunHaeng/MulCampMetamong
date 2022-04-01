@@ -4,11 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
+import com.metamom.bbssample.fragments.MealFragment
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 
@@ -17,13 +21,12 @@ class SubTodayMealsDinner : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_today_meals_dinner)
 
-
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subDinner_preBtn)
+        /* #21# 뒤로가기(이전화면) > Fragment로 이사하면서 뒤로가기 Button 없앰 */
+        /*val previousBtn = findViewById<ImageButton>(R.id.subDinner_preBtn)
         previousBtn.setOnClickListener {
             val i = Intent(this, SubMyMealsActivity::class.java)
             startActivity(i)
-        }
+        }*/
 
         /* 식단 추천 흐름 (자세한 사항은 Morining.kt 파일 참고)
            - 고쳐야 하는 부분의 code는 Bookmark 표시 해두었음

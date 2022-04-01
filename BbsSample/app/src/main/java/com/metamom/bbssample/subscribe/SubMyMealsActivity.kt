@@ -21,7 +21,9 @@ class SubMyMealsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_my_meals)
 
-        /* #21# 뒤로가기(이전화면) */
+        /* !!!! #21# 아래의 코드 모두 MealFragment로 이사하였음 */
+        /*
+        *//* #21# 뒤로가기(이전화면) *//*
         val previousBtn = findViewById<ImageButton>(R.id.subMeal_PreBtn)
         previousBtn.setOnClickListener {
             val i = Intent(this, MainButtonActivity::class.java)
@@ -29,14 +31,14 @@ class SubMyMealsActivity : AppCompatActivity() {
         }
 
 
-        /* #21# 추천한 식단을 기록하고 있는 REMEMBER TABLE에서 2일 초과인 식단 확인 및 제거
-        *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) */
+        *//* #21# 추천한 식단을 기록하고 있는 REMEMBER TABLE에서 2일 초과인 식단 확인 및 제거
+        *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) *//*
         var delRememberMeal = SubscribeDao.getInstance().subRememberDel(MemberSingleton.id.toString())
         Log.d("SubMyMealsActivity", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
 
 
 
-        /* #21# 구독 신청 시간에 따라 동적 Button 생성 */
+        *//* #21# 구독 신청 시간에 따라 동적 Button 생성 *//*
         var linearLayout = findViewById<LinearLayout>(R.id.subMeal_linearLayout)
         var childLayout :LinearLayout? = null
         var btnCount = 0                            // 동적 Button 생성 개수를 저장할 변수
@@ -108,13 +110,11 @@ class SubMyMealsActivity : AppCompatActivity() {
 
             val i = Intent(this, SubAddActivity::class.java)
             startActivity(i)
-        }
+        }*/
     }
 
 
-
-
-    fun moveMealsView(time :String) {
+    /*fun moveMealsView(time :String) {
         when (time) {
             "아침" -> {
                 val i = Intent(this, SubTodayMealsMorning::class.java)
@@ -143,5 +143,5 @@ class SubMyMealsActivity : AppCompatActivity() {
                 builder.show()
             }
         }
-    }
+    }*/
 }

@@ -18,12 +18,12 @@ class SubTodayMealsSnack : AppCompatActivity() {
         setContentView(R.layout.activity_sub_today_meals_snack)
 
 
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subSnack_preBtn)
+        /* #21# 뒤로가기(이전화면) > Fragment로 이사하면서 뒤로가기 Button 없앰 */
+        /*val previousBtn = findViewById<ImageButton>(R.id.subSnack_preBtn)
         previousBtn.setOnClickListener {
             val i = Intent(this, SubMyMealsActivity::class.java)
             startActivity(i)
-        }
+        }*/
 
         /* 식단 추천 흐름 (자세한 사항은 Morining.kt 파일 참고)
            - 고쳐야 하는 부분의 code는 Bookmark 표시 해두었음

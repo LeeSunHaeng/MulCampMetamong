@@ -7,22 +7,23 @@
         android:layout_height="match_parent"
         tools:context=".subscribe.SubTodayMealsDinner">
 
-    <ImageButton
+    <!--<ImageButton
             android:id="@+id/subDinner_preBtn"
             android:layout_width="50dp" android:layout_height="50dp" android:background="@android:color/transparent"
             app:srcCompat="@drawable/ic_back_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="24dp"
-            app:layout_constraintHorizontal_bias="0.011" app:layout_constraintVertical_bias="0.032"/>
+            app:layout_constraintHorizontal_bias="0.011" app:layout_constraintVertical_bias="0.032"/>-->
     <TextView
             android:id="@+id/subDinner_textView5"
             android:text="저녁 Dinner" android:gravity="center_vertical" android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/subDinner_preBtn"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="29dp"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
+            app:layout_constraintHorizontal_bias="0.01"/>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subDinner_recyclerView"
             android:layout_width="520dp"

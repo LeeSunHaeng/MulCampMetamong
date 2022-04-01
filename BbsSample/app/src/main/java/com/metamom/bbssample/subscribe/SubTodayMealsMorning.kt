@@ -18,12 +18,12 @@ class SubTodayMealsMorning : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_today_meals_morning)
 
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subMorning_preBtn)
+        /* #21# 뒤로가기(이전화면) > Fragment로 이사하면서 뒤로가기 Button 없앰 */
+        /*val previousBtn = findViewById<ImageButton>(R.id.subMorning_preBtn)
         previousBtn.setOnClickListener {
             val i = Intent(this, SubMyMealsActivity::class.java)
             startActivity(i)
-        }
+        }*/
 
         /* 식단 추천 흐름
         *  1) 식단 추천 이력 확인
