@@ -6,6 +6,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".sns.CommentActivity">
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:id="@+id/snstoolbar"
+            android:background="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -16,7 +25,8 @@
 
             android:layout_width="598dp"
             android:layout_height="100dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
                 android:layout_width="100dp"
@@ -51,15 +61,4 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <ImageButton
-            android:layout_width="49dp"
-            android:layout_height="49dp"
-            android:padding="0sp"
-            android:scaleType="fitCenter"
-            android:backgroundTint="@color/white"
-            app:srcCompat="@drawable/ic_back_button"
-            android:id="@+id/cmtBackBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="132dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

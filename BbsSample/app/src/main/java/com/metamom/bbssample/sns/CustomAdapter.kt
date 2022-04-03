@@ -2,6 +2,9 @@ package com.metamom.bbssample.sns
 
 
 
+
+import android.app.Activity
+import android.app.LauncherActivity
 import android.content.Context
 import android.content.Intent
 
@@ -19,6 +22,9 @@ import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
+interface ItemClickListener {
+    fun onItemClickListener(item: LauncherActivity.ListItem)
+}
 
 class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmentmanager : FragmentManager) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 
@@ -140,9 +146,19 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             }
             //댓글 아이콘 클릭시
             snsCommentBtn.setOnClickListener {
-                Intent(context,CommentActivity::class.java).apply {
+                val n  = adapterPosition
+                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$n~!`~~~~~~~~~~~")
+                /*Intent(context,CommentActivity::class.java).apply {
                     putExtra("seq",dataVo.seq)
-                }.run { context.startActivity(this) }
+                    putExtra("position",n)
+                }.run { context.startActivity(this) }*/
+
+                val i = Intent(context,CommentActivity::class.java)
+                i.putExtra("pos",adapterPosition)
+                i.putExtra("seq",dataVo.seq)
+                val activity:SnsActivity = context as SnsActivity
+                activity.startActivityForResult(i,100)
+                /*setResult(Activity.RESULT_OK,i)*/
 
 
             }
@@ -156,25 +172,32 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         }
 
 
-        /*init {
-            likeBtn.setOnClickListener {
-                if()
-
-            }
-        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.sns_view_item_layout, parent, false)
         return ItemViewHolder(view)
+            /*.apply {
+            itemView.setOnClickListener {
+                val i = Intent(context,CommentActivity::class.java)
+                i.putExtra("pos",adapterPosition)
+                val activity:SnsActivity = context as SnsActivity
+                activity.setResult(Activity.RESULT_OK,i)
+            }
+        }*/
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)  {
-
-        holder.bind(snsList[position], context,mFragmentManager)
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        holder.bind(snsList[position], context, mFragmentManager)
     }
 
     override fun getItemCount(): Int {
         return snsList.size
 }
+
+    fun update(position: Int){
+        notifyItemChanged(position)
+    }
+
+
 }

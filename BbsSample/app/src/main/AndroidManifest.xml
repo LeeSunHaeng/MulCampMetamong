@@ -23,7 +23,9 @@
         <activity
                 android:name=".sns.CommentActivity"
                 android:windowSoftInputMode="adjustPan"
-                android:exported="true"/>
+                android:exported="true"
+                android:parentActivityName=".sns.SnsActivity"
+        />
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>

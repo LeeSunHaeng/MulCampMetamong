@@ -5,11 +5,15 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
+
+
+
 
 class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentDto>) : RecyclerView.Adapter<CommentAdapter.ItemViewHolder>() {
 
@@ -19,6 +23,8 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
         val cmtNickName = itemView.findViewById<TextView>(R.id.cmtNickNameTxt)
         val cmtWriteTime = itemView.findViewById<TextView>(R.id.cmtWriteTimeTxt)
         val cmtContent = itemView.findViewById<TextView>(R.id.cmtContentTxt)
+
+
 
         fun bind(dataVo: SnsCommentDto, context: Context) {
             cmtNickName.text = dataVo.nickname
@@ -63,6 +69,8 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
                 //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
+
+
         }
     }
 
@@ -73,15 +81,21 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(commentList[position], context)
+
+
+
     }
 
     override fun getItemCount(): Int {
         return commentList.size
     }
 
+
+
     fun addComment(dto:SnsCommentDto){
         commentList.add(dto)
         notifyItemInserted(commentList.size-1) //갱신
-
     }
+
+
 }

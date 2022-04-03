@@ -1,9 +1,11 @@
 package com.metamom.bbssample.sns
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,9 @@ class SnsActivity : AppCompatActivity() {
     fun context():Context{
         return this
     }
+    var data = SnsDao.getInstance().allSns()
+    var adapter = CustomAdapter(this,data,supportFragmentManager)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,16 +27,6 @@ class SnsActivity : AppCompatActivity() {
         val snsRecyclerView = findViewById<RecyclerView>(R.id.snsRecyclerView)
 
 
-
-        var data = SnsDao.getInstance().allSns()
-
-        //임시 데이터
-       /* data.add(SnsDto(0,"doselage","김태리","profile3","2022-03-21","content://media/external/images/media/87",
-            10,5,"삼겹살 너무 맛있다.."))
-        data.add(SnsDto(1,"adrfs164","남주혁","profile3","2022-03-21","content://media/external/images/media/86",
-            20,7,"치킨이 최고지.."))*/
-
-        var adapter = CustomAdapter(this,data,supportFragmentManager)
         snsRecyclerView.adapter = adapter
 
         val layout = LinearLayoutManager(this)
@@ -43,7 +38,44 @@ class SnsActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+       /*if(intent.getSerializableExtra("position") as Int? != null){
+           adapter.update(intent?.getSerializableExtra("position") as Int)
+       }*/
+
+        println("create~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
+
+    }
+
+
+
+/*    override fun onResume() {
+        super.onResume()
+        println("resume~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
+        if(intent.getSerializableExtra("position") as Int? != null){
+            adapter.update(intent?.getSerializableExtra("position") as Int)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        println("start~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
+        if(intent.getSerializableExtra("position") as Int? != null){
+            adapter.update(intent?.getSerializableExtra("position") as Int)
+        }
+    }*/
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode){
+                100->{
+                    val position = data?.getSerializableExtra("position") as Int
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$position~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    adapter.update(position)
+                }
+            }
+        }
     }
 }
