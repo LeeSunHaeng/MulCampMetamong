@@ -30,6 +30,13 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsDelete", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsDelete(int seq) {
+		System.out.println("snsDelete 실행 성공");
+		int n = service.snsDelete(seq);
+		return n;
+	}
+	
 	@RequestMapping(value = "/snsCommentInsert", method = {RequestMethod.GET, RequestMethod.POST} )
 	public int snsCommentInsert(@RequestBody SnsCommentDto dto) {
 		System.out.println("snsCommentInsert 실행 성공");
@@ -75,6 +82,13 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsLikeAllDelete", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsLikeAllDelete(int seq) {
+		System.out.println("snsLikeAllDelete 실행 성공");
+		int num = service.snsLikeAllDelete(seq);
+		return num;
+	}
+	
 	@RequestMapping(value = "/snsLikeCheck", method = {RequestMethod.GET, RequestMethod.POST} )
 	public int snsLikeCheck(@RequestBody SnsLikeDto dto) {
 		System.out.println("snsLikeCheck 실행 성공");
@@ -96,6 +110,13 @@ public class SnsController {
 		System.out.println("snsCommentCount 실행 성공");
 		int num = service.snsCommentCount(seq);
 		System.out.println("snsCommentCount num : "+num);
+		return num;
+	}
+	
+	@RequestMapping(value = "/snsCommentAllDelete", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsCommentAllDelete(int seq) {
+		System.out.println("snsCommentAllDelete 실행 성공");
+		int num = service.snsCommentAllDelete(seq);
 		return num;
 	}
 	

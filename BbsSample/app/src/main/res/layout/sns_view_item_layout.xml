@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="30dp"
+        >
 
     <LinearLayout
             android:orientation="vertical"
@@ -107,18 +108,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:id="@+id/contentTextView"/>
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="textPersonName"
-                    android:text="댓글 쓰기.."
-                    android:ems="10"
-                    android:id="@+id/commentEditText"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </LinearLayout>

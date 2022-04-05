@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
@@ -159,13 +160,37 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
                 /*setResult(Activity.RESULT_OK,i)*/
-
-
             }
+            //댓글 개수 클릭시
+            snsCommentCount.setOnClickListener {
+                val n  = adapterPosition
+                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$n~!`~~~~~~~~~~~")
+                /*Intent(context,CommentActivity::class.java).apply {
+                    putExtra("seq",dataVo.seq)
+                    putExtra("position",n)
+                }.run { context.startActivity(this) }*/
+
+                val i = Intent(context,CommentActivity::class.java)
+                i.putExtra("pos",adapterPosition)
+                i.putExtra("seq",dataVo.seq)
+                val activity:SnsActivity = context as SnsActivity
+                activity.startActivityForResult(i,100)
+                /*setResult(Activity.RESULT_OK,i)*/
+            }
+
             //셋팅 버튼 클릭시
-            snsSettingBtn.setOnClickListener {
-                val snsBottomSheet = SnsBottomSheet()
-                snsBottomSheet.show(mFragmentManager,snsBottomSheet.tag)
+             snsSettingBtn.setOnClickListener {
+                     if(dataVo.id == MemberSingleton.id){
+                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,context)
+                        BottomSheet.show(mFragmentManager,BottomSheet.tag)
+                     }
+                     else{
+                         val BottomSheet = NotWriterBottomSheet(context)
+                         BottomSheet.show(mFragmentManager,BottomSheet.tag)
+                     }
+
+                /*val snsBottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,context)
+                snsBottomSheet.show(mFragmentManager,snsBottomSheet.tag)*/
             }
 
 
@@ -197,6 +222,13 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
     fun update(position: Int){
         notifyItemChanged(position)
+    }
+    fun delete(position:Int,seq:Int){
+        SnsDao.getInstance().snsCommentAllDelete(seq)
+        SnsDao.getInstance().snsLikeAllDelete(seq)
+        SnsDao.getInstance().snsDelete(seq)
+        notifyItemRemoved(position)
+
     }
 
 

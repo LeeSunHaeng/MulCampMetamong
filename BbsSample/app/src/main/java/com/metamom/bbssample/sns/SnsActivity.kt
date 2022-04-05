@@ -37,12 +37,14 @@ class SnsActivity : AppCompatActivity() {
             val i  = Intent(this,SnsInsertActivity::class.java)
             startActivity(i)
         }
+        adapter
+
 
        /*if(intent.getSerializableExtra("position") as Int? != null){
            adapter.update(intent?.getSerializableExtra("position") as Int)
        }*/
 
-        println("create~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
+
 
 
 

@@ -13,6 +13,12 @@
   ,0,0,#{content})
   </insert>
   
+  <delete id="snsDelete" parameterType="Integer">
+  DELETE
+  FROM META_SNS
+  WHERE SNSSEQ=#{seq}
+  </delete>
+  
   <select id="snsGetMmeber" 
   parameterType="String" resultType="mul.camp.a.dto.MemberDto">  
   SELECT *
@@ -68,6 +74,16 @@
   <delete id="snsLikeDelete" parameterType="mul.camp.a.dto.SnsLikeDto">
   DELETE FROM SNS_LIKE
   WHERE LIKESEQ=#{likeseq} AND ID=#{id}
+  </delete>
+  
+  <delete id="snsLikeAllDelete" parameterType="Integer">
+  DELETE FROM SNS_LIKE
+  WHERE LIKESEQ=#{seq}
+  </delete>
+  
+  <delete id="snsCommentAllDelete" parameterType="Integer">
+  DELETE FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
   </delete>
   
   <select id="snsLikeCheck" parameterType="mul.camp.a.dto.SnsLikeDto"

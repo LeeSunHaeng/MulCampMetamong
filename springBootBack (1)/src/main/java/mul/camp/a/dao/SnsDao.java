@@ -14,13 +14,16 @@ import mul.camp.a.dto.SnsLikeDto;
 @Repository
 public interface SnsDao {
 	public int snsInsert(SnsDto dto);
+	public int snsDelete(int seq);
 	public MemberDto snsGetMmeber(String id);
 	public ArrayList<SnsDto> allSns();
 	public ArrayList<SnsCommentDto> allComment(int seq);
 	public int snsLikeInsert(SnsLikeDto dto);
 	public int snsLikeDelete(SnsLikeDto dto);
+	public int snsLikeAllDelete(int seq);
 	public int snsLikeCheck(SnsLikeDto dto);
 	public int snsLikeCount(int seq);
 	public int snsCommentCount(int seq);
 	public int snsCommentInsert(SnsCommentDto dto);
+	public int snsCommentAllDelete(int seq);
 }

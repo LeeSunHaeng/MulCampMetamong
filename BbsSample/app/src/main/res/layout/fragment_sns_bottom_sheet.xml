@@ -9,21 +9,28 @@
              tools:context=".sns.SnsBottomSheet">
 
 
+    <Button
+            android:text="삭제"
+            android:textSize="30sp"
+            android:textColor="@color/meta_grey02"
+            android:gravity="center"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
 
-    <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:id="@+id/btDelete"/>
+
+    <Button
+            android:text="수정"
             android:textSize="30sp"
-            android:backgroundTint="@color/meta_grey03"
-            android:text="수정"/>
-    <TextView
+            android:textColor="@color/meta_grey02"
+            android:gravity="center"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:textSize="30sp"
-            android:backgroundTint="@color/meta_grey02"
-            android:text="삭제"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/btUpdate"/>
 
 
 </LinearLayout>

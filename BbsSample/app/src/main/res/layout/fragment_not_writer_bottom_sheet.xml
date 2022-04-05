@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".sns.NotWriterBottomSheet">
+    <Button
+            android:text="게시물 신고하기"
+            android:textSize="30sp"
+            android:textColor="@color/meta_grey02"
+            android:gravity="center"
+            android:backgroundTint="@color/white"
+            android:background="#00ff0000"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reportBtn"/>
+</LinearLayout>
+
