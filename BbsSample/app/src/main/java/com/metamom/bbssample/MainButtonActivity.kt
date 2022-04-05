@@ -36,9 +36,12 @@ class MainButtonActivity : AppCompatActivity() {
         if (MemberSingleton.subscribe == "1"){
             // 1) 현재 로그인한 사용자의 구독 정보 가져오기 (subInfo)
             var subInfo = SubscribeDao.getInstance().getSubInfo(MemberSingleton.id.toString())
+            Log.d("MainButtonAcitvity", "#21# MainButtonAcitvity 현재 로그인한 사용자의 구독정보 > ${subInfo.toString()}")
+
             // 2) 1번에서 가져온 구독정보를 사용하여 구독만료 확인 (subEndCheck)
             if (subInfo != null){
                 var subEndCheck = SubscribeDao.getInstance().subEnddayCheck(SubscribeDto(subInfo.subId, subInfo.subType, subInfo.subPeriod, 0, 0, 0, 0, subInfo.subStartday, subInfo.subEndday))
+                Log.d("MainButtonAcitvity", "#21# MainButtonAcitvity 현재 로그인한 사용자의 구독만료 Check > $subEndCheck")
 
                 // 2-i) Success인 경우 == 구독만료 X, 회원의 구독정보를 Singleton에 저장
                 if (subEndCheck == "Success"){

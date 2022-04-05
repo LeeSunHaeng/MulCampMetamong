@@ -13,6 +13,7 @@ import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.ActivitySubAddBinding
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubAddSingleton
+import com.metamom.bbssample.subsingleton.SubPurchaseSingleton
 
 class SubAddActivity : AppCompatActivity() {
 
@@ -42,6 +43,12 @@ class SubAddActivity : AppCompatActivity() {
 
         with (binding) {
             subAddBtn.setOnClickListener {
+
+                // 선택한 개월(1, 3, 5) Singleton에 저장
+                SubPurchaseSingleton.subPeriod = SubAddSingleton.subPeriod
+
+                // 선택한 구독 시간 Singleton에 저장
+                timeCheck()
 
                 /* !! 구글 인앱 결제를 위한 Activity로 이동 */
                 val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
@@ -133,11 +140,11 @@ class SubAddActivity : AppCompatActivity() {
             override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 Log.d("SubAddActivity", "#21# Period Spinner 선택한 값: ${PeriodSpinner.getItemAtPosition(position)}")
 
-                if (PeriodSpinner.getItemAtPosition(position).toString() == "1개월[1,900원]") {
+                if (PeriodSpinner.getItemAtPosition(position).toString() == "1개월[1,000원]") {
                     SubAddSingleton.subPeriod = 1
-                } else if (PeriodSpinner.getItemAtPosition(position).toString() == "3개월[3,900원]") {
+                } else if (PeriodSpinner.getItemAtPosition(position).toString() == "3개월[3,000원]") {
                     SubAddSingleton.subPeriod = 3
-                } else if (PeriodSpinner.getItemAtPosition(position).toString() == "5개월[5,900원]") {
+                } else if (PeriodSpinner.getItemAtPosition(position).toString() == "5개월[5,000원]") {
                     SubAddSingleton.subPeriod = 5
                 } else {
                     Log.d("SubAddActivity", "#21# 구독 기간 Spinner 선택 Error")

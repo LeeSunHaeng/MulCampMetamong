@@ -28,11 +28,11 @@ class RetrofitClient {
                 // local 주소 - 46번째줄 부분도 바꿔주세요!
                 // 박해빈 :
                 // 양성훈 : http://192.168.0.29:3000/
-                // 엄희정 : http://172.30.1.25:3000/
+                // 엄희정 : http://172.30.1.25:3000/ > [04.05 변경] 172.30.1.51
                 // 이선행 :
                 // 최재석 :http://14.39.38.168:3000/
                 instance = Retrofit.Builder()
-                    .baseUrl("http://172.30.1.25:3000/")
+                    .baseUrl("http://172.30.1.51:3000/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .client(client)

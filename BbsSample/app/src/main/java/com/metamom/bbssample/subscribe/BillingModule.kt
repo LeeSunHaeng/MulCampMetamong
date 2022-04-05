@@ -4,15 +4,18 @@ import android.app.Activity
 import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.android.billingclient.api.*
+import com.metamom.bbssample.subsingleton.SubPurchaseSingleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.Serializable
 import javax.security.auth.callback.Callback
+import kotlin.math.log
 
 // #21# 구글 인앱 결제모듈
 // 구글에서 인앱 결제를 위한 라이브러리 BillingClent를 제공한다. > 이를 더욱 편하게 쓰기 위하여 BillingModule 이라는 Wrapper 클래스를 생성하여 사용
-class BillingModule(private val activity: Activity, private val lifeCycleScope: LifecycleCoroutineScope, private val callback: Callback) {
+class BillingModule(private val activity: Activity, private val lifeCycleScope: LifecycleCoroutineScope, private val callback: Callback) :
+    PurchaseHistoryResponseListener {
 
     interface Callback {
         // onBillingModulesIsReady _BillingClient가 연결에 성공하여 모듈을 사용할 준비가 되었음을 알리기 위함 (이것이 호출되기 전에는 아무런 기능을 사용할 수 없다.)
@@ -41,7 +44,13 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
             }
             else -> {
                 // 구매 실패
-                Log.d("BillingModule", "#21# BillingModule 구매 실패")
+                Log.d("BillingModule", "#21# BillingModule 구매 실패 & responseCode 확인 [${billingResult.responseCode}]")
+
+                if (billingResult.responseCode == 7){
+                    getAllPurchaseItem()
+                    Log.d("BillingModule", "#21# BillingModule getAllPurchaseItem() 함수 실행 > responseCode ITEM_ALREADY_OWNED 해결을 위하여")
+                }
+                
                 callback.onFailure(billingResult.responseCode)
             }
         }
@@ -53,11 +62,13 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
         .build()
 
 
-    /* 2) GooglePlay와 연결 */
+    /* 2) GooglePlay 와 연결 */
     init {
         billingClient.startConnection(object: BillingClientStateListener {
 
             override fun onBillingSetupFinished(billingResult: BillingResult) {
+                Log.d("BillingModule", "#21# BillingModule _GooglePlay 와 연결완료 > billingResult.responseCode 확인: ${billingResult.responseCode}")
+
                 // Response가 OK로 떨어지면 그때 생성하였던 CallBack으로 사용 가능하다고 알려주게 된다. > 이 시점 이후부터 상품정보 불러오기, 구매 등이 가능
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
                     // 이때, billingClient가 활성화 된다.
@@ -70,7 +81,7 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
 
             // GooglePlay와 연결이 끊어졌을 경우 > 여기에 연결을 재시도하는 로직이 들어갈 수 있다.
             override fun onBillingServiceDisconnected() {
-                Log.d("BillingModule", "#21# GoolgePlay와 연결이 끊어짐 Disconnected")
+                Log.d("BillingModule", "#21# BillingModule _GooglePlay 와의 연결이 끊어짐 Disconnected")
             }
         })
     }
@@ -112,12 +123,13 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
 
         // 구매 절차 시작 > OK일 시 제대로 동작한 것
         val responseCode = billingClient.launchBillingFlow(activity, flowParams).responseCode
-        Log.d("BillingModule", "#21# BillingModule purchase() 구매 절차 시작 and 결과 > ${responseCode.toString()}")
+        Log.d("BillingModule", "#21# BillingModule purchase() 구매 절차 시작 and responseCode 결과 > ${responseCode.toString()}")
+
         if (responseCode != BillingClient.BillingResponseCode.OK) {
             Log.d("BillingModule", "#21# BillingModule purchase() 구매절차 시작 시 Error 발생")
             callback.onFailure(responseCode)
         }
-        // 이후부터는 purchasesUpdatedListener를 거치게 된다.
+        // 이후부터는 purchasesUpdatedListener 를 거치게 된다.
     }
 
 
@@ -128,13 +140,15 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
     // - BillingClient.consumePurchase() == 소비,  BillingClient.acknowledgePurchase() == 구매 확인을 하는 부분
 
     // 소비되어야 하는 Sku 목록 작성
-    val consumableSkus = setOf(SubPurchaseActivity.Sku.TODAY_MEAL_1/*, SubPurchaseActivity.Sku.TODAY_MEAL_3, SubPurchaseActivity.Sku.TODAY_MEAL_5*/)
+    //val consumableSkus = setOf(SubPurchaseActivity.Sku.TODAY_MEAL_1/*, SubPurchaseActivity.Sku.TODAY_MEAL_3, SubPurchaseActivity.Sku.TODAY_MEAL_5*/)
+    val consumableSkus = setOf(SubPurchaseActivity.Sku.TODAY_MEAL_1, SubPurchaseActivity.Sku.TODAY_MEAL_3, SubPurchaseActivity.Sku.TODAY_MEAL_5)
+
 
     // 구매 확인 처리
     // - @param purchase 확인처리할 아이템의 구매정보
     fun confirmPurchase(purchase: Purchase) {
         when {
-            consumableSkus.contains<Serializable>(purchase/*.sku*/.skus) -> {      // !!!!!! ...???? Error 확인필요
+            consumableSkus.contains<Serializable>(purchase/*.sku*/.skus) -> {
                 // 소비성 구매는 consume을 해줘야 한다.
                 val consumeParams = ConsumeParams.newBuilder()
                     .setPurchaseToken(purchase.purchaseToken)
@@ -198,12 +212,48 @@ class BillingModule(private val activity: Activity, private val lifeCycleScope: 
             }
             return resultBlock(false)
         }
-    }*/
+    } */
 
     // 구매확인 검사 Extension
     fun Purchase.isPurchaseConfirmed(): Boolean {
         return this.isAcknowledged && this.purchaseState == Purchase.PurchaseState.PURCHASED
     }
 
+
+    /* responseCode 7: 이미 구매한 상품, ITEM_ALREADY_OWNED Error 대처 */
+    // - 구매하였던 이력이 있다면 구매 이력을 이용하여 소비 하는 방법을 통해 Error 대처
+    // - 구매처리 후 소비처리가 정상적으로 이루어지지 않은 경우 해당 Error가 발생할 수 있음
+    // - 이에 따라, 구매이력을 모두 찾아 모두 소비 후 다시 구매 진행
+    fun getAllPurchaseItem() {
+        billingClient.queryPurchaseHistoryAsync(BillingClient.SkuType.INAPP, this)
+    }
+
+    // 최근 구매한 아이템을 알고자 할 때 사용
+    // getAllPurchaseItem 의 this
+    override fun onPurchaseHistoryResponse(billingResult: BillingResult, purchaseHistoryList: MutableList<PurchaseHistoryRecord>?) {
+        Log.e("BillingModule", "#21# BillingModule getAllPurchaseItem ${billingResult.debugMessage}")
+
+        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK){
+            if (!purchaseHistoryList.isNullOrEmpty()) {
+                // 가장 최근에 구매된 아이템
+                purchaseHistoryList.forEach{
+                    Log.e("BillingModule", "#21# BillingModule 가장 최근에 구매된 아이템: ${it.quantity}")
+
+                    // 소비되지 않은 아이템이 있다면 소비처리 하기
+                    var consumeParams = ConsumeParams.newBuilder()
+                        .setPurchaseToken(it.purchaseToken)
+                        .build()
+
+                    billingClient.consumeAsync(consumeParams) { billingResult, _ ->
+                        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                            Log.e("BillingModule", "#21# BillingModule onPurchaseHistoryResponse: ${billingResult.debugMessage}")
+                            //log(msg="${billingResult.debugMessage}")
+                            Log.e("BillingModule", "#21# BillingModule msg=${billingResult.debugMessage}")
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
