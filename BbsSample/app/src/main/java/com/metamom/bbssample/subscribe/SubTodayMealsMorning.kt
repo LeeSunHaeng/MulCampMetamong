@@ -81,7 +81,6 @@ class SubTodayMealsMorning : AppCompatActivity() {
                 }
                 else {
                     Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
-                    //startActivity(Intent(this, MealFragment::class.java))
                     Log.d("SubTodayMealsMorning", "#21# 오늘의 식단 [아침] *다이어트* 해당되는 식단 없음(null) Error 발생")
                 }
             }
@@ -96,6 +95,10 @@ class SubTodayMealsMorning : AppCompatActivity() {
                 if (todayMeal != null) {
                     val rememberMeal = SubscribeDao.getInstance().subMealRemember(SubMealRememberDto((todayMeal as SubExerMealDto).subefSeq, (todayMeal as SubExerMealDto).subefName, MemberSingleton.id, "", (todayMeal as SubExerMealDto).subefTime, SubTodayMealSingleton.type!!))
                     if (rememberMeal == "Success") Log.d("SubTodayMealsMorning", "#21# 추천한 운동 식단 REMEMBER TABLE 내 저장완료")
+                }
+                else {
+                    Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
+                    Log.d("SubTodayMealsMorning", "#21# 오늘의 식단 [아침] *운동* 해당되는 식단 없음(null) Error 발생")
                 }
             }
         }

@@ -56,38 +56,46 @@ class SubTodayMealsDinner : AppCompatActivity() {
         // 2) 식단 추천 이력이 없을 경우
         else {
             /* #21# 오늘의 식단 추천 및 recyclerView 드로잉 (+ 추천한 식단 저장) */
-            Log.d("SubTodayMealsMorning", "#21# SubTodayMealSingleton 확인 > ${SubTodayMealSingleton.toString()}")
+            Log.d("SubTodayMealsDinner", "#21# SubTodayMealSingleton 확인 > ${SubTodayMealSingleton.toString()}")
 
             // 2-i) [다이어트] 회원이 다이어트 식단을 신청하였을 경우 (type == 0)
             if (SubTodayMealSingleton.type == 0) {
-                Log.d("SubTodayMealsMorning", "#21# 오늘의 식단[아침] *다이어트 식단* 가져오기 실행")
+                Log.d("SubTodayMealsDinner", "#21# 오늘의 식단[아침] *다이어트 식단* 가져오기 실행")
 
                 // 2-ii) 다이어트 식단 가져오기
                 todayMeal = SubscribeDao.getInstance().subRandomDietMeal(SubDietMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.dinnerKcal!!.toDouble(), SubTodayMealSingleton.type.toString(), MemberSingleton.id))
                 // 2-iv) 추천한 식단 정보 DB TABLE에 저장하기
                 if (todayMeal != null) {
                     val rememberMeal = SubscribeDao.getInstance().subMealRemember(SubMealRememberDto((todayMeal as SubDietMealDto).subdfSeq, (todayMeal as SubDietMealDto).subdfName, MemberSingleton.id, "", (todayMeal as SubDietMealDto).subdfTime, SubTodayMealSingleton.type!!))
-                    if (rememberMeal == "Success") Log.d("SubTodayMealsMorning", "#21# 추천한 다이어트 식단 REMEMBER TABLE 내 저장완료")
+                    if (rememberMeal == "Success") Log.d("SubTodayMealsDinner", "#21# 추천한 다이어트 식단 REMEMBER TABLE 내 저장완료")
+                }
+                else {
+                    Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
+                    Log.d("SubTodayMealsLunch", "#21# 오늘의 식단 [저녁] *다이어트* 해당되는 식단 없음(null) Error 발생")
                 }
             }
 
             // 2-i) [운동] 회원이 운동 식단을 신청하였을 경우 (type == 1)
             else if (SubTodayMealSingleton.type == 1) {
-                Log.d("SubTodayMealsMorning", "#21# 오늘의 식단[아침] *운동 식단* 가져오기 실행")
+                Log.d("SubTodayMealsDinner", "#21# 오늘의 식단[아침] *운동 식단* 가져오기 실행")
 
                 // 2-ii) 운동 식단 가져오기
                 todayMeal = SubscribeDao.getInstance().subRandomExerMeal(SubExerMealDto(0, SubTodayMealSingleton.time!!, "", "", SubTodayMealSingleton.morningKcal!!.toDouble(), SubTodayMealSingleton.type.toString(), MemberSingleton.id))
                 // 2-iv) 추천한 식단 정보 DB TABLE에 저장하기
                 if (todayMeal != null) {
                     val rememberMeal = SubscribeDao.getInstance().subMealRemember(SubMealRememberDto((todayMeal as SubExerMealDto).subefSeq, (todayMeal as SubExerMealDto).subefName, MemberSingleton.id, "", (todayMeal as SubExerMealDto).subefTime, SubTodayMealSingleton.type!!))
-                    if (rememberMeal == "Success") Log.d("SubTodayMealsMorning", "#21# 추천한 운동 식단 REMEMBER TABLE 내 저장완료")
+                    if (rememberMeal == "Success") Log.d("SubTodayMealsDinner", "#21# 추천한 운동 식단 REMEMBER TABLE 내 저장완료")
+                }
+                else {
+                    Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
+                    Log.d("SubTodayMealsLunch", "#21# 오늘의 식단 [저녁] *운동* 해당되는 식단 없음(null) Error 발생")
                 }
             }
         }
 
         // 3) 전달받은 식단을 RecyclerView에 드로잉하기
         if (todayMeal != null){
-            Log.d("SubTodayMealsMorning", "#21# Back으로부터 전달받은 오늘의 식단 > ${todayMeal.toString()}")
+            Log.d("SubTodayMealsDinner", "#21# Back으로부터 전달받은 오늘의 식단 > ${todayMeal.toString()}")
 
             val subCustomAdapter = SubCustomAdapter(this, todayMeal!!)
             recyclerView.adapter = subCustomAdapter
