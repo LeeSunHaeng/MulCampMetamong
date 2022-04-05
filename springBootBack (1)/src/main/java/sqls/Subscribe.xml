@@ -75,7 +75,7 @@
 </select>
 <!-- 2) 운동 식단 -->
 <select id="subRandomExerMeal" parameterType="mul.camp.a.dto.SubExerMealDto" resultType="mul.camp.a.dto.SubExerMealDto">
-	SELECT *
+	SELECT SUBEF_SEQ, SUBEF_TIME, SUBEF_IMAGE, SUBEF_NAME, SUBEF_KCAL
 	FROM (SELECT * 
 			FROM META_SUBSCRIBE_EXERMEALS 
 			WHERE SUBEF_TIME=#{subefTime} AND NOT EXISTS(SELECT * FROM META_SUBSCRIBE_REMEMBERMEALS WHERE SUBREM_ID=#{subefID} AND SUBREM_SEQ = SUBEF_SEQ)

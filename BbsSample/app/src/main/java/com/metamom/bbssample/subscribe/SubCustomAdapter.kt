@@ -34,7 +34,7 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
     private val foodImage = itemView.findViewById<ImageView>(R.id.subItem_imageView)
     private val foodName = itemView.findViewById<TextView>(R.id.subItem_foodNameTxt)
     private val foodKcal = itemView.findViewById<TextView>(R.id.subItem_kcalTxt)
-    private val foodAmount = itemView.findViewById<TextView>(R.id.subItem_amountTxt)
+    private val foodAmount = itemView.findViewById<TextView>(R.id.subItem_amountTxt)      // #21# (04.05) 음식 양(g) 제외
 
     /* #21# sub_view_item_meal 레이아웃에 값 넣기(bind) */
     fun bind(subDataVo: Any, context: Context){
@@ -45,7 +45,8 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
             Glide.with(itemView).load(imageUrl).into(foodImage)
 
             foodName.text = subDataVo.subdfName
-            foodAmount.text = "${subDataVo.subdfAmount}g"
+            //foodAmount.text = "${subDataVo.subdfAmount}g"
+            foodAmount.text = "1인분"
             foodKcal.text = "${subDataVo.subdfKcal} Kcal"
         }
 
@@ -55,7 +56,8 @@ class SubItemViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView) {
             Glide.with(itemView).load(imageUrl).into(foodImage)
 
             foodName.text = subDataVo.subefName
-            foodAmount.text = "${subDataVo.subefAmount} g"
+            //foodAmount.text = "${subDataVo.subefAmount} g"
+            foodAmount.text = "1인분"
             foodKcal.text = "${subDataVo.subefKcal} Kcal"
         }
 

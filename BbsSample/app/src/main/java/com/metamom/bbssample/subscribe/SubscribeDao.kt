@@ -233,7 +233,7 @@ class SubscribeDao {
     }
 
     /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
-    // (03.29) REMEMBER TABLE에 SEQ가 기본키가 아니라서 ID값도 같이 넘겨줘야 함
+    // (03.29) REMEMBER TABLE에 SEQ가 기본키가 아니라서 ID값도 같이 넘겨주는 것으로 변경 (+운동도 동일하게 변경)
     fun subDietMeal(subDietSeq: Int) :SubDietMealDto? {
         Log.d("SubscribeDao", "#21# SubscribeDao subDietMeal() 추천했던 다이어트 식단 가져오기 SEQ번호 > $subDietSeq")
 

@@ -120,14 +120,17 @@ public class SubscribeController {
    }
    
    
-   /* #21# 오늘의 다이어트 식단 RANDOM SELECT (1개) */
+   /* #21# 오늘의 *다이어트* 식단 RANDOM SELECT (1개) */
    @RequestMapping(value = "/subRandomDietMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public SubDietMealDto subRandomDietMeal(@RequestBody SubDietMealDto dto) {
 	   System.out.println("#21# SubscribeController subRandomDietMeal() 동작");
 	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) & 회원 ID 값: " + dto.toString());
 	   
 	   try {
-		   return service.subRandomDietMeal(dto);
+		   SubDietMealDto meal = service.subRandomDietMeal(dto);
+		   System.out.println("#21# 랜덤으로 가져온 *다이어트* 식단 > " + meal.toString());
+		   return meal;
+		   //return service.subRandomDietMeal(dto);
 	   } 
 	   catch (Exception e) {
 		   System.out.println("#21# 다이어트 TABLE 식단 가져오기 try..catch 에러 ");
@@ -137,14 +140,17 @@ public class SubscribeController {
 	   }
 	  
    }
-   /* #21# 오늘의 운동 식단 RANDOM SELECT (1개) */
+   /* #21# 오늘의 *운동* 식단 RANDOM SELECT (1개) */
    @RequestMapping(value = "/subRandomExerMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public SubExerMealDto subRandomExerMeal(@RequestBody SubExerMealDto dto) {
 	   System.out.println("#21# SubscribeController subRandomExerMeal() 동작");
 	   System.out.println("#21# Front에서 받아온 시간(time, 아/점/저) & 타입(다이어트/운동) & 회원 ID 값: " + dto.toString());
 	   
 	   try {
-		   return service.subRandomExerMeal(dto);
+		   SubExerMealDto meal = service.subRandomExerMeal(dto);
+		   System.out.println("#21# 랜덤으로 가져온 *운동* 식단 > " + meal.toString());
+		   return meal;
+		   //return service.subRandomExerMeal(dto);
 	   } 
 	   catch (Exception e) {
 		   System.out.println("#21# 운동 TABLE 식단 가져오기 try..catch 에러 ");
@@ -159,7 +165,7 @@ public class SubscribeController {
    @RequestMapping(value = "/subMealRemember", method = {RequestMethod.GET, RequestMethod.POST} ) 
    public String subMealRemember(@RequestBody SubMealRememberDto dto) {
 	   System.out.println("#21# SubscribeController subMealRemember() 동작");
-	   System.out.println("#21# Front에서 받아온 이미 추천한 식단 정보: " + dto.toString());
+	   System.out.println("#21# Front에서 받아온 저장할 식단 정보: " + dto.toString());
 	    
 	   boolean result = service.subMealRemember(dto);
 	   if(result) {

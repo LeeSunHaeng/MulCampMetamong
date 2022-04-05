@@ -54,9 +54,8 @@ class SubAddActivity : AppCompatActivity() {
                 val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
                 startActivity(i)
 
-                // #21# (04.01) 결제 후 해야하는 동작이라 잠시 주석처리 해둠
-                /*timeCheck()     // 구독 시간 선택함수 호출
-
+                // #21# (04.05) 아래의 code는 결제이후 진행해야 하기 때문에 SubPurchaseActivity 로 이동
+                /*
                 if (SubAddSingleton.subType != null && SubAddSingleton.subType != null){
                     val addResult = SubscribeDao.getInstance().subAdd(SubscribeDto(MemberSingleton.id.toString(),
                                                                                     SubAddSingleton.subType!!,
@@ -120,8 +119,6 @@ class SubAddActivity : AppCompatActivity() {
                     SubAddSingleton.subType = 0
                 } else if (TypeSpinner.getItemAtPosition(position).toString() == "운동") {
                     SubAddSingleton.subType = 1
-                /*} else if (TypeSpinner.getItemAtPosition(position).toString() == "건강") {
-                    SubAddSingleton.subType = 2*/
                 } else {
                     Log.d("SubAddActivity", "#21# 구독 유형 Spinner 선택 Error")
                 }
