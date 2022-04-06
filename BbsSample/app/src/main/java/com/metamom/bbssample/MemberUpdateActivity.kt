@@ -5,16 +5,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.metamom.bbssample.fragments.HomeFragment
 import com.metamom.bbssample.sns.SnsDao
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import kotlinx.android.synthetic.main.activity_insert.*
+import kotlinx.android.synthetic.main.activity_member_update.*
 
 /* #21# 회원정보 수정 */
 class MemberUpdateActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_update)
+
+        /* 액션바 설정 */
+        setSupportActionBar(findViewById(R.id.memUpdateToolbar))
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        findViewById<Toolbar>(R.id.memUpdateToolbar).setNavigationOnClickListener {
+            onBackPressed()
+        }
+
 
         val id = findViewById<EditText>(R.id.memUpdate_idEditTxt)
         val nickname = findViewById<EditText>(R.id.memUpdate_nicknameEdit)

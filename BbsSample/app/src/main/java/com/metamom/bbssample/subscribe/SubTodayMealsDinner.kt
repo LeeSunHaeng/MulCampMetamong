@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.fragments.MealFragment
 import com.metamom.bbssample.subsingleton.MemberSingleton
@@ -22,11 +24,18 @@ class SubTodayMealsDinner : AppCompatActivity() {
         setContentView(R.layout.activity_sub_today_meals_dinner)
 
         /* #21# 뒤로가기(이전화면) > Fragment로 이사하면서 뒤로가기 Button 없앰 */
-        /*val previousBtn = findViewById<ImageButton>(R.id.subDinner_preBtn)
-        previousBtn.setOnClickListener {
-            val i = Intent(this, SubMyMealsActivity::class.java)
-            startActivity(i)
-        }*/
+        /* 액션바 설정 */
+        setSupportActionBar(findViewById(R.id.subDinner_toolbar))
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        findViewById<Toolbar>(R.id.subDinner_toolbar).setNavigationOnClickListener {
+            onBackPressed()
+        }
 
         /* 식단 추천 흐름 (자세한 사항은 Morining.kt 파일 참고)
            - 고쳐야 하는 부분의 code는 Bookmark 표시 해두었음
@@ -72,6 +81,10 @@ class SubTodayMealsDinner : AppCompatActivity() {
                 else {
                     Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
                     Log.d("SubTodayMealsLunch", "#21# 오늘의 식단 [저녁] *다이어트* 해당되는 식단 없음(null) Error 발생")
+
+                    val i = Intent(this, MainButtonActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
                 }
             }
 
@@ -89,6 +102,10 @@ class SubTodayMealsDinner : AppCompatActivity() {
                 else {
                     Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
                     Log.d("SubTodayMealsLunch", "#21# 오늘의 식단 [저녁] *운동* 해당되는 식단 없음(null) Error 발생")
+
+                    val i = Intent(this, MainButtonActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(i)
                 }
             }
         }
@@ -105,9 +122,6 @@ class SubTodayMealsDinner : AppCompatActivity() {
             recyclerView.setHasFixedSize(true)
         }
         else {
-            val i = Intent(this, SubMyMealsActivity::class.java)
-            startActivity(i)
-
             Toast.makeText(this, "관리자에게 문의해주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
         }
     }

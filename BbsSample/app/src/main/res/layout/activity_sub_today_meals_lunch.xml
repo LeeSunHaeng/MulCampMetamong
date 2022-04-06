@@ -6,23 +6,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".subscribe.SubTodayMealsLunch">
-    <!--<ImageButton
-            android:id="@+id/subLunch_imageBtn"
-            android:layout_width="50dp" android:layout_height="50dp" android:background="@android:color/transparent"
-            app:srcCompat="@drawable/ic_back_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="32dp" android:layout_marginStart="24dp"
-            app:layout_constraintHorizontal_bias="0.011"/>-->
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/subLunch_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            app:titleTextColor="@color/meta_grey01"
+            app:titleTextAppearance="@style/TitleBarTextAppearance"
+            android:background="@color/meta_white" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
             android:id="@+id/subLunch_textView5"
-            android:text="점심 Lunch" android:gravity="center_vertical" android:textSize="20dp"
+            android:text="점심 Lunch"
+            style="@style/SubTodayMealTitle"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-            app:layout_constraintHorizontal_bias="0.014"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.033" app:layout_constraintTop_toBottomOf="@+id/subLunch_toolbar"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="520dp"
             android:layout_height="800dp"

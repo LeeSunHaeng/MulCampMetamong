@@ -9,16 +9,17 @@
         tools:context=".MemberUpdateActivity">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/memUpdate_toolbar"
+            android:id="@+id/memUpdateToolbar"
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             app:titleTextColor="@color/meta_grey01"
             app:titleTextAppearance="@style/TitleBarTextAppearance"
-            android:background="@color/meta_white" />
+            android:background="@color/meta_white"/>
 
     <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:fillViewport="true">
+            android:layout_height="match_parent" android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
                 android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -148,7 +149,7 @@
                         android:id="@+id/memUpdate_radioMaleBtn"
                         android:text="남"
                         android:textSize="15dp"
-                        android:buttonTint="@color/meta_purple01"
+                        android:buttonTint="@color/meta_green01"
                         android:fontFamily="@font/font_content_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -156,7 +157,7 @@
                         android:id="@+id/memUpdate_radioFemaleBtn"
                         android:text="여"
                         android:textSize="15dp"
-                        android:buttonTint="@color/meta_purple01"
+                        android:buttonTint="@color/meta_green01"
                         android:fontFamily="@font/font_content_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -178,7 +179,5 @@
                     android:background="@drawable/btn_shadow"/>
 
         </LinearLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

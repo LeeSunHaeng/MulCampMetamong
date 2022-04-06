@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
             android:layout_width="match_parent"
-                 android:layout_height="match_parent"
+            android:layout_height="match_parent"
             tools:context=".fragments.MealFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -86,15 +86,27 @@
                         android:layout_height="wrap_content"/>
 
             </LinearLayout>
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/subFrag_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:titleTextColor="@color/meta_grey01"
+                    app:titleTextAppearance="@style/TitleBarTextAppearance"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                     android:id="@+id/subFragMeal_textView5"
                     android:text="오늘의 식단" android:gravity="center_vertical" android:textSize="20dp"
+                    android:fontFamily="@font/font_content_bold" android:textColor="@color/meta_grey02"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="36dp" android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
-                    app:layout_constraintHorizontal_bias="0.039"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" android:layout_marginEnd="24dp"
+                    app:layout_constraintHorizontal_bias="0.057"
+                    app:layout_constraintTop_toBottomOf="@+id/subFrag_toolbar"/>
+
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="500dp"
@@ -102,8 +114,8 @@
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp" app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/subFragMeal_textView5"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6" app:layout_constraintVertical_bias="0.32"
-                    android:id="@+id/subFragMeal_linearLayout">
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6" app:layout_constraintVertical_bias="0.0"
+                    android:id="@+id/subFragMeal_linearLayout" android:layout_marginTop="30dp">
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

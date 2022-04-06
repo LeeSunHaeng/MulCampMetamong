@@ -2,26 +2,20 @@ package com.metamom.bbssample.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.kakao.sdk.user.UserApiClient
 import com.metamom.bbssample.FoodListMeals.FoodListMeals
 
-import com.metamom.bbssample.MainActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentHomeBinding
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
-import com.metamom.bbssample.subscribe.SubMyMealsActivity
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
 // TODO: Rename parameter arguments, choose names that match
