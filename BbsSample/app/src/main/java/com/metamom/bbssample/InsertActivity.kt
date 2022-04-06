@@ -44,7 +44,20 @@ class InsertActivity : AppCompatActivity() {
 
             var isGoToJoin = true
 
-            val userId = id.text.toString()
+            /* #21# ID 중복체크 */
+            // - [기존 code] val userId = id.text.toString()
+            // - [변경 code] ID 중복체크 후 중복된 ID가 없을 경우 userID 변수에 사용자가 입력한 id 값을 넣음
+            var userId :String? = null
+
+            val idCheck = MemberDao.getInstance().idCheck(id.text.toString())       // ID 중복체크
+            if (idCheck == false) {
+                userId = id.text.toString()
+            } else {
+                Toast.makeText(this, "중복된 ID가 있습니다. 새로운 ID로 입력해주세요", Toast.LENGTH_LONG).show()
+                id.setText("")
+                isGoToJoin = false
+            }
+
             val userPwd = pwd.text.toString()
             val userPwd2 = pwd2.text.toString()
             val userName = name.text.toString()
@@ -57,7 +70,13 @@ class InsertActivity : AppCompatActivity() {
 
             // 라디오 버튼인 gender의 값 불러오기
             var userGenderBtn = findViewById<RadioButton>(gender.checkedRadioButtonId)
-            val userGender = userGenderBtn.text.toString()
+            var userGender = userGenderBtn.text.toString()
+            // #21# gender DB 저장 시 남은 == M으로 여는 == W로 저장
+            if (userGender == "남"){
+                userGender = "M"
+            } else if (userGender == "여"){
+                userGender = "W"
+            }
 
             // 값이 비어있는지 확인
             if (userId.isNullOrEmpty()) {

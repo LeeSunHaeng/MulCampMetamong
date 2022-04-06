@@ -55,6 +55,26 @@ public class MemberController {
 		
 		return mem;
 	}	
+	
+	/* #21# ID 중복체크 */
+	@RequestMapping(value = "/idCheck", method = {RequestMethod.GET, RequestMethod.POST} )
+	public boolean idCheck(String id) {
+		System.out.println("#21# MemberController idCheck ID 중복체크 동작");
+		System.out.println("#21# ID 중복체크를 위하여 받아온 id값: " + id);
+		
+		// service.idCheck가 true == 중복 ID가 존재, false == 중복 ID 없음
+		return service.idCheck(id);
+	}
+	
+	/* #21# 회원정보 수정 */
+	@RequestMapping(value = "/userUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
+	public boolean userUpdate(@RequestBody MemberDto dto) {
+		System.out.println("#21# MemberController userUpdate() 회원정보 수정 동작");
+		System.out.println("#21# 회원정보 수정을 위하여 받아온 dto값: " + dto);
+		
+		// service.userUpdate가 true == 회원정보 수정 성공, false == 회원정보 수정 실패
+		return service.userUpdate(dto);
+	}
 }
 
 

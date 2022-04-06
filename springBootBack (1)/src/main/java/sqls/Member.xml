@@ -27,6 +27,19 @@
 	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
+<!-- #21# ID 중복체크 -->
+<select id="idCheck" parameterType="String" resultType="Integer">
+	SELECT COUNT(*)
+	FROM META_MEMBER
+	WHERE ID=#{id}
+</select>
+
+<!-- #21# 회원정보 수정 -->
+<update id="userUpdate" parameterType="mul.camp.a.dto.MemberDto">
+	UPDATE META_MEMBER
+	SET NICKNAME=#{nickname}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, HEIGHT=#{height}, WEIGHT=#{weight}, BIRTH=#{birth}, GENDER=#{gender}
+	WHERE ID=#{id}
+</update>
 
 </mapper>
 

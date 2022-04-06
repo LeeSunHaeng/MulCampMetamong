@@ -7,4 +7,23 @@
         <item name="android:textColor">@color/meta_grey02</item>
     </style>
 
+    <!-- #21# 마이페이지 _회원수정 페이지 layout에 사용하는 style -->
+    <!-- 1) TextView -->
+    <style name="MemberUpdateTextView" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textColor">@color/meta_grey02</item>
+    </style>
+    <!-- 2) EditText -->
+    <style name="MemberUpdateEditText" parent="android:Widget.EditText">
+        <item name="android:background">@android:color/transparent</item>   <!-- EditText 밑줄 투명색으로 -->
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textColor">@color/meta_purple01</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">24dp</item>
+    </style>
+
 </resources>

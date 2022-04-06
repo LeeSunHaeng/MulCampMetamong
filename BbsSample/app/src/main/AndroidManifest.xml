@@ -22,6 +22,9 @@
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".MemberUpdateActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".subscribe.SubPurchaseActivity"
                 android:exported="true"/>
         <activity

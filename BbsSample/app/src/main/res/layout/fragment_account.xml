@@ -103,6 +103,7 @@
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp" app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
                     app:layout_constraintVertical_bias="0.0" android:id="@+id/myPageFrag_scrollView">
+
                 <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                               android:orientation="vertical">
                     <TextView
@@ -112,7 +113,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_idTxt"
-                            android:text="회원의 ID값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 ID값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -123,7 +125,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_nicknameTxt"
-                            android:text="회원의 Nickname" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 Nickname" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -134,7 +137,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_nameTxt"
-                            android:text="회원의 Name값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 Name값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -145,7 +149,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_emailTxt"
-                            android:text="회원의 EMAIL값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 EMAIL값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -156,7 +161,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_phoneTxt"
-                            android:text="회원의 PHONE값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 PHONE값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -167,7 +173,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_heightTxt"
-                            android:text="회원의 HEIGHT값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 HEIGHT값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -178,7 +185,20 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_weightTxt"
-                            android:text="회원의 WEIGHT값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 WEIGHT값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
+                            android:background="@color/meta_grey04"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"/>
+                    <TextView
+                            android:id="@+id/myPageFrag_textView10"
+                            android:text="생년월일" android:textSize="20dp" android:layout_marginTop="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    <TextView
+                            android:id="@+id/myPageFrag_birthTxt"
+                            android:text="회원의 생년월일값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -189,7 +209,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_genderTxt"
-                            android:text="회원의 GENDER값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 GENDER값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
@@ -200,7 +221,8 @@
                             android:layout_height="wrap_content"/>
                     <TextView
                             android:id="@+id/myPageFrag_subTxt"
-                            android:text="회원의 SUBSCRIBE값" android:textSize="15dp" android:gravity="center_vertical" android:paddingLeft="10dp"
+                            android:text="회원의 SUBSCRIBE값" android:textSize="15dp" android:gravity="center_vertical"
+                            android:paddingLeft="10dp"
                             android:background="@color/meta_grey04"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"/>
