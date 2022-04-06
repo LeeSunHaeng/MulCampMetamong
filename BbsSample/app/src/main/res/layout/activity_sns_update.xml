@@ -7,4 +7,57 @@
     android:layout_height="match_parent"
     tools:context=".sns.SnsUpdateActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.appcompat.widget.Toolbar
+          android:layout_width="match_parent"
+          android:layout_height="50sp"
+          android:id="@+id/snsUpdateToolbar"
+          android:background="@color/white"
+          android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+          app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+          app:layout_constraintTop_toTopOf="parent"/>
+
+  <ImageView
+          android:layout_width="321dp"
+          android:layout_height="329dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/snsUpdateImage"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.283"
+          app:layout_constraintHorizontal_bias="0.501"/>
+  <EditText
+          android:layout_width="342dp"
+          android:layout_height="187dp"
+          android:inputType="textPersonName"
+          android:hint="내용"
+          android:gravity="top"
+          android:ems="10"
+          android:id="@+id/snsUpdateContentEditText"
+          app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/snsUpdateImage"/>
+  <ImageButton
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          app:srcCompat="@drawable/cameraicon"
+          android:id="@+id/snsCameraImageButton"
+          android:padding="0sp"
+          android:scaleType="fitCenter"
+          android:backgroundTint="@color/white"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          android:layout_marginTop="76dp"
+          app:layout_constraintHorizontal_bias="0.256"/>
+  <ImageButton
+          android:layout_width="70dp"
+          android:layout_height="70dp"
+          app:srcCompat="@drawable/photoicon"
+          android:id="@+id/snsAlbumImageButton"
+          android:padding="0sp"
+          android:scaleType="fitCenter"
+          android:backgroundTint="@color/white"
+          app:layout_constraintStart_toEndOf="@+id/snsCameraImageButton"
+          app:layout_constraintTop_toTopOf="parent"
+          android:layout_marginTop="76dp"
+          android:layout_marginStart="28dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

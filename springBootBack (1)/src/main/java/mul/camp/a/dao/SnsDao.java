@@ -15,6 +15,7 @@ import mul.camp.a.dto.SnsLikeDto;
 public interface SnsDao {
 	public int snsInsert(SnsDto dto);
 	public int snsDelete(int seq);
+	public int snsUpdate(SnsDto dto);
 	public MemberDto snsGetMmeber(String id);
 	public ArrayList<SnsDto> allSns();
 	public ArrayList<SnsCommentDto> allComment(int seq);
@@ -26,4 +27,5 @@ public interface SnsDao {
 	public int snsCommentCount(int seq);
 	public int snsCommentInsert(SnsCommentDto dto);
 	public int snsCommentAllDelete(int seq);
+	public int snsCommentDelete(int cmtseq);
 }

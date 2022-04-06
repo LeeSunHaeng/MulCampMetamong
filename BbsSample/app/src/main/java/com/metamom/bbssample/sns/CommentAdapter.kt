@@ -23,7 +23,8 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
         val cmtNickName = itemView.findViewById<TextView>(R.id.cmtNickNameTxt)
         val cmtWriteTime = itemView.findViewById<TextView>(R.id.cmtWriteTimeTxt)
         val cmtContent = itemView.findViewById<TextView>(R.id.cmtContentTxt)
-
+        val cmtDeleteBtn = itemView.findViewById<ImageButton>(R.id.commentDelBtn)
+        val posi = adapterPosition
 
 
         fun bind(dataVo: SnsCommentDto, context: Context) {
@@ -69,6 +70,15 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
                 //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
+            cmtDeleteBtn.setOnClickListener {
+                val position = adapterPosition
+                println("~~~~~~~~~~~~position : $position ~~~~~~~~~seq : ${dataVo.cmtseq}~~~~~~~~~~~~")
+                SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq)
+                deleteComment(position)
+
+
+            }
+
 
 
         }
@@ -95,6 +105,17 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
     fun addComment(dto:SnsCommentDto){
         commentList.add(dto)
         notifyItemInserted(commentList.size-1) //갱신
+        //notifyItemRangeInserted(commentList.size-1,1)
+        notifyDataSetChanged()
+        //notifyItemRangeChanged(commentList.size-1,1)
+    }
+
+    fun deleteComment(position: Int){
+        //cmtseq nextval 알아내서 comment insert문에 넣어보기
+        notifyItemRemoved(position)
+        //notifyItemRangeChanged(position,commentList.size)
+        //notifyItemRangeRemoved(position,commentList.size-position)
+        notifyDataSetChanged()
     }
 
 

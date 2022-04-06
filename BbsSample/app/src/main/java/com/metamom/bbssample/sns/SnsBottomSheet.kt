@@ -3,6 +3,7 @@ package com.metamom.bbssample.sns
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 
 import android.os.Bundle
 import android.util.Log
@@ -26,11 +27,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SnsBottomSheet.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context) : BottomSheetDialogFragment(){
-
+class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context,imageContent:String) : BottomSheetDialogFragment(){
+    val contxt = context
     val ad:CustomAdapter = adapter
     val pos = position
     val sequence = seq
+    val uri = imageContent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +40,31 @@ class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_sns_bottom_sheet, container, false)
+        val btnUpdate:Button = view.findViewById(R.id.btUpdate)
         val btnDel:Button = view.findViewById(R.id.btDelete)
 
+        btnUpdate.setOnClickListener {
+
+            val i = Intent(contxt,SnsUpdateActivity::class.java)
+            i.putExtra("ImageContentUri",uri)
+            i.putExtra("posi",pos)
+            i.putExtra("seq",sequence)
+            val activity:SnsActivity = contxt as SnsActivity
+            activity.startActivityForResult(i,200)
+            dismiss()
+
+            /*val  i = Intent(context,SnsUpdateActivity::class.java)
+            i.putExtra("ImageContentUri",uri)
+            i.putExtra("posi",pos)
+            i.putExtra("seq",sequence)
+            startActivity(i)*/
+        }
+
+
         btnDel.setOnClickListener {
-            Toast.makeText(context, "게시물이 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
             ad.delete(pos,sequence)
             dismiss()
+            Toast.makeText(context, "게시물이 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
 

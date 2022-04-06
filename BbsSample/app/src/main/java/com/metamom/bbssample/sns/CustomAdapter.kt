@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 
 import android.net.Uri
+import android.text.method.TextKeyListener.clear
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +18,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import java.util.Collections.addAll
 
 interface ItemClickListener {
     fun onItemClickListener(item: LauncherActivity.ListItem)
@@ -35,7 +38,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
     }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-
+        val contxt = context
         val snsProfile = itemView.findViewById<ImageView>(R.id.profileImageView)
         val snsNickName = itemView.findViewById<TextView>(R.id.nickNameTextView)
         val snsDate = itemView.findViewById<TextView>(R.id.dateTextView)
@@ -78,6 +81,8 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             } else{
                 snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }*/
+
+            //게시물 사진 올리기
             if(dataVo.imagecontent != ""){
                 //val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
 
@@ -180,10 +185,12 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
             //셋팅 버튼 클릭시
              snsSettingBtn.setOnClickListener {
+                    //게시물 작성자와 현재 로그인한 유저가 같을 경우
                      if(dataVo.id == MemberSingleton.id){
-                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,context)
+                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,contxt,dataVo.imagecontent)
                         BottomSheet.show(mFragmentManager,BottomSheet.tag)
                      }
+                     //다를경우
                      else{
                          val BottomSheet = NotWriterBottomSheet(context)
                          BottomSheet.show(mFragmentManager,BottomSheet.tag)
@@ -228,7 +235,19 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         SnsDao.getInstance().snsLikeAllDelete(seq)
         SnsDao.getInstance().snsDelete(seq)
         notifyItemRemoved(position)
+    }
 
+    fun updateList(items: ArrayList<SnsDto>?) {
+        items?.let {
+            val diffCallback = DiffUtilCallback(this.snsList, items)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+            this.snsList.run {
+                clear()
+                addAll(items)
+                diffResult.dispatchUpdatesTo(this@CustomAdapter)
+            }
+        }
     }
 
 

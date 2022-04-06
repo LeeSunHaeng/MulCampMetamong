@@ -27,12 +27,28 @@
             android:text="시간"
             android:layout_width="64dp"
             android:layout_height="38dp" android:id="@+id/cmtWriteTimeTxt"
-            app:layout_constraintTop_toTopOf="@+id/cmtNickNameTxt" app:layout_constraintStart_toEndOf="@+id/cmtNickNameTxt"
-            android:layout_marginStart="200dp"/>
+            app:layout_constraintTop_toTopOf="@+id/cmtNickNameTxt"
+            app:layout_constraintStart_toEndOf="@+id/cmtNickNameTxt"
+            android:layout_marginStart="216dp" android:layout_marginTop="96dp"/>
     <ImageView
             android:layout_width="68dp"
-            android:layout_height="72dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/cmtProfileimageView"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="16dp" android:layout_marginStart="16dp"/>
+            android:layout_height="72dp"
+            tools:srcCompat="@tools:sample/avatars"
+            android:id="@+id/cmtProfileimageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"/>
+    <ImageButton
+            android:layout_width="38dp"
+            android:layout_height="37dp"
+            app:srcCompat="@drawable/delete_button"
+            android:id="@+id/commentDelBtn"
+            android:padding="0sp"
+            android:scaleType="fitCenter"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

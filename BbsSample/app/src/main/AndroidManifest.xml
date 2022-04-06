@@ -21,6 +21,7 @@
         android:usesCleartextTraffic="true" >
         <activity
             android:name=".sns.SnsUpdateActivity"
+            android:parentActivityName=".sns.SnsActivity"
             android:exported="true" />
         <activity
             android:name=".sns.CommentActivity"

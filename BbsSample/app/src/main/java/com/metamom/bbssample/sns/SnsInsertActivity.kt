@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import com.metamom.bbssample.MemberDto
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import kotlinx.android.synthetic.main.activity_sns_update.*
 import java.io.IOException
 import java.lang.reflect.Member
 import java.text.SimpleDateFormat
@@ -184,9 +185,19 @@ class SnsInsertActivity : AppCompatActivity() {
                             photoURI = null // 사용 후 null 처리
                         }
                     }
+
+                    STORAGE_CODE ->{
+                        val uri = data?.data as Uri
+                        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                        imageView.setImageURI(uri)
+                        //newImgUri =  getPath(uri)
+                        snsUri = uri
+                    }
                 }
             }
         }
+
+
 
         // 갤러리 취득
         fun GetAlbum(){

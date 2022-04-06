@@ -77,11 +77,12 @@ class CommentActivity : AppCompatActivity() {
         cmtRecyclerView.setHasFixedSize(true)
 
         cmtInsertBtn.setOnClickListener {
-            val dto = SnsCommentDto(seqData,MemberSingleton.id!!,
+            val dto = SnsCommentDto(0,seqData,MemberSingleton.id!!,
                 member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
             SnsDao.getInstance().snsCommentInsert(dto)
             adapter.addComment(dto)
             cmtInsertContentEditText.text = null
+            cmtRecyclerView.scrollToPosition(data.size-1)
         }
 
 

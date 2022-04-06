@@ -29,6 +29,11 @@ public class SnsService {
 		return dao.snsDelete(seq);
 	}
 	
+	public int snsUpdate(SnsDto dto) {
+		System.out.println("snsUpdate service 실행");
+		return dao.snsUpdate(dto);
+	}
+	
 	public int snsCommentInsert(SnsCommentDto dto) {
 		System.out.println("snsCommentInsert service 실행");
 		return dao.snsCommentInsert(dto);
@@ -81,5 +86,10 @@ public class SnsService {
 	public int snsCommentAllDelete(int seq) {
 		System.out.println("snsCommentAllDelete service 실행");
 		return dao.snsCommentAllDelete(seq);
+	}
+	
+	public int snsCommentDelete(int cmtseq) {
+		System.out.println("snsCommentDelete service 실행");
+		return dao.snsCommentDelete(cmtseq);
 	}
 }

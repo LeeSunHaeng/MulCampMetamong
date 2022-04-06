@@ -37,7 +37,7 @@ class SnsActivity : AppCompatActivity() {
             val i  = Intent(this,SnsInsertActivity::class.java)
             startActivity(i)
         }
-        adapter
+
 
 
        /*if(intent.getSerializableExtra("position") as Int? != null){
@@ -76,6 +76,17 @@ class SnsActivity : AppCompatActivity() {
                     val position = data?.getSerializableExtra("position") as Int
                     println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$position~~~~~~~~~~~~~~~~~~~~~~~~~")
                     adapter.update(position)
+                }
+
+                200->{
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~시작200~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    val position = data?.getSerializableExtra("position") as Int
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$position~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    //adapter.update(position)
+                    //adapter.updateList(SnsDao.getInstance().allSns())
+                    adapter.snsList.get(position).content = data.getStringExtra("content") as String
+                    adapter.snsList.get(position).imagecontent = data.getStringExtra("uri") as String
+                    adapter.notifyItemChanged(position)
                 }
             }
         }
