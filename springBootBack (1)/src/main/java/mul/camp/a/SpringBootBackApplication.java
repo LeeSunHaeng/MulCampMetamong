@@ -9,7 +9,6 @@ public class SpringBootBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootBackApplication.class, args);
 	}
-
 }
 
 

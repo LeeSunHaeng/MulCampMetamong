@@ -53,8 +53,6 @@ class DetailRecipe : AppCompatActivity() {
         )
 
 
-
-
         // 레시피 세부적으로 나누기
 
         var reciList = recipeList?.get(b)?.recipe
