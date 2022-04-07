@@ -2,22 +2,19 @@ package com.metamom.bbssample.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.kakao.sdk.user.UserApiClient
 import com.metamom.bbssample.FoodListMeals.FoodListMeals
-
-import com.metamom.bbssample.MainActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentHomeBinding
+import com.metamom.bbssample.recipe2.RecipeMainActivity
 import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.subscribe.SubAddActivity
 import com.metamom.bbssample.subscribe.SubInfoActivity
@@ -36,6 +33,8 @@ private const val ARG_PARAM2 = "param2"
 class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
+
+    private lateinit var searchView: SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +73,14 @@ class HomeFragment : Fragment() {
         binding.haebinBtn.setOnClickListener {
             val i = Intent(context, FoodListMeals::class.java)
             startActivity(i)
+            Toast.makeText(context, "+ 버튼을 누르고 오늘의 식사를 기록해보세요\uD83C\uDF7D", Toast.LENGTH_LONG).show()
         }
+
+        binding.recipeBtn.setOnClickListener {
+            val i = Intent(context, RecipeMainActivity::class.java)
+            startActivity(i)
+        }
+
         // TODO 'kakaoLogout'버튼 다른곳에 숨겨서 배치하기
 /*
         binding.kakaoLogoutBtn.setOnClickListener {

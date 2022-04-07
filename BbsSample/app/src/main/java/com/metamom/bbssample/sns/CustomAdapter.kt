@@ -99,17 +99,17 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
                     if(wdate.get(2).equals("0")){
-                        snsDate.text="방금"
+                        snsDate.text="방금 전"
                     }else {
-                        snsDate.text = "${wdate.get(2)}분"
+                        snsDate.text = "${wdate.get(2)}분 전"
                     }
                 }else{
-                    snsDate.text = "${wdate.get(1)}시간"
+                    snsDate.text = "${wdate.get(1)}시간 전"
                 }
             }else if(wdate.get(0).equals("1")){
                 snsDate.text = "어제"
             }else{
-                snsDate.text = "${wdate.get(0)}일"
+                snsDate.text = "${wdate.get(0)}일 전"
             }
 
             snsNickName.text = dataVo.nickname
@@ -120,10 +120,10 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             //좋아요 버튼 이미지 뿌려줄때
             var snsLikeCheck = SnsDao.getInstance().snsLikeCheck(SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD"))
             if(snsLikeCheck > 0){
-                val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
             }else{
-                val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
             }
             //뿌리고 난 후 좋아요 버튼을 눌렀을때
@@ -133,14 +133,14 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 //좋아요가 눌려 있을때
                 if(snsLikeCheck > 0){
                     //이미지 변경
-                    val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                    val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
                     SnsDao.getInstance().snsLikeDelete(dto)
 
                 }
                 //좋아요가 안눌려 있을때
                 else{
-                    val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                    val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
 
                     SnsDao.getInstance().snsLikeInsert(dto)

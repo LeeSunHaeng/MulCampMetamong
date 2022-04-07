@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import kotlinx.android.synthetic.main.activity_comment.*
+import de.hdodenhof.circleimageview.CircleImageView
 
 class CommentActivity : AppCompatActivity() {
 

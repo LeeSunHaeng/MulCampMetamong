@@ -46,18 +46,18 @@ class SnsInsertActivity : AppCompatActivity() {
         CallCamera()
 
         // 카메라
-        val camera = findViewById<Button>(R.id.camera)
+        val camera = findViewById<ImageButton>(R.id.camera)
         camera.setOnClickListener {
             CallCamera()
         }
 
         // 저장된 사진 보기
-        val picture = findViewById<Button>(R.id.picture)
+        val picture = findViewById<ImageButton>(R.id.picture)
         picture.setOnClickListener {
             GetAlbum()
         }
 
-        val insertSnsBtn = findViewById<ImageButton>(R.id.snsInsertCheckBtn)
+        val insertSnsBtn = findViewById<Button>(R.id.snsInsertCheckBtn)
 
         insertSnsBtn.setOnClickListener {
             println("${mem.id}")

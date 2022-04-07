@@ -23,7 +23,7 @@ class SnsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sns)
-        val snsInsertBtn = findViewById<Button>(R.id.snsInsertBtn)
+        val snsInsertBtn = findViewById<ImageButton>(R.id.snsInsertBtn)
         val snsRecyclerView = findViewById<RecyclerView>(R.id.snsRecyclerView)
 
 

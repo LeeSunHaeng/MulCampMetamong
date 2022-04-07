@@ -13,8 +13,6 @@ interface MemberService {
 
     @POST("/addmember")
     fun addmember(@Body dto: MemberDto): Call<MemberDto>
-
-
 }
 
 
@@ -65,6 +63,5 @@ class MemberDao {
 
         return response?.body() as MemberDto
     }
-
 }
 
