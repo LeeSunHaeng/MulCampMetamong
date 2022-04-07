@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.metamom.bbssample.MainActivity
 import com.metamom.bbssample.MemberUpdateActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentAccountBinding
@@ -85,6 +86,22 @@ class AccountFragment : Fragment() {
         /* #21# 회원정보 수정 Button 클릭 시 이동 */
         val userUpdateBtn = binding.root.findViewById<Button>(R.id.myPageFrag_updateBtn)
         userUpdateBtn.setOnClickListener { startActivity(Intent(activity, MemberUpdateActivity::class.java)) }
+
+        /* #21# 로그아웃 */
+        val logoutBtn = binding.root.findViewById<Button>(R.id.myPageFrag_logoutBtn)
+        logoutBtn.setOnClickListener {
+            // 저장하였던 MemberSingleton 값 초기화
+            MemberSingleton.id = null
+            MemberSingleton.nickname = null
+            MemberSingleton.profile = null
+            MemberSingleton.subscribe = null
+            MemberSingleton.weight = null
+            MemberSingleton.height = null
+            Log.d("AccountFragment", "#21# 로그아웃 진행 > MemberSingleton 값 초기화 ${MemberSingleton.toString()}")
+
+            // 로그인 페이지로 이동
+            startActivity(Intent(activity, MainActivity::class.java))
+        }
 
         return binding.root
     }

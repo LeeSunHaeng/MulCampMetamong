@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
@@ -27,11 +28,17 @@ class SubAddActivity : AppCompatActivity() {
         setContentView(binding.root)
         //setContentView(R.layout.activity_sub_add)
 
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subAdd_PreBtn)
-        previousBtn.setOnClickListener {
-            val i = Intent(this, MainButtonActivity::class.java)
-            startActivity(i)
+        /* 액션바 설정 */
+        setSupportActionBar(findViewById(R.id.subAdd_toolbar))
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        findViewById<Toolbar>(R.id.subAdd_toolbar).setNavigationOnClickListener {
+            onBackPressed()
         }
 
         /* #21# Spinner 세팅 + Spinner 선택 값 SubAddSingleton에 저장 */

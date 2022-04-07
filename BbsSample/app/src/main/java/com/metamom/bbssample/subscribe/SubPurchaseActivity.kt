@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.Purchase
@@ -36,6 +37,20 @@ class SubPurchaseActivity : AppCompatActivity() {
         binding = ActivitySubPurchaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //setContentView(R.layout.activity_sub_purchase)
+
+        /* 액션바 설정 */
+        setSupportActionBar(binding.subPurchaseToolbar)
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        binding.subPurchaseToolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
 
         bm = BillingModule(this, lifecycleScope, object: BillingModule.Callback {
             override fun onBillingModulesIsReady() {
