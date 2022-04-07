@@ -43,7 +43,7 @@
        TRUNC(MOD((SYSDATE - SNSDATE)*24,1)*60) AS SNSDATE,
    IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
   FROM META_SNS 
-  ORDER BY SNSDATE
+  ORDER BY SNSSEQ DESC
   </select>
   
   <select id="allComment" parameterType = "Integer"
@@ -55,7 +55,7 @@
        CONTENT
   FROM SNS_COMMENT
   WHERE SEQ=#{seq}
-  ORDER BY WDATE DESC
+  ORDER BY CMTSEQ
   </select>
   
   <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
@@ -65,7 +65,7 @@
   
   <insert id="snsCommentInsert" parameterType = "mul.camp.a.dto.SnsCommentDto">
   INSERT INTO SNS_COMMENT(CMTSEQ,SEQ,ID,NICKNAME,PROFILE,WDATE,CONTENT)
-  VALUES(SEQCMT.NEXTVAL,#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
+  VALUES(#{cmtseq},#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
   </insert>
   
   <select id="snsLikeCount" parameterType="Integer" resultType="Integer">
@@ -107,6 +107,16 @@
   FROM SNS_LIKE
   WHERE LIKESEQ=#{likeseq} AND ID=#{id}
   </select>
+  
+  <select id="nextSeq" resultType="Integer">
+  SELECT SEQCMT.NEXTVAL FROM DUAL
+  </select>
+  
+    <select id="currSeq" resultType="Integer">
+  SELECT SEQCMT.CURRVAL FROM DUAL
+  </select>
+  
+  
   
   
   

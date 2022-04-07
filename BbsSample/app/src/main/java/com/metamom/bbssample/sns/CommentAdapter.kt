@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
-
-
+import com.metamom.bbssample.subsingleton.MemberSingleton
 
 
 class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentDto>) : RecyclerView.Adapter<CommentAdapter.ItemViewHolder>() {
@@ -24,7 +24,6 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
         val cmtWriteTime = itemView.findViewById<TextView>(R.id.cmtWriteTimeTxt)
         val cmtContent = itemView.findViewById<TextView>(R.id.cmtContentTxt)
         val cmtDeleteBtn = itemView.findViewById<ImageButton>(R.id.commentDelBtn)
-        val posi = adapterPosition
 
 
         fun bind(dataVo: SnsCommentDto, context: Context) {
@@ -71,10 +70,19 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             }
 
             cmtDeleteBtn.setOnClickListener {
-                val position = adapterPosition
-                println("~~~~~~~~~~~~position : $position ~~~~~~~~~seq : ${dataVo.cmtseq}~~~~~~~~~~~~")
-                SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq)
-                deleteComment(position)
+
+                if(dataVo.id == MemberSingleton.id){
+                    val position = adapterPosition
+                    println("~~~~~~~~~~~~position : $position ~~~~~~~~~seq : ${dataVo.cmtseq}~~~~~~~~~~~~")
+                    SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq)
+                    commentList.removeAt(position)
+                    deleteComment(position)
+                    Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(context, "작성자가 아닙니다.", Toast.LENGTH_SHORT).show()
+                }
+
 
 
             }
@@ -102,20 +110,15 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
 
 
 
-    fun addComment(dto:SnsCommentDto){
+    fun addComment(dto:SnsCommentDto,seq:Int){
         commentList.add(dto)
         notifyItemInserted(commentList.size-1) //갱신
-        //notifyItemRangeInserted(commentList.size-1,1)
-        notifyDataSetChanged()
-        //notifyItemRangeChanged(commentList.size-1,1)
+
     }
 
     fun deleteComment(position: Int){
-        //cmtseq nextval 알아내서 comment insert문에 넣어보기
         notifyItemRemoved(position)
-        //notifyItemRangeChanged(position,commentList.size)
-        //notifyItemRangeRemoved(position,commentList.size-position)
-        notifyDataSetChanged()
+
     }
 
 

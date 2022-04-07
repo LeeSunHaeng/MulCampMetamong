@@ -28,4 +28,6 @@ public interface SnsDao {
 	public int snsCommentInsert(SnsCommentDto dto);
 	public int snsCommentAllDelete(int seq);
 	public int snsCommentDelete(int cmtseq);
+	public int nextSeq();
+	public int currSeq();
 }

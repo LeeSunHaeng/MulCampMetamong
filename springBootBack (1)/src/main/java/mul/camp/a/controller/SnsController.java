@@ -135,4 +135,19 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/nextSeq", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int nextSeq() {
+		System.out.println("nextSeq 실행 성공");
+		int num = service.nextSeq();
+		return num;
+	}
+	
+	@RequestMapping(value = "/currSeq", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int currSeq() {
+		System.out.println("currSeq 실행 성공");
+		int num = service.currSeq();
+		return num;
+	}
+	
+	
 }

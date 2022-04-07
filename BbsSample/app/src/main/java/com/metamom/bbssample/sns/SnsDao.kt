@@ -55,6 +55,12 @@ interface SnsService{
     @GET("allComment")
     fun allComment(@Query("seq") seq:Int) : Call<List<SnsCommentDto>>
 
+    @POST("/nextSeq")
+    fun nextSeq() : Call<Int>
+
+    @POST("/currSeq")
+    fun currSeq() : Call<Int>
+
 
 
 
@@ -207,5 +213,23 @@ class SnsDao {
         val response = call?.execute()
 
         return response?.body() as ArrayList
+    }
+
+    fun nextSeq() : Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.nextSeq()
+        val response = call?.execute()
+
+        return response?.body()!!
+    }
+
+    fun currSeq() : Int{
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.currSeq()
+        val response = call?.execute()
+
+        return response?.body()!!
     }
 }

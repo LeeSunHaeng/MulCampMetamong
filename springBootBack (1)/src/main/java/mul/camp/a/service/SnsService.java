@@ -92,4 +92,14 @@ public class SnsService {
 		System.out.println("snsCommentDelete service 실행");
 		return dao.snsCommentDelete(cmtseq);
 	}
+	
+	public int nextSeq() {
+		System.out.println("nextSeq service 실행");
+		return dao.nextSeq();
+	}
+	
+	public int currSeq() {
+		System.out.println("currSeq service 실행");
+		return dao.currSeq();
+	}
 }
