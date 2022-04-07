@@ -2,6 +2,8 @@ package com.metamom.bbssample.FoodListMeals
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +43,19 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
                foodScoreTxt.text="점수 : ★★★★"
            }else if(dataVo.foodscore =="5점"){
                foodScoreTxt.text="점수 : ★★★★★"
+               foodScoreTxt.setTextColor(Color.parseColor("#000000"))
+               foodScoreTxt.setTextAppearance(context, R.style.emphasisText)
            }else foodScoreTxt.text="점수 : ${dataVo.foodscore}"
           // foodImg.setImageURI((Vo.imgUrl))
+
+           if (foodKindTxt.text == "아침") {
+               foodKindTxt.setTextColor(Color.parseColor("#8AC926"))
+           } else if (foodKindTxt.text == "점심") {
+               foodKindTxt.setTextColor(Color.parseColor("#FFB703"))
+           } else if (foodKindTxt.text == "저녁") {
+               foodKindTxt.setTextColor(Color.parseColor("#6A00F4"))
+           }
+
            try {
                if(dataVo.imgUrl != null) {
                    val uri = Uri.parse("${dataVo.imgUrl}")

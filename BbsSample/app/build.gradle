@@ -58,6 +58,8 @@ dependencies {
     implementation 'androidx.databinding:databinding-runtime:7.1.2'// 추가
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'     // 추가
 
+    implementation 'de.hdodenhof:circleimageview:3.1.0' // 원형 이미지
+
     //FragMent
     implementation 'com.google.android.material:material:1.2.1'         //추가
 

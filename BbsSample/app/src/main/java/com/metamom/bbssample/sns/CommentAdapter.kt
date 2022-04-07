@@ -29,20 +29,20 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
                     if(wdate.get(2).equals("0")) {
-                        cmtWriteTime.text = "방금"
+                        cmtWriteTime.text = "방금 전"
                     }else{
-                        cmtWriteTime.text = "${wdate.get(2)}분"
+                        cmtWriteTime.text = "${wdate.get(2)}분 전"
                     }
                 }else{
-                    cmtWriteTime.text = "${wdate.get(1)}시간"
+                    cmtWriteTime.text = "${wdate.get(1)}시간 전"
                 }
             }else if(wdate.get(0).equals("1")){
                 cmtWriteTime.text = "어제"
-            }else if(wdate.get(0).equals("방금")){
-                cmtWriteTime.text = "방금"
+            }else if(wdate.get(0).equals("방금 전")){
+                cmtWriteTime.text = "방금 전"
             }
             else{
-                cmtWriteTime.text = "${wdate.get(0)}일"
+                cmtWriteTime.text = "${wdate.get(0)}일 전"
             }
 
             //프로필 이미지 뿌려주기

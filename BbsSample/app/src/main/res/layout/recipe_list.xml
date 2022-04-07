@@ -4,9 +4,8 @@
     android:id="@+id/reciListItem"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:paddingTop="10dp"
-    android:paddingStart="30dp"
-    android:textColor="@android:color/black"
-    android:textSize="15sp"
-    android:paddingLeft="30dp"/>
+    android:gravity="center_vertical"
+    android:fontFamily="@font/font_content_regular"
+    android:textColor="@color/meta_grey01"
+    android:textSize="14sp"/>
 
