@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.metamom.bbssample.MainActivity
+import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentMealBinding
 import com.metamom.bbssample.subscribe.*
@@ -58,7 +60,7 @@ class MealFragment : Fragment() {
         /* #21# 추천한 식단을 기록하고 있는 REMEMBER TABLE에서 2일 초과인 식단 확인 및 제거
          *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) */
         var delRememberMeal = SubscribeDao.getInstance().subRememberDel(MemberSingleton.id.toString())
-        Log.d("SubMyMealsActivity", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
+        Log.d("MealFragment", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
 
         /* #21# 구독 신청 시간에 따라 동적 Button 생성 */
         var linearLayout = binding.root.findViewById<LinearLayout>(R.id.subFragMeal_linearLayout)
@@ -69,7 +71,7 @@ class MealFragment : Fragment() {
         // 1) 회원이 신청한 구독 시간 text값 List에 저장
         if (subInfo != null) {
             btnCount = subInfo.subMorning + subInfo.subLunch + subInfo.subDinner + subInfo.subSnack
-            Log.d("SubMyMealsActivity", "#21# 구독 정보에서 가져온 구독 시간개수 > ${btnCount}개")
+            Log.d("MealFragment", "#21# 구독 정보에서 가져온 구독 시간개수 > ${btnCount}개")
 
             var mealTimeTxt = mutableListOf<String>()
             if (subInfo.subMorning == 1){
@@ -84,7 +86,7 @@ class MealFragment : Fragment() {
             if (subInfo.subSnack == 1){
                 mealTimeTxt.add("간식")
             }
-            Log.d("SubMyMealsActivity", "#21# 구독 정보에서 가져온 구독 시간 text값 > $mealTimeTxt")
+            Log.d("MealFragment", "#21# 구독 정보에서 가져온 구독 시간 text값 > $mealTimeTxt")
 
 
             // 2) 현재 구독자의 구독시간에 따라 Button 생성(아침/점심/저녁/간식)
@@ -115,7 +117,7 @@ class MealFragment : Fragment() {
 
                     // Button 클릭 시 반응 __해당 시간에 맞는 Activity로 이동
                     setOnClickListener {
-                        Log.d("SubMyMealsActivity", "#21# 선택한 식단 시간 Button값 > ${mealTimeTxt[i]}")
+                        Log.d("MealFragment", "#21# 선택한 식단 시간 Button값 > ${mealTimeTxt[i]}")
                         moveMealsView(mealTimeTxt[i])
                     }
                 }
@@ -128,10 +130,10 @@ class MealFragment : Fragment() {
 
         }
         else {
-            Toast.makeText(activity, "구독 서비스 입니다.", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "관리자에게 문의하여 주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
+            Log.d("MealFragment", "#21# 오늘의 식단 페이지 띄우기 실패 Error")
 
-            val i = Intent(activity, SubAddActivity::class.java)
-            startActivity(i)
+            startActivity(Intent(activity, MainButtonActivity::class.java))
         }
 
 

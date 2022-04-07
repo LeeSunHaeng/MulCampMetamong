@@ -1,5 +1,6 @@
 package com.metamom.bbssample.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -100,7 +101,11 @@ class HomeFragment : Fragment() {
         binding.mealTap.setOnClickListener {
 
             if (MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
-                Toast.makeText(activity, "구독 서비스 입니다!", Toast.LENGTH_LONG).show()
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle("오늘의 식단")
+                builder.setMessage("구독회원 전용 서비스 입니다 😥")
+                builder.show()
+
                 it.findNavController().navigate(R.id.action_homeFragment_self)
             }
             else {                                          // case_1) 구독일 경우

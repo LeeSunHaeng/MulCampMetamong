@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.metamom.bbssample.MainActivity
@@ -16,6 +17,7 @@ import com.metamom.bbssample.MemberUpdateActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentAccountBinding
 import com.metamom.bbssample.sns.SnsDao
+import com.metamom.bbssample.subscribe.SubInfoActivity
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
 class AccountFragment : Fragment() {
@@ -101,6 +103,16 @@ class AccountFragment : Fragment() {
 
             // 로그인 페이지로 이동
             startActivity(Intent(activity, MainActivity::class.java))
+        }
+
+        /* #21# 구독정보 페이지로 이동 */
+        val subInfoBtn = binding.root.findViewById<Button>(R.id.myPageFrag_subInfoBtn)
+        subInfoBtn.setOnClickListener {
+            if (MemberSingleton.subscribe == "1") {
+                startActivity(Intent(activity, SubInfoActivity::class.java))
+            } else {
+                Toast.makeText(activity, "구독회원이 아닙니다.", Toast.LENGTH_LONG).show()
+            }
         }
 
         return binding.root

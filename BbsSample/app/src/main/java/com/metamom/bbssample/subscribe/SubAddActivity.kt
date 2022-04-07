@@ -60,37 +60,9 @@ class SubAddActivity : AppCompatActivity() {
                 /* !! 구글 인앱 결제를 위한 Activity로 이동 */
                 val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
                 startActivity(i)
-
-                // #21# (04.05) 아래의 code는 결제이후 진행해야 하기 때문에 SubPurchaseActivity 로 이동
-                /*
-                if (SubAddSingleton.subType != null && SubAddSingleton.subType != null){
-                    val addResult = SubscribeDao.getInstance().subAdd(SubscribeDto(MemberSingleton.id.toString(),
-                                                                                    SubAddSingleton.subType!!,
-                                                                                    SubAddSingleton.subPeriod!!,
-                                                                                    SubAddSingleton.subMorning,
-                                                                                    SubAddSingleton.subLunch,
-                                                                                    SubAddSingleton.subDinner,
-                                                                                    SubAddSingleton.subSnack,
-                                                                                    "", ""))
-                    Log.d("SubAddActivity", "#21# 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
-
-                    if (addResult == "Success"){
-                        val builder = AlertDialog.Builder(this);
-                        builder.setTitle("구독 신청")
-                        builder.setMessage("구독이 신청되었습니다! 감사합니다 😌")
-                        builder.show()
-
-                        *//* !!! 구독 신청 후 MemberSingleton값 수정 *//*
-                        MemberSingleton.subscribe = "1"
-                    } else {
-                        Toast.makeText(this@SubAddActivity, "죄송합니다. 다시 시도해주세요", Toast.LENGTH_LONG).show()
-                    }
-                }*/
             }
         }
     }
-
-
 
 
     /* Spinner 세팅 */
