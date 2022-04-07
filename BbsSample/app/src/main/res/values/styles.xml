@@ -24,7 +24,6 @@
         <item name="android:fontFamily">@font/font_content_regular</item>
     </style>
 
-
     <!-- #21# 마이페이지 _회원수정 페이지 style -->
     <!-- 1) TextView -->
     <style name="MemberUpdateTextView" parent="android:TextAppearance">
@@ -53,6 +52,35 @@
         <item name="android:layout_marginStart">24dp</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:textColor">@color/meta_green01</item>
+    </style>
+
+    <!-- #21# 구독정보 style -->
+    <!-- 1) 항목 TextView -->
+    <style name="SubInfoTextView" parent="android:TextAppearance">
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:textColor">@color/meta_purple01</item>
+    </style>
+    <!-- 2) info값 TextView -->
+    <style name="SubInfoValueTextView" parent="android:TextAppearance">
+        <item name="android:textSize">15dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:layout_width">520dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+    </style>
+    <!-- 3) CheckBox -->
+    <style name="SubInfoCheckBox" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:enabled">false</item>
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:layout_width">520dp</item>
+        <item name="android:layout_height">65dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
     </style>
 
 

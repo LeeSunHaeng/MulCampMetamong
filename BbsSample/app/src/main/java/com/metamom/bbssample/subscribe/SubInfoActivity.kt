@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
@@ -13,11 +14,17 @@ class SubInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_info)
 
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subInfo_PreBtn)
-        previousBtn.setOnClickListener {
-            val i = Intent(this, MainButtonActivity::class.java)
-            startActivity(i)
+        /* 액션바 설정 */
+        setSupportActionBar(findViewById(R.id.subInfo_toolbar))
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        findViewById<Toolbar>(R.id.subInfo_toolbar).setNavigationOnClickListener {
+            onBackPressed()
         }
 
         val idTxt = findViewById<TextView>(R.id.subInfo_IdTxt)
