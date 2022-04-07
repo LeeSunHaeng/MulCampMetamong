@@ -6,10 +6,7 @@ import android.graphics.Rect
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,17 +31,23 @@ class CommentActivity : AppCompatActivity() {
         val member = SnsDao.getInstance().snsGetMember(MemberSingleton.id!!)
         val uri = member.profile
         val cmtInsertContentEditText = findViewById<EditText>(R.id.cmtInsertContenteditText)
-        val cmtInsertBtn = findViewById<ImageButton>(R.id.cmtInsertimageButton)
+        val cmtInsertBtn = findViewById<TextView>(R.id.cmtInsertimageButton)
+
+
+
+
+
         //툴바 사용 설정
         setSupportActionBar(snstoolbar)
         // 툴바 왼쪽 버튼 설정
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)
-        supportActionBar!!.title="댓글"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)  // 왼쪽 버튼 이미지 설정
+        supportActionBar!!.setTitle("댓글")
 
 
 
 
+        //프로필 설정 안했으면
         if(uri != ""){
             if(uri.equals("profile3")){
                 val resourceId = this.resources.getIdentifier(uri, "drawable", this.packageName)
@@ -78,6 +81,7 @@ class CommentActivity : AppCompatActivity() {
         cmtRecyclerView.setHasFixedSize(true)
 
         cmtInsertBtn.setOnClickListener {
+            println("~~~~~~~~~~~~~~~~~~~~~~~~~~~${member.profile}~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
             val nextSeq = SnsDao.getInstance().nextSeq()
             val dto = SnsCommentDto(nextSeq,seqData,MemberSingleton.id!!,
                 member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
@@ -140,6 +144,7 @@ class CommentActivity : AppCompatActivity() {
                 finish()
                 return true
             }
+
 
         }
         return super.onOptionsItemSelected(item)

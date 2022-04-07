@@ -22,12 +22,16 @@
         <activity
             android:name=".sns.SnsUpdateActivity"
             android:parentActivityName=".sns.SnsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".sns.CommentActivity"
             android:exported="true"
             android:parentActivityName=".sns.SnsActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize"
+        />
+
+
         <activity
             android:name=".sns.SnsInsertActivity"
             android:exported="true" />

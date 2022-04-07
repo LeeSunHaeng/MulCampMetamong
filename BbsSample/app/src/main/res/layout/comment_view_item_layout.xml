@@ -36,23 +36,44 @@
             <TextView
                     android:id="@+id/cmtNickNameTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:fontFamily="@font/font_content_bold"
                     android:textSize="12sp"
                     android:textColor="@color/meta_grey02"
                     tools:text="작성자"/>
-            <TextView
-                    android:id="@+id/cmtWriteTimeTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="시간"
-                    android:textSize="10sp"
-                    android:textColor="@color/meta_grey02"
-                    android:gravity="end|center_vertical"
-                    android:fontFamily="@font/font_content_regular"/>
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                               android:layout_height="match_parent">
+                <TextView
+                        android:id="@+id/cmtWriteTimeTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="67dp"
+                        android:text="시간"
+                        android:textSize="10sp"
+                        android:textColor="@color/meta_grey02"
+                        android:gravity="end|center_vertical"
+                        android:fontFamily="@font/font_content_regular" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/commentDelBtn"/>
+                <ImageButton
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:paddingBottom="20dp"
+                        app:srcCompat="@drawable/delete_button"
+                        android:id="@+id/commentDelBtn"
+                        android:padding="0sp"
+                        android:scaleType="fitCenter"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="4dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="4dp"
@@ -68,18 +89,9 @@
                 android:textSize="12sp"
                 tools:hint="내용"/>
 
+
     </LinearLayout>
     
-     <ImageButton
-            android:layout_width="38dp"
-            android:layout_height="37dp"
-            app:srcCompat="@drawable/delete_button"
-            android:id="@+id/commentDelBtn"
-            android:padding="0sp"
-            android:scaleType="fitCenter"
-            android:backgroundTint="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"/>
+
 
 </LinearLayout>
