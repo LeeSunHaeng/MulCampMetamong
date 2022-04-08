@@ -41,13 +41,20 @@ class SubAddActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        // 기존의 구독신청 데이터값 초기화
+        SubAddSingleton.subType = null
+        SubAddSingleton.subPeriod = null
+        SubAddSingleton.subMorning = 0
+        SubAddSingleton.subLunch = 0
+        SubAddSingleton.subDinner = 0
+        SubAddSingleton.subSnack = 0
+
         /* #21# Spinner 세팅 + Spinner 선택 값 SubAddSingleton에 저장 */
         setupSpinner()                                  // Spinner 세팅
         setupSpinnerHandler()                           // Spinner 선택 시 이벤트
 
-        /* #21# 구독신청 (+ 멤버 TABLE 내 구독값 수정) */
+        /* #21# 구독신청 _구글 인앱 결제 */
         val subAddBtn = findViewById<Button>(R.id.subAdd_addBtn)
-
         with (binding) {
             subAddBtn.setOnClickListener {
                 // 선택한 개월(1, 3, 5) Singleton에 저장
@@ -56,13 +63,17 @@ class SubAddActivity : AppCompatActivity() {
                 // 선택한 구독 시간 Singleton에 저장
                 timeCheck()
 
-                /* !! 구글 인앱 결제를 위한 Activity로 이동 */
-                val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
-                startActivity(i)
+                // 구독신청에 필요한 데이터 유효성 검사
+                Log.d("SubAddActivity", "#21# SubAddActivity 선택한 구독신청을 위한 데이터 > ${SubAddSingleton.toString()}")
+                if (subChoiceCheck() == true){
+                    /* !! 구글 인앱 결제를 위한 Activity로 이동 */
+                    val i = Intent(this@SubAddActivity, SubPurchaseActivity::class.java)
+                    startActivity(i)
+                }
             }
         }
 
-        /* #21# 구독신청 _결제 API test */
+        /* #21# 구독신청 _결제 API */
         val subAPIBtn = findViewById<Button>(R.id.subAdd_payAPIBtn)
         subAPIBtn.setOnClickListener {
             // 선택한 개월(1, 3, 5) Singleton에 저장
@@ -71,11 +82,19 @@ class SubAddActivity : AppCompatActivity() {
             // 선택한 구독 시간 Singleton에 저장
             timeCheck()
 
-            /* !! 카드 결제를 위한 Activity로 이동 */
-            startActivity(Intent(this@SubAddActivity, SubAPIPurchaseActivity::class.java))
+            // 구독신청에 필요한 데이터 유효성 검사
+            Log.d("SubAddActivity", "#21# SubAddActivity 선택한 구독신청을 위한 데이터 > ${SubAddSingleton.toString()}")
+            if (subChoiceCheck() == true){
+                /* !! 카드 결제를 위한 Activity로 이동 */
+                startActivity(Intent(this@SubAddActivity, SubAPIPurchaseActivity::class.java))
+            }
         }
 
     }
+
+
+
+
 
 
     /* Spinner 세팅 */
@@ -111,7 +130,10 @@ class SubAddActivity : AppCompatActivity() {
                     SubAddSingleton.subType = 0
                 } else if (TypeSpinner.getItemAtPosition(position).toString() == "운동") {
                     SubAddSingleton.subType = 1
+                } else if (TypeSpinner.getItemAtPosition(position).toString() == "유형 선택") {
+                    SubAddSingleton.subType = null
                 } else {
+                    Toast.makeText(this@SubAddActivity, "관리자에게 문의하여 주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
                     Log.d("SubAddActivity", "#21# 구독 유형 Spinner 선택 Error")
                 }
             }
@@ -135,7 +157,10 @@ class SubAddActivity : AppCompatActivity() {
                     SubAddSingleton.subPeriod = 3
                 } else if (PeriodSpinner.getItemAtPosition(position).toString() == "5개월[5,000원]") {
                     SubAddSingleton.subPeriod = 5
+                } else if (PeriodSpinner.getItemAtPosition(position).toString() == "기간 선택") {
+                    SubAddSingleton.subPeriod = null
                 } else {
+                    Toast.makeText(this@SubAddActivity, "관리자에게 문의하여 주시길 바랍니다. 죄송합니다", Toast.LENGTH_LONG).show()
                     Log.d("SubAddActivity", "#21# 구독 기간 Spinner 선택 Error")
                 }
             }
@@ -173,5 +198,26 @@ class SubAddActivity : AppCompatActivity() {
         } else {
             SubAddSingleton.subSnack = 0
         }
+    }
+
+    /* 구독신청에 필요한 데이터 유효성 검증 */
+    fun subChoiceCheck() :Boolean {
+        // 유형
+        if (SubAddSingleton.subType == null) {
+            Toast.makeText(this, "구독 유형을 선택해주세요!", Toast.LENGTH_LONG).show()
+            return false
+        }
+        // 기간
+        if (SubAddSingleton.subPeriod == null) {
+            Toast.makeText(this, "구독 기간을 선택해주세요!", Toast.LENGTH_LONG).show()
+            return false
+        }
+        // 시간
+        if (SubAddSingleton.subMorning == 0 && SubAddSingleton.subLunch == 0 && SubAddSingleton.subDinner == 0 && SubAddSingleton.subSnack == 0) {
+            Toast.makeText(this, "구독 시간을 선택해주세요!", Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        return true
     }
 }

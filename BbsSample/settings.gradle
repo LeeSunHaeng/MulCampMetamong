@@ -4,9 +4,6 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
-        
-        /* #21# for 아임포트 결제 */
-        //maven { url 'https://jitpack.io' }
 
         /* #21# for 부트페이 결제 */
         maven { url 'https://jitpack.io' }
