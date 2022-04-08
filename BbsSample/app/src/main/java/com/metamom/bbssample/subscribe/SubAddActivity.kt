@@ -50,7 +50,6 @@ class SubAddActivity : AppCompatActivity() {
 
         with (binding) {
             subAddBtn.setOnClickListener {
-
                 // 선택한 개월(1, 3, 5) Singleton에 저장
                 SubPurchaseSingleton.subPeriod = SubAddSingleton.subPeriod
 
@@ -62,6 +61,20 @@ class SubAddActivity : AppCompatActivity() {
                 startActivity(i)
             }
         }
+
+        /* #21# 구독신청 _결제 API test */
+        val subAPIBtn = findViewById<Button>(R.id.subAdd_payAPIBtn)
+        subAPIBtn.setOnClickListener {
+            // 선택한 개월(1, 3, 5) Singleton에 저장
+            SubPurchaseSingleton.subPeriod = SubAddSingleton.subPeriod
+
+            // 선택한 구독 시간 Singleton에 저장
+            timeCheck()
+
+            /* !! 카드 결제를 위한 Activity로 이동 */
+            startActivity(Intent(this@SubAddActivity, SubAPIPurchaseActivity::class.java))
+        }
+
     }
 
 

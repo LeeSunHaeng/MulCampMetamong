@@ -104,7 +104,7 @@
             app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintTop_toBottomOf="@+id/subAdd_dinnerCheck"/>
     <Button
-            android:text="신청"
+            android:text="Google Store 결제"
             android:fontFamily="@font/font_content_regular"
             android:layout_width="520dp"
             android:layout_height="50dp" android:id="@+id/subAdd_addBtn"
@@ -113,5 +113,15 @@
             app:layout_constraintHorizontal_bias="0.187" android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintTop_toBottomOf="@+id/subAdd_snackCheck" app:layout_constraintVertical_bias="0.155"/>
+    <Button
+            android:id="@+id/subAdd_payAPIBtn"
+            android:text="CARD 결제"
+            android:fontFamily="@font/font_content_regular"
+            android:layout_width="520dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subAdd_addBtn" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.187" app:layout_constraintVertical_bias="0.14"
+            android:layout_marginStart="24dp" android:layout_marginEnd="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

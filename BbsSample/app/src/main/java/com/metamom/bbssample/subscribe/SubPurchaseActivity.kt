@@ -92,7 +92,7 @@ class SubPurchaseActivity : AppCompatActivity() {
                         SubAddSingleton.subDinner,
                         SubAddSingleton.subSnack,
                         "", ""))
-                    Log.d("SubAddActivity", "#21# 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
+                    Log.d("SubPurchaseActivity", "#21# SubPurchaseActivity 구독 신청 Back으로부터 전달받은 결과값 > ${addResult.toString()}")
 
                     if (addResult == "Success"){
                         val builder = AlertDialog.Builder(this@SubPurchaseActivity)
@@ -185,7 +185,7 @@ class SubPurchaseActivity : AppCompatActivity() {
         var type :String? = null
         if (SubAddSingleton.subType == 0){
             type = "다이어트"
-        } else {
+        } else if (SubAddSingleton.subType == 1) {
             type = "운동"
         }
         binding.subPurchaseTypeTxt.text = type

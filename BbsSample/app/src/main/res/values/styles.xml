@@ -83,5 +83,25 @@
         <item name="android:layout_marginEnd">24dp</item>
     </style>
 
+    <!-- #21# 상품결제 style -->
+    <!-- 1) 항목 TextView -->
+    <style name="SubPurchaseTextView" parent="android:TextAppearance">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+    </style>
+    <!-- 2) 값 TextView -->
+    <style name="SubPurchaseValueTextView" parent="android:TextAppearance">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:textColor">@color/meta_green01</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+    </style>
+
 
 </resources>
