@@ -5,26 +5,36 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Adapter
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
+import kotlinx.android.synthetic.main.activity_sns.*
+import kotlinx.android.synthetic.main.activity_sns_update.*
 
 class SnsActivity : AppCompatActivity() {
     fun context():Context{
         return this
     }
     var data = SnsDao.getInstance().allSns()
-    var adapter = CustomAdapter(this,data,supportFragmentManager)
+    val adapter = CustomAdapter(this,data,supportFragmentManager)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sns)
-        val snsInsertBtn = findViewById<ImageButton>(R.id.snsInsertBtn)
         val snsRecyclerView = findViewById<RecyclerView>(R.id.snsRecyclerView)
+
+        //툴바 사용 설정
+        setSupportActionBar(snsMainToolbar)
+        // 툴바 왼쪽 버튼 설정
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)
+        supportActionBar!!.title="META_SNS"
 
 
         snsRecyclerView.adapter = adapter
@@ -33,40 +43,10 @@ class SnsActivity : AppCompatActivity() {
         snsRecyclerView.layoutManager = layout
         snsRecyclerView.setHasFixedSize(true)
 
-        snsInsertBtn.setOnClickListener {
-            val i  = Intent(this,SnsInsertActivity::class.java)
-            startActivity(i)
-        }
-
-
-
-       /*if(intent.getSerializableExtra("position") as Int? != null){
-           adapter.update(intent?.getSerializableExtra("position") as Int)
-       }*/
-
-
-
 
 
     }
 
-
-
-/*    override fun onResume() {
-        super.onResume()
-        println("resume~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
-        if(intent.getSerializableExtra("position") as Int? != null){
-            adapter.update(intent?.getSerializableExtra("position") as Int)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        println("start~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${intent.getSerializableExtra("position") as Int?}~~~~~~~~~~~~~~~~~~~~~~~~~")
-        if(intent.getSerializableExtra("position") as Int? != null){
-            adapter.update(intent?.getSerializableExtra("position") as Int)
-        }
-    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -74,21 +54,37 @@ class SnsActivity : AppCompatActivity() {
             when(requestCode){
                 100->{
                     val position = data?.getSerializableExtra("position") as Int
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$position~~~~~~~~~~~~~~~~~~~~~~~~~")
                     adapter.update(position)
                 }
 
                 200->{
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~시작200~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     val position = data?.getSerializableExtra("position") as Int
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$position~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    //adapter.update(position)
-                    //adapter.updateList(SnsDao.getInstance().allSns())
                     adapter.snsList.get(position).content = data.getStringExtra("content") as String
                     adapter.snsList.get(position).imagecontent = data.getStringExtra("uri") as String
                     adapter.notifyItemChanged(position)
                 }
+
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.sns_main_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId){
+            android.R.id.home ->{
+                finish()
+            }
+
+            R.id.snsMainInsertBtn ->{
+                val i = Intent(this,SnsInsertActivity::class.java)
+                 startActivity(i)
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

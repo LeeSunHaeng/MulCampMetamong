@@ -139,6 +139,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/font_content_regular"
-            android:textColor="@color/meta_grey01"/>
+            android:textColor="@color/meta_grey01"
+            android:maxLines="4"/>
 
 </LinearLayout>

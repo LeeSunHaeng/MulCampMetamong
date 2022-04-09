@@ -55,7 +55,6 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             if(dataVo.profile != ""){
                 if(dataVo.profile.equals("profile3")){
                     val resourceId = context.resources.getIdentifier(dataVo.profile, "drawable", context.packageName)
-                    println("~~~~~~~~~resourceId : ${resourceId}")
                     if(resourceId > 0){
                         cmtProfile.setImageResource(resourceId)
                     }else{
@@ -65,15 +64,11 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             } else{
                 val profileUri: Uri = Uri.parse(dataVo.profile)
                 cmtProfile.setImageURI(profileUri)
-
-                //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
-
+            //삭제 버튼 실행
             cmtDeleteBtn.setOnClickListener {
-
                 if(dataVo.id == MemberSingleton.id){
                     val position = adapterPosition
-                    println("~~~~~~~~~~~~position : $position ~~~~~~~~~seq : ${dataVo.cmtseq}~~~~~~~~~~~~")
                     SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq)
                     commentList.removeAt(position)
                     deleteComment(position)
@@ -83,11 +78,7 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
                     Toast.makeText(context, "작성자가 아닙니다.", Toast.LENGTH_SHORT).show()
                 }
 
-
-
             }
-
-
 
         }
     }

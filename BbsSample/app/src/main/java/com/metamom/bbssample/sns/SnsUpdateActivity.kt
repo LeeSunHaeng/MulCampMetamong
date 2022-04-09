@@ -21,7 +21,6 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.R
-import kotlinx.android.synthetic.main.activity_comment.*
 import kotlinx.android.synthetic.main.activity_sns_update.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -38,7 +37,7 @@ class SnsUpdateActivity : AppCompatActivity() {
         val CAMERA_CODE = 98
         val STORAGE_CODE = 99
         var newImgUri:String = ""
-        var imgSet:String = ""
+
 
 
 
@@ -63,12 +62,11 @@ class SnsUpdateActivity : AppCompatActivity() {
             supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)
             supportActionBar!!.title="수정"
 
-            var imgUri = intent.getStringExtra("ImageContentUri")!!
-            println("~~~~~~~~~~~~~~~~~~~~~~~$imgUri~~~~~~~~~~~~~~~~~~~~~~~~~")
+            newImgUri = intent.getStringExtra("ImageContentUri")!!
+            println("~~~~~~~~~~~~~~~~~~~~~~~$newImgUri~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-            val uri = Uri.parse(imgUri)
+            val uri = Uri.parse(newImgUri)
             snsUpdateImage.setImageURI(uri)
-            imgSet = imgUri // 업데이트 된 img 링크 저장
 
             //카메라 눌러서 변경했을 경우 imgSet 에도 링크 변경
             cameraBtn.setOnClickListener {
@@ -164,8 +162,6 @@ class SnsUpdateActivity : AppCompatActivity() {
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
 
-            //val albumImg3 = findViewById<ImageView>(R.id.albumImg) -> 여기서 선언하지말고  위에서 선언되어있는 albumImg3를 가져와서 대입해야 오류가안남
-
             if(resultCode == Activity.RESULT_OK){
                 when(requestCode){
                     CAMERA_CODE ->{
@@ -223,7 +219,6 @@ class SnsUpdateActivity : AppCompatActivity() {
                 SnsDao.getInstance().snsUpdate(dto)
 
                 val data = intent.getSerializableExtra("posi") as Int
-                println("~~~~~~~~~~~~~~~~$data~~~~~~~~~~~~~~~~~~~~")
                 val i = Intent()
                 i.putExtra("position",data)
                 i.putExtra("uri",newImgUri)

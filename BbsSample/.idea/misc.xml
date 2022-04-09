@@ -87,6 +87,8 @@
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.3480392156862745" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.25" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge.xml" value="0.38125" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_check_circle.xml" value="0.38229166666666664" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_close.xml" value="0.38229166666666664" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_comment.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_detail.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals.xml" value="0.36614583333333334" />
@@ -103,6 +105,8 @@
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.3515625" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/menu/sns_insert_menu.xml" value="0.3807291666666667" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/menu/sns_main_menu.xml" value="0.3807291666666667" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/menu/sns_menu.xml" value="0.2682291666666667" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/menu/sns_update_menu.xml" value="0.21614583333333334" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/drawable/background_splash_screen.xml" value="0.38229166666666664" />

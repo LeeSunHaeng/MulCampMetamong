@@ -34,9 +34,6 @@ class CommentActivity : AppCompatActivity() {
         val cmtInsertBtn = findViewById<TextView>(R.id.cmtInsertimageButton)
 
 
-
-
-
         //툴바 사용 설정
         setSupportActionBar(snstoolbar)
         // 툴바 왼쪽 버튼 설정
@@ -46,8 +43,7 @@ class CommentActivity : AppCompatActivity() {
 
 
 
-
-        //프로필 설정 안했으면
+        //프로필 설정 안했으면 기본이미지 뿌려줌
         if(uri != ""){
             if(uri.equals("profile3")){
                 val resourceId = this.resources.getIdentifier(uri, "drawable", this.packageName)
@@ -58,7 +54,9 @@ class CommentActivity : AppCompatActivity() {
                     Glide.with(this).load(uri).into(cmtInsertProfile)
                 }
             }
-        } else{
+        }
+        //설정 했으면 설정 한 이미지 뿌려줌
+        else{
             val profileUri: Uri = Uri.parse(uri)
             cmtInsertProfile.setImageURI(profileUri)
         }
@@ -66,8 +64,6 @@ class CommentActivity : AppCompatActivity() {
 
         //게시물의 seq 값을 전달 받음
         val seqData = intent.getSerializableExtra("seq") as Int
-
-
 
         //Comment DB에 전달받은 seq로 저장되어있는 데이터들을 불러옴,
         var data = SnsDao.getInstance().allComment(seqData)
@@ -80,32 +76,22 @@ class CommentActivity : AppCompatActivity() {
         cmtRecyclerView.layoutManager = layout
         cmtRecyclerView.setHasFixedSize(true)
 
+        //댓글 추가 버튼
         cmtInsertBtn.setOnClickListener {
-            println("~~~~~~~~~~~~~~~~~~~~~~~~~~~${member.profile}~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            val nextSeq = SnsDao.getInstance().nextSeq()
-            val dto = SnsCommentDto(nextSeq,seqData,MemberSingleton.id!!,
-                member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
-            SnsDao.getInstance().snsCommentInsert(dto)
-            adapter.addComment(dto,seqData)
-            cmtInsertContentEditText.text = null
-            cmtRecyclerView.scrollToPosition(data.size-1)
+            if(cmtInsertContentEditText.text.toString().equals("")){
+                Toast.makeText(this, "댓글을 입력해 주세요.", Toast.LENGTH_SHORT).show()
+            }else{
+                val nextSeq = SnsDao.getInstance().nextSeq()
+                val dto = SnsCommentDto(nextSeq,seqData,MemberSingleton.id!!,
+                    member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
+                SnsDao.getInstance().snsCommentInsert(dto)
+                adapter.addComment(dto,seqData)
+                cmtInsertContentEditText.text = null
+                cmtRecyclerView.scrollToPosition(data.size-1)
+            }
+
+
         }
-
-
-
-        //수정 해야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        /*cmtBackBtn.setOnClickListener {
-            val data = SnsDao.getInstance().allSns()
-            val adapter = CustomAdapter(SnsActivity().context(),data,supportFragmentManager)
-            val snsCommentCountText = findViewById<TextView>(R.id.commentCountTextView)
-            val seq =intent.getStringExtra("seq")
-            snsCommentCountText.text = "댓글 ${SnsDao.getInstance().snsCommentCount(seq!!.toInt())}개"
-            val i = Intent(this,SnsActivity::class.java)
-            startActivity(i)
-
-
-
-        }*/
 
     }
 

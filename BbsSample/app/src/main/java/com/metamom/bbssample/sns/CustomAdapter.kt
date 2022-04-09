@@ -1,16 +1,9 @@
 package com.metamom.bbssample.sns
 
 
-
-
-import android.app.Activity
-import android.app.LauncherActivity
 import android.content.Context
 import android.content.Intent
-
 import android.net.Uri
-import android.text.method.TextKeyListener.clear
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,17 +11,11 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
-import java.util.Collections.addAll
 
-interface ItemClickListener {
-    fun onItemClickListener(item: LauncherActivity.ListItem)
-}
 
 class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmentmanager : FragmentManager) : RecyclerView.Adapter<CustomAdapter.ItemViewHolder>() {
 
@@ -67,24 +54,10 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 val profileUri:Uri = Uri.parse(dataVo.profile)
                 snsProfile.setImageURI(profileUri)
 
-                //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
-
-            /*if(dataVo.imageContent != ""){
-                val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
-
-                if(resourceId > 0){
-                    snsImageContent.setImageResource(resourceId)
-                }else{
-                    Glide.with(itemView).load(dataVo.imageContent).into(snsImageContent)
-                }
-            } else{
-                snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
-            }*/
 
             //게시물 사진 올리기
             if(dataVo.imagecontent != ""){
-                //val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
 
                 val snsUri:Uri = Uri.parse(dataVo.imagecontent)
 
@@ -119,6 +92,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
             //좋아요 버튼 이미지 뿌려줄때
             var snsLikeCheck = SnsDao.getInstance().snsLikeCheck(SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD"))
+            println("~~~~~~~~~~~~~~~~~~~~~~$snsLikeCheck~~~~~~~~~~~~~~~~~~~~")
             if(snsLikeCheck > 0){
                 val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
@@ -152,35 +126,20 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             }
             //댓글 아이콘 클릭시
             snsCommentBtn.setOnClickListener {
-                val n  = adapterPosition
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$n~!`~~~~~~~~~~~")
-                /*Intent(context,CommentActivity::class.java).apply {
-                    putExtra("seq",dataVo.seq)
-                    putExtra("position",n)
-                }.run { context.startActivity(this) }*/
-
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
-                /*setResult(Activity.RESULT_OK,i)*/
             }
             //댓글 개수 클릭시
             snsCommentCount.setOnClickListener {
                 val n  = adapterPosition
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$n~!`~~~~~~~~~~~")
-                /*Intent(context,CommentActivity::class.java).apply {
-                    putExtra("seq",dataVo.seq)
-                    putExtra("position",n)
-                }.run { context.startActivity(this) }*/
-
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
-                /*setResult(Activity.RESULT_OK,i)*/
             }
 
             //셋팅 버튼 클릭시
@@ -196,8 +155,6 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                          BottomSheet.show(mFragmentManager,BottomSheet.tag)
                      }
 
-                /*val snsBottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,context)
-                snsBottomSheet.show(mFragmentManager,snsBottomSheet.tag)*/
             }
 
 
@@ -209,14 +166,6 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.sns_view_item_layout, parent, false)
         return ItemViewHolder(view)
-            /*.apply {
-            itemView.setOnClickListener {
-                val i = Intent(context,CommentActivity::class.java)
-                i.putExtra("pos",adapterPosition)
-                val activity:SnsActivity = context as SnsActivity
-                activity.setResult(Activity.RESULT_OK,i)
-            }
-        }*/
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -237,18 +186,6 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         notifyItemRemoved(position)
     }
 
-    fun updateList(items: ArrayList<SnsDto>?) {
-        items?.let {
-            val diffCallback = DiffUtilCallback(this.snsList, items)
-            val diffResult = DiffUtil.calculateDiff(diffCallback)
-
-            this.snsList.run {
-                clear()
-                addAll(items)
-                diffResult.dispatchUpdatesTo(this@CustomAdapter)
-            }
-        }
-    }
 
 
 }
