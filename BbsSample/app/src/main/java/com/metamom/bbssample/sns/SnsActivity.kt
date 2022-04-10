@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Adapter
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
@@ -19,6 +20,9 @@ import kotlinx.android.synthetic.main.activity_sns_update.*
 class SnsActivity : AppCompatActivity() {
     fun context():Context{
         return this
+    }
+    fun fragmentManager():FragmentManager{
+        return supportFragmentManager
     }
     var data = SnsDao.getInstance().allSns()
     val adapter = CustomAdapter(this,data,supportFragmentManager)
@@ -86,5 +90,10 @@ class SnsActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
     }
 }
