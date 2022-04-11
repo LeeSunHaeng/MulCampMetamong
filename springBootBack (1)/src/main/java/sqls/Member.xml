@@ -15,19 +15,43 @@
 	WHERE id=#{id}
 </select>
 
-<insert id="addmember" parameterType="mul.camp.a.dto.MemberDto">
+<insert id="addmember" parameterType="mul.camp.a.dto.MemberDto" >
 	INSERT INTO META_MEMBER(ID, PWD, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, BIRTH, AUTH, SUBSCRIBE, DEL,BMI,PROFILE)
 	VALUES(#{id}, #{pwd}, #{name}, #{email}, #{gender}, #{phone}, #{nickname}, #{height}, #{weight}, #{birth}, 0, 0, 'N',7,'profile3')
 </insert>
 
-<select id="login" parameterType="mul.camp.a.dto.MemberDto" 
-	resultType="mul.camp.a.dto.MemberDto">
+<select id="login" parameterType="mul.camp.a.dto.MemberDto" resultType="mul.camp.a.dto.MemberDto">
 	SELECT ID, NAME, EMAIL, AUTH
 	FROM META_MEMBER
 	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
+<!-- #21# ID 중복체크 -->
+<select id="idCheck" parameterType="String" resultType="Integer">
+	SELECT COUNT(*)
+	FROM META_MEMBER
+	WHERE ID=#{id}
+</select>
 
+<!-- #21# 회원정보 수정 -->
+<update id="userUpdate" parameterType="mul.camp.a.dto.MemberDto">
+	UPDATE META_MEMBER
+	SET NICKNAME=#{nickname}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, HEIGHT=#{height}, WEIGHT=#{weight}, BIRTH=#{birth}, GENDER=#{gender}
+	WHERE ID=#{id}
+</update>
+
+<!--해빈 추가 아이디 찾기-->
+<select id="searchId" parameterType = "mul.camp.a.dto.MemberDto" resultType="String">
+	SELECT ID
+	FROM META_MEMBER
+	WHERE NAME=#{name} AND BIRTH=#{birth}
+</select>
+<!-- //비밀번호 찾기 -->
+<select id="searchPwd" parameterType = "mul.camp.a.dto.MemberDto" resultType="String">
+	SELECT PWD
+	FROM META_MEMBER
+	WHERE ID=#{id} AND NAME=#{name} AND BIRTH=#{birth}
+</select>
 </mapper>
 
 

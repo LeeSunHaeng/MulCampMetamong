@@ -1,14 +1,16 @@
 package com.metamom.bbssample
 
-import com.metamom.bbssample.FoodListMeals.FoodListMeals
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
+import com.metamom.bbssample.sns.SnsActivity
+import com.metamom.bbssample.subscribe.SubscribeDao
+import com.metamom.bbssample.subscribe.SubscribeDto
+import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 import android.widget.*
-import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -20,7 +22,6 @@ import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.kakao.util.helper.Utility
 import com.metamom.bbssample.subsingleton.MemberSingleton
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var loginBtn: Button
     lateinit var kakaoBtn: TextView
     lateinit var idSave: CheckBox
+    lateinit var searchId : TextView
+    lateinit var searchPwd : TextView
 
     // 구글 로그인 변수
     final val RC_SIGN_IN = 1
@@ -45,8 +48,9 @@ class MainActivity : AppCompatActivity() {
         googleBtn = findViewById(R.id.googleBtn)
         kakaoBtn = findViewById(R.id.kakaoBtn)
         idSave = findViewById(R.id.idSave)
+        searchId = findViewById(R.id.searchId)
+        searchPwd = findViewById(R.id.searchPwd)
 
-        // #21# Login 버튼 클릭 시 main button 페이지로 이동
         loginBtn.setOnClickListener {
 
             val userId = id.text.toString()
@@ -62,12 +66,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
 
-            /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = dto?.id
-            MemberSingleton.subscribe = "1"             // 1 = 구독
-            //MemberSingleton.subscribe = "0"          // 0 = 비구독
-            Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
-
             if (dto != null) {
 
                 MemberDao.user = dto
@@ -79,6 +77,15 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "ID나 PW를 확인하세요", Toast.LENGTH_LONG).show()
             }
+        }
+        //p 아이디 비밀번호 찾기
+        searchId.setOnClickListener {
+            val i = Intent(this,SearchId::class.java)
+            startActivity(i)
+        }
+        searchPwd.setOnClickListener {
+            val i = Intent(this,SearchPwd::class.java)
+            startActivity(i)
         }
 
 

@@ -35,8 +35,6 @@ class FoodListMeals : AppCompatActivity() {
         }
 
         //val checkid = FoodListMealsDao.getInstance().checkId(MemberSingleton.id!!) 아이디만 select
-
-
         val foodAdapter = FoodListAdapter(this, FoodList)
         recyclerView.adapter = foodAdapter
         val layout = LinearLayoutManager(this)

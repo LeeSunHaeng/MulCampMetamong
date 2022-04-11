@@ -30,6 +30,31 @@ public class MemberService {
 		
 		return dao.login(dto);		
 	}
+	
+	/* #21# ID 중복체크 */
+	// true면 ID 중복이 존재하는 것
+	public boolean idCheck(String id) {
+		int result = dao.idCheck(id);
+		
+		return result>0?true:false;
+	}
+	
+	/* #21# 회원정보 수정 */
+	public boolean userUpdate(MemberDto dto) {
+		int result = dao.userUpdate(dto);
+		
+		return result>0?true:false;
+	}
+	
+	public String searchId(MemberDto dto) {
+		
+		return dao.searchId(dto);
+		
+	}
+	public String searchPwd(MemberDto dto) {
+		return dao.searchPwd(dto);
+	}
+
 }
 
 
