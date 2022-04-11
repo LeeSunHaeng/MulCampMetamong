@@ -9,10 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /* #21# [구독] Dao */
 
@@ -49,10 +46,12 @@ interface SubscribeService {
     /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
     /*@POST("/subDietMeal")
     fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>*/
+    @Headers("Content-Type: application/json")
     @POST("/subDietMeal")
     fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>
 
     /* 구독 추천하였던 *[운동]* 식단 가져오기 */
+    @Headers("Content-Type: application/json")
     @POST("/subExerMeal")
     fun subExerMeal(@Body subExerSeq: Int) :Call<SubExerMealDto>
 

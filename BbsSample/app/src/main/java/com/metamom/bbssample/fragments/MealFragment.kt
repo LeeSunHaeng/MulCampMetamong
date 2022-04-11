@@ -58,7 +58,7 @@ class MealFragment : Fragment() {
         /* #21# 구독회원이 아닐 경우 */
         var subCheck = true         // 구독회원일 경우 true
 
-        Log.d("MealFragment", "#21# MealFragment 오늘의 식단 구독회원 판별 동작 > ${MemberSingleton.subscribe}")
+        Log.d("MealFragment", "#21# MealFragment 오늘의 식단 구독회원 판별 동작 subscribe값 > ${MemberSingleton.subscribe}")
         if (MemberSingleton.subscribe == "0") {
             subCheck = false
 
