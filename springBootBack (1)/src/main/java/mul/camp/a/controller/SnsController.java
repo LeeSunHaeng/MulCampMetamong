@@ -56,6 +56,7 @@ public class SnsController {
 	public MemberDto snsGetMember(String id) {
 		System.out.println("snsGetMember 실행 성공");
 		MemberDto dto = service.snsGetMmeber(id);
+		System.out.println("#21# snsGetMember 쿼리 실행값 > " + dto.toString());
 		return dto;
 	}
 	
