@@ -73,7 +73,7 @@ class MealFragment : Fragment() {
         if (subCheck) {
 
             /* #21# 추천한 식단을 기록하고 있는 REMEMBER TABLE에서 2일 초과인 식단 확인 및 제거
-         *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) */
+             *  ex) 오늘이 22.03.29일 경우 → 26일 이하 식단은 제거 (27, 28일 식단만 남겨둠) */
             var delRememberMeal = SubscribeDao.getInstance().subRememberDel(MemberSingleton.id.toString())
             Log.d("MealFragment", "#21# REMEMBER TABLE 내 3일이상 식단 제거 > ${delRememberMeal}개")
 

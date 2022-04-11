@@ -84,7 +84,7 @@ class MemberUpdateActivity : AppCompatActivity() {
             else if (gender == "여") gender = "W"
             else gender = null
 
-            // 2) 값이 비어있는지 확인 (무결성 검토)
+            // 2) 값이 비어있는지 확인 (유효성 검토)
             if (nickname.isNullOrEmpty()) {
                 Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false
