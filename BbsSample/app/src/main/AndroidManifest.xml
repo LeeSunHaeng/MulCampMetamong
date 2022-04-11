@@ -19,11 +19,20 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
+        <meta-data
+                android:name="com.google.android.actions"
+                android:resource="@xml/text_cursor"/>
 
         <activity
+                android:name=".sns.SnsUpdateActivity"
+                android:exported="true"
+                android:parentActivityName=".sns.SnsActivity"
+                android:windowSoftInputMode="adjustPan"/>
+        <activity
                 android:name=".sns.CommentActivity"
-                android:windowSoftInputMode="adjustPan"
-                android:exported="true"/>
+                android:exported="true"
+                android:parentActivityName=".sns.SnsActivity"
+                android:windowSoftInputMode="adjustResize"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>
@@ -58,10 +67,10 @@
                 android:name=".MainActivity"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.recipe2.DetailRecipe"
+                android:name=".recipe2.DetailRecipe"
                 android:exported="true"/>
         <activity
-                android:name="com.metamom.bbssample.recipe2.RecipeMainActivity"
+                android:name=".recipe2.RecipeMainActivity"
                 android:exported="true"/>
         <activity
                 android:name=".SplashActivity"

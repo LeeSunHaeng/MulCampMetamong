@@ -102,7 +102,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.talkTap.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
+            //it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
+            val i = Intent(activity,SnsActivity::class.java)
+            startActivity(i)
         }
 
         binding.mealTap.setOnClickListener {
