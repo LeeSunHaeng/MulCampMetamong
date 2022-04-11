@@ -30,6 +30,16 @@ public class MemberService {
 		
 		return dao.login(dto);		
 	}
+	
+	public String searchId(MemberDto dto) {
+		
+		return dao.searchId(dto);
+		
+	}
+	public String searchPwd(MemberDto dto) {
+		return dao.searchPwd(dto);
+	}
+
 }
 
 

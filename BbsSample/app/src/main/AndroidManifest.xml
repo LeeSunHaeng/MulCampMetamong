@@ -19,6 +19,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
+        <activity
+                android:name=".SearchPwd"
+                android:exported="true"/>
         <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@xml/text_cursor"/>
@@ -33,6 +36,12 @@
                 android:exported="true"
                 android:parentActivityName=".sns.SnsActivity"
                 android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name=".SearchId"
+                android:exported="true"/>
+        <activity
+                android:name=".KcalCal.KcalMain"
+                android:exported="true"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>

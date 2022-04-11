@@ -118,11 +118,18 @@
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_detail.xml" value="0.3515625" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals.xml" value="0.33" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals_update.xml" value="0.33" />
-        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.2682291666666667" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_insert.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_kcal_main.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_search_id.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_search_pwd.xml" value="0.3515625" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_add.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_info.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/food_list_spinner.xml" value="0.27239583333333334" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_account.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_meal.xml" value="0.20955882352941177" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/meals_view_item_layout.xml" value="0.33" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.2864583333333333" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.33" />

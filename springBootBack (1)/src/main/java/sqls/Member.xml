@@ -20,14 +20,24 @@
 	VALUES(#{id}, #{pwd}, #{name}, #{email}, #{gender}, #{phone}, #{nickname}, #{height}, #{weight}, #{birth}, 0, 0, 'N',7,'profile3')
 </insert>
 
-<select id="login" parameterType="mul.camp.a.dto.MemberDto" 
-	resultType="mul.camp.a.dto.MemberDto">
+<select id="login" parameterType="mul.camp.a.dto.MemberDto" resultType="mul.camp.a.dto.MemberDto">
 	SELECT ID, NAME, EMAIL, AUTH
 	FROM META_MEMBER
 	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
-
+<!--해빈 추가 아이디 찾기-->
+<select id="searchId" parameterType = "mul.camp.a.dto.MemberDto" resultType="String">
+	SELECT ID
+	FROM META_MEMBER
+	WHERE NAME=#{name} AND BIRTH=#{birth}
+</select>
+<!-- //비밀번호 찾기 -->
+<select id="searchPwd" parameterType = "mul.camp.a.dto.MemberDto" resultType="String">
+	SELECT PWD
+	FROM META_MEMBER
+	WHERE ID=#{id} AND NAME=#{name} AND BIRTH=#{birth}
+</select>
 </mapper>
 
 

@@ -13,6 +13,12 @@ public interface MemberDao {
 	public int addmember(MemberDto dto);
 	
 	public MemberDto login(MemberDto dto);
+	
+	//아이디찾기
+	public String searchId(MemberDto dto);
+	
+	//비밀번호 찾기
+	public String searchPwd(MemberDto dto);
 }
 
 
