@@ -7,13 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.metamom.bbssample.FoodListMeals.FoodListMeals
-import com.metamom.bbssample.KcalCal.KcalMain
+import com.metamom.bbssample.KcalBMI.BmiMain
+import com.metamom.bbssample.KcalBMI.KcalMain
 
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentHomeBinding
@@ -85,6 +85,10 @@ class HomeFragment : Fragment() {
         }
         binding.KcalBtn.setOnClickListener {
             val intent = Intent(context,KcalMain::class.java)
+            startActivity(intent)
+        }
+        binding.BmiBtn.setOnClickListener {
+            val intent = Intent(context,BmiMain::class.java)
             startActivity(intent)
         }
 
