@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>     <!--추가-->
     <style name="TitleBarTextAppearance" parent="android:TextAppearance">
         <item name="android:fontFamily">@font/font_content_regular</item>
         <item name="android:textSize">20sp</item>
@@ -103,5 +104,8 @@
         <item name="android:layout_marginEnd">24dp</item>
     </style>
 
+    <style name="emphasisText" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">@font/font_content_bold</item>
+    </style>
 
 </resources>

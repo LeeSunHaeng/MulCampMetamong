@@ -13,17 +13,20 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.MemberDto
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import kotlinx.android.synthetic.main.activity_sns_insert.*
 import java.io.IOException
-import java.lang.reflect.Member
 import java.text.SimpleDateFormat
 
 class SnsInsertActivity : AppCompatActivity() {
+
 
     // storage 권한 처리에 필요한 변수
     val CAMERA = arrayOf(Manifest.permission.CAMERA)
@@ -33,44 +36,34 @@ class SnsInsertActivity : AppCompatActivity() {
     val CAMERA_CODE = 98
     val STORAGE_CODE = 99
     var snsUri:Uri? =null
+    val mem:MemberDto=SnsDao.getInstance().snsGetMember(MemberSingleton.id!!)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sns_insert)
         println("${MemberSingleton.id}")
-        val mem:MemberDto=SnsDao.getInstance().snsGetMember(MemberSingleton.id!!)
 
+
+        setSupportActionBar(snsInsertToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)  // 왼쪽 버튼 사용 여부 true
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)  // 왼쪽 버튼 이미지 설정
+        supportActionBar!!.setTitle("새 게시물")
 
 
         CallCamera()
 
         // 카메라
-        val camera = findViewById<Button>(R.id.camera)
+        val camera = findViewById<ImageButton>(R.id.camera)
         camera.setOnClickListener {
             CallCamera()
         }
 
         // 저장된 사진 보기
-        val picture = findViewById<Button>(R.id.picture)
+        val picture = findViewById<ImageButton>(R.id.picture)
         picture.setOnClickListener {
             GetAlbum()
         }
 
-        val insertSnsBtn = findViewById<ImageButton>(R.id.snsInsertCheckBtn)
-
-        insertSnsBtn.setOnClickListener {
-            println("${mem.id}")
-            println("${mem.profile}")
-            println("${mem.nickname}")
-            val content = findViewById<EditText>(R.id.snsContentEditText)
-            val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
-            val test = SnsDao.getInstance().snsInsert(dto)
-            println(test)
-
-            val i = Intent(this,SnsActivity::class.java)
-            startActivity(i)
-
-        }
     }
 
         fun getPath(uri: Uri?): String {
@@ -139,8 +132,6 @@ class SnsInsertActivity : AppCompatActivity() {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                 startActivityForResult(takePictureIntent, CAMERA_CODE)
             }
-            val snsUriText = findViewById<TextView>(R.id.uriTextView)
-            snsUriText.text = snsUri.toString()
         }
 
         fun newFileName() : String{
@@ -184,6 +175,14 @@ class SnsInsertActivity : AppCompatActivity() {
                             photoURI = null // 사용 후 null 처리
                         }
                     }
+
+                    STORAGE_CODE ->{
+                        val uri = data?.data as Uri
+                        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                        imageView.setImageURI(uri)
+                        //newImgUri =  getPath(uri)
+                        snsUri = uri
+                    }
                 }
             }
         }
@@ -195,6 +194,37 @@ class SnsInsertActivity : AppCompatActivity() {
                 itt.type = MediaStore.Images.Media.CONTENT_TYPE
                 startActivityForResult(itt, STORAGE_CODE)
             }
-
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.sns_insert_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId){
+            android.R.id.home ->{
+                finish()
+            }
+
+            R.id.snsInsertBtn ->{
+                val content = findViewById<EditText>(R.id.snsContentEditText)
+                val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
+                val test = SnsDao.getInstance().snsInsert(dto)
+                println(test)
+
+                val i = Intent(this, SnsActivity::class.java)
+                startActivity(i)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+
+
 }

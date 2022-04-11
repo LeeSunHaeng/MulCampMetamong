@@ -14,6 +14,7 @@ import com.metamom.bbssample.sns.SnsDao
 import com.metamom.bbssample.subscribe.*
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
+import androidx.appcompat.widget.SearchView
 
 class MainButtonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -23,6 +23,28 @@
             android:usesCleartextTraffic="true">
         <activity
                 android:name=".subscribe.SubAPIPurchaseActivity"
+        <activity
+                android:name=".SearchPwd"
+                android:exported="true"/>
+        <meta-data
+                android:name="com.google.android.actions"
+                android:resource="@xml/text_cursor"/>
+
+        <activity
+                android:name=".sns.SnsUpdateActivity"
+                android:exported="true"
+                android:parentActivityName=".sns.SnsActivity"
+                android:windowSoftInputMode="adjustPan"/>
+        <activity
+                android:name=".sns.CommentActivity"
+                android:exported="true"
+                android:parentActivityName=".sns.SnsActivity"
+                android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name=".SearchId"
+                android:exported="true"/>
+        <activity
+                android:name=".KcalCal.KcalMain"
                 android:exported="true"/>
         <activity
                 android:name=".MemberUpdateActivity"

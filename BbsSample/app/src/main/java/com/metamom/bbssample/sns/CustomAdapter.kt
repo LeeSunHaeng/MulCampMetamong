@@ -1,12 +1,9 @@
 package com.metamom.bbssample.sns
 
 
-
 import android.content.Context
 import android.content.Intent
-
 import android.net.Uri
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +25,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
     }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-
+        val contxt = context
         val snsProfile = itemView.findViewById<ImageView>(R.id.profileImageView)
         val snsNickName = itemView.findViewById<TextView>(R.id.nickNameTextView)
         val snsDate = itemView.findViewById<TextView>(R.id.dateTextView)
@@ -57,22 +54,10 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 val profileUri:Uri = Uri.parse(dataVo.profile)
                 snsProfile.setImageURI(profileUri)
 
-                //snsProfile.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
             }
 
-            /*if(dataVo.imageContent != ""){
-                val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
-
-                if(resourceId > 0){
-                    snsImageContent.setImageResource(resourceId)
-                }else{
-                    Glide.with(itemView).load(dataVo.imageContent).into(snsImageContent)
-                }
-            } else{
-                snsImageContent.setImageResource(R.mipmap.ic_launcher_round) // 이미지 없다. 아무 이미지나 뿌린다
-            }*/
+            //게시물 사진 올리기
             if(dataVo.imagecontent != ""){
-                //val resourceId = context.resources.getIdentifier(dataVo.imageContent, "drawable", context.packageName)
 
                 val snsUri:Uri = Uri.parse(dataVo.imagecontent)
 
@@ -87,17 +72,17 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
                     if(wdate.get(2).equals("0")){
-                        snsDate.text="방금"
+                        snsDate.text="방금 전"
                     }else {
-                        snsDate.text = "${wdate.get(2)}분"
+                        snsDate.text = "${wdate.get(2)}분 전"
                     }
                 }else{
-                    snsDate.text = "${wdate.get(1)}시간"
+                    snsDate.text = "${wdate.get(1)}시간 전"
                 }
             }else if(wdate.get(0).equals("1")){
                 snsDate.text = "어제"
             }else{
-                snsDate.text = "${wdate.get(0)}일"
+                snsDate.text = "${wdate.get(0)}일 전"
             }
 
             snsNickName.text = dataVo.nickname
@@ -107,11 +92,12 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
             //좋아요 버튼 이미지 뿌려줄때
             var snsLikeCheck = SnsDao.getInstance().snsLikeCheck(SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD"))
+            println("~~~~~~~~~~~~~~~~~~~~~~$snsLikeCheck~~~~~~~~~~~~~~~~~~~~")
             if(snsLikeCheck > 0){
-                val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
             }else{
-                val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
             }
             //뿌리고 난 후 좋아요 버튼을 눌렀을때
@@ -121,14 +107,14 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 //좋아요가 눌려 있을때
                 if(snsLikeCheck > 0){
                     //이미지 변경
-                    val resourceId = context.resources.getIdentifier("like_icon", "drawable", context.packageName)
+                    val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
                     SnsDao.getInstance().snsLikeDelete(dto)
 
                 }
                 //좋아요가 안눌려 있을때
                 else{
-                    val resourceId = context.resources.getIdentifier("pinklike_icon", "drawable", context.packageName)
+                    val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
 
                     SnsDao.getInstance().snsLikeInsert(dto)
@@ -140,28 +126,41 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             }
             //댓글 아이콘 클릭시
             snsCommentBtn.setOnClickListener {
-                Intent(context,CommentActivity::class.java).apply {
-                    putExtra("seq",dataVo.seq)
-                }.run { context.startActivity(this) }
-
-
+                val i = Intent(context,CommentActivity::class.java)
+                i.putExtra("pos",adapterPosition)
+                i.putExtra("seq",dataVo.seq)
+                val activity:SnsActivity = context as SnsActivity
+                activity.startActivityForResult(i,100)
             }
+            //댓글 개수 클릭시
+            snsCommentCount.setOnClickListener {
+                val n  = adapterPosition
+                val i = Intent(context,CommentActivity::class.java)
+                i.putExtra("pos",adapterPosition)
+                i.putExtra("seq",dataVo.seq)
+                val activity:SnsActivity = context as SnsActivity
+                activity.startActivityForResult(i,100)
+            }
+
             //셋팅 버튼 클릭시
-            snsSettingBtn.setOnClickListener {
-                val snsBottomSheet = SnsBottomSheet()
-                snsBottomSheet.show(mFragmentManager,snsBottomSheet.tag)
+             snsSettingBtn.setOnClickListener {
+                    //게시물 작성자와 현재 로그인한 유저가 같을 경우
+                     if(dataVo.id == MemberSingleton.id){
+                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,contxt,dataVo.imagecontent)
+                        BottomSheet.show(mFragmentManager,BottomSheet.tag)
+                     }
+                     //다를경우
+                     else{
+                         val BottomSheet = NotWriterBottomSheet(context)
+                         BottomSheet.show(mFragmentManager,BottomSheet.tag)
+                     }
+
             }
 
 
         }
 
 
-        /*init {
-            likeBtn.setOnClickListener {
-                if()
-
-            }
-        }*/
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -169,12 +168,24 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int)  {
-
-        holder.bind(snsList[position], context,mFragmentManager)
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        holder.bind(snsList[position], context, mFragmentManager)
     }
 
     override fun getItemCount(): Int {
         return snsList.size
 }
+
+    fun update(position: Int){
+        notifyItemChanged(position)
+    }
+    fun delete(position:Int,seq:Int){
+        SnsDao.getInstance().snsCommentAllDelete(seq)
+        SnsDao.getInstance().snsLikeAllDelete(seq)
+        SnsDao.getInstance().snsDelete(seq)
+        notifyItemRemoved(position)
+    }
+
+
+
 }

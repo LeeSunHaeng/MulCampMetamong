@@ -3,6 +3,7 @@ package com.metamom.bbssample.FoodListMeals
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -40,6 +41,14 @@ class FoodListDetail : AppCompatActivity() {
         }else if(data?.foodscore =="5점"){
             scoreTxt.text="점수 : ★★★★★"
         }else scoreTxt.text="점수 : ${data?.foodscore}"
+
+        if (kindTxt.text == "아침") {
+            kindTxt.setTextColor(Color.parseColor("#8AC926"))
+        } else if (kindTxt.text == "점심") {
+            kindTxt.setTextColor(Color.parseColor("#FFB703"))
+        } else if (kindTxt.text == "저녁") {
+            kindTxt.setTextColor(Color.parseColor("#6A00F4"))
+        }
 
         memoTxt2.text = data?.memo
 

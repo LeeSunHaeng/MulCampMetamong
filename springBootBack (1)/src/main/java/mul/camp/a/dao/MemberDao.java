@@ -19,6 +19,12 @@ public interface MemberDao {
 	
 	/* #21# 회원정보 수정 */
 	public int userUpdate(MemberDto dto);
+	
+	//아이디찾기
+	public String searchId(MemberDto dto);
+	
+	//비밀번호 찾기
+	public String searchPwd(MemberDto dto);
 }
 
 

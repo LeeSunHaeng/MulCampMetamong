@@ -45,6 +45,16 @@ public class MemberService {
 		
 		return result>0?true:false;
 	}
+	
+	public String searchId(MemberDto dto) {
+		
+		return dao.searchId(dto);
+		
+	}
+	public String searchPwd(MemberDto dto) {
+		return dao.searchPwd(dto);
+	}
+
 }
 
 

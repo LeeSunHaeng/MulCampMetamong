@@ -5,6 +5,7 @@ import com.metamom.bbssample.subscribe.SubscribeService
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
+import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Member
 
 interface MemberService {
@@ -20,6 +21,13 @@ interface MemberService {
     /* #21# ID 중복체크 */
     @GET("/idCheck")
     fun idCheck(@Query("id") id: String) :Call<Boolean>
+    
+    @POST("/searchId")
+    fun searchId(@Body dto : MemberDto) : Call<String>
+
+    @POST("/searchPwd")
+    fun searchPwd(@Body dto: MemberDto) : Call<String>
+
 
     /* #21# 회원정보 수정 */
     @POST("/userUpdate")
@@ -117,6 +125,31 @@ class MemberDao {
         if (response == null) return null
         return response.body() as Boolean
     }
+//해빈추가 아이디 찾기
+    fun searchId(dto : MemberDto) :String?{
+        var response:Response<String>? = null
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(MemberService::class.java)
+            val call = service?.searchId(dto)
+
+            response = call?.execute()
+        }catch (e:InvocationTargetException){
+            println(e.targetException.printStackTrace())
+        }
+        return response?.body() as String
+    }
+
+    //비밀번호 찾기
+    fun searchPwd(dto: MemberDto):String?{
+
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(MemberService::class.java)
+        val call = service?.searchPwd(dto)
+        var response = call?.execute()
+        return response?.body() as String
+    }
+
 
 }
 
