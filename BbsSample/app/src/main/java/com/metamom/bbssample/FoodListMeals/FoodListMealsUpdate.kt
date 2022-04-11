@@ -38,7 +38,6 @@ class FoodListMealsUpdate : AppCompatActivity() {
     // 카메라 스토리지 정해진 상수값.
     val CAMERA_CODE = 98
     val STORAGE_CODE = 99
-    var newImgUri:String = ""
     var imgSet:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,14 +57,14 @@ class FoodListMealsUpdate : AppCompatActivity() {
 
         //이미지뷰
         //println("넌뭐니" + intent.getStringExtra("uri") +"넌또뭐니"+ imgUri)
-        var imgUri = intent.getStringExtra("uri")!!
-
-        val uri = Uri.parse(imgUri)
-        albumImg3.setImageURI(uri)
-        imgSet = imgUri // 업데이트 된 img 링크 저장
-
-
-
+        var imgUri= ""
+        if(intent.getStringExtra("uri") != null) {
+            imgUri = intent.getStringExtra("uri")!!
+        // 업데이트 된 imgSet 링크 저장
+            val uri = Uri.parse(imgUri)
+            albumImg3.setImageURI(uri)
+            imgSet = imgUri
+        }
         //평점 점수
         scoreText3.text = intent.getStringExtra("foodscore")
         //식사시간 종류
@@ -77,20 +76,11 @@ class FoodListMealsUpdate : AppCompatActivity() {
         //카메라 눌러서 변경했을 경우 imgSet 에도 링크 변경
         cameraBtn3.setOnClickListener {
             camera()
-            val uri = Uri.parse(newImgUri)
-            albumImg3.setImageURI(uri)
-            imgSet = newImgUri
-            //println("@@@@@@@ : " + newImgUri)
         }
         //앨범 눌러서 변경했을 경우 imgSet 에도 링크 변경
         albumBtn3.setOnClickListener{
             Album()
-            val uri = Uri.parse(newImgUri)
-            albumImg3.setImageURI(uri)
-            imgSet = newImgUri
-           // println("@@@@@@@ : " + newImgUri)
         }
-
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         radioGroup.setOnCheckedChangeListener{ group,checkedId ->
             when(checkedId){
@@ -208,21 +198,16 @@ class FoodListMealsUpdate : AppCompatActivity() {
                         val img = data?.extras?.get("data") as Bitmap
                         val uri = fileSava(RandomFileName(), "image/jpeg", img)
                         albumImg3.setImageURI(uri)
-                        println("경로: $uri")
-                        println("실제 이미지 경로 : " +getPath(uri))
-                        newImgUri =  getPath(uri)
+
+                        imgSet = getPath(uri)
                     }
                 }
                 STORAGE_CODE ->{
                     val uri = data?.data
                     albumImg3.setImageURI(uri)
-                    newImgUri =  getPath(uri)
+                    imgSet = getPath(uri)
                 }
             }
-        }
-        //다른 화면에서 사용하게.
-        fun albumIngMove(){
-            albumImg
         }
     }
     //파일명 날짜로 저장

@@ -220,7 +220,7 @@
                                 android:layout_marginStart="24dp"
                                 android:layout_marginEnd="6dp"
                                 android:background="@drawable/btn_kcal"
-                        />
+                                android:id="@+id/KcalBtn"/>
 
                         <TextView
                                 android:layout_width="wrap_content"

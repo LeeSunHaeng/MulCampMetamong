@@ -54,7 +54,36 @@ public class MemberController {
 		req.getSession().setAttribute("login", mem);
 		
 		return mem;
-	}	
+	}
+	
+	//아이디찾기
+	@RequestMapping(value="/searchId",method = {RequestMethod.POST})
+	public String searchId(@RequestBody MemberDto dto) {
+		
+		System.out.println("MemberController searchId");
+		System.out.println(dto.toString());
+		
+		String id = service.searchId(dto);
+		System.out.println("id:" + id);
+		/*
+		 * if(id == null || id.equals("")) { System.out.println("잘못됨"); id = "";
+		 * System.out.println("id:" + id); return id; } else { System.out.println("잘됨");
+		 * System.out.println("id:" + id); return id; }
+		 */
+		return id;
+	}
+	//비밀번호 찾기
+	@RequestMapping(value="/searchPwd",method = {RequestMethod.POST})
+	public String searchPwd(@RequestBody MemberDto dto) {
+		
+		System.out.println("MemberController searchPwd");
+		System.out.println(dto.toString());
+		
+		String pwd = service.searchPwd(dto);
+		System.out.println(pwd);
+	
+		return pwd;
+	}
 }
 
 

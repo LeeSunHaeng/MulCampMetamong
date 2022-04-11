@@ -28,18 +28,11 @@ class FoodListMeals : AppCompatActivity() {
         var clickDay = findViewById<TextView>(R.id.clickDay)
         val myFoodListBtn = findViewById<TextView>(R.id.myFoodListBtn)
 
-
-
-
         cal.setOnDateChangeListener {cal,year,month,day ->
             clickDay.text = "$year-${month+1}-$day"
         }
 
-
-
         //val checkid = FoodListMealsDao.getInstance().checkId(MemberSingleton.id!!) 아이디만 select
-
-
         val foodAdapter = FoodListAdapter(this, FoodList)
         recyclerView.adapter = foodAdapter
         val layout = LinearLayoutManager(this)
