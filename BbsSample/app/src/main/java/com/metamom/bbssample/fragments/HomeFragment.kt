@@ -19,7 +19,7 @@ import com.metamom.bbssample.KcalBMI.BmiMain
 import com.metamom.bbssample.KcalBMI.KcalMain
 import com.metamom.bbssample.InfiniteAdapter
 import com.metamom.bbssample.LogoutActivity
-import com.metamom.bbssample.KcalCal.KcalMain
+
 
 import com.metamom.bbssample.R
 import com.metamom.bbssample.WebViewActivity
