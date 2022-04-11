@@ -12,5 +12,5 @@ import mul.camp.a.dto.RecipeDto;
 public interface RecipeDao {
 
 	public List<RecipeDto> getRecipe(RecipeDto dto);
-	
+	public List<RecipeDto> getRecipeWeb(RecipeDto dto);
 }

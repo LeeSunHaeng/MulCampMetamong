@@ -1,14 +1,24 @@
 package com.metamom.bbssample.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentRecipeBinding
+import com.metamom.bbssample.recipe2.DetailRecipe
+import com.metamom.bbssample.recipe2.ImageRoader
+import com.metamom.bbssample.recipe2.RecipeDao
+import com.metamom.bbssample.recipe2.RecipeDto
 
 class RecipeFragment : Fragment() {
 
@@ -42,6 +52,7 @@ class RecipeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_recipeFragment_to_accountFragment)
         }
 
-        return binding.root
+      return binding.root
     }
+
 }

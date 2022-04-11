@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.metamom.bbssample.R
 
-
 class DetailRecipe : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class DetailRecipe : AppCompatActivity() {
         val a = intent.getStringExtra("List")
         val b = intent.getIntExtra("Num", 1)
 
-        println("~~~~~~~~~~~~~~~~" + b)
+        println("~~~~~~~~~~~~~~~~ number : " + b)
 
 
         // 재료 나누기
@@ -51,6 +50,8 @@ class DetailRecipe : AppCompatActivity() {
         reciGridView.setAdapter(
             ArrayAdapter(this, R.layout.recipe_ingredient_item, resultIngredientList)
         )
+
+
 
 
         // 레시피 세부적으로 나누기
@@ -92,4 +93,3 @@ class DetailRecipe : AppCompatActivity() {
 
     }
 }
-
