@@ -93,6 +93,10 @@ class MemberUpdateActivity : AppCompatActivity() {
                 Toast.makeText(this, "이름을 입력해주세요", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false
             }
+            if (name.length > 20) {
+                Toast.makeText(this, "이름을 20자 이내로 입력해주세요", Toast.LENGTH_LONG).show()
+                isGoToUpdate = false
+            }
             if (email.isNullOrEmpty()) {
                 Toast.makeText(this, "이메일를 입력해주세요", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false

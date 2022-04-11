@@ -383,30 +383,82 @@
                     </FrameLayout>
                 </LinearLayout>
 
-                <ImageView
+                <!--                <ImageView-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="100dp"-->
+                <!--                        android:layout_marginStart="24dp"-->
+                <!--                        android:layout_marginEnd="24dp"-->
+                <!--                        android:layout_marginBottom="12dp"-->
+                <!--                        android:src="@drawable/test_banner"-->
+                <!--                        android:scaleType="centerCrop"-->
+                <!--                        android:layout_marginTop="12dp"/>-->
+
+                <FrameLayout
+                        android:id="@+id/webViewHome"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
-                        android:layout_marginBottom="12dp"
-                        android:src="@drawable/test_banner"
-                        android:scaleType="centerCrop"
-                        android:layout_marginTop="12dp"/>
+                        android:layout_marginBottom="24dp">
 
-                <!--                <LinearLayout-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        app:layout_constraintTop_toTopOf="parent"-->
-                <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                <!--                        android:orientation="vertical">-->
+                    <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/autoScroll_viewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:clipToPadding="false"
+                            android:clipChildren="false"
+                            android:scaleType="centerCrop"/>
 
-                <!--                    <Button-->
-                <!--                            android:text="카카오로그아웃"-->
-                <!--                            android:layout_width="116dp"-->
-                <!--                            android:layout_height="67dp"-->
-                <!--                            android:id="@+id/kakaoLogoutBtn"-->
-                <!--                            android:layout_gravity="center"/>-->
-                <!--                </LinearLayout>-->
+                    <LinearLayout
+                            android:id="@+id/linear_layout_see_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="end|bottom"
+                            android:layout_marginRight="12dp"
+                            android:layout_marginBottom="12dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:paddingTop="4dp"
+                            android:paddingBottom="4dp"
+                            android:background="@drawable/gray_ellipse">
+
+                        <TextView
+                                android:id="@+id/textView_current_banner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textSize="10dp"
+                                android:textColor="#FFFFFF"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+                                android:text="/"
+                                android:textSize="10dp"
+                                android:textColor="#FFFFFF"/>
+
+                        <TextView
+                                android:id="@+id/textView_total_banner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15"
+                                android:textSize="10dp"
+                                android:textColor="#FFFFFF"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:text="모두보기"
+                                android:textSize="10dp"
+                                android:textColor="#FFFFFF"/>
+                    </LinearLayout>
+                </FrameLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.metamom.bbssample">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.metamom.bbssample" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -12,15 +12,22 @@
     <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
-            android:name=".GlobalApplication"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher_metamom"
-            android:label="@string/app_name"
-            android:requestLegacyExternalStorage="true"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.BbsSample"
-            android:usesCleartextTraffic="true">
+        android:name=".GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_metamom"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BbsSample"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LogoutActivity"
+            android:exported="true" />
+
         <activity
                 android:name=".subscribe.SubAPIPurchaseActivity"
                 android:exported="true"/>
@@ -70,38 +77,38 @@
                 android:name=".subscribe.SubMyMealsActivity"
                 android:exported="true"/>-->
         <activity
-                android:name=".sns.SnsInsertActivity"
-                android:exported="true"/>
+            android:name=".sns.SnsInsertActivity"
+            android:exported="true" />
         <activity
-                android:name=".FoodListMeals.FoodListMealsUpdate"
-                android:exported="true"/>
+            android:name=".FoodListMeals.FoodListMealsUpdate"
+            android:exported="true" />
         <activity
-                android:name=".FoodListMeals.FoodListDetail"
-                android:exported="true"/>
+            android:name=".FoodListMeals.FoodListDetail"
+            android:exported="true" />
         <activity
-                android:name=".subscribe.SubInfoActivity"
-                android:exported="true"/>
+            android:name=".subscribe.SubInfoActivity"
+            android:exported="true" />
         <activity
-                android:name=".subscribe.SubAddActivity"
-                android:exported="true"/>
+            android:name=".subscribe.SubAddActivity"
+            android:exported="true" />
         <activity
-                android:name=".InsertActivity"
-                android:exported="true"/>
+            android:name=".InsertActivity"
+            android:exported="true" />
         <activity
-                android:name=".sns.SnsActivity"
-                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+            android:name=".sns.SnsActivity"
+            android:exported="true" /> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".MainButtonActivity"
-                android:exported="true"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
+            android:name=".MainButtonActivity"
+            android:exported="true" /> <!-- 저장소에 접근할 수 있게 하는 설정 -->
         <activity
-                android:name=".FoodListMeals.AddFoodList"
-                android:exported="true"/>
+            android:name=".FoodListMeals.AddFoodList"
+            android:exported="true" />
         <activity
-                android:name=".FoodListMeals.FoodListMeals"
-                android:exported="true"/>
+            android:name=".FoodListMeals.FoodListMeals"
+            android:exported="true" />
         <activity
-                android:name=".MainActivity"
-                android:exported="true"/>
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
                 android:name=".recipe2.DetailRecipe"
                 android:exported="true"/>
@@ -109,28 +116,28 @@
                 android:name=".recipe2.RecipeMainActivity"
                 android:exported="true"/>
         <activity
-                android:name=".SplashActivity"
-                android:exported="true"
-                android:theme="@style/Theme.BbsSample.Splash">
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.BbsSample.Splash" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-                android:exported="true">
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                 <data
-                        android:host="oauth"
-                        android:scheme="@string/kakao_native_key"/>
+                    android:host="oauth"
+                    android:scheme="@string/kakao_native_key" />
             </intent-filter>
         </activity>
     </application>

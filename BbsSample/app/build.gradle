@@ -92,6 +92,10 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-auth:20.1.0'   // 구글 로그인
 
+    // viewpager
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'me.relex:circleindicator:2.1.6'
+
     /* #21# for 구글 인앱결제 */
     // - Kotlin Coroutine: 스레드와 기능적으로 같지만, 스레드보다 가볍고 유연하며 한단계 더 진화된 병렬 프로그래밍을 위한 기술 | 하나의 스레드 내 여러개의 코루틴이 실행되는 개념
     implementation("com.android.billingclient:billing:4.1.0")
