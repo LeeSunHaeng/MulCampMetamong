@@ -23,6 +23,8 @@
             android:usesCleartextTraffic="true">
         <activity
                 android:name=".subscribe.SubAPIPurchaseActivity"
+                android:exported="true"/>
+
         <activity
                 android:name=".SearchPwd"
                 android:exported="true"/>
@@ -67,10 +69,6 @@
         <!--<activity
                 android:name=".subscribe.SubMyMealsActivity"
                 android:exported="true"/>-->
-        <activity
-                android:name=".sns.CommentActivity"
-                android:exported="true"
-                android:windowSoftInputMode="adjustPan"/>
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>
