@@ -237,9 +237,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="127dp"
                                 android:layout_marginEnd="6dp"
-                                android:background="@drawable/btn_kcal"
-                                android:id="@+id/KcalBtn"/>
-                        />
+                                android:background="@drawable/btn_recipe_small"
+                                />
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -271,6 +270,7 @@
                             android:layout_weight="1">
 
                         <ImageButton
+                                android:id="@+id/KcalBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="127dp"
                                 android:layout_marginStart="6dp"
