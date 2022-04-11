@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import de.hdodenhof.circleimageview.CircleImageView
 
 class CommentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +24,7 @@ class CommentActivity : AppCompatActivity() {
         val member = SnsDao.getInstance().snsGetMember(MemberSingleton.id!!)
         val uri = member.profile
         val cmtInsertContentEditText = findViewById<EditText>(R.id.cmtInsertContenteditText)
-        val cmtInsertBtn = findViewById<ImageButton>(R.id.cmtInsertimageButton)
+        val cmtInsertBtn = findViewById<TextView>(R.id.cmtInsertimageButton)
         val cmtBackBtn = findViewById<ImageButton>(R.id.cmtBackBtn)
 
         if(uri != ""){

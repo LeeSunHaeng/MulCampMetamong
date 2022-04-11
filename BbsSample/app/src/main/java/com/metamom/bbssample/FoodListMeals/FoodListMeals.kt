@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CalendarView
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import kotlinx.android.synthetic.main.activity_food_list_meals.*
 import kotlinx.android.synthetic.main.activity_food_list_meals.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 //나의 식단 기록 아침/점심/저녁
@@ -22,7 +24,7 @@ class FoodListMeals : AppCompatActivity() {
         setContentView(R.layout.activity_food_list_meals)
 
         var cal = findViewById<CalendarView>(R.id.calendar)
-        val addMealsBtn = findViewById<ImageButton>(R.id.addMealsBtn)
+        val addMealsBtn = findViewById<ImageView>(R.id.addMealsBtn)
         var recyclerView = findViewById<RecyclerView>(R.id.FoodMealsList)
         val FoodList = FoodListMealsDao.getInstance().FoodListSelect(MemberSingleton.id!!)
         var clickDay = findViewById<TextView>(R.id.clickDay)

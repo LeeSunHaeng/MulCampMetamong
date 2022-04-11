@@ -72,12 +72,17 @@
                         android:orientation="vertical"
                         android:background="@drawable/toolbar_background">
                     <androidx.appcompat.widget.SearchView
+                            android:id="@+id/searchView"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginStart="24dp"
                             android:layout_marginEnd="24dp"
-                            android:background="@drawable/toolbar_search_background"/>
+                            android:background="@drawable/toolbar_search_background"
+                            app:iconifiedByDefault="false"
+                            android:clickable="true"
+                            app:queryHint="검색어를 입력해주세요"
+                            android:textSize="14sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -140,7 +145,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="18dp"
-                                android:text="레시피"
+                                android:text="오늘의 식단"
                                 android:textSize="18dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_title"
@@ -152,11 +157,22 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="36dp"
                                 android:layout_marginStart="18dp"
-                                android:text="다양한 종류의\n맛있는 레시피"
+                                android:text="나를 위한 식단을\n매일 받아보세요!"
                                 android:textSize="10dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_content_regular"
                                 android:textColor="@color/meta_grey01"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="61dp"
+                                android:layout_marginStart="18dp"
+                                android:text="(구독회원 전용)"
+                                android:textSize="8dp"
+                                android:letterSpacing="-0.01"
+                                android:fontFamily="@font/font_content_regular"
+                                android:textColor="@color/meta_grey02"/>
                     </FrameLayout>
                 </LinearLayout>
 
@@ -206,6 +222,8 @@
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
                         android:layout_marginTop="12dp"
                         android:orientation="horizontal">
 
@@ -215,19 +233,20 @@
                             android:layout_weight="1">
 
                         <ImageButton
+                                android:id="@+id/recipeBtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="127dp"
-                                android:layout_marginStart="24dp"
                                 android:layout_marginEnd="6dp"
                                 android:background="@drawable/btn_kcal"
                                 android:id="@+id/KcalBtn"/>
+                        />
 
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginStart="36dp"
-                                android:text="칼로리 계산기"
+                                android:layout_marginStart="12dp"
+                                android:text="레시피"
                                 android:textSize="18dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_title"
@@ -237,8 +256,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="36dp"
-                                android:layout_marginStart="36dp"
-                                android:text="지금 먹고있는 음식의\n칼로리가 궁금하다면?"
+                                android:layout_marginStart="12dp"
+                                android:text="다양한 종류의\n맛있는 레시피"
                                 android:textSize="10dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_content_regular"
@@ -255,8 +274,44 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="127dp"
                                 android:layout_marginStart="6dp"
-                                android:layout_marginEnd="24dp"
-                                android:background="@drawable/btn_bmi">
+                                android:layout_marginEnd="6dp"
+                                android:background="@drawable/btn_kcal_small"
+                        />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginStart="18dp"
+                                android:text="칼로리\n계산기"
+                                android:textSize="18dp"
+                                android:letterSpacing="-0.01"
+                                android:fontFamily="@font/font_title"
+                                android:textColor="@color/meta_grey01"/>
+                        <!--
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="36dp"
+                                android:layout_marginStart="36dp"
+                                android:text="지금 먹고있는 음식의\n칼로리가 궁금하다면?"
+                                android:textSize="10dp"
+                                android:letterSpacing="-0.01"
+                                android:fontFamily="@font/font_content_regular"
+                                android:textColor="@color/meta_grey01"/>
+                        -->
+                    </FrameLayout>
+
+                    <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                        <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="127dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@drawable/btn_bmi_small">
                         </ImageButton>
 
                         <TextView
@@ -264,13 +319,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="18dp"
-                                android:text="BMI 계산기"
+                                android:text="BMI\n계산기"
                                 android:textSize="18dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_title"
                                 android:textColor="@color/meta_grey01"
                         />
-
+                        <!--
                         <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -281,6 +336,7 @@
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_content_regular"
                                 android:textColor="@color/meta_grey01"/>
+                        -->
                     </FrameLayout>
                 </LinearLayout>
 
@@ -307,7 +363,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginStart="36dp"
-                                android:text="META TALK"
+                                android:text="META SNS"
                                 android:textSize="18dp"
                                 android:letterSpacing="-0.01"
                                 android:fontFamily="@font/font_title"
