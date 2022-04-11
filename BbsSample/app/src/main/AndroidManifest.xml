@@ -20,17 +20,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BbsSample"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".WebViewActivity"
             android:exported="true" />
         <activity
             android:name=".LogoutActivity"
             android:exported="true" />
-        <activity
-            android:name=".sns.CommentActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+
         <activity
                 android:name=".subscribe.SubAPIPurchaseActivity"
                 android:exported="true"/>
