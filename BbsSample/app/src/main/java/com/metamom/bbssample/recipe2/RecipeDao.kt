@@ -13,6 +13,7 @@ interface  RecipeService{
     fun test(): Call<String>
 
     @POST("/getRecipe")
+    //fun getRecipe(@Body dto:RecipeDto): Call <List<RecipeDto>>
     fun getRecipe(@Body dto:RecipeDto): Call <List<RecipeDto>>
 }
 
@@ -30,10 +31,11 @@ class RecipeDao {
     }
 
     // 레시피 받아오기!
-   // fun getRecipe(dto: RecipeDto) : List<RecipeDto>?{
-   // fun getRecgetRecipeipe():RecipeDto?{
+    // fun getRecipe(dto: RecipeDto) : List<RecipeDto>?{
+    // fun getRecgetRecipeipe():RecipeDto?{
     fun getRecipe(dto:RecipeDto): ArrayList<RecipeDto>?{
 
+/*
         var response: Response<List<RecipeDto>>? = null
         try{
             val retrofit = RetrofitClient.getInstance()
@@ -45,8 +47,14 @@ class RecipeDao {
             response = null
         }
         if(response == null) return null
+*/
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(RecipeService::class.java)
+        //println("~~~~~~~~~" + seqfoodlist) 확인용
+        val call = service?.getRecipe(dto)
+        val response = call?.execute()
 
-        return response.body() as ArrayList<RecipeDto>
+        return response?.body() as ArrayList<RecipeDto>
     }
 
 }

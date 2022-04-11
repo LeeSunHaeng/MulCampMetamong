@@ -10,9 +10,11 @@ class MemberSingleton {
         var nickname:String? = null
         var profile:String? = null
         var subscribe :String? = null
+        var height :Double? = null
+        var weight :Double? = null
 
         override fun toString(): String {
-            return "MemberDto(id=$id, subscribe=$subscribe subscribe=$nickname subscribe=$profile)"
+            return "MemberDto(id=$id, nickname=$nickname, profile=$profile, subscribe=$subscribe, height=$height, weight=$weight)"
         }
     }
 

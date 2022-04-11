@@ -35,10 +35,6 @@ interface FoodListMealsService{
     //@GET("/detailSelect")
    // fun detailSelect(@Query("seqfoodlist")seqfoodlist: Int):Call<List<FoodListMealsDto>>
 
-    //파일 업로드
-
-
-
 }
 class FoodListMealsDao {
     companion object {

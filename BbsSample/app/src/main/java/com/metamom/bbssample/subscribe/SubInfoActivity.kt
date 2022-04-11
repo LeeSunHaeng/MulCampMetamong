@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
@@ -13,11 +14,17 @@ class SubInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub_info)
 
-        /* #21# 뒤로가기(이전화면) */
-        val previousBtn = findViewById<ImageButton>(R.id.subInfo_PreBtn)
-        previousBtn.setOnClickListener {
-            val i = Intent(this, MainButtonActivity::class.java)
-            startActivity(i)
+        /* 액션바 설정 */
+        setSupportActionBar(findViewById(R.id.subInfo_toolbar))
+        if (supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = ""
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        findViewById<Toolbar>(R.id.subInfo_toolbar).setNavigationOnClickListener {
+            onBackPressed()
         }
 
         val idTxt = findViewById<TextView>(R.id.subInfo_IdTxt)
@@ -43,8 +50,6 @@ class SubInfoActivity : AppCompatActivity() {
                 typeTxt.text = "다이어트"
             } else if (subInfo.subType.toString() == "1"){
                 typeTxt.text = "운동"
-            } else {
-                typeTxt.text = "건강"
             }
 
             periodTxt.text = "${subInfo.subPeriod.toString()}개월"
@@ -57,10 +62,10 @@ class SubInfoActivity : AppCompatActivity() {
                 lunchCheck.isChecked = true
             }
             if (subInfo.subDinner == 1){
-                lunchCheck.isChecked = true
+                dinnerCheck.isChecked = true
             }
             if (subInfo.subSnack == 1){
-                lunchCheck.isChecked = true
+                snackCheck.isChecked = true
             }
         }
         else {                                                          // case_1)

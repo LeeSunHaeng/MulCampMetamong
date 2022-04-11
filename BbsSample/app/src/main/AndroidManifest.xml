@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- 저장소에 접근할 수 있게 하는 설정 -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA"/> <!-- #21# for 구글 인앱 결제 -->
+    <!-- <uses-permission android:name="android.permission.INTERNET"/> -->
+    <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
             android:name=".GlobalApplication"
@@ -19,6 +21,13 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.BbsSample"
             android:usesCleartextTraffic="true">
+        <activity
+                android:name=".subscribe.SubAPIPurchaseActivity"
+                android:exported="true"/>
+
+        <activity
+                android:name=".SearchPwd"
+                android:exported="true"/>
         <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@xml/text_cursor"/>
@@ -33,6 +42,33 @@
                 android:exported="true"
                 android:parentActivityName=".sns.SnsActivity"
                 android:windowSoftInputMode="adjustResize"/>
+        <activity
+                android:name=".SearchId"
+                android:exported="true"/>
+        <activity
+                android:name=".KcalCal.KcalMain"
+                android:exported="true"/>
+        <activity
+                android:name=".MemberUpdateActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubPurchaseActivity"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubTodayMealsSnack"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubTodayMealsDinner"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubTodayMealsLunch"
+                android:exported="true"/>
+        <activity
+                android:name=".subscribe.SubTodayMealsMorning"
+                android:exported="true"/>
+        <!--<activity
+                android:name=".subscribe.SubMyMealsActivity"
+                android:exported="true"/>-->
         <activity
                 android:name=".sns.SnsInsertActivity"
                 android:exported="true"/>

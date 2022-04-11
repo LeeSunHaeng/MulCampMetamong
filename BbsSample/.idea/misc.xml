@@ -72,20 +72,40 @@
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.291213768115942" />
         <entry key="..\:/FinalProject_metamong/MulCampMetamong/BbsSample/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31025641025641026" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge.xml" value="0.15416666666666667" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge_radius.xml" value="0.15416666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_back_button.xml" value="0.15416666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15416666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_add_food_list.xml" value="0.33" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals.xml" value="0.33" />
-        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_insert.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_insert.xml" value="0.215311004784689" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main_button.xml" value="0.25" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main_sub_part.xml" value="0.1388888888888889" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_member_update.xml" value="0.33" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_recimain.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns_insert.xml" value="0.3541666666666667" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub.xml" value="0.22" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_add.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_api_purchase.xml" value="0.25280898876404495" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_iamport_purchase.xml" value="0.18125" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_info.xml" value="0.33" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_my_meals.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_purchase.xml" value="0.33" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_today_meals_dinner.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_today_meals_lunch.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_today_meals_morning.xml" value="0.33" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_today_meals_snack.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_account.xml" value="0.2696969696969697" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.196875" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_meal.xml" value="0.33" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/meals_view_item_layout.xml" value="0.1539855072463768" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.3480392156862745" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/sub_view_item_meal.xml" value="0.3480392156862745" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_array.xml" value="0.3480392156862745" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.3480392156862745" />
         <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.25" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/menu/context_menu_main.xml" value="0.19479166666666667" />
+        <entry key="..\:/MealProject/MulCampMetamong/BbsSample/app/src/main/res/menu/main_menu.xml" value="0.19479166666666667" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/edge.xml" value="0.38125" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_check_circle.xml" value="0.38229166666666664" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/drawable/ic_close.xml" value="0.38229166666666664" />
@@ -119,11 +139,18 @@
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_detail.xml" value="0.3515625" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals.xml" value="0.33" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals_update.xml" value="0.33" />
-        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.2682291666666667" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_insert.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_kcal_main.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_search_id.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_search_pwd.xml" value="0.3515625" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_add.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sub_info.xml" value="0.2682291666666667" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/food_list_spinner.xml" value="0.27239583333333334" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_account.xml" value="0.3660130718954248" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_meal.xml" value="0.20955882352941177" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/meals_view_item_layout.xml" value="0.33" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.2864583333333333" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.33" />
