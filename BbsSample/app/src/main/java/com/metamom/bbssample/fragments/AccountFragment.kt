@@ -19,6 +19,7 @@ import com.metamom.bbssample.databinding.FragmentAccountBinding
 import com.metamom.bbssample.sns.SnsDao
 import com.metamom.bbssample.subscribe.SubInfoActivity
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import org.w3c.dom.Text
 
 class AccountFragment : Fragment() {
 
@@ -90,7 +91,7 @@ class AccountFragment : Fragment() {
         userUpdateBtn.setOnClickListener { startActivity(Intent(activity, MemberUpdateActivity::class.java)) }
 
         /* #21# 로그아웃 */
-        val logoutBtn = binding.root.findViewById<Button>(R.id.myPageFrag_logoutBtn)
+        val logoutBtn = binding.root.findViewById<TextView>(R.id.myPageFrag_logoutBtn)
         logoutBtn.setOnClickListener {
             // 저장하였던 MemberSingleton 값 초기화
             MemberSingleton.id = null
