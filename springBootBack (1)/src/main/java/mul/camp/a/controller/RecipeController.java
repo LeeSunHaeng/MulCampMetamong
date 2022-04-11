@@ -25,14 +25,21 @@ public class RecipeController {
 	}
 	
 	
-	
-	
+		
 	@RequestMapping(value = "/getRecipe", method = {RequestMethod.GET, RequestMethod.POST} ) 
 	public List<RecipeDto> getRecipe(@RequestBody RecipeDto dto) {		
 		System.out.println("Controller 이상 무!");
 	  
 		List<RecipeDto> list = service.getRecipe(dto);
 //		System.out.println("list"+ list);
+		return list;
+	}
+	
+	@RequestMapping(value = "/getRecipeWeb", method = {RequestMethod.GET, RequestMethod.POST} ) 
+	public List<RecipeDto> getRecipeWeb(RecipeDto dto) {		
+		System.out.println("Controller 이상 무!");
+	  
+		List<RecipeDto> list = service.getRecipe(dto);
 		return list;
 	}
 	  

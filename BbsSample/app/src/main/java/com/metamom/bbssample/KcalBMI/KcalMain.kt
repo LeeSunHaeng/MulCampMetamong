@@ -1,4 +1,4 @@
-package com.metamom.bbssample.KcalCal
+package com.metamom.bbssample.KcalBMI
 
 import android.os.Bundle
 import android.widget.Button
