@@ -4,10 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /* #21# [구독] Dto */
-class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val subMorning: Int, val subLunch: Int, val subDinner: Int, val subSnack: Int, val subStartday: String?) :Parcelable {
+class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val subMorning: Int, val subLunch: Int, val subDinner: Int, val subSnack: Int, val subStartday: String?, val subEndday: String?) :Parcelable {
 
     constructor(parcel: Parcel) : this(
-        parcel.readString(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readString()
+        parcel.readString(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readString(), parcel.readString()
     )
 
     override fun describeContents(): Int {
@@ -23,6 +23,7 @@ class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val
         parcel.writeInt(subDinner)
         parcel.writeInt(subSnack)
         parcel.writeString(subStartday)
+        parcel.writeString(subEndday)
     }
 
     companion object CREATOR : Parcelable.Creator<SubscribeDto> {
@@ -36,6 +37,6 @@ class SubscribeDto(val subId: String?, val subType: Int, val subPeriod: Int, val
     }
 
     override fun toString(): String {
-        return "SubscribeDto(id=${subId}, type=${subType}, period=${subPeriod}, morning=${subMorning}, lunch=${subLunch}, dinner=${subDinner}, snack=${subSnack}, startday=${subStartday}"
+        return "SubscribeDto(id=${subId}, type=${subType}, period=${subPeriod}, morning=${subMorning}, lunch=${subLunch}, dinner=${subDinner}, snack=${subSnack}, startday=${subStartday}, endday=${subEndday}"
     }
 }

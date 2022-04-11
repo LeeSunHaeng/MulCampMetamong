@@ -71,4 +71,8 @@ class MemberDto(
         }
     }
 
+    /* #21# 확인을 위해 toString() 추가 */
+    override fun toString(): String {
+        return "MemberDto(id=${id}, height=${height}, weight=${weight}, subscribe=${subscribe}"
+    }
 }
