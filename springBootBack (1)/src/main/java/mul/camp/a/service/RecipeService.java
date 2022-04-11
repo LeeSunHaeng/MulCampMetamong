@@ -24,8 +24,16 @@ public class RecipeService {
 		List<RecipeDto> list = dao.getRecipe(dto);
 		System.out.println("RecipeDto"+list);
 		
-		return list;
-		
-		
+		return list;			
 	}	
+	
+	public List<RecipeDto> getRecipeWeb(RecipeDto dto) {
+		
+		System.out.println("나오냐ㅜ ");		
+	
+		List<RecipeDto> list = dao.getRecipe(dto);
+		System.out.println("RecipeDto"+list);
+		
+		return list;				
+	}
 }

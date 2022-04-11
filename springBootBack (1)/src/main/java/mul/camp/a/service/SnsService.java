@@ -24,6 +24,16 @@ public class SnsService {
 		return dao.snsInsert(dto);
 	}
 	
+	public int snsDelete(int seq) {
+		System.out.println("snsDelete 실행");
+		return dao.snsDelete(seq);
+	}
+	
+	public int snsUpdate(SnsDto dto) {
+		System.out.println("snsUpdate service 실행");
+		return dao.snsUpdate(dto);
+	}
+	
 	public int snsCommentInsert(SnsCommentDto dto) {
 		System.out.println("snsCommentInsert service 실행");
 		return dao.snsCommentInsert(dto);
@@ -54,6 +64,11 @@ public class SnsService {
 		return dao.snsLikeDelete(dto);
 	}
 	
+	public int snsLikeAllDelete(int seq) {
+		System.out.println("snsLikeAllDelete service 실행");
+		return dao.snsLikeAllDelete(seq);
+	}
+	
 	public int snsLikeCheck(SnsLikeDto dto) {
 		System.out.println("snsLikeCheck service 실행");
 		return dao.snsLikeCheck(dto);
@@ -66,5 +81,25 @@ public class SnsService {
 	public int snsCommentCount(int seq) {
 		System.out.println("snsCommentCount service 실행");
 		return dao.snsCommentCount(seq);
+	}
+	
+	public int snsCommentAllDelete(int seq) {
+		System.out.println("snsCommentAllDelete service 실행");
+		return dao.snsCommentAllDelete(seq);
+	}
+	
+	public int snsCommentDelete(int cmtseq) {
+		System.out.println("snsCommentDelete service 실행");
+		return dao.snsCommentDelete(cmtseq);
+	}
+	
+	public int nextSeq() {
+		System.out.println("nextSeq service 실행");
+		return dao.nextSeq();
+	}
+	
+	public int currSeq() {
+		System.out.println("currSeq service 실행");
+		return dao.currSeq();
 	}
 }

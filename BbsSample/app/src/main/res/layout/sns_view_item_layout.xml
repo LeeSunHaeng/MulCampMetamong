@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginStart="24dp"
+
             android:layout_marginEnd="24dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -58,6 +58,7 @@
             android:layout_height="385dp"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             app:srcCompat="@drawable/no_image"
             android:id="@+id/contentImageView"/>
 
@@ -134,25 +135,12 @@
             android:text="TextView"
             android:textSize="14sp"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:layout_marginTop="4dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/font_content_regular"
-            android:textColor="@color/meta_grey01"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+            android:textColor="@color/meta_grey01"
+            android:maxLines="4"/>
 
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:inputType="textPersonName"
-                android:text="댓글 쓰기.."
-                android:ems="10"
-                android:id="@+id/commentEditText"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -1,3 +1,3 @@
-/.metadata/
-*.zip
+/.metadata
+/*.zip
 /.idea/

@@ -16,6 +16,26 @@
 
     <Button
             android:id="@+id/myFoodListBtn"
+            android:textSize="20sp"
+            android:text="이날 이거 먹었지몸"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@+id/calendar"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="right"
+            android:layout_marginStart="336dp"/>
+    <TextView
+            android:id="@+id/clickDay"
+            android:layout_width="135dp"
+            android:layout_height="38dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="4dp"/>
+<androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="24dp"
@@ -56,7 +76,7 @@
                         android:paddingEnd="12dp"
                         android:paddingBottom="32dp"
                 />
-                <TextView
+               <!-- <TextView
                         android:id="@+id/clickDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -65,7 +85,7 @@
                         android:textSize="24dp"
                         android:textColor="@color/meta_grey01"
                         android:fontFamily="@font/font_title"
-                        android:hint="선택한 날짜"/>
+                        android:hint="선택한 날짜"/>-->
 
                 <ImageView
                         android:id="@+id/addMealsBtn"

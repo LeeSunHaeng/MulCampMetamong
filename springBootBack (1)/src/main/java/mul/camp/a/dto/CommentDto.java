@@ -1,11 +1,14 @@
 package mul.camp.a.dto;
 
 /*
-CREATE TABLE BBSCOMMENT(
+CREATE TABLE SNS_COMMENT(
+    CMTSEQ NUMBER(8),
 	SEQ NUMBER(8),
-	ID VARCHAR2(50),
+    ID VARCHAR2(50),
+	NICKNAME VARCHAR2(50),
+	PROFILE VARCHAR2(4000),
 	WDATE DATE,
-	CONTENT VARCHAR2(4000)
+	CONTENT VARCHAR2(2000)
 );
 
 ALTER TABLE BBSCOMMENT
@@ -14,6 +17,7 @@ REFERENCES MEMBER(ID);
 */
 
 public class CommentDto {
+	private int cmtseq;
 	private int seq;
 	private String id;
 	private String wdate;
@@ -22,12 +26,21 @@ public class CommentDto {
 	public CommentDto(){		
 	}
 
-	public CommentDto(int seq, String id, String wdate, String content) {
+	public CommentDto(int cmtseq, int seq, String id, String wdate, String content) {
 		super();
+		this.cmtseq = cmtseq;
 		this.seq = seq;
 		this.id = id;
 		this.wdate = wdate;
 		this.content = content;
+	}
+
+	public int getCmtseq() {
+		return cmtseq;
+	}
+
+	public void setCmtseq(int cmtseq) {
+		this.cmtseq = cmtseq;
 	}
 
 	public int getSeq() {
@@ -64,6 +77,12 @@ public class CommentDto {
 
 	@Override
 	public String toString() {
-		return "CommentDto [seq=" + seq + ", id=" + id + ", wdate=" + wdate + ", content=" + content + "]";
-	}	
+		return "CommentDto [cmtseq=" + cmtseq + ", seq=" + seq + ", id=" + id + ", wdate=" + wdate + ", content="
+				+ content + "]";
+	}
+	
+	
+
+	
+
 }
