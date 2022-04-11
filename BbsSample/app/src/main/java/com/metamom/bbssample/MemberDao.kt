@@ -1,5 +1,7 @@
 package com.metamom.bbssample
 
+import android.util.Log
+import com.metamom.bbssample.subscribe.SubscribeService
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -14,8 +16,12 @@ interface MemberService {
     fun login(@Body dto: MemberDto): Call<MemberDto>
 
     @POST("/addmember")
-    fun addmember(@Body dto: MemberDto): Call<MemberDto>
+    fun addmember(@Body dto: MemberDto): Call<String>
 
+    /* #21# ID 중복체크 */
+    @GET("/idCheck")
+    fun idCheck(@Query("id") id: String) :Call<Boolean>
+    
     @POST("/searchId")
     fun searchId(@Body dto : MemberDto) : Call<String>
 
@@ -23,6 +29,9 @@ interface MemberService {
     fun searchPwd(@Body dto: MemberDto) : Call<String>
 
 
+    /* #21# 회원정보 수정 */
+    @POST("/userUpdate")
+    fun userUpdate(@Body dto: MemberDto) :Call<Boolean>
 }
 
 
@@ -58,20 +67,63 @@ class MemberDao {
         return response?.body() as MemberDto
     }
 
-    fun addmember(dto : MemberDto) : MemberDto? {
+    fun addmember(dto : MemberDto) : String? {
 
-        var response: Response<MemberDto>?
+        var response: Response<String>?
         try {
             val retrofit = RetrofitClient.getInstance()
             val service = retrofit?.create(MemberService::class.java)
             val call = service?.addmember(dto)
             response = call?.execute()
+
         }catch (e:Exception){
             response = null
         }
         if(response == null) return null
 
-        return response?.body() as MemberDto
+        return response?.body() as String
+    }
+
+    /* #21# ID 중복체크 */
+    fun idCheck(id: String) :Boolean? {
+        Log.d("MemberDao", "#21# MemberDao idCheck() 중복체크할 ID값 > $id")
+
+        var response: Response<Boolean>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(MemberService::class.java)
+            val call = service?.idCheck(id)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("MemberDao", "#21# MemberDao idCheck() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as Boolean
+    }
+
+    /* #21# 회원정보 수정 */
+    fun userUpdate(dto :MemberDto) :Boolean? {
+        Log.d("MemberDao", "#21# MemberDao userUpdate() 회원수정을 위한 값 > ${dto.toString()}")
+
+        var response: Response<Boolean>? = null
+
+        try {
+            val retrofit = RetrofitClient.getInstance()
+            val service = retrofit?.create(MemberService::class.java)
+            val call = service?.userUpdate(dto)
+            response = call?.execute()
+        }
+        catch (e:Exception) {
+            Log.d("MemberDao", "#21# MemberDao userUpdate() try..catch 오류 > ${e.printStackTrace()}")
+            response = null
+        }
+
+        if (response == null) return null
+        return response.body() as Boolean
     }
 //해빈추가 아이디 찾기
     fun searchId(dto : MemberDto) :String?{

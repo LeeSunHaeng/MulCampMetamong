@@ -5,14 +5,15 @@
         <item>유형 선택</item>
         <item>다이어트</item>
         <item>운동</item>
-        <item>건강</item>
+        <!--<item>건강</item>-->
     </string-array>
 
+    <!-- #21# 중간발표 이후 가격 조정 -->
     <string-array name="subperiod">
         <item>기간 선택</item>
-        <item>1개월[1,900원]</item>
-        <item>3개월[3,900원]</item>
-        <item>5개월[5,900원]</item>
+        <item>1개월[1,000원]</item>
+        <item>3개월[3,000원]</item>
+        <item>5개월[5,000원]</item>
     </string-array>
 
     <string-array name="subtime">

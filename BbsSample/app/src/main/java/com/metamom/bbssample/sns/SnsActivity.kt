@@ -25,7 +25,7 @@ class SnsActivity : AppCompatActivity() {
         return supportFragmentManager
     }
     var data = SnsDao.getInstance().allSns()
-    val adapter = CustomAdapter(this,data,supportFragmentManager)
+    val adapter = CustomAdapter(this,data!!,supportFragmentManager)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

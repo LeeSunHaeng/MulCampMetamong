@@ -4,6 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
+import com.metamom.bbssample.sns.SnsActivity
+import com.metamom.bbssample.subscribe.SubscribeDao
+import com.metamom.bbssample.subscribe.SubscribeDto
+import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 import android.widget.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -45,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         searchId = findViewById(R.id.searchId)
         searchPwd = findViewById(R.id.searchPwd)
 
-        // #21# Login 버튼 클릭 시 main button 페이지로 이동
         loginBtn.setOnClickListener {
 
             val userId = id.text.toString()
@@ -60,12 +65,6 @@ class MainActivity : AppCompatActivity() {
                         0.0, ""
                     )
                 )
-
-            /* #21# [for 구독여부 판단, test용] Login Button 클릭 시 현재 로그인한 사용자의 정보를 MemberSingleton에 저장 */
-            MemberSingleton.id = dto?.id
-            MemberSingleton.subscribe = "1"             // 1 = 구독
-            //MemberSingleton.subscribe = "0"          // 0 = 비구독
-            Log.d("MainActivity", "#21# 현재 로그인한 사용자의 정보(MemberSingleton) ${MemberSingleton.toString()}")
 
             if (dto != null) {
 
@@ -88,7 +87,6 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this,SearchPwd::class.java)
             startActivity(i)
         }
-
 
 
         /*loginBtn.setOnClickListener {

@@ -12,6 +12,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -20,65 +21,60 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RecipeMainActivity : AppCompatActivity() {
 
+    val activity: RecipeMainActivity = this
+
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recimain)
 
         val listView = findViewById<ListView>(R.id.reciView)
         val editText = findViewById<EditText>(R.id.reciEdit)
-        val imageView = findViewById<ImageView>(R.id.imageView)
+
 
         // 레시피 가져오기
-
-       var dto = RecipeDto(0, "", "", "", "", "", "", "")
+        var dto = RecipeDto(0, "", "", "", "", "", "", "")
         var recipeList = RecipeDao.getInstance().getRecipe(dto)
-////        println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + recipeList?.get(0))
+        // println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + recipeList?.get(0))
+
 
         // list에 RecipeDto recipeName으로 출력
-        var list :  ArrayList<String> = ArrayList<String>()
-        for(i in 0 until recipeList!!.size){
+
+
+        var list: ArrayList<String> = ArrayList()
+        for (i in 0 until recipeList!!.size) {
             recipeList[i].recipeName?.let { list.add(it) }
         }
 
+//       list.sortWith(Comparator.naturalOrder())
 
-/*        var list :  ArrayList<String> = ArrayList<String>()
-        for(i in 0 until recipeList!!.size){
-            recipeList[i].recipeName?.let { list.add(it) }
-        }*/
+        var adapter = ArrayAdapter(this, R.layout.recipe_list, list)
 
-        var adapter =  ArrayAdapter(this, R.layout.recipe_list, list)
         listView.adapter = adapter
+
 
         // listview 검색기능!
         editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(edit: Editable) {
+                list!!.clear()
 
                 dto = RecipeDto(0, edit.toString(), "", "", "", "", "", "")
-                var recipeList = RecipeDao.getInstance().getRecipe( dto)
-//                println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + recipeList?.get(0))
+                recipeList = RecipeDao.getInstance().getRecipe(dto)
 
-        // list에 RecipeDto recipeName으로 출력
-
-                var list :  ArrayList<String> = ArrayList<String>()
                 for(i in 0 until recipeList!!.size){
-                    recipeList[i].recipeName?.let { list.add(it) }
+                    recipeList!![i].recipeName?.let { list!!.add(it) }
                 }
-/*
 
-                var adapter =  ArrayAdapter(this, R.layout.recipe_list, list)
-                //var adapter =  ArrayAdapter(this, R.layout.recipe_list, list)
+                // list: 검색 후 listView에 표시되는 항목들 출력
+                adapter =  ArrayAdapter(activity, R.layout.recipe_list, list)
+
                 listView.adapter = adapter
 
-*/
-                val filterText = edit.toString()
-                if (filterText.length > 0) {
-                    listView.setFilterText(filterText)
-                } else {
-                    listView.clearTextFilter()
-                }
             }
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
@@ -100,37 +96,59 @@ class RecipeMainActivity : AppCompatActivity() {
         val reciBotcontent = bottomSheetView.findViewById<TextView>(R.id.reciBotContent)
 
 
-        // bottomSheet에 가져간 데이터 짐싸기
         var choicePos = 0
+        var findIndex = -1
 
-        reciDetailButton.setOnClickListener {
-
-            Toast.makeText(this, "${recipeList[choicePos].recipeName} 클릭", Toast.LENGTH_SHORT).show()
-
-            // 이동
-            //Intent(이동) +  putExtra(짐)
-            val intent = Intent(this, DetailRecipe::class.java)
-            intent.putExtra("List", recipeList[choicePos])
-            intent.putExtra("Num", choicePos)
-            startActivity(intent)
-        }
 
 
         // listView 눌려서 bottomSheet 가져오기
         listView.onItemClickListener = object : AdapterView.OnItemClickListener {
             override fun onItemClick(parent: AdapterView<*>?, v: View?, pos: Int, p3: Long) {
-                reciBotTitle.text = recipeList[pos].recipeName
+                //reciBotTitle.text = recipeList!![pos].recipeName
+                reciBotTitle.text = list!![pos]
 
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~" +  recipeList[pos].recipeName);
+                println("~~~~~~~~~~~+++++++++++++++++~~~~~~~~~~~" +  list!![pos])
+                println("~~~~~~~~~~~+++++++++++++++++~~~~~~~~~~~recipeList!!.size: " +  recipeList!!.size)
 
-                reciBotImage.setImageBitmap(ImageRoader().getBitmapImg(recipeList[pos].foodImage))
 
-                reciBotcontent.text = recipeList[pos].brief
+                for(i in 0 until recipeList!!.size){
+
+                    if( recipeList!![i].recipeName === list!![pos]){
+                        println("++++++++++++++++++++++!!!!!!!!!!!!!!!!!" + recipeList!![i])
+                        println("++++++++++++++++++++++!!!!!!!!!!!!!!!!!" + recipeList!![i].recipeSeq)
+                        findIndex = i
+                        break
+                    }
+                }
+                println("%%%%%%%%%%%%%%%%%%%%%%%%%%%" + recipeList!![findIndex].recipeSeq)
+
+                reciBotImage.setImageBitmap(ImageRoader().getBitmapImg(recipeList!![findIndex].foodImage))
+
+                reciBotcontent.text = recipeList!![findIndex].brief
                 bottomSheetDialog.show()
-                choicePos = pos
+                choicePos =  recipeList!![findIndex].recipeSeq
 
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~" + choicePos)
+
+                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~choicePos : " + choicePos)
+
             }
+        }
+
+
+        // bottomSheet에 가져간 데이터 짐싸기
+        reciDetailButton.setOnClickListener {
+
+            Toast.makeText(this, "${recipeList!![findIndex].recipeName} 클릭", Toast.LENGTH_SHORT).show()
+
+            println("@@@@@@@@@@@@@@@@@@@@@@ 여긴 뒤쪽 choicePos : " + choicePos)
+
+            // 이동
+            //Intent(이동) +  putExtra(짐)
+            val intent = Intent(this, DetailRecipe::class.java)
+            //intent.putExtra("List", recipeList!![findIndex])
+            intent.putExtra("Num", choicePos - 1)
+            startActivity(intent)
+
         }
     }
 }
