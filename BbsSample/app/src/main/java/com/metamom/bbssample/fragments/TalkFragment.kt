@@ -1,5 +1,6 @@
 package com.metamom.bbssample.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +10,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentTalkBinding
+import com.metamom.bbssample.sns.CustomAdapter
+import com.metamom.bbssample.sns.SnsActivity
+import com.metamom.bbssample.sns.SnsDao
 
 class TalkFragment : Fragment() {
 
     private lateinit var binding : FragmentTalkBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val i = Intent(getActivity(),SnsActivity::class.java)
+        startActivity(i)
+
+
     }
 
     override fun onCreateView(

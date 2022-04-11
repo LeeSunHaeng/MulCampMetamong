@@ -13,6 +13,21 @@
   ,0,0,#{content})
   </insert>
   
+  <delete id="snsDelete" parameterType="Integer">
+  DELETE
+  FROM META_SNS
+  WHERE SNSSEQ=#{seq}
+  </delete>
+  
+  <update id="snsUpdate" parameterType="mul.camp.a.dto.SnsDto">
+  UPDATE META_SNS
+  SET
+  IMAGECONTENT=#{imagecontent},
+  CONTENT=#{content}
+  WHERE SNSSEQ=#{seq}
+  
+  </update>
+  
   <select id="snsGetMmeber" 
   parameterType="String" resultType="mul.camp.a.dto.MemberDto">  
   SELECT *
@@ -28,19 +43,19 @@
        TRUNC(MOD((SYSDATE - SNSDATE)*24,1)*60) AS SNSDATE,
    IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
   FROM META_SNS 
-  ORDER BY SNSDATE
+  ORDER BY SNSSEQ DESC
   </select>
   
   <select id="allComment" parameterType = "Integer"
    resultType="mul.camp.a.dto.SnsCommentDto">
-  SELECT SEQ,ID,NICKNAME,PROFILE,
+  SELECT CMTSEQ,SEQ,ID,NICKNAME,PROFILE,
   	   TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(WDATE) || '-' || 
        TRUNC(((SYSDATE - WDATE) - TRUNC(SYSDATE - WDATE)) * 24) || '-'  ||
        TRUNC(MOD((SYSDATE - WDATE)*24,1)*60) AS WDATE,
        CONTENT
   FROM SNS_COMMENT
   WHERE SEQ=#{seq}
-  ORDER BY WDATE DESC
+  ORDER BY CMTSEQ
   </select>
   
   <insert id="snsLikeInsert" parameterType="mul.camp.a.dto.SnsLikeDto">
@@ -49,8 +64,8 @@
   </insert>
   
   <insert id="snsCommentInsert" parameterType = "mul.camp.a.dto.SnsCommentDto">
-  INSERT INTO SNS_COMMENT(SEQ,ID,NICKNAME,PROFILE,WDATE,CONTENT)
-  VALUES(#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
+  INSERT INTO SNS_COMMENT(CMTSEQ,SEQ,ID,NICKNAME,PROFILE,WDATE,CONTENT)
+  VALUES(#{cmtseq},#{seq},#{id},#{nickname},#{profile},SYSDATE,#{content})
   </insert>
   
   <select id="snsLikeCount" parameterType="Integer" resultType="Integer">
@@ -70,12 +85,38 @@
   WHERE LIKESEQ=#{likeseq} AND ID=#{id}
   </delete>
   
+  <delete id="snsLikeAllDelete" parameterType="Integer">
+  DELETE FROM SNS_LIKE
+  WHERE LIKESEQ=#{seq}
+  </delete>
+  
+  <delete id="snsCommentAllDelete" parameterType="Integer">
+  DELETE FROM SNS_COMMENT
+  WHERE SEQ=#{seq}
+  </delete>
+  
+  <delete id="snsCommentDelete" parameterType="Integer">
+  DELETE FROM SNS_COMMENT
+  WHERE CMTSEQ = #{cmtseq}
+  
+  </delete>
+  
   <select id="snsLikeCheck" parameterType="mul.camp.a.dto.SnsLikeDto"
    resultType="Integer">
   SELECT COUNT(*)
   FROM SNS_LIKE
   WHERE LIKESEQ=#{likeseq} AND ID=#{id}
   </select>
+  
+  <select id="nextSeq" resultType="Integer">
+  SELECT SEQCMT.NEXTVAL FROM DUAL
+  </select>
+  
+    <select id="currSeq" resultType="Integer">
+  SELECT SEQCMT.CURRVAL FROM DUAL
+  </select>
+  
+  
   
   
   

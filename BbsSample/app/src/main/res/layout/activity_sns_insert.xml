@@ -7,6 +7,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".sns.SnsInsertActivity">
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:id="@+id/snsInsertToolbar"
+            android:background="@color/white"
+            android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -21,7 +29,7 @@
                 android:id="@+id/camera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="15dp"
                 android:background="@drawable/ic_camera"/>
         <ImageButton
                 android:id="@+id/picture"
@@ -52,34 +60,13 @@
             android:fontFamily="@font/font_content_regular"
             android:textSize="14sp"
             android:textColor="@color/meta_grey01"
-            android:inputType="textPersonName"
-            android:hint="문구를 입력해주세요"
-            android:ems="10"/>
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false"
+            android:hint="문구를 입력해주세요.."
+            android:ems="10"
+            android:maxLines="4"
+            android:ellipsize="end"/>
 
-    <Button
-            android:id="@+id/snsInsertCheckBtn"
-            android:src="@drawable/icon_check"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:paddingBottom="10dp"
-            android:background="@drawable/btn_shadow"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/font_content_bold"
-            android:textSize="14sp"
-            android:textColor="@color/meta_white"
 
-            android:text="게시하기"/>
-
-    <TextView
-            android:text="TextView"
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="24dp"
-            android:id="@+id/uriTextView"
-            android:gravity="center_vertical"
-            android:textSize="15sp"
-            android:visibility="invisible"/>
 
 </LinearLayout>
