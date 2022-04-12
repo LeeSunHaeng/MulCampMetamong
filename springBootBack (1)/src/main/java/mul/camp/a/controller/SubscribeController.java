@@ -206,8 +206,8 @@ public class SubscribeController {
    }
    
    /* #21# 추천하였던 *[운동]* 식단 가져오기 */
-   @RequestMapping(value = "/subExerMeal", method = {RequestMethod.GET, RequestMethod.POST} ) 
-   public SubExerMealDto subExerMeal(@RequestBody int subExerSeq) {
+   @RequestMapping(value = "/subExerMeal", method = {RequestMethod.GET, RequestMethod.POST} )
+	public SubExerMealDto subExerMeal(@RequestBody int subExerSeq) {
 	   System.out.println("#21# SubscribeController subExerMeal() 동작");
 	   System.out.println("#21# #Front에서 가져온 운동 식단 SEQ번호: " + subExerSeq);
 	    
