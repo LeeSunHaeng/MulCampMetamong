@@ -26,6 +26,13 @@
 	WHERE ID=#{id} AND PWD=#{pwd}
 </select>
 
+<!-- #21# Web용 _관리자 login -->
+<select id="loginWeb" parameterType="mul.camp.a.dto.MemberDto" resultType="mul.camp.a.dto.MemberDto">
+	SELECT ID, NAME, EMAIL, AUTH
+	FROM META_MEMBER
+	WHERE ID=#{id} AND PWD=#{pwd} AND AUTH=1
+</select>
+
 <!-- #21# ID 중복체크 -->
 <select id="idCheck" parameterType="String" resultType="Integer">
 	SELECT COUNT(*)
@@ -52,6 +59,57 @@
 	FROM META_MEMBER
 	WHERE ID=#{id} AND NAME=#{name} AND BIRTH=#{birth}
 </select>
+
+<!-- #21# (Web_관리자용) 검색 + 페이징 + 회원목록 -->
+<!-- (SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM, ID, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, DEL, BIRTH, AUTH, SUBSCRIBE -->
+<select id="getMemberListSearchPage" parameterType="mul.camp.a.dto.MemberParam" resultType="mul.camp.a.dto.MemberDto">
+	SELECT *
+	FROM 
+		<!-- 검색조건이 있다면 검색조건에 맞는 게시글 찾기 & WHERE절에 1=1 항상 참 조건을 걸어둔 이유는 조건에 맞지 않아 error가 발생하는 경우를 방지하기 위함 -->
+		(SELECT ROW_NUMBER()OVER(ORDER BY NAME) AS RNUM, ID, NAME, EMAIL, GENDER, PHONE, NICKNAME, HEIGHT, WEIGHT, DEL, BIRTH, AUTH, SUBSCRIBE
+		FROM META_MEMBER
+		WHERE 1=1
+			<if test="choice != null and choice != '' and search != null and search != '' ">
+				<if test="choice == 'userId'">
+					AND ID LIKE '%'||#{search}||'%'
+				</if>
+				<if test="choice == 'userName'">
+					AND NAME LIKE '%'||#{search}||'%'
+				</if>
+			</if>)
+	<!-- start ~ end 사이의 RUNM번의 게시글 정보 반환 -->
+	WHERE RNUM BETWEEN ${start} AND ${end} AND AUTH=0
+</select>
+
+<!-- #21# (Web _관리자용) 회원목록 총 개수 -->
+<select id="getMemberCount" parameterType="mul.camp.a.dto.MemberParam" resultType="Integer">
+	 SELECT NVL(COUNT(*), 0) AS CNT
+	 FROM META_MEMBER
+	 WHERE 1=1
+		 <!-- 검색조건이 있다면 검색조건에 맞는 게시글 찾기 -->
+		<if test="choice != null and choice != '' and search != null and search != '' ">
+			<if test="choice == 'userId'">
+				AND ID LIKE '%'||#{search}||'%' AND AUTH=0
+			</if>
+			<if test="choice == 'userName'">
+				AND NAME LIKE '%'||#{search}||'%' AND AUTH=0
+			</if>
+		</if>
+</select>
+
+<!-- #21# (Web _관리자용) 회원 탈퇴처리 -->
+<update id="userDelWeb" parameterType="String">
+	UPDATE META_MEMBER
+	SET DEL='Y'
+	WHERE ID=#{id}
+</update>
+
+<!-- #21# (Web _관리자용) 회원 복구처리 -->
+<update id="userRecoveryWeb" parameterType="String">
+	UPDATE META_MEMBER
+	SET DEL='N'
+	WHERE ID=#{id}
+</update>
 </mapper>
 
 
