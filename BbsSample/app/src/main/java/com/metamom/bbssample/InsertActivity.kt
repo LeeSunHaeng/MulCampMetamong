@@ -80,76 +80,79 @@ class InsertActivity : AppCompatActivity() {
             }
 
             // 값이 비어있는지 확인
-            if (userId.isNullOrEmpty()) {
-                Toast.makeText(this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
+            if (isGoToJoin) {
+                if (userId.isNullOrEmpty()) {
+                    Toast.makeText(this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userId?.length!! > 12) {
+                    Toast.makeText(this, "아이디를 12자 이내로 입력해주세요", Toast.LENGTH_LONG).show()
+                    isGoToJoin = false
+                }
+                if (userPwd.isNullOrEmpty()) {
+                    Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userPwd2.isNullOrEmpty()) {
+                    Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userEmail.isNullOrEmpty()) {
+                    Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userName.isNullOrEmpty()) {
+                    Toast.makeText(this, "이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userName.length > 20) {
+                    Toast.makeText(this, "이름을 20자 이내로 입력해주세요", Toast.LENGTH_LONG).show()
+                    isGoToJoin = false
+                }
+                if (userNickName.isNullOrEmpty()) {
+                    Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userPhone.isNullOrEmpty()) {
+                    Toast.makeText(this, "전화번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userHeight.isNaN()) {
+                    Toast.makeText(this, "키를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userHeight.toString().length > 6) {
+                    Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
+                    isGoToJoin = false
+                }
+                if (userWeight.isNaN()) {
+                    Toast.makeText(this, "몸무게를 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userWeight.toString().length > 6) {
+                    Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
+                    isGoToJoin = false
+                }
+                if (userBirth.isNullOrEmpty()) {
+                    Toast.makeText(this, "생년월일을 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                if (userBirth.length > 9) {
+                    Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
+                    isGoToJoin = false
+                }
+                // 비밀번호 2개가 같은지 확인
+                if (userPwd != userPwd2) {
+                    Toast.makeText(this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
+                // 비밀번호가 6자 이상인지
+                if (userPwd.length < 6) {
+                    Toast.makeText(this, "비밀번호를 6자리 이상으로 입력해주세요", Toast.LENGTH_SHORT).show()
+                    isGoToJoin = false
+                }
             }
-            if (userId?.length!! > 12) {
-                Toast.makeText(this, "아이디를 12자 이내로 입력해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
-            }
-            if (userPwd.isNullOrEmpty()) {
-                Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userPwd2.isNullOrEmpty()) {
-                Toast.makeText(this, "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userEmail.isNullOrEmpty()) {
-                Toast.makeText(this, "이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userName.isNullOrEmpty()) {
-                Toast.makeText(this, "이름을 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userName.length > 20) {
-                Toast.makeText(this, "이름을 20자 이내로 입력해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
-            }
-            if (userNickName.isNullOrEmpty()) {
-                Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userPhone.isNullOrEmpty()) {
-                Toast.makeText(this, "전화번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userHeight.isNaN()) {
-                Toast.makeText(this, "키를 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userHeight.toString().length > 6) {
-                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
-            }
-            if (userWeight.isNaN()) {
-                Toast.makeText(this, "몸무게를 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userWeight.toString().length > 6) {
-                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
-            }
-            if (userBirth.isNullOrEmpty()) {
-                Toast.makeText(this, "생년월일을 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            if (userBirth.length > 9) {
-                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
-            }
-            // 비밀번호 2개가 같은지 확인
-            if (userPwd != userPwd2) {
-                Toast.makeText(this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
-            // 비밀번호가 6자 이상인지
-            if (userPwd.length < 6) {
-                Toast.makeText(this, "비밀번호를 6자리 이상으로 입력해주세요", Toast.LENGTH_SHORT).show()
-                isGoToJoin = false
-            }
+
             if (isGoToJoin) {
                 val dto=MemberDao.getInstance().addmember(
                     MemberDto(
