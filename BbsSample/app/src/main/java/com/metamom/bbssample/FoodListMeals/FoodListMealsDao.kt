@@ -25,6 +25,7 @@ interface FoodListMealsService{
     @GET("/checkId")
     fun checkId(@Query("id")id:String):Call<String>
 
+    @Headers("Content-Type: application/json")
     @POST("/deleteFoodList")
     fun deleteFoodList(@Body seqfoodlist:Int):Call<String>
 

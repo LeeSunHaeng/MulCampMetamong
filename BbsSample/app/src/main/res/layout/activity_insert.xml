@@ -275,7 +275,7 @@
 
                 <RadioButton
                         android:id="@+id/male"
-                        android:text="m"
+                        android:text="남"
                         android:textSize="14sp"
                         android:buttonTint="@color/meta_purple01"
                         android:fontFamily="@font/font_content_regular"
@@ -284,7 +284,7 @@
 
                 <RadioButton
                         android:id="@+id/female"
-                        android:text="w"
+                        android:text="여"
                         android:textSize="14sp"
                         android:buttonTint="@color/meta_purple01"
                         android:fontFamily="@font/font_content_regular"

@@ -109,12 +109,24 @@ class MemberUpdateActivity : AppCompatActivity() {
                 Toast.makeText(this, "키를 입력해주세요", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false
             }
+            if (height.toString().length > 6) {
+                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
+                isGoToUpdate = false
+            }
             if (weight.isNaN()) {
                 Toast.makeText(this, "몸무게를 입력해주세요", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false
             }
+            if (weight.toString().length > 6) {
+                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
+                isGoToUpdate = false
+            }
             if (birth.isNullOrEmpty()) {
                 Toast.makeText(this, "생년월일을 입력해주세요", Toast.LENGTH_LONG).show()
+                isGoToUpdate = false
+            }
+            if (birth.length > 9) {
+                Toast.makeText(this, "유효하지 않은 값입니다", Toast.LENGTH_LONG).show()
                 isGoToUpdate = false
             }
             if (gender.isNullOrEmpty()) {

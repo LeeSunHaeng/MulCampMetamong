@@ -32,10 +32,10 @@ class RetrofitClient {
                 // 이선행 :
                 // 최재석 :http://14.39.38.168:3000/
                 instance = Retrofit.Builder()
-                    .baseUrl("http://14.39.38.168:3000/")
-                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .baseUrl("http://172.30.1.51:3000/")
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(gson))
+                    //.addConverterFactory(GsonConverterFactory.create(gson))
                     .client(client)
                     .build()
             }

@@ -54,7 +54,19 @@ public class MemberController {
 		req.getSession().setAttribute("login", mem);
 		
 		return mem;
-	}	
+	}
+	/* #21# Web용 _관리자 login */
+	@RequestMapping(value = "/loginWeb", method = RequestMethod.POST)
+	public MemberDto loginWeb(MemberDto dto, HttpServletRequest req) {
+		System.out.println("#21# MemberController Web용 관리자 login()");
+		
+		MemberDto mem = service.login(dto);
+		
+		// 이렇게도 사용할 수 있다
+		req.getSession().setAttribute("login", mem);
+		
+		return mem;
+	}
 	
 	/* #21# ID 중복체크 */
 	@RequestMapping(value = "/idCheck", method = {RequestMethod.GET, RequestMethod.POST} )
