@@ -120,9 +120,11 @@
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns_insert.xml" value="0.33" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns_update.xml" value="0.35052083333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/comment_view_item_layout.xml" value="0.5787923416789397" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_frag_sns_bottom_sheet.xml" value="0.3098958333333333" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_not_writer_bottom_sheet.xml" value="0.3515625" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_sns_bottom_sheet.xml" value="0.3515625" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_talk.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/meals_view_item_layout.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.3515625" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.36614583333333334" />
@@ -165,6 +167,7 @@
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

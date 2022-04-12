@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                 xmlns:tools="http://schemas.android.com/tools"
-                 android:layout_width="match_parent"
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout
+            android:layout_width="match_parent"
                  android:layout_height="match_parent"
-                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                 tools:context=".fragments.TalkFragment">
+            tools:context=".fragments.TalkFragment">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="50sp"
-                android:text="SNS"/>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/snsFragmentRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="800dp" app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout2" android:id="@+id/linearLayout8">
 
                 <LinearLayout
                         android:layout_width="match_parent"
@@ -93,6 +96,12 @@
                         android:layout_height="wrap_content"/>
 
             </LinearLayout>
+            <TextView
+                    android:text="555555555555555"
+                    android:layout_width="208dp"
+                    android:layout_height="25dp" android:id="@+id/textView2"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="52dp" android:layout_marginStart="124dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

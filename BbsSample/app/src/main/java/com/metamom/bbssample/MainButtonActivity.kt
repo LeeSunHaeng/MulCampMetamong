@@ -1,6 +1,8 @@
 package com.metamom.bbssample
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,7 @@ import com.metamom.bbssample.subscribe.*
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 import androidx.appcompat.widget.SearchView
+import com.metamom.bbssample.fragments.TalkFragment
 
 class MainButtonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,5 +89,11 @@ class MainButtonActivity : AppCompatActivity() {
         else if (MemberSingleton.subscribe == "0") {
             Log.d("MainButtonActivity", "#21# 현재 로그인한 사용자는 구독회원이 아님")
         }
+    }
+
+   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
     }
 }
