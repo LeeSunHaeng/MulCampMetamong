@@ -2,27 +2,27 @@ package com.metamom.bbssample
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Fragment
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 
-import android.widget.Toast
-import com.kakao.sdk.user.UserApiClient
-import com.metamom.bbssample.FoodListMeals.FoodListMeals
-import com.metamom.bbssample.sns.SnsActivity
 import com.metamom.bbssample.sns.SnsDao
 import com.metamom.bbssample.subscribe.*
 import com.metamom.bbssample.subsingleton.MemberSingleton
 import com.metamom.bbssample.subsingleton.SubTodayMealSingleton
 import androidx.appcompat.widget.SearchView
 import com.metamom.bbssample.fragments.TalkFragment
+import com.metamom.bbssample.subsingleton.SnsSingleton
+import kotlinx.android.synthetic.main.activity_main_button.*
 
 class MainButtonActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_button)
+        val home = findViewById<View>(R.id.fragmentContainerView)
 
         /* #21# 구독여부 판단 & 구독만료 판단 */
         // 1) 현재 로그인한 사용자의 정보 MemberSingleton에 저장 > 저장할 정보 [ID, 구독값, 키, 몸무게]
@@ -94,6 +94,21 @@ class MainButtonActivity : AppCompatActivity() {
    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+       if(resultCode == Activity.RESULT_OK){
+           when(requestCode){
+               400->{
+                   SnsSingleton.position = data?.getSerializableExtra("position") as Int
+                   println("~~~~~~~~~${SnsSingleton.position}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~400~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                   TalkFragment().adaptered.update(SnsSingleton.position!!)
+
+               }
+
+               500->{
+                   println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~500~~~~~~~~~~~~~~~~~~~~~~~~~~")
+               }
+
+           }
+       }
 
     }
 }

@@ -53,6 +53,9 @@ class CommentActivity : AppCompatActivity() {
                 }else{
                     Glide.with(this).load(uri).into(cmtInsertProfile)
                 }
+            }else{
+                val profileUri: Uri = Uri.parse(uri)
+                cmtInsertProfile.setImageURI(profileUri)
             }
         }
         //설정 했으면 설정 한 이미지 뿌려줌

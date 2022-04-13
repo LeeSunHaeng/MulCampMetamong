@@ -93,6 +93,7 @@ class TalkFragment : Fragment() {
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
                 400->{
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~넘어옴~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     val position = data?.getSerializableExtra("position") as Int
                     adaptered.update(position)
                     // TalkFragment.adap.update(position)

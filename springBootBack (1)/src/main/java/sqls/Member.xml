@@ -36,7 +36,7 @@
 <!-- #21# 회원정보 수정 -->
 <update id="userUpdate" parameterType="mul.camp.a.dto.MemberDto">
 	UPDATE META_MEMBER
-	SET NICKNAME=#{nickname}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, HEIGHT=#{height}, WEIGHT=#{weight}, BIRTH=#{birth}, GENDER=#{gender}
+	SET NICKNAME=#{nickname}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, HEIGHT=#{height}, WEIGHT=#{weight}, BIRTH=#{birth}, GENDER=#{gender}, PROFILE=#{profile}
 	WHERE ID=#{id}
 </update>
 

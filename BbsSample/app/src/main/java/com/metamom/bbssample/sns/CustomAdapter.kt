@@ -51,9 +51,12 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                     Glide.with(itemView).load(dataVo.profile).into(snsProfile)
                 }
                 }
+                else{
+                    val profileUri:Uri = Uri.parse(dataVo.profile)
+                    snsProfile.setImageURI(profileUri)
+                }
             } else{
-                val profileUri:Uri = Uri.parse(dataVo.profile)
-                snsProfile.setImageURI(profileUri)
+                Glide.with(itemView).load(dataVo.profile).into(snsProfile)
 
             }
 

@@ -134,8 +134,11 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
                 //activity.startActivityForResult(i,100)
                 /*val acti:TalkFragment = context as TalkFragment
                 acti.activity!!.startActivityForResult(i,100)*/
-                //val talk:TalkFragment = context as TalkFragment
-                TalkFragment().activity!!.startActivityForResult(i,100)
+                val talk:TalkFragment = context as TalkFragment
+                //val talk = contxt as MainButtonActivity
+                talk.activity!!.startActivityForResult(i,400)
+                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~start!!!~~~~~~~~~~~~~~~~~~~~~~")
+                //TalkFragment().activity!!.startActivityForResult(i,400)
                 //(contxt as TalkFragment).startActivityForResult(i,100)
                 //TalkFragment().startActivityForResult(i,100)
             }

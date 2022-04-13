@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
             android:layout_width="match_parent"
-                 android:layout_height="match_parent"
+            android:layout_height="match_parent"
             tools:context=".fragments.TalkFragment">
 
 
@@ -96,12 +97,6 @@
                         android:layout_height="wrap_content"/>
 
             </LinearLayout>
-            <TextView
-                    android:text="555555555555555"
-                    android:layout_width="208dp"
-                    android:layout_height="25dp" android:id="@+id/textView2"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="52dp" android:layout_marginStart="124dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

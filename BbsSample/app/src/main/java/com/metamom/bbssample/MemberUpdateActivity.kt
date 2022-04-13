@@ -1,19 +1,53 @@
 package com.metamom.bbssample
 
+import android.Manifest
+import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.metamom.bbssample.fragments.HomeFragment
+import com.metamom.bbssample.sns.SnsCommentDto
 import com.metamom.bbssample.sns.SnsDao
+import com.metamom.bbssample.sns.SnsDto
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_insert.*
 import kotlinx.android.synthetic.main.activity_member_update.*
+import kotlinx.android.synthetic.main.activity_sns_update.*
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
 
 /* #21# 회원정보 수정 */
 class MemberUpdateActivity : AppCompatActivity() {
+
+    //카메라 , 스토리지 권한 변수
+    val CAMERA = arrayOf(Manifest.permission.CAMERA)
+    val STORAGE = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+    // 카메라 스토리지 정해진 상수값.
+    val CAMERA_CODE = 98
+    val STORAGE_CODE = 99
+
+    val userInfo = SnsDao.getInstance().snsGetMember(MemberSingleton.id.toString())
+    var newImgUri:String = userInfo.profile!!
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_member_update)
@@ -31,9 +65,11 @@ class MemberUpdateActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
+        val profile = findViewById<CircleImageView>(R.id.accUpdateProfileImageView)     //META_SNS,SNS_COMMENT
+        val cameraBtn = findViewById<ImageButton>(R.id.accUpdateCameraImageButton)
+        val albumBtn = findViewById<ImageButton>(R.id.accUpdateAlbumImageButton)
         val id = findViewById<EditText>(R.id.memUpdate_idEditTxt)
-        val nickname = findViewById<EditText>(R.id.memUpdate_nicknameEdit)
+        val nickname = findViewById<EditText>(R.id.memUpdate_nicknameEdit)              //META_SNS,SNS_COMMENT
         val name = findViewById<EditText>(R.id.memUpdate_nameEdit)
         val email = findViewById<EditText>(R.id.memUpdate_emailEdit)
         val phone = findViewById<EditText>(R.id.memUpdate_phoneEdit)
@@ -43,11 +79,43 @@ class MemberUpdateActivity : AppCompatActivity() {
         val genderGroup = findViewById<RadioGroup>(R.id.memUpdate_genderRadioGroup)
         val updateBtn = findViewById<Button>(R.id.memUpdate_updateBtn)
 
+
+
+        //카메라 눌러서 변경했을 경우 imgSet 에도 링크 변경
+        cameraBtn.setOnClickListener {
+            camera()
+
+        }
+        //앨범 눌러서 변경했을 경우 imgSet 에도 링크 변경
+        albumBtn.setOnClickListener{
+            Album()
+
+        }
+
         /* 현재 로그인한 사용자의 회원정보 출력 */
-        val userInfo = SnsDao.getInstance().snsGetMember(MemberSingleton.id.toString())
+
         Log.d("MemberUpdateActivity", "#21# 마이페이지 회원수정을 위하여 가져온 값 > $userInfo")
 
         if (userInfo != null){
+
+            //프로필 이미지 뿌려주기
+            if(userInfo.profile != ""){
+                if(userInfo.profile.equals("profile3")){
+                    val resourceId = this.resources.getIdentifier(userInfo.profile, "drawable", this.packageName)
+                    if(resourceId > 0){
+                        profile.setImageResource(resourceId)
+                    }else{
+                        println("에이이이이이이이~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                        Glide.with(this).load(userInfo.profile).into(profile)
+                    }
+                } else{
+                    val profileUri:Uri = Uri.parse(userInfo.profile)
+                    profile.setImageURI(profileUri)
+                }
+            }else{
+                Glide.with(this).load(userInfo.profile).into(profile)
+            }
+
             id.setText(userInfo.id)
             nickname.setText(userInfo.nickname)
             name.setText(userInfo.name)
@@ -137,10 +205,13 @@ class MemberUpdateActivity : AppCompatActivity() {
 
             // 3) 회원정보 수정
             if (isGoToUpdate) {
-                val userUpdate = MemberDao.getInstance().userUpdate(MemberDto(id.text.toString(), "", name, email, gender, phone, nickname, height, weight, "", 0, 0, birth, 0.0, ""))
+                val userUpdate = MemberDao.getInstance().userUpdate(MemberDto(id.text.toString(), "", name, email, gender, phone, nickname, height, weight, "", 0, 0, birth, 0.0, newImgUri))
                 Log.d("MemberUpdateActivity", "#21# MemberUpdateActivity _Back으로 부터 전달받은 회원정보 수정 결과값 > $userUpdate")
-
-                if (userUpdate == true) {
+                val snsUpdate = SnsDao.getInstance().snsImgUpdate(SnsDto(0,MemberSingleton.id!!,nickname,newImgUri,"","",0,0,""))
+                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~${MemberSingleton.id}~~~~~~~~~~~$nickname~~~~~~~~~~~$newImgUri~~~~~~~~~~")
+                val commentUpdate = SnsDao.getInstance().snsCommentUpdate(SnsCommentDto(10,10,MemberSingleton.id!!,nickname,newImgUri,"",""))
+                println("~~~~~~~~~~~~~~~~~~~~~$commentUpdate~~~~~~~~~~~~~~~~~~~~~~~~")
+                if (userUpdate == true && snsUpdate != null && commentUpdate != null) {
                     Toast.makeText(this, "회원정보가 수정되었습니다!", Toast.LENGTH_LONG).show()
 
                     val i = Intent(this, MainButtonActivity::class.java)
@@ -154,4 +225,125 @@ class MemberUpdateActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<out String>, grantResults: IntArray){
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode){
+            CAMERA_CODE -> {
+                for (grant in grantResults){
+                    if(grant != PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(this, "카메라 권한을 승인해 주세요", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+            STORAGE_CODE -> {
+                for(grant in grantResults){
+                    if(grant != PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(this, "저장소 권한을 승인해 주세요", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    fun getPath(uri: Uri?):String{
+        val projection = arrayOf<String>(MediaStore.Images.Media.DATA)
+        val cursor: Cursor =managedQuery(uri,projection,null,null,null)
+        startManagingCursor(cursor)
+        val columnIndex : Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor.moveToFirst()
+        return cursor.getString(columnIndex)
+    }
+    //다른 권한등록 확인
+    fun checkPermission(permissions: Array<out String>, type:Int):Boolean{
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            for (permission in permissions){
+                if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
+                    ActivityCompat.requestPermissions(this, permissions, type)
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    fun camera(){ //카메라 촬영
+        if(checkPermission(CAMERA,CAMERA_CODE) && checkPermission(STORAGE,STORAGE_CODE)){
+            val itent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(itent,CAMERA_CODE)
+        }
+    }
+    fun fileSava(fileName:String,mimeType:String , bitmap: Bitmap): Uri?{
+        var CV= ContentValues()
+
+        //mediaStore에 파일명 타입 지정
+        CV.put(MediaStore.Images.Media.DISPLAY_NAME,fileName)
+        CV.put(MediaStore.Images.Media.MIME_TYPE,mimeType)
+        //안전성 검사
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            CV.put(MediaStore.Images.Media.IS_PENDING,1)
+        }
+        //store에 파일 저장
+        val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,CV)
+        if(uri != null){
+            var scriptor = contentResolver.openFileDescriptor(uri,"w")
+            val fos = FileOutputStream(scriptor?.fileDescriptor)
+
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,fos)
+            fos.close()
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+                CV.clear()
+
+                //IS_PENDING을 초기화해준다 .
+                CV.put(MediaStore.Images.Media.IS_PENDING,0)
+                contentResolver.update(uri,CV,null,null)
+            }
+        }
+        return uri
+    }
+    //결과
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode){
+                CAMERA_CODE ->{
+                    if(data?.extras?.get("data")!=null){
+                        val img = data?.extras?.get("data") as Bitmap
+                        val uri = fileSava(RandomFileName(), "image/jpeg", img)
+
+                        accUpdateProfileImageView.setImageURI(uri)
+                        println("경로: $uri")
+                        println("실제 이미지 경로 : " +getPath(uri))
+                        //newImgUri =  getPath(uri)
+                        newImgUri = uri.toString()
+                    }
+                }
+                STORAGE_CODE ->{
+                    val uri = data?.data as Uri
+                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    accUpdateProfileImageView.setImageURI(uri)
+                    //newImgUri =  getPath(uri)
+                    newImgUri = uri.toString()
+                }
+            }
+        }
+
+    }
+    //파일명 날짜로 저장
+    fun RandomFileName() : String{
+        val fileName = SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis())
+        return fileName
+    }
+    //갤러리 가져오기
+    fun Album(){
+        if(checkPermission(STORAGE,STORAGE_CODE)){
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = MediaStore.Images.Media.CONTENT_TYPE
+            startActivityForResult(intent,STORAGE_CODE)
+        }
+    }
+
 }

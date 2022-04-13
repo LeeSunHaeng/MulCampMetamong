@@ -28,6 +28,14 @@
   
   </update>
   
+   <update id="snsImgUpdate" parameterType="mul.camp.a.dto.SnsDto">
+  UPDATE META_SNS
+  SET
+  PROFILE=#{profile},
+  NICKNAME=#{nickname}
+  WHERE ID=#{id}
+  </update>
+  
   <select id="snsGetMmeber" 
   parameterType="String" resultType="mul.camp.a.dto.MemberDto">  
   SELECT *
@@ -79,6 +87,14 @@
   FROM SNS_COMMENT
   WHERE SEQ=#{seq}
   </select>
+  
+   <update id="snsCommentUpdate" parameterType="mul.camp.a.dto.SnsCommentDto">
+  UPDATE SNS_COMMENT
+  SET
+  PROFILE=#{profile},
+  NICKNAME=#{nickname}
+  WHERE ID=#{id}
+  </update>
   
   <delete id="snsLikeDelete" parameterType="mul.camp.a.dto.SnsLikeDto">
   DELETE FROM SNS_LIKE

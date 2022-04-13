@@ -63,8 +63,6 @@ class SnsUpdateActivity : AppCompatActivity() {
             supportActionBar!!.title="수정"
 
             newImgUri = intent.getStringExtra("ImageContentUri")!!
-            println("~~~~~~~~~~~~~~~~~~~~~~~$newImgUri~~~~~~~~~~~~~~~~~~~~~~~~~")
-
             val uri = Uri.parse(newImgUri)
             snsUpdateImage.setImageURI(uri)
 
