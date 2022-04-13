@@ -136,7 +136,6 @@
 	<br><br>
 
 	<!-- 페이지네이션 추가 -->
-	<!-- Code 수정 필요 -->
 	<div class="container">
 		<nav aria-label="Page navigation">
 			<ul class="pagination" id="pagination" style="justify-content: center"></ul>
@@ -252,7 +251,7 @@ function loadPage(totalCount){
 		initiateStartPageClick:false,					// onPageClick 자동호출 방지, 처음 페이지 방문 시 자동으로 호출되는데 그것을 방지한다.
 		onPageClick: function (event, page) {
 			// alert(page);
-			getBbsList(page - 1);						// 0 1 2 3 으로 하고 있어서 -1 하였음
+			getMemberList(page - 1);						// 0 1 2 3 으로 하고 있어서 -1 하였음
 		}
 	})
 }
