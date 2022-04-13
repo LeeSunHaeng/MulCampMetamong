@@ -80,6 +80,19 @@ class HomeFragment : Fragment() {
             Toast.makeText(context, "+ 버튼을 누르고 오늘의 식사를 기록해보세요\uD83C\uDF7D", Toast.LENGTH_LONG).show()
         }
 
+        /* #21# 오늘의 식단 Button */
+        binding.mainSubTodayMealBtn.setOnClickListener {
+            if (MemberSingleton.subscribe == "0") {          // case_2) 구독이 아닐 경우
+                val builder = AlertDialog.Builder(activity)
+                builder.setTitle("오늘의 식단")
+                builder.setMessage("구독회원 전용 서비스 입니다 😥")
+                builder.show()
+            }
+            else {                                          // case_1) 구독일 경우
+                it.findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
+            }
+        }
+
         binding.recipeBtn.setOnClickListener {
             val i = Intent(context, RecipeMainActivity::class.java)
             startActivity(i)
@@ -140,7 +153,7 @@ class HomeFragment : Fragment() {
             startActivity(i)
         }
 
-        /* #21# [구독] 오늘의 식단
+        /* #21# [구독] 오늘의 식단 navigation bar
         *  case_1) 구독일 경우 > MealFragment로 이동
         *  case_2) 구독이 아닐 경우 > HomeFragment로 이동 */
         binding.mealTap.setOnClickListener {

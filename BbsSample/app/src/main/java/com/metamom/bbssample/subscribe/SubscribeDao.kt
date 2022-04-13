@@ -9,10 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /* #21# [구독] Dao */
 
@@ -23,42 +20,48 @@ interface SubscribeService {
     fun getSubInfo(@Query("id") id:String): Call<SubscribeDto>
 
     /* 구독 회원추가 _Back subAdd(SubscribeDto) → return String */
+    @Headers("Content-Type: application/json")
     @POST("/subAdd")
     fun subAdd(@Body dto: SubscribeDto) :Call<String>
 
     /* 구독 만료확인 _Back subEnddayCheck(SubscribeDto dto) → return String */
+    @Headers("Content-Type: application/json")
     @POST("/subEnddayCheck")
     fun subEnddayCheck(@Body dto: SubscribeDto) :Call<String>
 
     /* 구독 오늘의 다이어트 식단 _Back subRandomDietMeal(SubDietMealDto dto) → return SubDietMealDto */
+    @Headers("Content-Type: application/json")
     @POST("/subRandomDietMeal")
     fun subRandomDietMeal(@Body dto: SubDietMealDto) :Call<SubDietMealDto>
     
     /* 구독 오늘의 운동 식단 _Back subRandomDietMeal(SubExerMealDto dto) → return SubExerMealDto */
+    @Headers("Content-Type: application/json")
     @POST("/subRandomExerMeal")
     fun subRandomExerMeal(@Body dto: SubExerMealDto) :Call<SubExerMealDto>
 
     /* 구독 추천한 식단 REMEMBER TABLE에 저장 */
+    @Headers("Content-Type: application/json")
     @POST("/subMealRemember")
     fun subMealRemember(@Body dto: SubMealRememberDto) :Call<String>
 
     /* 구독 추천한 오늘의 식단 여부 확인 */
+    @Headers("Content-Type: application/json")
     @POST("/subLogCheckMeal")
     fun subLogCheckMeal(@Body dto: SubMealRememberDto) :Call<SubMealRememberDto>
 
     /* 구독 추천하였던 *[다이어트]* 식단 가져오기 */
-    /*@POST("/subDietMeal")
-    fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>*/
+    @Headers("Content-Type: application/json")
     @POST("/subDietMeal")
     fun subDietMeal(@Body subDietSeq: Int) :Call<SubDietMealDto>
 
     /* 구독 추천하였던 *[운동]* 식단 가져오기 */
+    @Headers("Content-Type: application/json")
     @POST("/subExerMeal")
     fun subExerMeal(@Body subExerSeq: Int) :Call<SubExerMealDto>
+    /*@GET("/subExerMeal")
+    fun subExerMeal(@Query("subExerSeq") subExerSeq: Int) :Call<SubExerMealDto>*/
 
     /* 구독 추천하였던 식단 중 3일이상인 식단 제거 */
-    /*@POST("/subRememberDel")
-    fun subRememberDel(@Body subDelRemId: String) :Call<Int>*/
     @GET("/subRememberDel")
     fun subRememberDel(@Query("subDelRemId") subDelRemId: String) :Call<Int>
 }
@@ -264,7 +267,9 @@ class SubscribeDao {
             val retrofit = RetrofitClient.getInstance()
             val service = retrofit?.create(SubscribeService::class.java)
             val call = service?.subExerMeal(subExerSeq)
+            Log.d("테스트", "${call}")
             response = call?.execute()
+            Log.d("테스트", "${response}")
         }
         catch (e:Exception) {
             Log.d("SubscribeDao", "#21# SubscribeDao subExerMeal() try..catch 오류 > ${e.printStackTrace()}")

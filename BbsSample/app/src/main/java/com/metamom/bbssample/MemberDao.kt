@@ -19,8 +19,10 @@ interface MemberService {
     fun addmember(@Body dto: MemberDto): Call<String>
 
     /* #21# ID 중복체크 */
-    @POST("/idCheck")
+    @GET("/idCheck")
     fun idCheck(@Query("id") id: String) :Call<Boolean>
+    /*@POST("/idCheck")
+    fun idCheck(@Body id: String) :Call<Boolean>*/
     
     @POST("/searchId")
     fun searchId(@Body dto : MemberDto) : Call<String>
