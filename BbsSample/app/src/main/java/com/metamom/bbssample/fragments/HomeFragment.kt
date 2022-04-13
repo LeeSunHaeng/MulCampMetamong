@@ -98,8 +98,6 @@ class HomeFragment : Fragment() {
             startActivity(i)
         }
 
-
-
         binding.textViewTotalBanner.text = numBanner.toString()
         binding.autoScrollViewPager.adapter = InfiniteAdapter(list)
         binding.autoScrollViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL

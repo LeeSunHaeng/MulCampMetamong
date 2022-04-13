@@ -7,11 +7,14 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.metamom.bbssample.R
+import com.metamom.bbssample.databinding.ActivityKcalMainBinding
+import com.metamom.bbssample.databinding.ActivitySearchIdBinding
 
 class KcalMain : AppCompatActivity() {
+    private val binding by lazy { ActivityKcalMainBinding.inflate(layoutInflater)}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_kcal_main)
+        setContentView(binding.root)
 
         //정보에 따른 칼로리 계산
 
@@ -63,6 +66,20 @@ class KcalMain : AppCompatActivity() {
                 needKcal.text ="하루 소비 칼로리 "+(((10*weight.toInt())+(6.25*height.toInt())-(5*age.toInt())-151)*value).toString()+"Kcal"
             }
         }
+
+        // 액션바 설정
+        setSupportActionBar(binding.toolbarIdSearch)
+        if(supportActionBar != null){
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.title = "칼로리 계산기"
+            // back button 커스텀
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_button)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        binding.toolbarIdSearch.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
     }
 }
 
