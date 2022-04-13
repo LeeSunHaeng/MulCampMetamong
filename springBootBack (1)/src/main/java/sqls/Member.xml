@@ -71,10 +71,10 @@
 		WHERE 1=1
 			<if test="choice != null and choice != '' and search != null and search != '' ">
 				<if test="choice == 'userId'">
-					AND ID LIKE '%'||#{search}||'%'
+					AND ID LIKE '%'||#{search}||'%' AND AUTH=0
 				</if>
 				<if test="choice == 'userName'">
-					AND NAME LIKE '%'||#{search}||'%'
+					AND NAME LIKE '%'||#{search}||'%' AND AUTH=0
 				</if>
 			</if>)
 	<!-- start ~ end 사이의 RUNM번의 게시글 정보 반환 -->
