@@ -1,6 +1,7 @@
 package com.metamom.bbssample.fragments
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.metamom.bbssample.MainActivity
 import com.metamom.bbssample.MemberUpdateActivity
 import com.metamom.bbssample.R
@@ -19,11 +21,14 @@ import com.metamom.bbssample.databinding.FragmentAccountBinding
 import com.metamom.bbssample.sns.SnsDao
 import com.metamom.bbssample.subscribe.SubInfoActivity
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import de.hdodenhof.circleimageview.CircleImageView
 import org.w3c.dom.Text
 
 class AccountFragment : Fragment() {
 
     private lateinit var binding : FragmentAccountBinding
+
+    val userInfo = SnsDao.getInstance().snsGetMember(MemberSingleton.id.toString())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +53,9 @@ class AccountFragment : Fragment() {
             it.findNavController().navigate(R.id.action_accountFragment_to_mealFragment)
         }
 
+
         /* #21# 회원정보 가져와서 출력하기 */
+        val profile = binding.root.findViewById<CircleImageView>(R.id.accProfileImageView)
         val idTxt = binding.root.findViewById<TextView>(R.id.myPageFrag_idTxt)
         val nicknameTxt = binding.root.findViewById<TextView>(R.id.myPageFrag_nicknameTxt)
         val nameTxt = binding.root.findViewById<TextView>(R.id.myPageFrag_nameTxt)
@@ -60,10 +67,28 @@ class AccountFragment : Fragment() {
         val genderTxt = binding.root.findViewById<TextView>(R.id.myPageFrag_genderTxt)
         val subTxt = binding.root.findViewById<TextView>(R.id.myPageFrag_subTxt)
 
-        val userInfo = SnsDao.getInstance().snsGetMember(MemberSingleton.id.toString())
         Log.d("AccountFragment", "#21# 마이페이지 회원정보 가져온 값 > ${userInfo.toString()}")
 
         if (userInfo != null) {
+
+            //프로필 이미지 뿌려주기
+            if(userInfo.profile != ""){
+                if(userInfo.profile.equals("profile3")){
+                    val resourceId = context!!.resources.getIdentifier(userInfo.profile, "drawable", context!!.packageName)
+                        if(resourceId > 0){
+                            profile.setImageResource(resourceId)
+                            }else{
+                                println("에이이이이이이이~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                                Glide.with(context!!).load(userInfo.profile).into(profile)
+                            }
+                    } else{
+                        val profileUri:Uri = Uri.parse(userInfo.profile)
+                        profile.setImageURI(profileUri)
+                        }
+                }else{
+                    Glide.with(context!!).load(userInfo.profile).into(profile)
+                }
+
             idTxt.text = userInfo.id
             nicknameTxt.text = userInfo.nickname
             nameTxt.text = userInfo.name
