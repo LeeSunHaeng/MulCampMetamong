@@ -121,6 +121,8 @@ class MainActivity : AppCompatActivity() {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        googleBtn = findViewById(R.id.googleBtn)
+
         googleBtn.setOnClickListener {
             signIn()
             val i = Intent(this, MainButtonActivity::class.java)
@@ -172,7 +174,8 @@ class MainActivity : AppCompatActivity() {
         UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
             if (error != null) {
                 Log.e("MainActivity", "토큰 정보 보기 실패")
-            } else if (tokenInfo != null) {
+            }
+            else if (tokenInfo != null) {
                 Log.e("MainActivity", "토큰 정보 보기 성공")
                 val intent = Intent(this, MainButtonActivity::class.java)
                 startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -210,18 +213,17 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "기타 에러", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } else if (token != null) {
+            }
+            else if (token != null) {
                 val intent = Intent(this, MainButtonActivity::class.java)
-                finish()
+                startActivity(intent)
             }
         }
 
         kakaoBtn.setOnClickListener {
-            Log.d("MainActivity", "#21# 카카오 버튼")
-            
-            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+            if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
-            } else {
+            }else{
                 UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
             }
         }
