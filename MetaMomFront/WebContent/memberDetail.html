@@ -203,34 +203,77 @@ $.ajax({
 /* 수정 Button */
 $("#memberUpdateBtn").click(function() {
 	
-	$.ajax({
-		url:"http://localhost:3000/userUpdateWeb",
-		type:"post",	
-		data: { "id":$("#userId").text().trim(),
-				"name": $("#userName").val().trim(),
-				"email": $("#userEmail").val().trim(),
-				"gender": $("#userGender").val().trim(),
-				"phone": $("#userPhone").val().trim(), 
-				"nickname": $("#userNickname").val().trim(),
-				"height": $("#userHeight").val().trim(),
-				"weight": $("#userWeight").val().trim(),
-				"birth": $("#userBirth").val().trim() 
-		},		
-		//contentType:"application/json",
-		success:function(msg){
-			// alert(msg);
-			
-			if (msg == "YES"){
-				alert("회원정보가 수정되었습니다.");
-				location.href = "memManagement.html";
-			} else {
-				alert("다시 시도해주세요.");
+	// 데이터 검증 (* App 회원가입 시 입력 데이터 검증 조건과 동일)
+	if ($("#userName").val().trim() == '') {
+		alert("이름을 입력해주세요");
+	} 
+	else if ($("#userName").val().trim().length > 20) {
+		alert("이름을 20자 이내로 입력해주세요");
+		$("#userName").val("");
+	}
+	else if ($("#userEmail").val().trim() == '') {
+		alert("이메일을 입력해주세요");
+	}
+	else if ($("#userGender").val().trim() == '') {
+		alert("성별을 입력해주세요");
+	} 
+	else if ($("#userPhone").val().trim() == '') {
+		alert("전화번호를 입력해주세요");
+	}
+	else if ($("#userNickname").val().trim() == '') {
+		alert("닉네임을 입력해주세요");
+	}
+	else if ($("#userHeight").val().trim() == '') {
+		alert("키를 입력해주세요");
+	}
+	else if ($("#userHeight").val().trim().length > 6) {
+		alert("입력하신 키는 유효하지 않은 값입니다.");
+		$("#userHeight").val("");
+	}
+	else if ($("#userWeight").val().trim() == '') {
+		alert("몸무게를 입력해주세요");
+	}
+	else if ($("#userWeight").val().trim().length > 6) {
+		alert("입력하신 몸무게는 유효하지 않은 값입니다.");
+		$("#userWeight").val("");
+	}
+	else if ($("#userBirth").val().trim() == '') {
+		alert("생년월일을 입력해주세요");
+	}
+	else if ($("#userBirth").val().trim().length > 9) {
+		alert("입력하진 생년월일은 유효하지 않은 값입니다.");
+		$("#userBirth").val("");
+	}
+	else {
+		$.ajax({
+			url:"http://localhost:3000/userUpdateWeb",
+			type:"post",	
+			data: { "id":$("#userId").text().trim(),
+					"name": $("#userName").val().trim(),
+					"email": $("#userEmail").val().trim(),
+					"gender": $("#userGender").val().trim(),
+					"phone": $("#userPhone").val().trim(), 
+					"nickname": $("#userNickname").val().trim(),
+					"height": $("#userHeight").val().trim(),
+					"weight": $("#userWeight").val().trim(),
+					"birth": $("#userBirth").val().trim() 
+			},		
+			//contentType:"application/json",
+			success:function(msg){
+				// alert(msg);
+				
+				if (msg == "YES"){
+					alert("회원정보가 수정되었습니다.");
+					location.href = "memManagement.html";
+				} else {
+					alert("다시 시도해주세요.");
+				}
+			},
+			error:function(){
+				alert("memberDetail.html 회원정보 수정 ajax error 발생")
 			}
-		},
-		error:function(){
-			alert("memberDetail.html 회원정보 수정 ajax error 발생")
-		}
-	})
+		})	
+	}
 });
 
 /* 탈퇴 Button > 실제 탈퇴하는 것이 아닌 DEL 컬럼 값 변경 */

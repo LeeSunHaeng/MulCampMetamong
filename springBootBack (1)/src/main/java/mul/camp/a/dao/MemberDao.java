@@ -42,6 +42,22 @@ public interface MemberDao {
 	/* #21# (Web_관리자용) 회원 복구처리 */
 	public int userRecoveryWeb(String id);
 	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(1)[오늘의식단] 식단기록 DB 내 삭제 */
+	public int userDelRememberMealsWeb(MemberDto dto);
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(2)[SNS] SNS DB 내 삭제 */
+	public int userDelWebSnsWeb(MemberDto dto);
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(3)[나의식단] 식단기록 DB 내 삭제 */
+	public int userDelFoodListMealsWeb(MemberDto dto);
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(4)[구독] 구독 DB 내 삭제 */
+	public int userDelSubscribeWeb(MemberDto dto);
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(5)[회원] 회원 DB 내 삭제 */
+	public int userDelMemberWeb(MemberDto dto);
+	
+	
 }
 
 
