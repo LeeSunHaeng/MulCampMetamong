@@ -130,14 +130,22 @@
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_food_list_meals_update.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.20625" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main_button.xml" value="0.2671875" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_member_update.xml" value="0.33" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_recimain.xml" value="0.21197916666666666" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_recipe_bottom_sheet.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns_insert.xml" value="0.33" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_sns_update.xml" value="0.35052083333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/comment_view_item_layout.xml" value="0.5787923416789397" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_frag_sns_bottom_sheet.xml" value="0.3098958333333333" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_not_writer_bottom_sheet.xml" value="0.3515625" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_recipe.xml" value="0.21197916666666666" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_sns_bottom_sheet.xml" value="0.3515625" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_talk.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/meals_view_item_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/recipe_list.xml" value="0.31197916666666664" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.3515625" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/subadd_item_spinner.xml" value="0.36614583333333334" />
         <entry key="..\:/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.36614583333333334" />
@@ -169,15 +177,10 @@
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/sns_view_item_layout.xml" value="0.2864583333333333" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/layout/view_item_layout.xml" value="0.33" />
         <entry key="..\:/Project3/MulCampMetamong/BbsSample/app/src/main/res/xml/file_paths.xml" value="0.2682291666666667" />
-        <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_bmi_main.xml" value="0.33" />
-        <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_bmimain.xml" value="0.33" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_detail_recipe.xml" value="0.1" />
-        <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_kcal_main.xml" value="0.33" />
-        <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main.xml" value="0.28308823529411764" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_main_button.xml" value="0.5" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_recimain.xml" value="0.16302083333333334" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/activity_recipe_bottom_sheet.xml" value="0.16302083333333334" />
-        <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/fragment_home.xml" value="0.28308823529411764" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/recipe_ingredient_item.xml" value="0.16302083333333334" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/recipe_item.xml" value="0.16302083333333334" />
         <entry key="..\:/finalProject/MulCampMetamong/BbsSample/app/src/main/res/layout/recipe_list.xml" value="0.16302083333333334" />

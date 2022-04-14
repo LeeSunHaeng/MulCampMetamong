@@ -19,6 +19,9 @@ interface SnsService{
     @POST("/snsUpdate")
     fun snsUpdate(@Body dto:SnsDto) : Call<Int>
 
+    @POST("/snsImgUpdate")
+    fun snsImgUpdate(@Body dto:SnsDto) : Call<Int>
+
     @POST("/snsGetMember")
     fun snsGetMember(@Query("id") id:String):Call<MemberDto>
 
@@ -30,6 +33,9 @@ interface SnsService{
 
     @POST("/snsCommentInsert")
     fun snsCommentInsert(@Body dto:SnsCommentDto) : Call<Int>
+
+    @POST("/snsCommentUpdate")
+    fun snsCommentUpdate(@Body dto:SnsCommentDto) : Call<Int>
 
     @POST("/snsLikeDelete")
     fun snsLikeDelete(@Body dto:SnsLikeDto) : Call<Int>
@@ -106,6 +112,15 @@ class SnsDao {
         return response?.body()
     }
 
+    fun snsImgUpdate(dto:SnsDto): Int? {
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsImgUpdate(dto)
+        val response = call?.execute()
+
+        return response?.body()
+    }
+
     fun snsCommentInsert(dto:SnsCommentDto) : Int? {
         val retrofit = RetrofitClient.getInstance()
         val service = retrofit?.create(SnsService::class.java)
@@ -118,6 +133,15 @@ class SnsDao {
         val retrofit = RetrofitClient.getInstance()
         val service = retrofit?.create(SnsService::class.java)
         val call = service?.snsCommentDelete(cmtseq)
+        val response = call?.execute()
+
+        return response?.body()
+    }
+
+    fun snsCommentUpdate(dto:SnsCommentDto): Int? {
+        val retrofit = RetrofitClient.getInstance()
+        val service = retrofit?.create(SnsService::class.java)
+        val call = service?.snsCommentUpdate(dto)
         val response = call?.execute()
 
         return response?.body()

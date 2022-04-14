@@ -148,9 +148,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.talkTap.setOnClickListener {
-            //it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
-            val i = Intent(activity,SnsActivity::class.java)
-            startActivity(i)
+            it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
+            //val i = Intent(activity,SnsActivity::class.java)
+            //startActivity(i)
         }
 
         /* #21# [구독] 오늘의 식단 navigation bar

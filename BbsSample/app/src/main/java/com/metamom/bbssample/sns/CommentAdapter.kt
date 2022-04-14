@@ -60,16 +60,18 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
                     }else{
                         Glide.with(itemView).load(dataVo.profile).into(cmtProfile)
                     }
+                }else{
+                    val profileUri: Uri = Uri.parse(dataVo.profile)
+                    cmtProfile.setImageURI(profileUri)
                 }
             } else{
-                val profileUri: Uri = Uri.parse(dataVo.profile)
-                cmtProfile.setImageURI(profileUri)
+                Glide.with(itemView).load(dataVo.profile).into(cmtProfile)
             }
             //삭제 버튼 실행
             cmtDeleteBtn.setOnClickListener {
                 if(dataVo.id == MemberSingleton.id){
                     val position = adapterPosition
-                    SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq)
+                    SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq!!)
                     commentList.removeAt(position)
                     deleteComment(position)
                     Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()

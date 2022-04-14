@@ -44,6 +44,13 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsImgUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsImgUpdate(@RequestBody SnsDto dto) {
+		System.out.println("snsImgUpdate 실행 성공");
+		int num = service.snsImgUpdate(dto);
+		return num;
+	}
+	
 	@RequestMapping(value = "/snsCommentInsert", method = {RequestMethod.GET, RequestMethod.POST} )
 	public int snsCommentInsert(@RequestBody SnsCommentDto dto) {
 		System.out.println("snsCommentInsert 실행 성공");
@@ -133,6 +140,13 @@ public class SnsController {
 	public int snsCommentDelete(int cmtseq) {
 		System.out.println("snsCommentDelete 실행 성공");
 		int num = service.snsCommentDelete(cmtseq);
+		return num;
+	}
+	
+	@RequestMapping(value = "/snsCommentUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
+	public int snsCommentUpdate(@RequestBody SnsCommentDto dto) {
+		System.out.println("snsCommentUpdate 실행 성공");
+		int num = service.snsCommentUpdate(dto);
 		return num;
 	}
 	
