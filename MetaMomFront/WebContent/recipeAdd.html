@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>레시피 추가</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+.btnp{
+	text-align: center;
+}
+.btn{
+	width: 70px;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+
+<h2>여기서 추가!</h2>
+
+<div align="center">
+
+<form id="add">
+
+<div>
+	<div style="width: 1000px">
+		<table>
+			<col width="200"><col width="600">
+			
+			<tr>
+				<th>요리 이름</th>
+				<td>
+					<input type="text" id="recipeName" name="recipeName" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>재료</th>
+				<td>
+					<input type="text" id="ingredient" name="ingredient" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>간단 설명</th>
+				<td>
+					<input type="text" id="brief" name="brief" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>요리 방법</th>
+				<td>
+					<textarea id="recipe" name="recipe" rows="10" cols="83"></textarea>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>요리 사진</th>
+				<td>
+					<input type="text" id="foodImage" name="foodImage" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>요리 방법 사진</th>
+				<td>
+					<input type="text" id="recipeImage" name="recipeImage" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>칼로리</th>
+				<td>
+					<input type="text" id="kcal" name="kcal" size="80px">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" class="btnp">
+					<button type="button" id="btn" class="btn" >추가</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+</form>
+</div>
+
+<script type="text/javascript">
+
+$("#btn").click(function(){
+	
+	$.ajax({
+		url:"http://localhost:3000/writeRecipe",
+		type:"get",
+		data:$("#add").serialize(),
+		success:function(msg){
+			if(msg == "YES"){
+				alert('추가되었습니다.');
+				location.href = "recipeMain.html";
+			}else{
+				alert('추가되지 않았습니다.');
+			}
+		},
+		error:function(){
+			alert('error');
+		}
+	})
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
