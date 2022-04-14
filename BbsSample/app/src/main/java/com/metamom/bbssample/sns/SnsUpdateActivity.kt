@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleton.SnsSingleton
 import kotlinx.android.synthetic.main.activity_sns_update.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -215,6 +216,8 @@ class SnsUpdateActivity : AppCompatActivity() {
             R.id.snsUpdateInsertBtn ->{
                 val dto = SnsDto(intent.getSerializableExtra("seq") as Int,"","","","",newImgUri,0,0,snsUpdateContentEditText.text.toString())
                 SnsDao.getInstance().snsUpdate(dto)
+                SnsSingleton.imageUri = newImgUri
+                SnsSingleton.content = snsUpdateContentEditText.text.toString()
 
                 val data = intent.getSerializableExtra("posi") as Int
                 val i = Intent()
@@ -224,7 +227,6 @@ class SnsUpdateActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK,i)
                 finish()
                 return true
-
             }
 
         }

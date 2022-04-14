@@ -17,7 +17,8 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/snsFragmentRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="800dp" app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+                    android:layout_height="750dp"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
                     app:layout_constraintStart_toStartOf="parent"/>
 
 
@@ -97,6 +98,18 @@
                         android:layout_height="wrap_content"/>
 
             </LinearLayout>
+            <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="0sp"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/meta_grey05"
+                    app:srcCompat="@drawable/ic_add"
+                    android:id="@+id/fragSnsInsertButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

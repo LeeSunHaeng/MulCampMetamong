@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.metamom.bbssample.R
+import com.metamom.bbssample.subsingleton.SnsSingleton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,6 +42,8 @@ class FragSnsBottomSheet(position:Int, adapter: FragSnsCustomAdapter, seq:Int, c
 
         btnUpdate.setOnClickListener {
 
+            SnsSingleton.position = pos
+            SnsSingleton.code = "SNSUPDATE"
             val i = Intent(contxt,SnsUpdateActivity::class.java)
             i.putExtra("ImageContentUri",uri)
             i.putExtra("posi",pos)

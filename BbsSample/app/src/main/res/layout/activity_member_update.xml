@@ -35,8 +35,8 @@
 
             <!-- #21# style.xml 내 TextView > MemberUpdateTextView, EditText > MemberUpdateEditText 참고-->
             <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     tools:srcCompat="@tools:sample/avatars"
                     android:layout_gravity="center"
                     android:scaleType="centerCrop"

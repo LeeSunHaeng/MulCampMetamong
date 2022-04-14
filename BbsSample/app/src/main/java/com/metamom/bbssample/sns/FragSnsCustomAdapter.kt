@@ -133,6 +133,7 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
             snsCommentBtn.setOnClickListener {
                 val n  = adapterPosition
                 SnsSingleton.position = n
+                SnsSingleton.code = "CMT"
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
@@ -142,6 +143,7 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
             snsCommentCount.setOnClickListener {
                 val n  = adapterPosition
                 SnsSingleton.position = n
+                SnsSingleton.code = "CMT"
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
@@ -197,5 +199,10 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
         SnsDao.getInstance().snsLikeAllDelete(seq)
         SnsDao.getInstance().snsDelete(seq)
         notifyItemRemoved(position)
+    }
+    fun addFragSns(dto:SnsDto){
+        snsList.add(dto)
+        notifyItemInserted(0) //갱신
+
     }
 }
