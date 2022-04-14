@@ -45,8 +45,7 @@ class FragSnsBottomSheet(position:Int, adapter: FragSnsCustomAdapter, seq:Int, c
             i.putExtra("ImageContentUri",uri)
             i.putExtra("posi",pos)
             i.putExtra("seq",sequence)
-            val activity:SnsActivity = contxt as SnsActivity
-            activity.startActivityForResult(i,200)
+            contxt.startActivity(i)
             dismiss()
 
             /*val  i = Intent(context,SnsUpdateActivity::class.java)

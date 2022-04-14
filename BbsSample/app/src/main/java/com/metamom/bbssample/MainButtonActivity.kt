@@ -91,24 +91,5 @@ class MainButtonActivity : AppCompatActivity() {
         }
     }
 
-   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-       if(resultCode == Activity.RESULT_OK){
-           when(requestCode){
-               400->{
-                   SnsSingleton.position = data?.getSerializableExtra("position") as Int
-                   println("~~~~~~~~~${SnsSingleton.position}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~400~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                   TalkFragment().adaptered.update(SnsSingleton.position!!)
-
-               }
-
-               500->{
-                   println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~500~~~~~~~~~~~~~~~~~~~~~~~~~~")
-               }
-
-           }
-       }
-
-    }
 }

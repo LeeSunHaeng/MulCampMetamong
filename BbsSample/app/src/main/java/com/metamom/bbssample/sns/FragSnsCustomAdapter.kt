@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +17,7 @@ import com.metamom.bbssample.MainButtonActivity
 import com.metamom.bbssample.R
 import com.metamom.bbssample.fragments.TalkFragment
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import com.metamom.bbssample.subsingleton.SnsSingleton
 
 class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmentmanager : FragmentManager)  : RecyclerView.Adapter<FragSnsCustomAdapter.ItemViewHolder>(){
     private var mFragmentManager : FragmentManager
@@ -50,9 +52,12 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
                         Glide.with(itemView).load(dataVo.profile).into(snsProfile)
                     }
                 }
+                else{
+                    val profileUri:Uri = Uri.parse(dataVo.profile)
+                    snsProfile.setImageURI(profileUri)
+                }
             } else{
-                val profileUri: Uri = Uri.parse(dataVo.profile)
-                snsProfile.setImageURI(profileUri)
+                Glide.with(itemView).load(dataVo.profile).into(snsProfile)
 
             }
 
@@ -126,30 +131,22 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
             }
             //댓글 아이콘 클릭시
             snsCommentBtn.setOnClickListener {
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~클릭~~~~~~~~~~~~~~~~~~~~~~")
+                val n  = adapterPosition
+                SnsSingleton.position = n
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
-                //val activity:MainButtonActivity = context as MainButtonActivity
-                //activity.startActivityForResult(i,100)
-                /*val acti:TalkFragment = context as TalkFragment
-                acti.activity!!.startActivityForResult(i,100)*/
-                val talk:TalkFragment = context as TalkFragment
-                //val talk = contxt as MainButtonActivity
-                talk.activity!!.startActivityForResult(i,400)
-                println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~start!!!~~~~~~~~~~~~~~~~~~~~~~")
-                //TalkFragment().activity!!.startActivityForResult(i,400)
-                //(contxt as TalkFragment).startActivityForResult(i,100)
-                //TalkFragment().startActivityForResult(i,100)
+                contxt.startActivity(i)
             }
             //댓글 개수 클릭시
             snsCommentCount.setOnClickListener {
                 val n  = adapterPosition
+                SnsSingleton.position = n
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
-                val activity:MainButtonActivity = contxt as MainButtonActivity
-                activity.startActivityForResult(i,400)
+                contxt.startActivity(i)
+
             }
 
             //셋팅 버튼 클릭시

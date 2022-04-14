@@ -15,6 +15,7 @@ import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.FragmentTalkBinding
 import com.metamom.bbssample.sns.FragSnsCustomAdapter
 import com.metamom.bbssample.sns.SnsDao
+import com.metamom.bbssample.subsingleton.SnsSingleton
 
 class TalkFragment : Fragment() {
 
@@ -49,6 +50,9 @@ class TalkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        if(SnsSingleton.position != null){
+            adaptered.notifyItemChanged(SnsSingleton.position!!)
+        }
 
         //val recycler = container!!.findViewById<RecyclerView>(R.id.snsFragmentRecyclerView)
 
@@ -88,31 +92,16 @@ class TalkFragment : Fragment() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            when(requestCode){
-                400->{
-                    println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~넘어옴~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    val position = data?.getSerializableExtra("position") as Int
-                    adaptered.update(position)
-                    // TalkFragment.adap.update(position)
-                }
 
-                200->{
-                    val position = data?.getSerializableExtra("position") as Int
-                    adaptered.snsList.get(position).content = data.getStringExtra("content") as String
-                    adaptered.snsList.get(position).imagecontent = data.getStringExtra("uri") as String
-                    adaptered.notifyItemChanged(position)
-                }
 
-            }
+    override fun onResume() {
+        super.onResume()
+        println("~~~~~~~~~~~~~~~~~~~~~${SnsSingleton.position}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~성공!!!!!!")
+        if(SnsSingleton.position != null){
+            adaptered.notifyItemChanged(SnsSingleton.position!!)
+            adaptered.update(SnsSingleton.position!!)
         }
     }
 
-    fun startComment(i:Intent, code:Int){
-        activity?.startActivityForResult(i,code)
-        //startActivityForResult(i,code)
-    }
 
 }
