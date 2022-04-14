@@ -109,4 +109,10 @@
         <item name="android:fontFamily">@font/font_content_bold</item>
     </style>
 
+    <style name="normalText" parent="@android:style/Widget.TextView">
+        <item name="android:fontFamily">@font/font_content_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/meta_grey01</item>
+    </style>
+
 </resources>

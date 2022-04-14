@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sun.tools.javac.util.List;
 
 import mul.camp.a.dto.MemberDto;
+import mul.camp.a.dto.MemberParam;
 import mul.camp.a.service.MemberService;
 
 @RestController
@@ -55,15 +56,16 @@ public class MemberController {
 		
 		return mem;
 	}
+	
 	/* #21# Web용 _관리자 login */
 	@RequestMapping(value = "/loginWeb", method = RequestMethod.POST)
 	public MemberDto loginWeb(MemberDto dto, HttpServletRequest req) {
 		System.out.println("#21# MemberController Web용 관리자 login()");
 		
-		MemberDto mem = service.login(dto);
+		MemberDto mem = service.loginWeb(dto);
 		
 		// 이렇게도 사용할 수 있다
-		req.getSession().setAttribute("login", mem);
+		req.getSession().setAttribute("loginWeb", mem);
 		
 		return mem;
 	}
@@ -86,6 +88,23 @@ public class MemberController {
 		
 		// service.userUpdate가 true == 회원정보 수정 성공, false == 회원정보 수정 실패
 		return service.userUpdate(dto);
+	}
+	
+	/* #21# (Web _관리자용) 회원정보 수정 */
+	@RequestMapping(value = "/userUpdateWeb", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String userUpdateWeb(MemberDto dto) {
+		System.out.println("#21# MemberController userUpdateWeb() 관리자용 _회원정보 수정 동작");
+		System.out.println("#21# (관리자용) _회원정보 수정을 위하여 받아온 dto값: " + dto);
+		
+		// service.userUpdate가 true == 회원정보 수정 성공, false == 회원정보 수정 실패
+		Boolean result = service.userUpdate(dto);
+		
+		if (result) {
+			return "YES";
+		}
+		else {
+			return "FAIL";
+		}
 	}
 	
 	//아이디찾기
@@ -116,6 +135,52 @@ public class MemberController {
 	
 		return pwd;
 	}
+	
+	/* #21# (Web용 _관리자) 회원목록 & 회원목록의 총 개수 */
+	@RequestMapping(value = "/getMemberListSearchPage", method = {RequestMethod.GET, RequestMethod.POST} )	// 검색조건에 맞는 글의 개수
+	public java.util.List<MemberDto> getMemberListSearchPage(MemberParam param) {
+		System.out.println("#21# MemberController getMemberListSearchPage() 동작");
+		System.out.println("#21# (관리자용) _for 회원목록을 위하여 받아온 값 param: " + param);
+		
+		// 페이지 설정 
+		int sn = param.getPage();	// .getPage(): 현재 페이지 ex. 0 1 2 3 ~ 
+		int start = sn * 10 + 1;	// ex) sn = 0 >> (start)1 ~ (end)10		sn = 1 >> (start)11 ~ (end)20
+		int end = (sn + 1) * 10;
+		
+		param.setStart(start);
+		param.setEnd(end);
+		
+		return service.getMemberListSearchPage(param);
+	}
+	/* #21# (Web용 _관리자) 회원목록의 총 개수 (위의 회원목록과 동시 동작) */
+	@RequestMapping(value = "/getMemberCount", method = RequestMethod.POST)	// 회원목록의 총 개수
+	public int getMemberCount(MemberParam param) {
+		System.out.println("#21# MemberController getMemberCount() 동작");
+		
+		System.out.println("#21# getMemberCount() 결과값 > " + service.getMemberCount(param));
+		return service.getMemberCount(param);
+	}
+	
+	/* #21# (Web _관리자용) 회원 탈퇴 */
+	@RequestMapping(value = "/userDelWeb", method = RequestMethod.POST)
+	public boolean userDelWeb(String id) {
+		System.out.println("#21# MemberController userDelWeb() 관리자용 _회원 탈퇴처리 동작");
+		System.out.println("#21# (관리자용) _회원정보 탈퇴을 위하여 받아온 id값: " + id);
+		
+		// service.userUpdate가 true == 회원 탈퇴처리 성공, false == 회원 탈퇴처리 실패
+		return service.userDelWeb(id);
+	}
+	
+	/* #21# (Web _관리자용) 회원 복구 */
+	@RequestMapping(value = "/userRecoveryWeb", method = RequestMethod.POST)
+	public boolean userRecoveryWeb(String id) {
+		System.out.println("#21# MemberController userRecoveryWeb() 관리자용 _회원 복구처리 동작");
+		System.out.println("#21# (관리자용) _회원정보 복구를 위하여 받아온 id값: " + id);
+		
+		// service.userUpdate가 true == 회원 복구처리 성공, false == 회원 복구처리 실패
+		return service.userRecoveryWeb(id);
+	}
+	
 }
 
 
