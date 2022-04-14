@@ -84,6 +84,48 @@ public class MemberService {
 		
 		return result>0?true:false;
 	}
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(1)[오늘의식단] 식단기록 DB 내 삭제 */
+	public boolean userDelRememberMealsWeb(MemberDto dto) {
+		int result = dao.userDelRememberMealsWeb(dto);
+		//System.out.println("#21# MemberService userDelRememberMealsWeb() 실행결과 result값 > " + result);
+		
+		if (result == 0 || result > 0) return true;
+		else return false;
+		//return dao.userDelRememberMealsWeb(dto)>=0?true:false;
+	}
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(2)[SNS] SNS DB 내 삭제 */
+	public boolean userDelWebSnsWeb(MemberDto dto) {
+		int result = dao.userDelWebSnsWeb(dto);
+		
+		if (result == 0 || result > 0) return true;
+		else return false;
+	}
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(3)[나의식단] 식단기록 DB 내 삭제 */
+	public boolean userDelFoodListMealsWeb(MemberDto dto) {
+		int result = dao.userDelFoodListMealsWeb(dto);
+		
+		if (result == 0 || result > 0) return true;
+		else return false;
+	}
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(4)[구독] 구독 DB 내 삭제 */
+	public boolean userDelSubscribeWeb(MemberDto dto) {
+		int result = dao.userDelSubscribeWeb(dto);
+		
+		if (result == 0 || result > 0) return true;
+		else return false;
+	}
+	
+	/* #21# (Web _관리자용) 회원 완전삭제 _(5)[회원] 회원 DB 내 삭제 */
+	public boolean userDelMemberWeb(MemberDto dto) {
+		int result = dao.userDelMemberWeb(dto);
+		
+		if (result == 0 || result > 0) return true;
+		else return false;
+	}
 
 }
 

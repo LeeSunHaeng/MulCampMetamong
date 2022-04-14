@@ -110,6 +110,49 @@
 	SET DEL='N'
 	WHERE ID=#{id}
 </update>
+
+<!-- #21# (Web _관리자용) 회원 완전삭제 _(1)[오늘의식단] 식단기록 DB 내 삭제 -->
+<delete id="userDelRememberMealsWeb" parameterType="mul.camp.a.dto.MemberDto">
+	DELETE
+	FROM META_SUBSCRIBE_REMEMBERMEALS
+	WHERE EXISTS (SELECT *
+					FROM META_SUBSCRIBE_REMEMBERMEALS
+					WHERE SUBREM_ID=#{id})
+</delete>
+
+<!-- #21# (Web _관리자용) 회원 완전삭제 _(2)[SNS] SNS DB 내 삭제 -->
+<delete id="userDelWebSnsWeb" parameterType="mul.camp.a.dto.MemberDto">
+	DELETE
+	FROM META_SNS
+	WHERE EXISTS (SELECT *
+  					FROM META_SNS
+  					WHERE id=#{id})
+</delete>
+
+<!-- #21# (Web _관리자용) 회원 완전삭제 _(3)[나의식단] 식단기록 DB 내 삭제 -->
+<delete id="userDelFoodListMealsWeb" parameterType="mul.camp.a.dto.MemberDto">
+	DELETE
+	FROM META_FOOD_LIST_MEALS
+	WHERE EXISTS (SELECT *
+  					FROM META_FOOD_LIST_MEALS
+  					WHERE id=#{id})
+</delete>
+
+<!-- #21# (Web _관리자용) 회원 완전삭제 _(4)[구독] 구독 DB 내 삭제 -->
+<delete id="userDelSubscribeWeb" parameterType="mul.camp.a.dto.MemberDto">
+	DELETE
+	FROM MATA_SUBSCRIBE
+	WHERE EXISTS (SELECT *
+  					FROM MATA_SUBSCRIBE
+  					WHERE SUB_ID=#{id})
+</delete>
+
+<!-- #21# (Web _관리자용) 회원 완전삭제 _(5)[회원] 회원 DB 내 삭제 -->
+<delete id="userDelMemberWeb" parameterType="mul.camp.a.dto.MemberDto">
+	DELETE
+	FROM META_MEMBER
+	WHERE ID=#{id}
+</delete>
 </mapper>
 
 

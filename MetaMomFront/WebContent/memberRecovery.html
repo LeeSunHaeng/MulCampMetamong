@@ -144,7 +144,7 @@
 	<br>
 	
 	<button type="button" id="memberRecoveryBtn" class="snip1535">복구</button>
-	<button type="button" id="memberDelBtn" class="snip1535">완전 삭제</button>
+	<button type="button" onclick=finalDelCheck() class="snip1535">완전 삭제</button>
 	
 </form>
 </div>
@@ -156,11 +156,14 @@
 <script type="text/javascript">
 
 /* memManagement.html로부터 가지고 온 id 확인 */
-const url = new URL(location.href);		// const: 상수, URL이라는 클래스가 있음
+const url = new URL(location.href);		
 const urlParams = url.searchParams;
 
-let id = urlParams.get("id");			// const, let 둘다 사용해도 됨 (무관)
+let id = urlParams.get("id");			
 // alert("id: " + id);
+
+// 구독여부 확인을 위한 변수
+let subscribe = 0;
 	
 /* id에 해당하는 회원정보 드로잉 */
 $.ajax({
@@ -179,6 +182,8 @@ $.ajax({
 			$("#userHeight").text(mem.height);
 			$("#userWeight").text(mem.weight);
 			$("#userBirth").text(mem.birth);
+			
+			subscribe = mem.subscribe;
 	},
 	error:function(){
 		alert('memberDetail.html 회원정보 수정 & 탈퇴 ajax error');
@@ -209,13 +214,39 @@ $("#memberRecoveryBtn").click(function() {
 	})
 });
 
-/* 완전 삭제 Button */
-$("#memberDelBtn").click(function() {
+/* 완전 삭제 Button 클릭 시 한번 더 의사를 확인 후 삭제 진행 */
+// 회원계정과 연관되어 있는 모든 DB 내 회원데이터 삭제 (META_MEMBER, META_SUBSCRIBE, META_SNS, META_FOOD_LIST_MEAL, META_SUBSCRIBE_REMEMBERMEALS)
+function finalDelCheck() {
+	//alert("구독값 확인: " + subscribe);
 	
-	// 미완
-	// DB 내에서 삭제하는 기능
-	// 연관되어 있는 DB 내에도 해당 계정에 관한 데이터 삭제 필요 > DB: META_MEMBER, META_SUBSCRIBE, META_SNS, META_FOOD_LIST_MEAL, META_SUBSCRIBE_REMEMBERMEALS
-});
+	if(!confirm("해당 회원정보가 DB 내에서 완전 삭제됩니다. \n삭제하시겠습니까?")) {
+		alert("취소하였습니다.");
+	} else {
+		// 완전 삭제 진행
+		memberDbDelWeb()
+	}
+}
+
+function memberDbDelWeb() {
+	$.ajax({
+		url:"http://localhost:3000/memberDbDelWeb",
+		type:"post",	
+		data: { "id":$("#userId").text().trim(), "subscribe":subscribe },
+		success:function(msg){
+			// alert(msg);
+			
+			if (msg == true){
+				alert("해당 회원의 데이터가 모두 삭제되었습니다.");
+				location.href = "memManagement.html";
+			} else {
+				alert("다시 시도해주세요.");
+			}
+		},
+		error:function(){
+			alert("memberRecovery.html 회원 완전삭제 ajax error 발생")
+		}
+	})
+}
 </script>
 
 

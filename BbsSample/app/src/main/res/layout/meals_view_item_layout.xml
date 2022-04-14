@@ -40,7 +40,7 @@
                     android:textSize="14sp"
                     android:fontFamily="@font/font_content_bold"/>
 
-            <TextView
+            <!--<TextView
                     android:id="@+id/timeTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                     android:text="시간 : "
                     android:textSize="14sp"
                     android:textColor="@color/meta_grey03"
-                    android:fontFamily="@font/font_content_regular"/>
+                    android:fontFamily="@font/font_content_regular"/>-->
 
         </LinearLayout>
         <TextView
