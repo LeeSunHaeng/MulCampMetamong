@@ -151,7 +151,5 @@ class MemberDao {
         var response = call?.execute()
         return response?.body() as String
     }
-
-
 }
 
