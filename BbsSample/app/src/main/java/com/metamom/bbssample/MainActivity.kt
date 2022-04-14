@@ -217,6 +217,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         kakaoBtn.setOnClickListener {
+            Log.d("MainActivity", "#21# 카카오 버튼")
+            
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
                 UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
             } else {

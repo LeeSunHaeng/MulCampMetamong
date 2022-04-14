@@ -19,7 +19,7 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
 
         val foodImg = itemView.findViewById<ImageView>(R.id.foodImg)
         val foodKindTxt = itemView.findViewById<TextView>(R.id.foodKindTxt)
-        val timeTxt = itemView.findViewById<TextView>(R.id.timeTxt)
+        //val timeTxt = itemView.findViewById<TextView>(R.id.timeTxt)
         val foodScoreTxt = itemView.findViewById<TextView>(R.id.foodScoreTxt)
         val memoTxt = itemView.findViewById<TextView>(R.id.memoTxt)
         var seqfoodlist:Int = 0
@@ -31,7 +31,7 @@ class FoodListAdapter(val context:Context,val writeFoodSelect:ArrayList<FoodList
            del=dataVo.del
            //foodImg  사진/카메라로 찍은 사진
            foodKindTxt.text = dataVo.meals //식사종류
-           timeTxt.text = dataVo.wdate //시간
+           //timeTxt.text = dataVo.wdate //시간
            memoTxt.text = dataVo.memo // 메모
            if (dataVo.foodscore =="1점"){ //점수
                foodScoreTxt.text="점수 : ★"

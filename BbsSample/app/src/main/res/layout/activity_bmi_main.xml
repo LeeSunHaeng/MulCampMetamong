@@ -10,6 +10,7 @@
     <TextView
             android:id="@+id/BmiTxt1"
             android:text="비만도(BMI)계산"
+            android:fontFamily="@font/font_subtitle"
             android:textSize="35dp"
             android:gravity="center"
             android:layout_width="301dp"
@@ -23,6 +24,7 @@
     <TextView
             android:id="@+id/BmiTxt2"
             android:text="키"
+            android:fontFamily="@font/font_content_regular"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_width="120dp"
@@ -37,6 +39,7 @@
             android:layout_height="60dp"
             android:inputType="textPersonName"
             android:hint="키를 입력하세요"
+            android:fontFamily="@font/font_content_regular"
             android:textSize="25dp"
             android:gravity="center"
             android:ems="10"
@@ -48,6 +51,7 @@
     <TextView
             android:id="@+id/BmiTxt3"
             android:text="몸무게"
+            android:fontFamily="@font/font_content_regular"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_width="120dp"
@@ -65,6 +69,7 @@
             android:layout_height="60dp"
             android:inputType="textPersonName"
             android:hint="몸무게를 입력하세요"
+            android:fontFamily="@font/font_content_regular"
             android:textSize="25dp"
             android:gravity="center"
             android:ems="10"
@@ -74,6 +79,7 @@
     <TextView
             android:id="@+id/BmiResult"
             android:textSize="25dp"
+            android:fontFamily="@font/font_content_regular"
             android:gravity="center"
             android:layout_width="500dp"
             android:layout_height="55dp"
@@ -85,6 +91,7 @@
     <Button
             android:id="@+id/BmiBtn"
             android:text="계산하기"
+            android:fontFamily="@font/font_content_regular"
             android:textSize="25dp"
             android:layout_width="147dp"
             android:layout_height="63dp"
