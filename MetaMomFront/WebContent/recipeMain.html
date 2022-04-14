@@ -2,9 +2,135 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>레시피</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style type="text/css">
+.title{
+	font-size: 50px;
+	text-align: center;
+}
+.array{
+	display: flex;
+	flex-wrap: wrap;
+	width: 900px;
+	
+	margin: 0 auto;
+	justify-content: center;
+}
+.list{
+	width: 250px;
+	height: 350px;
+	border: 1px;
+	justify-content: center;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	text-decoration: none;
+}
+.img{
+	margin-top: 0;
+	width: 220px;
+	height: 170px;
+	border-radius: 20% 20% 30% 30%;
+	overflow: hidden;
+}
+.btn{
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+}
+.item{
+	width: 200px;
+	margin: 0 0 0 13px;
+}
+
+.name{
+	font-size: 20px;
+	font-weight: bold;
+}
+.brief{
+	font-size: 15px;	
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+</style>
+
 </head>
 <body>
+
+<p class="title">레시피</p>
+
+<div class="btn">
+	<a href="recipeAdd.html"><button >추가하기</button></a>	
+</div>
+<br>
+
+<div class="array" id="arrayA">
+	
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+		
+	//$("#button").click(function(){
+		$("#plz").html("");
+		
+		$.ajax({
+			url:"http://localhost:3000/getRecipeWeb",
+			type:"post",
+			data:{ recipeSeq:$("#recipeSeq").val(), "recipeName":"", "foodImage":"foodImage", "brief":"brief" },
+			success:function(list){
+				$.each(list, function (i, item){
+							 
+					let str = "<div class='list'>"+
+								
+								/* "<div style='flex-grow:3'></div>"+ */
+								"<div class='img'>" + 
+									"<a href='recipedetail.html?recipeSeq=" + item.recipeSeq + "'>" + 
+										"<span style='font-size: 20px'>" + 
+											"<img src='http://14.39.38.168:3000/upload/" + item.foodImage +"' width='220px' height='170px'>" + 
+										"</span>" + 
+									"</a>" + 
+								"</div><br>"+
+								"<div class='item'>" + 
+									"<a href='recipedetail.html?recipeSeq=" + item.recipeSeq + "'>" +
+										"<span class='name'>" + item.recipeName + "</span><br><br>"+
+										"<span class='brief'>" + item.brief + "</span>" +
+									"</a><div>" +
+								"</div>";
+
+							
+
+					$("#arrayA").append(str);
+				});
+					   
+			},
+			error:function(){
+				alert('error');
+			}
+		});
+
+	
+	function ShowList(data){
+		console.log("!!!!!!"+data);
+		var seq = "<span>" + data.recipeSeq + "</span>"
+		$.each(data, function(index, item){
+			let a = "<tr>"
+				+ "<td>" + item.recipeSeq + "</td>";
+				+ "<td>" + item.recipeName + "</td>";
+				+ "</tr>";
+				$("plz").append(a);
+		});
+	}
+	
+	
+});
+	
+</script>
 
 </body>
 </html>

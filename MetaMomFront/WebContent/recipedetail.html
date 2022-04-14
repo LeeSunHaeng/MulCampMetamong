@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>레시피</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<h2>일단 디테일</h2>
+
+<div>
+<table>
+	<tr>
+		<td id="foodImage"></td>
+	</tr>
+	
+	<tr>
+		<td id="recipeName"></td>
+	</tr>
+
+</table>
+</div>
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$.ajax({
+		url:"http://localhost:3000/getRecipeWeb",
+		type:"post",
+		data:{recipeSeq:$("#recipeSeq").val(), "recipeName":"", "foodImage":"foodImage", "brief":"brief", "recipeImage":"recipeImage", "recipe":"recipe" },
+		success:function(item){
+			alert('success');
+			
+			$("#foodImage").val(item.foodImage);
+			$("#recipeName").text(item.recipeName);
+			
+		},
+		error:function(){
+			alert('error');
+		}
+		
+		
+	});	
+});
+
+</script>
+
+
+</body>
+</html>
