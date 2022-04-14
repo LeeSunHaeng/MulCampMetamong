@@ -34,6 +34,40 @@
                     app:srcCompat="@drawable/metamom_splash_logo"/>
 
             <!-- #21# style.xml 내 TextView > MemberUpdateTextView, EditText > MemberUpdateEditText 참고-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/accUpdateProfileImageView"
+                    android:padding="12dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginTop="12dp"
+            />
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+            >
+
+                <ImageButton
+                        android:id="@+id/accUpdateCameraImageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:background="@drawable/ic_camera"/>
+                <ImageButton
+                        android:id="@+id/accUpdateAlbumImageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_image"/>
+
+            </LinearLayout>
             <TextView
                     android:id="@+id/memUpdate_textView2"
                     android:text="ID"

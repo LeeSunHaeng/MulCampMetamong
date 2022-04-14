@@ -20,7 +20,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.metamom.bbssample.MemberDto
 import com.metamom.bbssample.R
+import com.metamom.bbssample.fragments.TalkFragment
 import com.metamom.bbssample.subsingleton.MemberSingleton
+import com.metamom.bbssample.subsingleton.SnsSingleton
 import kotlinx.android.synthetic.main.activity_sns_insert.*
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -208,13 +210,21 @@ class SnsInsertActivity : AppCompatActivity() {
             }
 
             R.id.snsInsertBtn ->{
+
                 val content = findViewById<EditText>(R.id.snsContentEditText)
                 val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
                 val test = SnsDao.getInstance().snsInsert(dto)
                 println(test)
 
-                val i = Intent(this, SnsActivity::class.java)
-                startActivity(i)
+                if(SnsSingleton.insertCheck == 1){
+                    SnsSingleton.code = "SNSINSERT"
+                    SnsSingleton.snsDto = dto
+                    finish()
+                }else{
+                    val i = Intent(this, SnsActivity::class.java)
+                    startActivity(i)
+                }
+
             }
         }
         return super.onOptionsItemSelected(item)

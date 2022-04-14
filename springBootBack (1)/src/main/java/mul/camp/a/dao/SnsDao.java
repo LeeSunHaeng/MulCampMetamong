@@ -16,6 +16,7 @@ public interface SnsDao {
 	public int snsInsert(SnsDto dto);
 	public int snsDelete(int seq);
 	public int snsUpdate(SnsDto dto);
+	public int snsImgUpdate(SnsDto dto);
 	public MemberDto snsGetMmeber(String id);
 	public ArrayList<SnsDto> allSns();
 	public ArrayList<SnsCommentDto> allComment(int seq);
@@ -28,6 +29,7 @@ public interface SnsDao {
 	public int snsCommentInsert(SnsCommentDto dto);
 	public int snsCommentAllDelete(int seq);
 	public int snsCommentDelete(int cmtseq);
+	public int snsCommentUpdate(SnsCommentDto dto);
 	public int nextSeq();
 	public int currSeq();
 }
