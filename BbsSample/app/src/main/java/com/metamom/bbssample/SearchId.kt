@@ -2,9 +2,12 @@ package com.metamom.bbssample
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.view.isVisible
 import com.metamom.bbssample.databinding.ActivitySearchIdBinding
 import kotlinx.android.synthetic.main.activity_search_id.*
 import kotlinx.android.synthetic.main.dialog_id_search.*
@@ -29,9 +32,11 @@ class SearchId : AppCompatActivity() {
                 ))
             println("~~~~~~~~~~~~~~~~~~~~~~~id:$id")
             if(id == null || id == "") {
-                Toast.makeText(this,"정보를 확인하고 다시 입력해주세요", Toast.LENGTH_LONG).show()
+                customDialogFunctionError()
             }else {
-                resultText.text = "${editName.text} 님의 아이디는 " + id + "입니다."
+                resultText.isVisible = true
+                resultText.setTextAppearance(this, R.style.normalText)
+                resultText.text = "${editName.text}님의 아이디는 " + id + "입니다."
             }
         }
 
@@ -47,6 +52,41 @@ class SearchId : AppCompatActivity() {
         binding.toolbarIdSearch.setNavigationOnClickListener {
             onBackPressed()
         }
+    }
 
+    private fun customDialogFunction(){
+        val customDialog = Dialog(this)
+        val resultId = findViewById<TextView>(R.id.resultId)
+
+        val id = MemberDao.getInstance().searchId(MemberDto(
+            "", "", editName.text.toString(), "",
+            "", "", "", 0.0,
+            0.0, "n", 0, 0, editBirth.text.toString(),
+            0.0, ""
+        ))
+
+        resultId.setText(id)
+
+        customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        customDialog.setContentView(R.layout.dialog_id_search)
+        customDialog.setCancelable(false)
+
+        customDialog.findViewById<TextView>(R.id.tv_submit).setOnClickListener {
+            customDialog.dismiss()
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
+        customDialog.show()
+    }
+
+    private fun customDialogFunctionError(){
+        val customDialog = Dialog(this)
+        customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        customDialog.setContentView(R.layout.dialog_id_search_error)
+        customDialog.setCancelable(false)
+        customDialog.findViewById<TextView>(R.id.tv_error_submit).setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
     }
 }

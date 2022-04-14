@@ -93,6 +93,14 @@
             app:layout_constraintTop_toBottomOf="@+id/editName"
             app:layout_constraintStart_toStartOf="parent"/>
 
+    <TextView
+            android:id="@+id/resultText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:visibility="gone"
+            android:gravity="center"/>
+
     <Button
             android:id="@+id/searchPwdBtn"
             android:layout_width="match_parent"
@@ -106,10 +114,4 @@
             android:fontFamily="@font/font_content_bold"
             android:textSize="14sp"/>
 
-    <TextView
-            android:id="@+id/resultText2"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="126dp"
-            android:layout_marginTop="44dp"/>
 </LinearLayout>

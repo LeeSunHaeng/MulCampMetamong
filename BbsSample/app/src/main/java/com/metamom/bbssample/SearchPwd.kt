@@ -1,8 +1,12 @@
 package com.metamom.bbssample
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.view.isVisible
 import com.metamom.bbssample.databinding.ActivitySearchPwdBinding
 
 class SearchPwd : AppCompatActivity() {
@@ -26,8 +30,10 @@ class SearchPwd : AppCompatActivity() {
                 0.0, ""
             )).toString()
             if(pwd == null || pwd == ""){
-                Toast.makeText(this,"정보를 확인하고 다시 입력해주세요",Toast.LENGTH_LONG).show()
+                customDialogFunctionError()
             }else {
+                resultText2.isVisible = true
+                resultText2.setTextAppearance(this, R.style.normalText)
                 resultText2.text = "${editName2.text} 님의 비밀번호는 " + pwd + "입니다."
             }
         }
@@ -44,6 +50,17 @@ class SearchPwd : AppCompatActivity() {
         binding.toolbarPwdSearch.setNavigationOnClickListener {
             onBackPressed()
         }
-
     }
+
+    private fun customDialogFunctionError(){
+        val customDialog = Dialog(this)
+        customDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        customDialog.setContentView(R.layout.dialog_pwd_search_error)
+        customDialog.setCancelable(false)
+        customDialog.findViewById<TextView>(R.id.tv_error_pwd_submit).setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
+    }
+
 }
