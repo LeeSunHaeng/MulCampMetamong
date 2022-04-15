@@ -1,6 +1,7 @@
 package com.metamom.bbssample.KcalBMI
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,9 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColorInt
+import com.metamom.bbssample.MainButtonActivity
+import com.metamom.bbssample.MemberDao
 import com.metamom.bbssample.R
 import com.metamom.bbssample.databinding.ActivityBmiMainBinding
+import com.metamom.bbssample.subsingleton.MemberSingleton
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -95,28 +100,36 @@ class BmiMain : AppCompatActivity() {
 
         if(bmi.compareTo(15f) <= 0){
             bmiLabel = "매우 극심한 저체중입니다"
-            bmiDescription = "회원님의 건강을 위해\n메타몸의 건강한 식단과 함께하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_red01))
+            bmiDescription = "회원님의 건강을 위해 메타몸의 건강한 삼시세끼를 드셔보세요!"
         } else if(bmi.compareTo(15f) > 0 && bmi.compareTo(16f) <= 0){
-            bmiLabel = "매우 저체중입니다"
-            bmiDescription = "회원님의 건강을 위해\n메타몸의 건강한 식단과 함께하세요!"
+            bmiLabel = "심각한 저체중입니다"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_red01))
+            bmiDescription = "회원님의 건강을 위해 메타몸의 건강한 삼시세끼를 드셔보세요!"
         } else if(bmi.compareTo(16f) > 0 && bmi.compareTo(18.5f) <= 0){
             bmiLabel = "체중 미달입니다"
-            bmiDescription = "회원님의 건강을 위해\n메타몸의 건강한 식단과 함께하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_purple01))
+            bmiDescription = "회원님의 건강을 위해 메타몸의 건강한 식단과 함께하세요!"
         } else if(bmi.compareTo(18.5f) > 0 && bmi.compareTo(25f) <= 0){
             bmiLabel = "정상입니다"
-            bmiDescription = "정상 체중입니다\n메타몸과 함께 꾸준히 관리해봐요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_green01))
+            bmiDescription = "정상 체중입니다, 메타몸과 함께 꾸준히 관리해봐요!"
         } else if(bmi.compareTo(25f) > 0 && bmi.compareTo(30f) <= 0){
             bmiLabel = "과체중입니다"
-            bmiDescription = "회원님의 건강을 위해\n메타몸의 건강한 식단과 함께 운동을 시작하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_purple01))
+            bmiDescription = "회원님의 건강을 위해 메타몸의 건강한 식단과 함께 운동을 시작하세요!"
         } else if(bmi.compareTo(30f) > 0 && bmi.compareTo(35f) <= 0){
             bmiLabel = "중도 비만입니다"
-            bmiDescription = "회원님의 건강을 위해\n메타몸의 건강한 식단과 함께 운동을 시작하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_purple01))
+            bmiDescription = "회원님의 건강을 위해 메타몸의 건강한 식단과 함께 운동을 시작하세요!"
         } else if(bmi.compareTo(35f) > 0 && bmi.compareTo(40f) <= 0){
             bmiLabel = "고도 비만입니다"
-            bmiDescription = "회원님의 건강이 위험할지도 모릅니다,\n메타몸의 건강한 식단과 함께 운동을 시작하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_red01))
+            bmiDescription = "회원님의 건강이 위험할지도 모릅니다, 메타몸의 건강한 식단과 함께 운동을 시작하세요!"
         } else {
             bmiLabel = "심각한 고도 비만입니다"
-            bmiDescription = "회원님의 건강이 위험할지도 모릅니다,\n메타몸의 건강한 식단과 함께 운동을 시작하세요!"
+            binding.tvBMIType.setTextColor(ContextCompat.getColor(applicationContext, R.color.meta_red01))
+            bmiDescription = "회원님의 건강이 위험할지도 모릅니다, 메타몸의 건강한 식단과 함께 운동을 시작하세요!"
         }
 
         val bmiValue = BigDecimal(bmi.toDouble()).setScale(2, RoundingMode.HALF_EVEN).toString()
@@ -138,7 +151,6 @@ class BmiMain : AppCompatActivity() {
         }
         return isValid
     }
-
 
     private fun calculateUnits(){
         if(currentVisibleView == METRIC_UNITS_VIEW){

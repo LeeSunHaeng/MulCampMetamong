@@ -221,7 +221,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/font_content_bold"
                 android:textSize="18sp"
-                android:textColor="@color/meta_purple01"
+                android:textColor="@color/meta_grey01"
                 tools:text="15.00"
         />
 
@@ -234,13 +234,13 @@
                 android:layout_marginTop="5dp"
                 android:textSize="18sp"
                 android:fontFamily="@font/font_content_bold"
-                android:textColor="@color/meta_grey01"
-                tools:text="정상"
+                android:textColor="@color/meta_purple01"
+                tools:text="정상입니다"
         />
 
         <TextView
                 android:id="@+id/tvBMIDescription"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textAlignment="center"

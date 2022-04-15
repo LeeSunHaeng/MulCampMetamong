@@ -65,14 +65,14 @@
 				type:"post",
 				data:{ id:$("#id").val(), pwd:$("#pwd").val() },
 				success:function(json){
-					alert('success');
+					// alert('success');
 					if(json == ""){
 						alert("id나 비밀번호를 확인하세요");
 						$("#id").val("");
 						$("#pwd").val("");
 					}else{
 						sessionStorage.setItem("login", JSON.stringify(json));
-						alert(json.name + "님 환영합니다");	
+						// alert(json.name + "님 환영합니다");	
 						
 						//location.href = "recipeMain.html";
 						location.href = "main.html";
