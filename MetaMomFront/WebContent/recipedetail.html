@@ -4,42 +4,146 @@
 <meta charset="UTF-8">
 <title>레시피</title>
 
+<!-- jquery, 부트스트랩 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+h2{
+	text-align: center;
+}
+img{
+	width: 350px;
+	height: 270px;	
+	border-radius: 13px;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+.title{
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+}
+.ingre{
+	width: 350px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+.brief{
+	display: flex;
+	justify-content: center;
+}
+.box1{
+
+}
+.box2{
+	width: 500px;
+}
+</style>
 
 </head>
 <body>
 
-<h2>일단 디테일</h2>
+<h2>레시피</h2>
 
 <div>
-<table>
-	<tr>
-		<td id="foodImage"></td>
-	</tr>
-	
-	<tr>
-		<td id="recipeName"></td>
-	</tr>
 
-</table>
+	<div id="detail"></div>
+	
 </div>
 
 
 
 
 <script type="text/javascript">
+const url = new URL(location.href);
+const urlParams = url.searchParams;
+let recipeSeq = urlParams.get("recipeSeq");
+
+
+
 $(document).ready(function(){
 	
 	$.ajax({
 		url:"http://localhost:3000/getRecipeWeb",
 		type:"post",
-		data:{recipeSeq:$("#recipeSeq").val(), "recipeName":"", "foodImage":"foodImage", "brief":"brief", "recipeImage":"recipeImage", "recipe":"recipe" },
-		success:function(item){
-			alert('success');
+		data:{recipeSeq:recipeSeq, "recipeName":recipeSeq, "foodImage":"foodImage", "brief":"brief", "recipeImage":"recipeImage", "recipe":"recipe" },
+		
+		success:function(list){
 			
-			$("#foodImage").val(item.foodImage);
-			$("#recipeName").text(item.recipeName);
+			$.each(list, function (i, item){
+								 
+			 	 let str = "<div >" + 
+							"<div class='img'>" +
+			 					"<img src='http://14.39.38.168:3000/upload/" + item.foodImage +"' width:'350px'>" + 			
+			 	 			"</div><br>" +
+							"<div class='title'>" + item.recipeName + "</div><br>" +
+							"<div class='brief'>" + item.brief + "</div><br>" +
+							"<div class='ingre'> 재료ingredient</div>" +
+							"<div class='brief'>" + 
+								"<table>";
+								
+									let c = new Array();
+									c = item.ingredient.split('!');
+																		
+																	
+									for(var i=0; i < c.length; i++){ 
+										"<tr>"
+										if(c[i] % 2 == 0){		 
+											str += "<td>" + c[i] + "</td>" 	
+										}	
+										"</tr>"
+									};																		
+			/* 						
+						 str += "</table>" +
+							"</div>" +
+							
+							"<div class='brief'>" + 
+								"<table>";
+								
+									let d = new Array();
+									d = item.ingredient.split('!');
+																		
+																	
+									for(var i=0; i < d.length; i++){ 
+											
+										if(d[i] % 2 == 1){
+											"<tr>" 
+											str += "<td>" + d[i] + "</td>"
+											+ "</tr>"
+										}									
+									};		 */																		
+								
+						str += "</table>" +
+							"</div>" +
+							
+							"<div class='brief'>" + 
+								 "<table>";										
+									
+									let a = new Array();
+									let b = new Array();
+									a = item.recipeImage.split('/');
+									b = item.recipe.split('!');
+									
+									for(var i=0 ; i < a.length; i++){
+										
+										str += "<tr>" + 
+													"<td>" + 
+														a[i] + 
+													"</td>" +
+											   		"<td class='box2'>" + b[i] + "</td>" +
+										   	   "</tr>"
+									}; 
+									
+						str += "</table>" +
+						   "</div>";
+							
+				
+				$("#detail").append(str);
+
+			});	 
 			
+
 		},
 		error:function(){
 			alert('error');

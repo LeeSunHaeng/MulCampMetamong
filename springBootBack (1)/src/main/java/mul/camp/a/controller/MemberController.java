@@ -181,6 +181,63 @@ public class MemberController {
 		return service.userRecoveryWeb(id);
 	}
 	
+	/* #21# (Web _관리자용) 회원 완전 삭제 */
+	@RequestMapping(value = "/memberDbDelWeb", method = RequestMethod.POST)
+	public boolean memberDbDelWeb(MemberDto dto) {
+		System.out.println("#21# MemberController memberDbDelWeb() 관리자용 _회원 완전삭제 동작");
+		System.out.println("#21# (관리자용) _회원 완전삭제를 위하여 받아온 dto값: " + dto);
+		
+		boolean successCheck = true;
+		
+		// 1) [오늘의식단] 식단기록 DB 내 삭제
+		// - 삭제 성공 시 true 
+		if (dto.getSubscribe() == 1) {
+			System.out.println("#21# [오늘의식단] 식단기록 DB 내 삭제 동작");
+			
+			successCheck = service.userDelRememberMealsWeb(dto);
+			System.out.println("#21# [오늘의식단] 식단기록 DB 내 삭제 동작결과 > " + successCheck);
+			if (successCheck == false) System.out.println("#21# userDelRememberMealsWeb() 오늘의식단 기록 DB 내 회원데이터 삭제 실패");
+		}
+		
+		// 2) [SNS] SNS DB 내 삭제
+		if (successCheck == true) {
+			System.out.println("#21# [SNS] SNS DB 내 삭제 동작");
+			
+			successCheck = service.userDelWebSnsWeb(dto);
+			System.out.println("#21# [SNS] SNS DB 내 삭제 동작결과 > " + successCheck);
+			if (successCheck == false) System.out.println("#21# userDelWebSnsWeb() SNS DB 내 회원데이터 삭제 실패");
+		}
+		
+		// 3) [나의식단] 식단기록 DB 내 삭제
+		if (successCheck == true) {
+			System.out.println("#21# [나의식단] 식단기록 DB 내 삭제 동작");
+			
+			successCheck = service.userDelFoodListMealsWeb(dto);
+			System.out.println("#21# [나의식단] 식단기록 DB 내 삭제 동작결과 > " + successCheck);
+			if (successCheck == false) System.out.println("#21# userDelFoodListMealsWeb() 나의식단 식단기록 DB 내 회원데이터 삭제 실패");
+		}
+		
+		// 4) [구독] 구독 DB 내 삭제
+		if (dto.getSubscribe()==1 && successCheck == true) {
+			System.out.println("#21# [구독] 구독 DB 내 삭제 동작");
+			
+			successCheck = service.userDelSubscribeWeb(dto);
+			System.out.println("#21# [구독] 구독 DB 내 삭제 동작결과 > " + successCheck);
+			if (successCheck == false) System.out.println("#21# userDelSubscribeWeb() 구독회원 DB 내 회원데이터 삭제 실패");
+		}
+		
+		// 5) [회원] 회원 DB 내 삭제
+		if (successCheck == true) {
+			System.out.println("#21# [회원] 회원 DB 내 삭제 동작");
+			
+			successCheck = service.userDelMemberWeb(dto);
+			System.out.println("#21# [회원] 회원 DB 내 삭제 동작결과 > " + successCheck);
+			if (successCheck == false) System.out.println("#21# userDelMemberWeb() 회원 DB 내 회원데이터 삭제 실패");
+		}
+		
+		return successCheck;
+	}
+	
 }
 
 

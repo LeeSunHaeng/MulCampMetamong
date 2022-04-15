@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,7 +29,10 @@ class FoodListDetail : AppCompatActivity() {
         var seqfoodlist:Int = data!!.seqfoodlist
 
         kindTxt.text = data?.meals
-        dateTxt.text = data?.wdate
+
+        /* #21# (04.14) 동영상 녹화를 위해 날짜만 Detail에 표시되도록 변경 */
+        // [기존 code] dateTxt.text = data?.wdate
+        dateTxt.text = (data?.wdate)?.substring(0 until 11)
 
         if (data?.foodscore =="1점"){ //점수
             scoreTxt.text="점수 : ★"
@@ -94,7 +98,7 @@ class FoodListDetail : AppCompatActivity() {
                 i.putExtra("uri",data.imgUrl)
                 i.putExtra("memo",data.memo)
                 i.putExtra("foodscore",data.foodscore)
-                i.putExtra("wdate",data.wdate)
+                //i.putExtra("wdate",data.wdate)
                 //println("url뭐임 : " + data.imgUrl)
             startActivity(i)
         }
