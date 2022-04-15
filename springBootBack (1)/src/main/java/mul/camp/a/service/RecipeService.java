@@ -31,9 +31,17 @@ public class RecipeService {
 		
 		System.out.println("나오냐ㅜ ");		
 	
-		List<RecipeDto> list = dao.getRecipe(dto);
+		List<RecipeDto> list = dao.getRecipeWeb(dto);
 		System.out.println("RecipeDto"+list);
 		
 		return list;				
 	}
+	
+	
+	public boolean writeRecipe(RecipeDto dto) {
+		int n = dao.writeRecipe(dto);
+		
+		return n>0?true:false;
+	}
+	
 }

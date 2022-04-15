@@ -38,9 +38,23 @@ public class RecipeController {
 	@RequestMapping(value = "/getRecipeWeb", method = {RequestMethod.GET, RequestMethod.POST} ) 
 	public List<RecipeDto> getRecipeWeb(RecipeDto dto) {		
 		System.out.println("Controller 이상 무!");
+		
+		System.out.println(dto.toString());
 	  
-		List<RecipeDto> list = service.getRecipe(dto);
+		List<RecipeDto> list = service.getRecipeWeb(dto);
 		return list;
 	}
+	
+	
+	@RequestMapping(value = "/writeRecipe", method = {RequestMethod.GET, RequestMethod.POST} ) 
+	public String writeRecipe(RecipeDto dto) {		
+		System.out.println("writeRecipe 작성중!");
+	  
+		boolean b = service.writeRecipe(dto);
+		if(b) {
+			return "YES";
+		}
+		return "NO";
+	}  
 	  
 }

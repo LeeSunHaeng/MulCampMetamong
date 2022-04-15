@@ -12,8 +12,22 @@
 	FROM META_FOOD_RECIPE
 	WHERE RECIPE_NAME LIKE '%'|| #{recipeName} ||'%'
 	ORDER BY RECIPE_SEQ ASC
-	
-
 </select>
+
+<!-- 레시피 웹 -->
+<select id="getRecipeWeb" parameterType="mul.camp.a.dto.RecipeDto"  resultType="mul.camp.a.dto.RecipeDto">
+	SELECT RECIPE_SEQ, RECIPE_NAME, INGREDIENT, BRIEF, RECIPE, FOOD_IMAGE, RECIPE_IMAGE, KCAL 
+	FROM META_FOOD_RECIPE
+	WHERE RECIPE_NAME LIKE '%'|| #{recipeName} ||'%' 
+	   OR RECIPE_SEQ =  #{recipeSeq} 
+	ORDER BY RECIPE_SEQ ASC
+	<!-- WHERE RECIPE_SEQ = #{recipeSeq} -->   
+</select>
+  
+<!-- 레시피 추가 -->  
+<insert id="writeRecipe" parameterType="mul.camp.a.dto.RecipeDto">
+	INSERT INTO META_FOOD_RECIPE(RECIPE_SEQ, RECIPE_NAME, INGREDIENT, BRIEF, RECIPE, FOOD_IMAGE, RECIPE_IMAGE, KCAL)
+	VALUES(RECIPE_SEQ.NEXTVAL, #{recipeName}, #{ingredient}, #{brief}, #{recipe}, #{foodImage}, #{recipeImage}, #{kcal})
+</insert>
   
 </mapper>
