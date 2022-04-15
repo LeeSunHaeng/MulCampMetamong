@@ -7,239 +7,154 @@
 <!-- jquery, 부트스트랩 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<style type="text/css">
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
-* {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-.title{
-	font-size: 50px;
+<style>
+h2{
 	text-align: center;
 }
-.array{
-	display: flex;
-	flex-wrap: wrap;
-	width: 900px;
-	
-	margin: 0 auto;
-	justify-content: center;
+img{
+	width: 350px;
+	height: 270px;	
+	border-radius: 13px;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
 }
-.list{
-	width: 250px;
-	height: 300px;
-	border: 1px;
-	/* justify-content: center; */
-	/* align-content: center; */
-	display: flex;
- 	flex-direction: column; 
-	text-decoration: none;	
-	border: 1px solid #a3a1a1;
-	border-radius: 8px 8px 0px 0px;
-	margin: 5px 5px 0px 0px;
-	padding-top: 5px;
-}
-.bottomleft{
-	float: left;
- 	border-right: 1px solid #a3a1a1;
-	border-bottom: 1px solid #a3a1a1;
-	border-left: 1px solid #a3a1a1;	
-	width: 125px;
-	justify-content: center;
-	align-content: center;
-	display: flex;
-	border-radius: 0px 0px 0px 8px;
-	margin-right: 0; 
-}
-.bottomright{
-	float: left;
- 	border-right: 1px solid #a3a1a1;
-	border-bottom: 1px solid #a3a1a1;
-	width: 124px;
-	justify-content: center;
-	align-content: center;
-	display: flex;
-	border-radius: 0px 0px 8px 0px;
-	margin-left: 0;
-}
-.img{
-	margin-top: 0;
-	width: 220px;
-	height: 150px;
-	border-radius: 10% 10% 20% 20%;
-	overflow: hidden;
-	margin: 0 0 0 15px;
-}
-.btn{
+.title{
 	display: flex;
 	justify-content: center;
-	margin: 0 auto;
+	font-size: 30px;
 }
-.item{
-	width: 220px;
- 	margin: 0 0 0 12px;  
- 	text-align: center;
-}
-.name{
-	font-size: 20px;
-	font-weight: bold;
-/* 	text-align: center; */
+.ingre{
+	width: 350px;
+	margin-left: auto;
+	margin-right: auto;	
 }
 .brief{
-	font-size: 13px;
-	width: 250px;	
+	display: flex;
+	justify-content: center;
 }
-a{
-	text-decoration: none;
-	color: black;
-}
-.snip1535 {
-  background-color: #6897bb;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1em;
-  font-size: 15px;
-  line-height: 1em;
-  margin: 15px 40px;
-  outline: none;
-  /* padding: 12px 40px 10px; */
-  padding: 10px 25px 10px;
-  position: relative;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.snip1535:before,
-.snip1535:after {
-  border-color: transparent;
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
-  border-style: solid;
-  border-width: 0;
-  content: "";
-  height: 24px;
-  position: absolute;
-  width: 24px;
-}
-.snip1535:before {
-  border-color: #a3a1a1;
-  border-right-width: 2px;
-  border-top-width: 2px;
-  right: -5px;
-  top: -5px;
-}
-.snip1535:after {
-  border-bottom-width: 2px;
-  border-color: #a3a1a1;
-  border-left-width: 2px;
-  bottom: -5px;
-  left: -5px;
-}
-.snip1535:hover,
-.snip1535.hover {
-  background-color: #a3a1a1;
-}
-.snip1535:hover:before,
-.snip1535.hover:before,
-.snip1535:hover:after,
-.snip1535.hover:after {
-  height: 100%;
-  width: 100%;
-}
+.box1{
 
+}
+.box2{
+	width: 500px;
+}
 </style>
 
 </head>
 <body>
 
-<p class="title">레시피</p>
+<h2>레시피</h2>
 
-<div class="btn">
-	<a href="recipeAdd.html"><button class="snip1535">추가하기</button></a>	
-</div>
-<br>
+<div>
 
-<div class="array" id="arrayA">
+	<div id="detail"></div>
 	
 </div>
+
+
+
 
 <script type="text/javascript">
+const url = new URL(location.href);
+const urlParams = url.searchParams;
+let recipeSeq = urlParams.get("recipeSeq");
+
+
+
 $(document).ready(function(){
+	
+	$.ajax({
+		url:"http://localhost:3000/getRecipeWeb",
+		type:"post",
+		data:{recipeSeq:recipeSeq, "recipeName":recipeSeq, "foodImage":"foodImage", "brief":"brief", "recipeImage":"recipeImage", "recipe":"recipe" },
 		
-	//$("#button").click(function(){
-		$("#plz").html("");
-		
-		$.ajax({
-			url:"http://localhost:3000/getRecipeWeb",
-			type:"post",
-			data:{ recipeSeq:$("#recipeSeq").val(), "recipeName":"", "foodImage":"foodImage", "brief":"brief", "kcal":"kcal"  },
-			success:function(list){
-				$.each(list, function (i, item){
-							 
-					let str = "<div>"+
-								"<div class='list'>"+
-								/* "<div style='flex-grow:3'></div>"+ */
-								"<div class='img'>" + 
-									"<a href='recipedetail.html?recipeSeq=" + item.recipeSeq + "'>" + 
-										"<span style='font-size: 20px'>" + 
-											"<img src='http://14.39.38.168:3000/upload/" + item.foodImage +"' width='220px' height='170px'>" + 
-										"</span>" + 
-									"</a>" + 
-								"</div><br>"+
-								"<div class='item'>" + 
-									"<a href='recipedetail.html?recipeSeq=" + item.recipeSeq + "'>" +
-										"<span class='name'>" + item.recipeName + "</span><br><br>"+
-										"<span class='brief'>" + item.brief + "</span>" +
-									"</a>" + 
-								"</div><br>" +				
-							  	"</div>" +
+		success:function(list){
+			
+			$.each(list, function (i, item){
+								 
+			 	 let str = "<div >" + 
+							"<div class='img'>" +
+			 					"<img src='http://14.39.38.168:3000/upload/" + item.foodImage +"' width:'350px'>" + 			
+			 	 			"</div><br>" +
+							"<div class='title'>" + item.recipeName + "</div><br>" +
+							"<div class='brief'>" + item.brief + "</div><br>" +
+							"<div class='ingre'> 재료ingredient</div>" +
+							"<div class='brief'>" + 
+								"<table>";
 								
-								"<div class='bottomleft'>" + 
-									"<table>" + 
-										"<tr>" +
-											"<td></td><td>칼로리</td>" +
-										"</tr>" + 
-									"</table>" +
-								"</div>" + 
-								"<div class='bottomright'>" + 
-								"<table>" + 
-									"<tr>" +
-										"<td></td><td>" + item.kcal + "</td>" +
-									"</tr>" + 
-								"</table>" +
-							"</div>" + 
-							"</div>"
-
+									let c = new Array();
+									c = item.ingredient.split('!');
+																		
+																	
+									for(var i=0; i < c.length; i++){ 
+										"<tr>"
+										if(c[i] % 2 == 0){		 
+											str += "<td>" + c[i] + "</td>" 	
+										}	
+										"</tr>"
+									};																		
+			/* 						
+						 str += "</table>" +
+							"</div>" +
 							
+							"<div class='brief'>" + 
+								"<table>";
+								
+									let d = new Array();
+									d = item.ingredient.split('!');
+																		
+																	
+									for(var i=0; i < d.length; i++){ 
+											
+										if(d[i] % 2 == 1){
+											"<tr>" 
+											str += "<td>" + d[i] + "</td>"
+											+ "</tr>"
+										}									
+									};		 */																		
+								
+						str += "</table>" +
+							"</div>" +
+							
+							"<div class='brief'>" + 
+								 "<table>";										
+									
+									let a = new Array();
+									let b = new Array();
+									a = item.recipeImage.split('/');
+									b = item.recipe.split('!');
+									
+									for(var i=0 ; i < a.length; i++){
+										
+										str += "<tr>" + 
+													"<td>" + 
+														a[i] + 
+													"</td>" +
+											   		"<td class='box2'>" + b[i] + "</td>" +
+										   	   "</tr>"
+									}; 
+									
+						str += "</table>" +
+						   "</div>";
+							
+				
+				$("#detail").append(str);
 
-					$("#arrayA").append(str);
-				});
-					   
-			},
-			error:function(){
-				alert('error');
-			}
-		});
+			});	 
+			
 
-	
-	function ShowList(data){
-		console.log("!!!!!!"+data);
-		var seq = "<span>" + data.recipeSeq + "</span>"
-		$.each(data, function(index, item){
-			let a = "<tr>"
-				+ "<td>" + item.recipeSeq + "</td>";
-				+ "<td>" + item.recipeName + "</td>";
-				+ "</tr>";
-				$("plz").append(a);
-		});
-	}
-	
-	
+		},
+		error:function(){
+			alert('error');
+		}
+		
+		
+	});	
 });
-	
+
 </script>
+
 
 </body>
 </html>
