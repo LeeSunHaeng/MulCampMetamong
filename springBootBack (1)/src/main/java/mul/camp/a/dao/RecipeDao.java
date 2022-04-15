@@ -13,4 +13,7 @@ public interface RecipeDao {
 
 	public List<RecipeDto> getRecipe(RecipeDto dto);
 	public List<RecipeDto> getRecipeWeb(RecipeDto dto);
+	
+	public int writeRecipe(RecipeDto dto);
+	
 }
