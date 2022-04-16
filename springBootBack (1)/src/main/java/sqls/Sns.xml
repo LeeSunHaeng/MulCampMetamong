@@ -28,6 +28,20 @@
   
   </update>
   
+    <update id="snsWebUpdate" parameterType="mul.camp.a.dto.SnsDto">
+  UPDATE META_SNS
+  SET
+  CONTENT=#{content}
+  WHERE SNSSEQ=#{seq}
+  
+  </update>
+  
+  <select id="snsSearch" parameterType = "Integer" resultType = "mul.camp.a.dto.SnsDto">
+  SELECT *
+  FROM META_SNS
+  WHERE SNSSEQ = #{seq}
+  </select>
+  
    <update id="snsImgUpdate" parameterType="mul.camp.a.dto.SnsDto">
   UPDATE META_SNS
   SET
@@ -44,14 +58,14 @@
   </select>
   
   <select id="allSns" resultType="mul.camp.a.dto.SnsDto">
-  
-  SELECT SNSSEQ,ID,NICKNAME,PROFILE,
+SELECT a.SNSSEQ,a.ID,a.NICKNAME,a.PROFILE,
    	TO_DATE(TO_CHAR(SYSDATE,'YYYYMMDD')) - TO_DATE(SNSDATE) || '-' || 
        TRUNC(((SYSDATE - SNSDATE) - TRUNC(SYSDATE - SNSDATE)) * 24) || '-'  ||
        TRUNC(MOD((SYSDATE - SNSDATE)*24,1)*60) AS SNSDATE,
-   IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
-  FROM META_SNS 
-  ORDER BY SNSSEQ DESC
+   a.IMAGECONTENT, a.LIKECOUNT,a.COMMENTCOUNT,a.CONTENT
+  FROM META_SNS a, META_MEMBER b
+  WHERE a.ID = b.ID(+) AND b.DEL = 'N'
+  ORDER BY a.SNSSEQ DESC
   </select>
   
   <select id="allComment" parameterType = "Integer"
@@ -139,15 +153,15 @@
    IMAGECONTENT, LIKECOUNT,COMMENTCOUNT,CONTENT
 	FROM
 		<!-- 검색조건이 있다면 검색조건에 맞는 게시글 찾기 & WHERE절에 1=1 항상 참 조건을 걸어둔 이유는 조건에 맞지 않아 error가 발생하는 경우를 방지하기 위함 -->
-		(SELECT ROW_NUMBER()OVER(ORDER BY SNSSEQ) AS RNUM,SNSSEQ, ID, NICKNAME,PROFILE,SNSDATE,IMAGECONTENT, LIKECOUNT, COMMENTCOUNT, CONTENT
+		(SELECT ROW_NUMBER()OVER(ORDER BY SNSSEQ DESC) AS RNUM,SNSSEQ, ID, NICKNAME,PROFILE,SNSDATE,IMAGECONTENT, LIKECOUNT, COMMENTCOUNT, CONTENT
 		FROM META_SNS
 		WHERE 1=1
 			<if test="choice != null and choice != '' and search != null and search != '' ">
-				<if test="choice == 'userId'">
-					AND ID LIKE '%'||#{search}||'%'
+				<if test="choice == 'userNickName'">
+					AND NICKNAME LIKE '%'||#{search}||'%'
 				</if>
-				<if test="choice == 'userName'">
-					AND NAME LIKE '%'||#{search}||'%'
+				<if test="choice == 'userContent'">
+					AND CONTENT LIKE '%'||#{search}||'%'
 				</if>
 			</if>)
 	<!-- start ~ end 사이의 RUNM번의 게시글 정보 반환 -->
@@ -155,17 +169,17 @@
 </select>
 
 <!-- #21# (Web _관리자용) 회원목록 총 개수 -->
-<select id="getSnsCount" parameterType="mul.camp.a.dto.SnsParam" resultType="Integer">
+<select id="getSnsCount" parameterType="mul.camp.a.dto.MemberParam" resultType="Integer">
 	 SELECT NVL(COUNT(*), 0) AS CNT
 	 FROM META_SNS
 	 WHERE 1=1
 		 <!-- 검색조건이 있다면 검색조건에 맞는 게시글 찾기 -->
 		<if test="choice != null and choice != '' and search != null and search != '' ">
-			<if test="choice == 'userId'">
-				AND ID LIKE '%'||#{search}||'%'
+			<if test="choice == 'userNickName'">
+				AND NICKNAME LIKE '%'||#{search}||'%'
 			</if>
-			<if test="choice == 'userName'">
-				AND NAME LIKE '%'||#{search}||'%'
+			<if test="choice == 'userContent'">
+				AND CONTENT LIKE '%'||#{search}||'%'
 			</if>
 		</if>
 </select>

@@ -84,73 +84,43 @@
 	<br>
 	<table class="table">
 		<col width="200"><col width="500">
+		<thead class="thead-light">
+	<tr>
+		<th>SNSSEQ</th><td id="SnsSeq" style="font-weight: 700;"></td>
+	</tr>
+	</thead>
 	<thead class="thead-light">
 	<tr>
-		<th>ID</th><td id="userId" style="font-weight: 700;"></td>
+		<th>ID</th><td id="SnsId" style="font-weight: 700;"></td>
 	</tr>
 	</thead>
 	
 	<thead class="thead-light">
 	<tr>
-		<th>이름</th>
-		<td><input type="text" id="userName" name="userName" size="85px"></td>
+		<th>닉네임</th><td id="SnsNickName" style="font-weight: 700;"></td>
 	</tr>
 	</thead>
 	
 	<thead class="thead-light">
 	<tr>
-		<th>EMAIL</th>
-		<td><input type="text" id="userEmail" name="userEmail" size="85px"></td>
+		<th>시간</th><td id="SnsDate" style="font-weight: 700;"></td>
 	</tr>
 	</thead>
 	
 	<thead class="thead-light">
 	<tr>
-		<th>성별</th>
-		<td><input type="text" id="userGender" name="userGender" size="85px"></td>
+		<th>내용</th>
+		<td><input type="text" id="SnsContent" name="SnsContent" size="85px"></td>
 	</tr>
 	</thead>
 	
-	<thead class="thead-light">
-	<tr>
-		<th>핸드폰</th>
-		<td><input type="text" id="userPhone" name="userPhone" size="85px"></td>
-	</tr>
-	</thead>
 	
-	<thead class="thead-light">
-	<tr>
-		<th>닉네임</th>
-		<td><input type="text" id="userNickname" name="userNickname" size="85px"></td>
-	</tr>
-	</thead>
-	
-	<thead class="thead-light">
-	<tr>
-		<th>키</th>
-		<td><input type="text" id="userHeight" name="userHeight" size="85px"></td>
-	</tr>
-	</thead>
-	
-	<thead class="thead-light">
-	<tr>
-		<th>몸무게</th>
-		<td><input type="text" id="userWeight" name="userWeight" size="85px"></td>
-	</tr>
-	</thead>
-	
-	<thead class="thead-light">
-	<tr>
-		<th>생일</th>
-		<td><input type="text" id="userBirth" name="userBirth" size="85px"></td>
-	</tr>
-	</thead>
 	
 	</table>
 	<br>
 	
-	<button type="button" id="memberUpdateBtn" class="snip1535">수정</button>
-	<button type="button" id="memberDelBtn" class="snip1535">탈퇴</button>
+	<button type="button" id="snsUpdateBtn" class="snip1535">수정</button>
+	<button type="button" id="snsDelBtn" class="snip1535">삭제</button>
 </form>
 </div>
 
@@ -162,25 +132,22 @@ const urlParams = url.searchParams;
 
 let id = urlParams.get("id");			// const, let 둘다 사용해도 됨 (무관)
 let seq = urlParams.get("seq");
- alert("id: " + id+" seq: " + seq);
+ //alert("id: " + id+" seq: " + seq);
 	
 /* id에 해당하는 회원정보 드로잉 */
 $.ajax({
-	url:"http://localhost:3000/snsGetMember",
+	url:"http://localhost:3000/snsSearch",
 	type:"post",						
-	data:{ "id":id },					
+	data:{ "seq":seq },					
 	success:function(mem){
 		 // alert(JSON.stringify(mem));	
 		 
-			$("#userId").text(mem.id);
-			$("#userName").val(mem.name);
-			$("#userEmail").val(mem.email);
-			$("#userGender").val(mem.gender);
-			$("#userPhone").val(mem.phone);
-			$("#userNickname").val(mem.nickname);
-			$("#userHeight").val(mem.height);
-			$("#userWeight").val(mem.weight);
-			$("#userBirth").val(mem.birth);
+			$("#SnsSeq").text(mem.seq);
+			$("#SnsId").text(mem.id);
+			$("#SnsNickName").text(mem.nickname);
+			$("#SnsDate").text(mem.snsdate);
+			$("#SnsContent").val(mem.content);
+
 	},
 	error:function(){
 		alert('memberDetail.html 회원정보 수정 & 탈퇴 ajax error');
@@ -189,104 +156,95 @@ $.ajax({
 
 
 
-
+//let seq = Integer.parseInt($("SnsSeq").text())
 
 
 /* 수정 Button */
-$("#memberUpdateBtn").click(function() {
+$("#snsUpdateBtn").click(function() {
 	
 	// 데이터 검증 (* App 회원가입 시 입력 데이터 검증 조건과 동일)
-	if ($("#userName").val().trim() == '') {
-		alert("이름을 입력해주세요");
+	if ($("#SnsContent").val().trim() == '') {
+		alert("내용을 입력해주세요");
 	} 
-	else if ($("#userName").val().trim().length > 20) {
-		alert("이름을 20자 이내로 입력해주세요");
-		$("#userName").val("");
-	}
-	else if ($("#userEmail").val().trim() == '') {
-		alert("이메일을 입력해주세요");
-	}
-	else if ($("#userGender").val().trim() == '') {
-		alert("성별을 입력해주세요");
-	} 
-	else if ($("#userPhone").val().trim() == '') {
-		alert("전화번호를 입력해주세요");
-	}
-	else if ($("#userNickname").val().trim() == '') {
-		alert("닉네임을 입력해주세요");
-	}
-	else if ($("#userHeight").val().trim() == '') {
-		alert("키를 입력해주세요");
-	}
-	else if ($("#userHeight").val().trim().length > 6) {
-		alert("입력하신 키는 유효하지 않은 값입니다.");
-		$("#userHeight").val("");
-	}
-	else if ($("#userWeight").val().trim() == '') {
-		alert("몸무게를 입력해주세요");
-	}
-	else if ($("#userWeight").val().trim().length > 6) {
-		alert("입력하신 몸무게는 유효하지 않은 값입니다.");
-		$("#userWeight").val("");
-	}
-	else if ($("#userBirth").val().trim() == '') {
-		alert("생년월일을 입력해주세요");
-	}
-	else if ($("#userBirth").val().trim().length > 9) {
-		alert("입력하진 생년월일은 유효하지 않은 값입니다.");
-		$("#userBirth").val("");
-	}
+	
 	else {
+		alert(seq)
 		$.ajax({
-			url:"http://localhost:3000/userUpdateWeb",
+			url:"http://localhost:3000/snsWebUpdate",
 			type:"post",	
-			data: { "id":$("#userId").text().trim(),
-					"name": $("#userName").val().trim(),
-					"email": $("#userEmail").val().trim(),
-					"gender": $("#userGender").val().trim(),
-					"phone": $("#userPhone").val().trim(), 
-					"nickname": $("#userNickname").val().trim(),
-					"height": $("#userHeight").val().trim(),
-					"weight": $("#userWeight").val().trim(),
-					"birth": $("#userBirth").val().trim() 
-			},		
+			data: { "seq":seq,
+					"id" : "",
+					"nickname " : "",
+					"profile": "",
+					"snsdate" : "",
+					"imagecontent" : "",
+					"likecount" : 0,
+					"commentcount" : 0,
+					"content":$("#SnsContent").val(),
+					},		
 			//contentType:"application/json",
 			success:function(msg){
 				// alert(msg);
 				
 				if (msg == "YES"){
 					alert("회원정보가 수정되었습니다.");
-					location.href = "memManagement.html";
+					location.href = "snsAdmin.html";
 				} else {
 					alert("다시 시도해주세요.");
 				}
 			},
 			error:function(){
-				alert("memberDetail.html 회원정보 수정 ajax error 발생")
+				alert("snsDetail.html 회원정보 수정 ajax error 발생")
 			}
 		})	
 	}
 });
 
 /* 탈퇴 Button > 실제 탈퇴하는 것이 아닌 DEL 컬럼 값 변경 */
-$("#memberDelBtn").click(function() {
+$("#snsDelBtn").click(function() {
 	
 	$.ajax({
-		url:"http://localhost:3000/userDelWeb",
+		url:"http://localhost:3000/snsCommentAllDelete",
 		type:"post",						
-		data:{ "id":$("#userId").text().trim() },					
+		data:{ "seq":seq },					
 		success:function(msg){
-			// alert(msg);
+			alert(msg);
+
+		},
+		error:function(){
+			alert("snsDetail.html 게시물 댓글 삭제 ajax error 발생")
+		}
+	});
+	
+	$.ajax({
+		url:"http://localhost:3000/snsLikeAllDelete",
+		type:"post",						
+		data:{ "seq":seq },					
+		success:function(msg){
+			alert(msg);
+
+		},
+		error:function(){
+			alert("snsDetail.html 게시물 좋아요 삭제 ajax error 발생")
+		}
+	});
+	
+	$.ajax({
+		url:"http://localhost:3000/snsDelete",
+		type:"post",						
+		data:{ "seq":seq },					
+		success:function(msg){
+			alert(msg);
 			
-			if (msg == true){
-				alert("탈퇴 처리하였습니다.");
-				location.href = "memManagement.html";
+			if (msg == 1){
+				alert("삭제 처리하였습니다.");
+				location.href = "snsAdmin.html";
 			} else {
 				alert("다시 시도해주세요.");
 			}
 		},
 		error:function(){
-			alert("memberDetail.html 회원탈퇴 ajax error 발생")
+			alert("snsDetail.html 게시물 삭제 ajax error 발생")
 		}
 	});
 });

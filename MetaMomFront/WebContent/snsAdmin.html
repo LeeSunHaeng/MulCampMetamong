@@ -106,8 +106,8 @@
 			<td style="padding-left: 5px">
 				<select class="custom-select" id="_choice" name="choice">
 					<option selected>선택</option>
-					<option value="userId">ID</option>
-					<option value="userName">이름</option>
+					<option value="userNickName">닉네임</option>
+					<option value="userContent">내용</option>
 				</select>
 			</td>
 			
@@ -170,7 +170,6 @@ function getSnsList(page) {
 		url:"http://localhost:3000/getSnsListSearchPage",			// getMemberListSearchPage = 검색 + 페이징 
 		type:"post",
 		data:{ "choice":choice, "search":search, "page":page },			// page 매개변수 추가
-		contentType:"application/json",
 		success:function(list){
 			$.each(list, function(i, item) {
 						let str = "<tr>"
@@ -219,7 +218,6 @@ function getSnsCount(){
 		url:"http://localhost:3000/getSnsCount",
 		type:"post",
 		data:{ "choice":choice, "search":search, "page":0 },	// 회원의 총 개수를 구할때는 page 필요없으므로 0 설정
-		contentType:"application/json",
 		success:function(count) {
 			loadPage(count);
 		},
@@ -251,8 +249,8 @@ function loadPage(totalCount){
 		next:"다음",
 		initiateStartPageClick:false,					// onPageClick 자동호출 방지, 처음 페이지 방문 시 자동으로 호출되는데 그것을 방지한다.
 		onPageClick: function (event, page) {
-			// alert(page);
-			getMemberList(page - 1);						// 0 1 2 3 으로 하고 있어서 -1 하였음
+			 alert(page);
+			getSnsList(page - 1);						// 0 1 2 3 으로 하고 있어서 -1 하였음
 		}
 	})
 }

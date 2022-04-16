@@ -46,6 +46,25 @@ public class SnsController {
 		return num;
 	}
 	
+	@RequestMapping(value = "/snsWebUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String snsWebUpdate(SnsDto dto) {
+		System.out.println("snsWebUpdate 실행 성공");
+		System.out.println(dto.getSeq()+"~~~~~~~~"+dto.getContent());
+		if(service.snsWebUpdate(dto) > 0) {
+			return "YES";
+		}
+		else {
+			return "NO";
+		}
+	}
+	
+	@RequestMapping(value = "/snsSearch", method = {RequestMethod.GET, RequestMethod.POST} )
+	public SnsDto snsSearch(int seq) {
+		System.out.println("snsSearch 실행 성공");
+		 
+		return service.snsSearch(seq);
+	}
+	
 	@RequestMapping(value = "/snsImgUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
 	public int snsImgUpdate(@RequestBody SnsDto dto) {
 		System.out.println("snsImgUpdate 실행 성공");
@@ -185,7 +204,7 @@ public class SnsController {
 	
 	/* #21# (Web용 _관리자) 회원목록의 총 개수 (위의 회원목록과 동시 동작) */
 	@RequestMapping(value = "/getSnsCount", method = RequestMethod.POST)	// 회원목록의 총 개수
-	public int getSnsCount(SnsParam param) {
+	public int getSnsCount(MemberParam param) {
 		System.out.println("#21# SnsController getSnsCount() 동작");
 		
 		System.out.println("#21# getSnsCount() 결과값 > " + service.getSnsCount(param));

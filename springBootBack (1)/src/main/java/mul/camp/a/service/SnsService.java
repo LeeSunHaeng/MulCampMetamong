@@ -37,6 +37,16 @@ public class SnsService {
 		return dao.snsUpdate(dto);
 	}
 	
+	public int snsWebUpdate(SnsDto dto) {
+		System.out.println("snsWebUpdate service 실행");
+		return dao.snsWebUpdate(dto);
+	}
+	
+	public SnsDto snsSearch(int seq) {
+		System.out.println("snsSearch service 실행");
+		return dao.snsSearch(seq);
+	}
+	
 	public int snsImgUpdate(SnsDto dto) {
 		System.out.println("snsImgUpdate service 실행");
 		return dao.snsImgUpdate(dto);
@@ -119,7 +129,7 @@ public class SnsService {
 	public List<SnsDto> getSnsListSearchPage(MemberParam param) {
 		return dao.getSnsListSearchPage(param);
 	}
-	public int getSnsCount(SnsParam param) {
+	public int getSnsCount(MemberParam param) {
 		return dao.getSnsCount(param);
 	}
 }
