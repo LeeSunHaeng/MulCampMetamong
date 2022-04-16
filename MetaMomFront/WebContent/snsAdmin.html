@@ -4,11 +4,32 @@
 <meta charset="UTF-8">
 <title>SNS ADMIN</title>
 
+
+<link rel="icon" href="images/favicon.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css" />
+<script defer src="js/main.js"></script>
+
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
-* {
-	font-family: 'Noto Sans KR', sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@font-face {
+  font-family: 'score';
+  src: url('./fonts/SCDream5.otf') format('truetype');
 }
+@font-face {
+  font-family: 'score-slim';
+  src: url('fonts/SCDream1.otf') format('truetype');
+}
+@font-face {
+  font-family: 'cwDangam';
+  src: url('fonts/CwDangam.otf') format('truetype');
+}
+*{
+	font-family: 'score', sans-serif;
+} 
+
 .w-btn {
     position: relative;
     border: none;
@@ -94,6 +115,39 @@
 
 </head>
 <body>
+
+<!-- HEADER -->
+<header>
+  <div class="inner">
+    <a href="main.html" class="logo">
+      <img src="images/logo_title4.png" alt="LOGO">
+    </a>
+
+    <div class="sub-menu">
+      <div class="search">
+        <input type="text" />
+        <div class="material-icons">search</div>
+      </div>
+    </div> 
+
+    <ul class="main-menu">
+      <li class="item">
+        <img src="./images/add_account.png" class="menu_img" />
+        &nbsp;&nbsp;<a class="item__name" href="memManagement.html">회원관리</a>
+      </li>
+      <li class="item">
+        <img src="./images/sns.png" class="menu_img" />
+        &nbsp;<a class="item__name" href="snsAdmin.html">SNS관리</a>
+      </li>
+      <li class="item">
+        <img src="./images/book.png" class="menu_img" />
+        <a class="item__name" href="recipeMain.html">레시피</a>
+      </li>
+    </ul>
+  </div>
+</header>	
+<br><br><br><br>
+
 
 <br><br>
 <div id="app" class="container">	
@@ -248,7 +302,6 @@ function loadPage(totalCount){
 		next:"다음",
 		initiateStartPageClick:false,					// onPageClick 자동호출 방지, 처음 페이지 방문 시 자동으로 호출되는데 그것을 방지한다.
 		onPageClick: function (event, page) {
-			 alert(page);
 			getSnsList(page - 1);						// 0 1 2 3 으로 하고 있어서 -1 하였음
 		}
 	})
