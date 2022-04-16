@@ -1,6 +1,7 @@
 package mul.camp.a.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,9 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mul.camp.a.dao.SnsDao;
 import mul.camp.a.dto.MemberDto;
+import mul.camp.a.dto.MemberParam;
 import mul.camp.a.dto.SnsCommentDto;
 import mul.camp.a.dto.SnsDto;
 import mul.camp.a.dto.SnsLikeDto;
+import mul.camp.a.dto.SnsParam;
 
 @Service
 @Transactional
@@ -32,6 +35,16 @@ public class SnsService {
 	public int snsUpdate(SnsDto dto) {
 		System.out.println("snsUpdate service 실행");
 		return dao.snsUpdate(dto);
+	}
+	
+	public int snsWebUpdate(SnsDto dto) {
+		System.out.println("snsWebUpdate service 실행");
+		return dao.snsWebUpdate(dto);
+	}
+	
+	public SnsDto snsSearch(int seq) {
+		System.out.println("snsSearch service 실행");
+		return dao.snsSearch(seq);
 	}
 	
 	public int snsImgUpdate(SnsDto dto) {
@@ -111,5 +124,12 @@ public class SnsService {
 	public int currSeq() {
 		System.out.println("currSeq service 실행");
 		return dao.currSeq();
+	}
+	/* #21# (Web_관리자용) 검색 + 페이징 + 회원목록 & 회원목록 총 개수 */
+	public List<SnsDto> getSnsListSearchPage(MemberParam param) {
+		return dao.getSnsListSearchPage(param);
+	}
+	public int getSnsCount(MemberParam param) {
+		return dao.getSnsCount(param);
 	}
 }

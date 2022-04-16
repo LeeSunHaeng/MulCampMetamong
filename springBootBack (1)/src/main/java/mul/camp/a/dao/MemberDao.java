@@ -34,6 +34,7 @@ public interface MemberDao {
 	
 	/* #21# (Web_관리자용) 검색 + 페이징 + 회원목록 & 회원목록 총 개수 */
 	public List<MemberDto> getMemberListSearchPage(MemberParam param);
+	
 	public int getMemberCount(MemberParam param);
 	
 	/* #21# (Web_관리자용) 회원 탈퇴처리 */

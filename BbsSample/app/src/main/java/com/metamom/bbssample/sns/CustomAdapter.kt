@@ -86,7 +86,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             }else if(wdate.get(0).equals("1")){
                 snsDate.text = "어제"
             }else{
-                snsDate.text = "${wdate.get(0)}일 전"
+                snsDate.text = "방금 전"
             }
 
             snsNickName.text = dataVo.nickname

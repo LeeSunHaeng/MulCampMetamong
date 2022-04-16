@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import mul.camp.a.dto.MemberDto;
+import mul.camp.a.dto.MemberParam;
 import mul.camp.a.dto.SnsCommentDto;
 import mul.camp.a.dto.SnsDto;
 import mul.camp.a.dto.SnsLikeDto;
+import mul.camp.a.dto.SnsParam;
 import mul.camp.a.service.SnsService;
 
 @RestController
@@ -42,6 +44,25 @@ public class SnsController {
 		System.out.println("snsUpdate 실행 성공");
 		int num = service.snsUpdate(dto);
 		return num;
+	}
+	
+	@RequestMapping(value = "/snsWebUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String snsWebUpdate(SnsDto dto) {
+		System.out.println("snsWebUpdate 실행 성공");
+		System.out.println(dto.getSeq()+"~~~~~~~~"+dto.getContent());
+		if(service.snsWebUpdate(dto) > 0) {
+			return "YES";
+		}
+		else {
+			return "NO";
+		}
+	}
+	
+	@RequestMapping(value = "/snsSearch", method = {RequestMethod.GET, RequestMethod.POST} )
+	public SnsDto snsSearch(int seq) {
+		System.out.println("snsSearch 실행 성공");
+		 
+		return service.snsSearch(seq);
 	}
 	
 	@RequestMapping(value = "/snsImgUpdate", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -164,5 +185,29 @@ public class SnsController {
 		return num;
 	}
 	
+	/* #21# (Web용 _관리자) 회원목록 & 회원목록의 총 개수 */
+	@RequestMapping(value = "/getSnsListSearchPage", method = {RequestMethod.GET, RequestMethod.POST} )	// 검색조건에 맞는 글의 개수
+	public java.util.List<SnsDto> getSnsListSearchPage(MemberParam param) {
+		System.out.println("#21# SnsController getSnsListSearchPage() 동작");
+		System.out.println("#21# (관리자용) _for 회원목록을 위하여 받아온 값 param: " + param);
+		
+		// 페이지 설정 
+		int sn = param.getPage();	// .getPage(): 현재 페이지 ex. 0 1 2 3 ~ 
+		int start = sn * 10 + 1;	// ex) sn = 0 >> (start)1 ~ (end)10		sn = 1 >> (start)11 ~ (end)20
+		int end = (sn + 1) * 10;
+		
+		param.setStart(start);
+		param.setEnd(end);
+		
+		return service.getSnsListSearchPage(param);
+	}
 	
+	/* #21# (Web용 _관리자) 회원목록의 총 개수 (위의 회원목록과 동시 동작) */
+	@RequestMapping(value = "/getSnsCount", method = RequestMethod.POST)	// 회원목록의 총 개수
+	public int getSnsCount(MemberParam param) {
+		System.out.println("#21# SnsController getSnsCount() 동작");
+		
+		System.out.println("#21# getSnsCount() 결과값 > " + service.getSnsCount(param));
+		return service.getSnsCount(param);
+	}
 }
