@@ -168,7 +168,6 @@ $("#snsUpdateBtn").click(function() {
 	} 
 	
 	else {
-		alert(seq)
 		$.ajax({
 			url:"http://localhost:3000/snsWebUpdate",
 			type:"post",	
@@ -208,7 +207,7 @@ $("#snsDelBtn").click(function() {
 		type:"post",						
 		data:{ "seq":seq },					
 		success:function(msg){
-			alert(msg);
+			//alert(msg);
 
 		},
 		error:function(){
@@ -221,7 +220,7 @@ $("#snsDelBtn").click(function() {
 		type:"post",						
 		data:{ "seq":seq },					
 		success:function(msg){
-			alert(msg);
+			//alert(msg);
 
 		},
 		error:function(){
@@ -234,7 +233,7 @@ $("#snsDelBtn").click(function() {
 		type:"post",						
 		data:{ "seq":seq },					
 		success:function(msg){
-			alert(msg);
+			//alert(msg);
 			
 			if (msg == 1){
 				alert("삭제 처리하였습니다.");
