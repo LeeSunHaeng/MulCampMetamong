@@ -43,32 +43,25 @@ class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context
         val btnUpdate:Button = view.findViewById(R.id.btUpdate)
         val btnDel:Button = view.findViewById(R.id.btDelete)
 
+        //게시물 수정
         btnUpdate.setOnClickListener {
-
             val i = Intent(contxt,SnsUpdateActivity::class.java)
-            i.putExtra("ImageContentUri",uri)
-            i.putExtra("posi",pos)
-            i.putExtra("seq",sequence)
+                i.putExtra("ImageContentUri",uri)
+                i.putExtra("posi",pos)
+                i.putExtra("seq",sequence)
             val activity:SnsActivity = contxt as SnsActivity
             activity.startActivityForResult(i,200)
+
             dismiss()
 
-            /*val  i = Intent(context,SnsUpdateActivity::class.java)
-            i.putExtra("ImageContentUri",uri)
-            i.putExtra("posi",pos)
-            i.putExtra("seq",sequence)
-            startActivity(i)*/
         }
-
-
+        //게시물 삭제
         btnDel.setOnClickListener {
-            ad.delete(pos,sequence)
+            ad.delete(sequence)
             dismiss()
             Toast.makeText(context, "게시물이 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
-
-        // Inflate the layout for this fragment
         return view
     }
 
@@ -80,15 +73,5 @@ class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context
     }
 
 
-/*    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.btUpdate ->{
 
-            }
-            R.id.btDelete ->{
-                Log.i("Button", "delete click")
-               ad.delete(pos,sequence)
-            }
-        }
-    }*/
 }

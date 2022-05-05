@@ -73,10 +73,6 @@ class TalkFragment : Fragment() {
         recycler.layoutManager = layout
         recycler.setHasFixedSize(true)
 
-        /*binding.snsFragmentRecyclerView.adapter = adaptered
-        val layout = LinearLayoutManager(contxt)
-        binding.snsFragmentRecyclerView.layoutManager = layout
-        binding.snsFragmentRecyclerView.setHasFixedSize(true)*/
         val insertBtn = binding.root.findViewById<ImageButton>(R.id.fragSnsInsertButton)
 
         insertBtn.setOnClickListener {
@@ -111,31 +107,36 @@ class TalkFragment : Fragment() {
         super.onResume()
         println("~~~~~~~~~~~~~~~~~~~~~${SnsSingleton.position}~~~~~~~~~~~~~~${SnsSingleton.code}~~~~~~~~~~~~~~~성공!!!!!!")
         if(!SnsSingleton.code.equals("")){
-
+            //게시물 댓글 카운트
             if(SnsSingleton.code.equals("CMT")) {
-                adaptered.notifyItemChanged(SnsSingleton.position!!)
-                adaptered.update(SnsSingleton.position!!)
+                /*adaptered.notifyItemChanged(SnsSingleton.position!!)
+                adaptered.update(SnsSingleton.position!!)*/
+                adaptered.diffUpdate(SnsDao.getInstance().allSns())
+                snsFragmentRecyclerView.scrollToPosition(SnsSingleton.position!!)
                 SnsSingleton.position = null
                 SnsSingleton.code = ""
             }
-
+            //게시물 수정
             if(SnsSingleton.code.equals("SNSUPDATE")) {
 
-                adaptered.snsList.get(SnsSingleton.position!!).imagecontent = SnsSingleton.imageUri
+                /*adaptered.snsList.get(SnsSingleton.position!!).imagecontent = SnsSingleton.imageUri
                 adaptered.snsList.get(SnsSingleton.position!!).content = SnsSingleton.content
 
                 adaptered.notifyItemChanged(SnsSingleton.position!!)
-                adaptered.update(SnsSingleton.position!!)
+                adaptered.update(SnsSingleton.position!!)*/
+                adaptered.diffUpdate(SnsDao.getInstance().allSns())
+                snsFragmentRecyclerView.scrollToPosition(SnsSingleton.position!!)
                 SnsSingleton.position = null
                 SnsSingleton.imageUri = ""
                 SnsSingleton.content = ""
                 SnsSingleton.code = ""
             }
-
+            //게시물 작성
             if(SnsSingleton.code.equals("SNSINSERT")) {
-                //index를 정해줘야 notifyItemInserted할때 0번으로 찾을 수 있음 안정하면 맨 마지막에 추가됨 그래서 0번지가 두개 복사됨
-                adaptered.snsList.add(0,SnsSingleton.snsDto!!)
-                adaptered.notifyItemInserted(0)
+
+                /*adaptered.snsList.add(0,SnsSingleton.snsDto!!)
+                adaptered.notifyItemInserted(0)*/
+                adaptered.diffUpdate(SnsDao.getInstance().allSns())
                 snsFragmentRecyclerView.scrollToPosition(0)
 
                 SnsSingleton.snsDto = null

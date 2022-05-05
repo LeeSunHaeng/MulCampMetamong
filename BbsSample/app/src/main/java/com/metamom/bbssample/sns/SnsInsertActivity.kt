@@ -180,7 +180,6 @@ class SnsInsertActivity : AppCompatActivity() {
 
                     STORAGE_CODE ->{
                         val uri = data?.data as Uri
-                        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                         imageView.setImageURI(uri)
                         //newImgUri =  getPath(uri)
                         snsUri = uri
@@ -222,7 +221,8 @@ class SnsInsertActivity : AppCompatActivity() {
                     finish()
                 }else{
                     val i = Intent(this, SnsActivity::class.java)
-                    startActivity(i)
+                    setResult(Activity.RESULT_OK,i)
+                    finish()
                 }
 
             }

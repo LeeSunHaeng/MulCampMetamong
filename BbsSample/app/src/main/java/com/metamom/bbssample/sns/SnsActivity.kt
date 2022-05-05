@@ -56,16 +56,23 @@ class SnsActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
             when(requestCode){
+                //댓글 갯수 카운트
                 100->{
                     val position = data?.getSerializableExtra("position") as Int
-                    adapter.update(position)
+                    adapter.diffUpdate(SnsDao.getInstance().allSns())
+                    snsRecyclerView.scrollToPosition(position)
                 }
-
+                //게시물 수정
                 200->{
                     val position = data?.getSerializableExtra("position") as Int
-                    adapter.snsList.get(position).content = data.getStringExtra("content") as String
-                    adapter.snsList.get(position).imagecontent = data.getStringExtra("uri") as String
-                    adapter.notifyItemChanged(position)
+
+                    adapter.diffUpdate(SnsDao.getInstance().allSns())
+                    snsRecyclerView.scrollToPosition(position)
+                }
+                //게시물 작성
+                300 ->{
+                    adapter.diffUpdate(SnsDao.getInstance().allSns())
+                    snsRecyclerView.scrollToPosition(0)
                 }
 
             }
@@ -85,7 +92,7 @@ class SnsActivity : AppCompatActivity() {
 
             R.id.snsMainInsertBtn ->{
                 val i = Intent(this,SnsInsertActivity::class.java)
-                 startActivity(i)
+                 startActivityForResult(i,300)
 
             }
         }

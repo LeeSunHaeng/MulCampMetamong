@@ -222,8 +222,8 @@ class SnsUpdateActivity : AppCompatActivity() {
                 val data = intent.getSerializableExtra("posi") as Int
                 val i = Intent()
                 i.putExtra("position",data)
-                i.putExtra("uri",newImgUri)
-                i.putExtra("content",snsUpdateContentEditText.text.toString())
+                /*i.putExtra("uri",newImgUri)
+                i.putExtra("content",snsUpdateContentEditText.text.toString())*/
                 setResult(Activity.RESULT_OK,i)
                 finish()
                 return true

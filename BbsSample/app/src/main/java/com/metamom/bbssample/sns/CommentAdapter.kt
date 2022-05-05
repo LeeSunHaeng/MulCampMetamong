@@ -9,13 +9,14 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
 import com.metamom.bbssample.subsingleton.MemberSingleton
 
 
-class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentDto>) : RecyclerView.Adapter<CommentAdapter.ItemViewHolder>() {
+class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentDto>, val seq:Int) : RecyclerView.Adapter<CommentAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -35,20 +36,20 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
                     if(wdate.get(2).equals("0")) {
-                        cmtWriteTime.text = "방금"
+                        cmtWriteTime.text = "방금 전"
                     }else{
-                        cmtWriteTime.text = "${wdate.get(2)}분"
+                        cmtWriteTime.text = "${wdate.get(2)}분 전"
                     }
                 }else{
-                    cmtWriteTime.text = "${wdate.get(1)}시간"
+                    cmtWriteTime.text = "${wdate.get(1)}시간 전"
                 }
             }else if(wdate.get(0).equals("1")){
                 cmtWriteTime.text = "어제"
             }else if(wdate.get(0).equals("방금")){
-                cmtWriteTime.text = "방금"
+                cmtWriteTime.text = "방금 전"
             }
             else{
-                cmtWriteTime.text = "${wdate.get(0)}일"
+                cmtWriteTime.text = "${wdate.get(0)}일 전"
             }
 
             //프로필 이미지 뿌려주기
@@ -69,11 +70,11 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             }
             //삭제 버튼 실행
             cmtDeleteBtn.setOnClickListener {
+
                 if(dataVo.id == MemberSingleton.id){
                     val position = adapterPosition
                     SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq!!)
-                    commentList.removeAt(position)
-                    deleteComment(position)
+                    diffUpdate(SnsDao.getInstance().allComment(seq))
                     Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
                 }
                 else{
@@ -102,16 +103,17 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
     }
 
 
+    fun diffUpdate(items:List<SnsCommentDto>?){
+        items?.let{
+            val diffCallback = CmtDiffUtilCallback(this.commentList,items)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
 
-    fun addComment(dto:SnsCommentDto,seq:Int){
-        commentList.add(dto)
-        notifyItemInserted(commentList.size-1) //갱신
-
-    }
-
-    fun deleteComment(position: Int){
-        notifyItemRemoved(position)
-
+            this.commentList.run{
+                clear()
+                addAll(items)
+                diffResult.dispatchUpdatesTo(this@CommentAdapter)
+            }
+        }
     }
 
 

@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.R
@@ -75,9 +76,9 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             val wdate = dataVo.snsdate!!.split("-")
             if(wdate.get(0).equals("0")){
                 if(wdate.get(1).equals("0")) {
-                    if(wdate.get(2).equals("0")){
-                        snsDate.text="방금 전"
-                    }else {
+                    if(wdate.get(2).equals("0")) {
+                        snsDate.text = "방금 전"
+                    }else{
                         snsDate.text = "${wdate.get(2)}분 전"
                     }
                 }else{
@@ -85,8 +86,11 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 }
             }else if(wdate.get(0).equals("1")){
                 snsDate.text = "어제"
-            }else{
+            }else if(wdate.get(0).equals("방금")){
                 snsDate.text = "방금 전"
+            }
+            else{
+                snsDate.text = "${wdate.get(0)}일 전"
             }
 
             snsNickName.text = dataVo.nickname
@@ -96,7 +100,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
 
             //좋아요 버튼 이미지 뿌려줄때
             var snsLikeCheck = SnsDao.getInstance().snsLikeCheck(SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD"))
-            println("~~~~~~~~~~~~~~~~~~~~~~$snsLikeCheck~~~~~~~~~~~~~~~~~~~~")
+
             if(snsLikeCheck > 0){
                 val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
@@ -104,6 +108,7 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                 likeBtn.setImageResource(resourceId)
             }
+
             //뿌리고 난 후 좋아요 버튼을 눌렀을때
             likeBtn.setOnClickListener {
                 val dto = SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD")
@@ -120,11 +125,8 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 else{
                     val resourceId = context.resources.getIdentifier("ic_favorite_purple", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
-
                     SnsDao.getInstance().snsLikeInsert(dto)
-
                 }
-
                 snsLikeCount.text = "좋아요 ${SnsDao.getInstance().snsLikeCount(dataVo.seq)}개"
 
             }
@@ -135,16 +137,17 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
+                //activity.startActivity(i)
 
             }
             //댓글 개수 클릭시
             snsCommentCount.setOnClickListener {
-                val n  = adapterPosition
                 val i = Intent(context,CommentActivity::class.java)
                 i.putExtra("pos",adapterPosition)
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
+                //activity.startActivity(i)
             }
 
             //셋팅 버튼 클릭시
@@ -181,14 +184,25 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
         return snsList.size
 }
 
-    fun update(position: Int){
-        notifyItemChanged(position)
-    }
-    fun delete(position:Int,seq:Int){
+
+    fun delete(seq:Int){
         SnsDao.getInstance().snsCommentAllDelete(seq)
         SnsDao.getInstance().snsLikeAllDelete(seq)
         SnsDao.getInstance().snsDelete(seq)
-        notifyItemRemoved(position)
+        diffUpdate(SnsDao.getInstance().allSns())
+    }
+
+    fun diffUpdate(items:List<SnsDto>?){
+        items?.let{
+            val diffCallback = DiffUtilCallback(this.snsList,items)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+            this.snsList.run{
+                clear()
+                addAll(items)
+                diffResult.dispatchUpdatesTo(this@CustomAdapter)
+            }
+        }
     }
 
 

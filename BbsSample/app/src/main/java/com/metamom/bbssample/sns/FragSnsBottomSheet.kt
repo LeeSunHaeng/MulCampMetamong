@@ -41,32 +41,23 @@ class FragSnsBottomSheet(position:Int, adapter: FragSnsCustomAdapter, seq:Int, c
         val btnDel: Button = view.findViewById(R.id.FragbtDelete)
 
         btnUpdate.setOnClickListener {
-
             SnsSingleton.position = pos
             SnsSingleton.code = "SNSUPDATE"
             val i = Intent(contxt,SnsUpdateActivity::class.java)
-            i.putExtra("ImageContentUri",uri)
-            i.putExtra("posi",pos)
-            i.putExtra("seq",sequence)
+                i.putExtra("ImageContentUri",uri)
+                i.putExtra("posi",pos)
+                i.putExtra("seq",sequence)
             contxt.startActivity(i)
             dismiss()
-
-            /*val  i = Intent(context,SnsUpdateActivity::class.java)
-            i.putExtra("ImageContentUri",uri)
-            i.putExtra("posi",pos)
-            i.putExtra("seq",sequence)
-            startActivity(i)*/
         }
 
-
         btnDel.setOnClickListener {
-            ad.delete(pos,sequence)
+            ad.delete(sequence)
             dismiss()
             Toast.makeText(context, "게시물이 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
 
-        // Inflate the layout for this fragment
         return view
     }
     @SuppressLint("RestrictedApi")
