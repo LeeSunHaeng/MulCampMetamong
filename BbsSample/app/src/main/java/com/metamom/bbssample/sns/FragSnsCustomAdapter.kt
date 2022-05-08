@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.metamom.bbssample.MainButtonActivity
@@ -166,14 +167,9 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
 
             }
 
-
         }
 
-
     }
-
-
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FragSnsCustomAdapter.ItemViewHolder {
@@ -191,18 +187,24 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
         holder.bind(snsList[position], context, mFragmentManager)
     }
 
-    fun update(position: Int){
-        notifyItemChanged(position)
-    }
-    fun delete(position:Int,seq:Int){
+    fun delete(seq:Int){
         SnsDao.getInstance().snsCommentAllDelete(seq)
         SnsDao.getInstance().snsLikeAllDelete(seq)
         SnsDao.getInstance().snsDelete(seq)
-        notifyItemRemoved(position)
+        diffUpdate(SnsDao.getInstance().allSns())
     }
-    fun addFragSns(dto:SnsDto){
-        snsList.add(dto)
-        notifyItemInserted(0) //갱신
 
+
+    fun diffUpdate(items:List<SnsDto>?){
+        items?.let{
+            val diffCallback = DiffUtilCallback(this.snsList,items)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+            this.snsList.run{
+                clear()
+                addAll(items)
+                diffResult.dispatchUpdatesTo(this@FragSnsCustomAdapter)
+            }
+        }
     }
 }

@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                         0.0, ""
                     )
                 )
-
+             println("~~~~~~~~~~~~~~~~~~~~~~~~~${dto}~~~~~~~~~~~")
             if (dto != null) {
 
                 MemberDao.user = dto

@@ -72,7 +72,7 @@ class CommentActivity : AppCompatActivity() {
         var data = SnsDao.getInstance().allComment(seqData)
 
         //그걸 어댑터에 연결해서 리사이클러뷰에 뿌려줌
-        var adapter = CommentAdapter(this,data)
+        var adapter = CommentAdapter(this,data,seqData)
         cmtRecyclerView.adapter = adapter
 
         val layout = LinearLayoutManager(this)
@@ -88,12 +88,10 @@ class CommentActivity : AppCompatActivity() {
                 val dto = SnsCommentDto(nextSeq,seqData,MemberSingleton.id!!,
                     member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
                 SnsDao.getInstance().snsCommentInsert(dto)
-                adapter.addComment(dto,seqData)
+                adapter.diffUpdate(SnsDao.getInstance().allComment(seqData))
                 cmtInsertContentEditText.text = null
                 cmtRecyclerView.scrollToPosition(data.size-1)
             }
-
-
         }
 
     }

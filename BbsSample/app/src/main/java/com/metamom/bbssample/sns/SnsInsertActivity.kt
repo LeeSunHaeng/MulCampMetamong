@@ -180,7 +180,6 @@ class SnsInsertActivity : AppCompatActivity() {
 
                     STORAGE_CODE ->{
                         val uri = data?.data as Uri
-                        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                         imageView.setImageURI(uri)
                         //newImgUri =  getPath(uri)
                         snsUri = uri
@@ -212,7 +211,9 @@ class SnsInsertActivity : AppCompatActivity() {
             R.id.snsInsertBtn ->{
 
                 val content = findViewById<EditText>(R.id.snsContentEditText)
-                val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
+                val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString()
+                                 ,mem.profile.toString(),"YYYY/MM/DD",snsUri.toString()
+                                 ,0,0,content.text.toString())
                 val test = SnsDao.getInstance().snsInsert(dto)
                 println(test)
 
@@ -222,7 +223,8 @@ class SnsInsertActivity : AppCompatActivity() {
                     finish()
                 }else{
                     val i = Intent(this, SnsActivity::class.java)
-                    startActivity(i)
+                    setResult(Activity.RESULT_OK,i)
+                    finish()
                 }
 
             }
