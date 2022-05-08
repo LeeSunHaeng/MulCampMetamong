@@ -40,9 +40,6 @@ class SnsUpdateActivity : AppCompatActivity() {
         var newImgUri:String = ""
 
 
-
-
-
         //val snsUpdateContent2 = findViewById<EditText>(R.id.snsUpdateContentEditText)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -52,8 +49,6 @@ class SnsUpdateActivity : AppCompatActivity() {
             var snsUpdateContentEditText = findViewById<EditText>(R.id.snsUpdateContentEditText)
             val cameraBtn = findViewById<ImageButton>(R.id.snsCameraImageButton)
             val albumBtn = findViewById<ImageButton>(R.id.snsAlbumImageButton)
-
-
 
 
             //툴바 사용 설정
@@ -177,7 +172,6 @@ class SnsUpdateActivity : AppCompatActivity() {
                     }
                     STORAGE_CODE ->{
                         val uri = data?.data as Uri
-                        println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~$uri~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                         snsUpdateImage.setImageURI(uri)
                         //newImgUri =  getPath(uri)
                         newImgUri = uri.toString()
@@ -214,7 +208,9 @@ class SnsUpdateActivity : AppCompatActivity() {
                 return true
             }
             R.id.snsUpdateInsertBtn ->{
-                val dto = SnsDto(intent.getSerializableExtra("seq") as Int,"","","","",newImgUri,0,0,snsUpdateContentEditText.text.toString())
+                val dto = SnsDto(intent.getSerializableExtra("seq") as Int,""
+                                ,"","","",newImgUri,0
+                                ,0,snsUpdateContentEditText.text.toString())
                 SnsDao.getInstance().snsUpdate(dto)
                 SnsSingleton.imageUri = newImgUri
                 SnsSingleton.content = snsUpdateContentEditText.text.toString()
@@ -222,8 +218,6 @@ class SnsUpdateActivity : AppCompatActivity() {
                 val data = intent.getSerializableExtra("posi") as Int
                 val i = Intent()
                 i.putExtra("position",data)
-                /*i.putExtra("uri",newImgUri)
-                i.putExtra("content",snsUpdateContentEditText.text.toString())*/
                 setResult(Activity.RESULT_OK,i)
                 finish()
                 return true

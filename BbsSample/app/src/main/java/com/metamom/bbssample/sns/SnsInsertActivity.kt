@@ -211,7 +211,9 @@ class SnsInsertActivity : AppCompatActivity() {
             R.id.snsInsertBtn ->{
 
                 val content = findViewById<EditText>(R.id.snsContentEditText)
-                val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString(),mem.profile.toString(),"YYYY/MM/DD",snsUri.toString(),0,0,content.text.toString())
+                val dto = SnsDto(0,mem.id.toString(),mem.nickname.toString()
+                                 ,mem.profile.toString(),"YYYY/MM/DD",snsUri.toString()
+                                 ,0,0,content.text.toString())
                 val test = SnsDao.getInstance().snsInsert(dto)
                 println(test)
 

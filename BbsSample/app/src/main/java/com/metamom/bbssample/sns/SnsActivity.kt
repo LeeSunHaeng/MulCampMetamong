@@ -74,7 +74,6 @@ class SnsActivity : AppCompatActivity() {
                     adapter.diffUpdate(SnsDao.getInstance().allSns())
                     snsRecyclerView.scrollToPosition(0)
                 }
-
             }
         }
     }
@@ -86,15 +85,15 @@ class SnsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item!!.itemId){
-            android.R.id.home ->{
-                finish()
-            }
 
             R.id.snsMainInsertBtn ->{
                 val i = Intent(this,SnsInsertActivity::class.java)
                  startActivityForResult(i,300)
-
             }
+
+            android.R.id.home ->{
+            finish()
+        }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -89,12 +89,9 @@ class CommentActivity : AppCompatActivity() {
                     member.nickname!!,member.profile!!,"방금",cmtInsertContentEditText.text.toString())
                 SnsDao.getInstance().snsCommentInsert(dto)
                 adapter.diffUpdate(SnsDao.getInstance().allComment(seqData))
-                //adapter.addComment(dto,seqData)
                 cmtInsertContentEditText.text = null
                 cmtRecyclerView.scrollToPosition(data.size-1)
             }
-
-
         }
 
     }

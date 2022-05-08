@@ -53,7 +53,6 @@ class SnsBottomSheet(position:Int,adapter: CustomAdapter,seq:Int,context:Context
             activity.startActivityForResult(i,200)
 
             dismiss()
-
         }
         //게시물 삭제
         btnDel.setOnClickListener {

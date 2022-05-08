@@ -113,13 +113,13 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
             likeBtn.setOnClickListener {
                 val dto = SnsLikeDto(dataVo.seq,MemberSingleton.id!!,"YY/MM/DD")
                 snsLikeCheck = SnsDao.getInstance().snsLikeCheck(dto)
+
                 //좋아요가 눌려 있을때
                 if(snsLikeCheck > 0){
                     //이미지 변경
                     val resourceId = context.resources.getIdentifier("ic_favorite", "drawable", context.packageName)
                     likeBtn.setImageResource(resourceId)
                     SnsDao.getInstance().snsLikeDelete(dto)
-
                 }
                 //좋아요가 안눌려 있을때
                 else{
@@ -137,8 +137,6 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
-                //activity.startActivity(i)
-
             }
             //댓글 개수 클릭시
             snsCommentCount.setOnClickListener {
@@ -147,14 +145,14 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                 i.putExtra("seq",dataVo.seq)
                 val activity:SnsActivity = context as SnsActivity
                 activity.startActivityForResult(i,100)
-                //activity.startActivity(i)
             }
 
             //셋팅 버튼 클릭시
              snsSettingBtn.setOnClickListener {
                     //게시물 작성자와 현재 로그인한 유저가 같을 경우
                      if(dataVo.id == MemberSingleton.id){
-                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter,dataVo.seq,contxt,dataVo.imagecontent)
+                        val BottomSheet = SnsBottomSheet(adapterPosition,this@CustomAdapter
+                                                        ,dataVo.seq,contxt,dataVo.imagecontent)
                         BottomSheet.show(mFragmentManager,BottomSheet.tag)
                      }
                      //다를경우
@@ -162,7 +160,6 @@ class CustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, fragmen
                          val BottomSheet = NotWriterBottomSheet(context)
                          BottomSheet.show(mFragmentManager,BottomSheet.tag)
                      }
-
             }
 
 

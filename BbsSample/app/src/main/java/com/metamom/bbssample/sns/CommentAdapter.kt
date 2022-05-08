@@ -70,9 +70,7 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
             }
             //삭제 버튼 실행
             cmtDeleteBtn.setOnClickListener {
-
                 if(dataVo.id == MemberSingleton.id){
-                    val position = adapterPosition
                     SnsDao.getInstance().snsCommentDelete(dataVo.cmtseq!!)
                     diffUpdate(SnsDao.getInstance().allComment(seq))
                     Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show()
@@ -80,7 +78,6 @@ class CommentAdapter(val context: Context, val commentList:ArrayList<SnsCommentD
                 else{
                     Toast.makeText(context, "작성자가 아닙니다.", Toast.LENGTH_SHORT).show()
                 }
-
             }
 
         }

@@ -166,7 +166,7 @@ class FragSnsCustomAdapter(val context: Context, val snsList:ArrayList<SnsDto>, 
                 }
 
             }
-            
+
         }
 
     }
